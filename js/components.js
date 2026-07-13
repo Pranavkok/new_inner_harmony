@@ -33,11 +33,8 @@
 
     const page = document.body.dataset.page || '';
 
-    // ---------- Logo mark (lotus-like) ----------
-    const MARK = `<svg class="nav-mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M24 40c8 0 14-5 14-12 0-2-1-4-2-5-2 4-5 6-8 7 3-3 5-7 5-12 0-4-2-8-5-11-3 3-5 7-5 11 0 5 2 9 5 12-3-1-6-3-8-7-1 1-2 3-2 5 0 7 6 12 14 12Z"/>
-        <path d="M10 40h28"/>
-    </svg>`;
+    // ---------- Logo mark ----------
+    const MARK = `<img src="images/logo.png" alt="Inner Harmony Logo" class="nav-mark-img" style="width: 48px; height: 48px; object-fit: contain; border-radius: 50%;">`;
 
     // ---------- NAVBAR ----------
     const navHTML = `

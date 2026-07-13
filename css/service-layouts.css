@@ -1,0 +1,156 @@
+/* ==========================================================================
+   SERVICE LAYOUT OVERRIDES
+   These rules modify the structural appearance of the cards and sections 
+   based on the specific service blueprint, WITHOUT changing the core colors.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CAREER COMPASS - Structured, rigid, navigational
+-------------------------------------------------------------------------- */
+body[data-blueprint="career"] .pillar-card,
+body[data-blueprint="career"] .audience-card,
+body[data-blueprint="career"] .step-card {
+    border-radius: 4px;
+    border: 1px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+body[data-blueprint="career"] .pillar-card:hover,
+body[data-blueprint="career"] .audience-card:hover,
+body[data-blueprint="career"] .step-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0 var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   2. EMPOWERED PARENT - Soft, organic, pillowy
+-------------------------------------------------------------------------- */
+body[data-blueprint="empowered"] .pillar-card,
+body[data-blueprint="empowered"] .audience-card,
+body[data-blueprint="empowered"] .step-card {
+    border-radius: 40px 10px 40px 10px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(100, 60, 50, 0.08);
+    transition: transform 0.4s ease, border-radius 0.4s ease;
+}
+body[data-blueprint="empowered"] .pillar-card:hover,
+body[data-blueprint="empowered"] .audience-card:hover,
+body[data-blueprint="empowered"] .step-card:hover {
+    transform: scale(1.02);
+    border-radius: 10px 40px 10px 40px;
+}
+
+/* --------------------------------------------------------------------------
+   3. HEAL WITHIN - Tarot/Mystical
+-------------------------------------------------------------------------- */
+body[data-blueprint="heal"] .pillar-card,
+body[data-blueprint="heal"] .audience-card,
+body[data-blueprint="heal"] .step-card {
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 3rem 2rem;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+/* Inner tarot border */
+body[data-blueprint="heal"] .pillar-card::before,
+body[data-blueprint="heal"] .audience-card::before,
+body[data-blueprint="heal"] .step-card::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--rosewood);
+    border-radius: 6px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+body[data-blueprint="heal"] .pillar-card:hover,
+body[data-blueprint="heal"] .audience-card:hover,
+body[data-blueprint="heal"] .step-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* --------------------------------------------------------------------------
+   4. INNER POTENTIAL - Nodes/Connected
+-------------------------------------------------------------------------- */
+body[data-blueprint="inner-potential"] .pillars-grid {
+    position: relative;
+}
+/* Connecting dotted line behind cards */
+body[data-blueprint="inner-potential"] .pillars-grid::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--ink), var(--ink) 4px, transparent 4px, transparent 12px);
+    opacity: 0.15;
+    z-index: 0;
+}
+@media (max-width: 768px) {
+    body[data-blueprint="inner-potential"] .pillars-grid::before {
+        display: none;
+    }
+}
+body[data-blueprint="inner-potential"] .pillar-card,
+body[data-blueprint="inner-potential"] .audience-card,
+body[data-blueprint="inner-potential"] .step-card {
+    border-radius: 30px;
+    position: relative;
+    z-index: 1;
+    background: var(--cream);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+body[data-blueprint="inner-potential"] .pillar-card:hover,
+body[data-blueprint="inner-potential"] .audience-card:hover,
+body[data-blueprint="inner-potential"] .step-card:hover {
+    box-shadow: 0 0 0 2px var(--ink);
+    transform: scale(1.03);
+}
+
+/* --------------------------------------------------------------------------
+   5. REIKI - Flowing, borderless, serene
+-------------------------------------------------------------------------- */
+body[data-blueprint="reiki"] .pillar-card,
+body[data-blueprint="reiki"] .audience-card,
+body[data-blueprint="reiki"] .step-card {
+    border-radius: 100px;
+    padding: 3rem 2rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+    transition: all 0.5s ease;
+}
+body[data-blueprint="reiki"] .pillar-card:hover,
+body[data-blueprint="reiki"] .audience-card:hover,
+body[data-blueprint="reiki"] .step-card:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+}
+
+/* --------------------------------------------------------------------------
+   6. PARENTING ASSESSMENT - Checklist/Structured
+-------------------------------------------------------------------------- */
+body[data-blueprint="parenting"] .pillar-card,
+body[data-blueprint="parenting"] .audience-card,
+body[data-blueprint="parenting"] .step-card {
+    border-radius: 0;
+    border-top: 6px solid var(--rosewood);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-left: 1px solid rgba(0,0,0,0.1);
+    border-right: 1px solid rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    box-shadow: none;
+    transition: background 0.3s ease, border-top-color 0.3s ease;
+}
+body[data-blueprint="parenting"] .pillar-card:hover,
+body[data-blueprint="parenting"] .audience-card:hover,
+body[data-blueprint="parenting"] .step-card:hover {
+    background: var(--sand);
+    border-top-color: var(--ink);
+}

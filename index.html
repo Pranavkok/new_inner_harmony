@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body data-page="home" data-year="2026">
+<body data-page="home" data-blueprint="home" data-year="2026">
 
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursorFollower"></div>
@@ -18,7 +18,7 @@
     <div id="site-nav"></div>
 
     <!-- ===================== HERO ===================== -->
-    <header class="hero">
+    <header class="hero" style="background-image: linear-gradient(rgba(255, 252, 246, 0.8), rgba(255, 252, 246, 0.9)), url('images/hero.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="hero-orbs">
             <div class="orb orb-1" data-speed="0.28"></div>
             <div class="orb orb-2" data-speed="0.16"></div>
@@ -127,10 +127,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="portrait">
-                    <div class="portrait-placeholder">
-                        <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-                        <span>Dr. Gargee Gadgil</span>
-                    </div>
+                    <img src="images/portrait.jpg" alt="Dr. Gargee Gadgil" class="portrait-img" style="width: 100%; height: 100%; border-radius: 200px; object-fit: cover; box-shadow: 0 12px 30px rgba(0,0,0,0.1);">
                     <div class="portrait-badge">
                         <strong>28<span style="font-size:1.2rem">+</span></strong>
                         <span>Years of Practice</span>
@@ -304,7 +301,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="js/components.js"></script>
+    <script src="js/components.js?v=2"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 </html>
