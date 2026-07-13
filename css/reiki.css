@@ -1,0 +1,259 @@
+/* ==========================================================================
+   REIKI — "The Gentle Current"
+   Bespoke immersive scroll-story for body[data-blueprint="reiki"].
+   Loaded ONLY on reiki.html.
+
+   COLOR NOTE: the reiki blueprint token in style.css sets a COOL TEAL accent
+   (and even re-points --gold to teal). Per the site's warm rosewood/cream
+   identity (see the home page), we RE-OVERRIDE those tokens back to warm here,
+   so the whole page stays in the same family as every other page. No new
+   colors are introduced beyond the existing warm palette.
+   Progressive enhancement: js/reiki.js adds `.rk-js`; without JS / reduced
+   motion the page stays fully readable & static.
+   ========================================================================== */
+
+body[data-blueprint="reiki"] {
+    --accent: #5b3a44;                     /* rosewood — warm, on-brand */
+    --accent-soft: #b0897f;                /* warm taupe-rose */
+    --gold: #c9a06f;                       /* restore the site's warm gold */
+    --orb-color: rgba(139, 90, 98, 0.38);
+    --visual-glow: rgba(255, 238, 208, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   0. Shared act scaffolding + warm motes
+-------------------------------------------------------------------------- */
+.rk-act { position: relative; overflow: hidden; }
+body.rk-js .rk-reveal-line { opacity: 0; }
+.rk-motes { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.rk-motes .particle { background: var(--gold); box-shadow: 0 0 8px var(--gold); opacity: 0.5; }
+
+/* --------------------------------------------------------------------------
+   1. HERO — a breathing aura of light
+-------------------------------------------------------------------------- */
+.rk-hero {
+    padding: 172px 0 96px;
+    text-align: center;
+    background:
+        radial-gradient(85% 120% at 50% -8%, var(--sand) 0%, var(--cream) 48%, var(--cream-2) 100%);
+    color: var(--ink);
+}
+.rk-hero .breadcrumb { justify-content: center; }
+.rk-hero h1 em { font-style: italic; color: var(--gold); }
+.rk-hero .page-hero-sub { color: var(--rosewood); }
+.rk-hero .tm-line { color: var(--muted); }
+.rk-hero .orb { opacity: 0.55; }
+
+.rk-aura {
+    position: relative;
+    z-index: 3;
+    width: 280px;
+    height: 280px;
+    margin: 46px auto 8px;
+}
+.rk-aura-core {
+    position: absolute;
+    inset: 37%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 38%, #ffffff 0%, var(--sand) 55%, var(--peach) 100%);
+    box-shadow: 0 0 42px rgba(201, 160, 111, 0.6), inset 0 0 0 1px rgba(201, 160, 111, 0.5);
+    animation: rk-breathe 6s ease-in-out infinite;
+}
+.rk-aura-ring {
+    position: absolute;
+    inset: 33%;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    opacity: 0;
+    transform-origin: center;
+    animation: rk-pulse 6s ease-out infinite;
+}
+.rk-aura-ring:nth-child(2) { animation-delay: 2s; }
+.rk-aura-ring:nth-child(3) { animation-delay: 4s; }
+@keyframes rk-breathe {
+    0%, 100% { transform: scale(0.94); box-shadow: 0 0 32px rgba(201, 160, 111, 0.45), inset 0 0 0 1px rgba(201, 160, 111, 0.5); }
+    50%      { transform: scale(1.06); box-shadow: 0 0 54px rgba(201, 160, 111, 0.7), inset 0 0 0 1px rgba(201, 160, 111, 0.6); }
+}
+@keyframes rk-pulse {
+    0%   { transform: scale(0.5); opacity: 0; }
+    18%  { opacity: 0.6; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+.rk-scroll-cue {
+    position: relative; z-index: 3;
+    margin-top: 26px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted);
+}
+.rk-scroll-line {
+    width: 1px; height: 46px;
+    background: linear-gradient(var(--gold), transparent);
+    animation: rk-cue 2.4s ease-in-out infinite; transform-origin: top;
+}
+@keyframes rk-cue {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+    50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. ACT I — THE CURRENT FLOWS (pinned; warm streams draw in)
+-------------------------------------------------------------------------- */
+.rk-act--flow {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(72% 80% at 18% 30%, var(--sand) 0%, transparent 58%),
+        linear-gradient(160deg, var(--cream) 0%, var(--surface) 100%);
+}
+.rk-flow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+}
+.rk-flow-stage {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(150deg, #fff7ec 0%, var(--cream-2) 100%);
+    box-shadow: inset 0 0 0 1px rgba(201, 160, 111, 0.35), var(--shadow-sm);
+}
+.rk-flow-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rk-stream { fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: round; opacity: 0.55; }
+.rk-stream--bright { stroke-width: 2.6; opacity: 0.85; }
+
+.rk-flow-copy .eyebrow { color: var(--gold); }
+.rk-flow-copy h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 500; line-height: 1.16;
+    color: var(--ink);
+    margin: 14px 0 22px;
+}
+.rk-flow-copy h2 em { font-style: italic; color: var(--gold); }
+.rk-flow-copy .lead { color: var(--rosewood); }
+.rk-flow-copy p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 16px; line-height: 1.85; }
+
+/* --------------------------------------------------------------------------
+   3. ACT II — RESTORED, EVERY CORNER OF LIFE (pinned; vessels fill) · CENTREPIECE
+-------------------------------------------------------------------------- */
+.rk-act--restore {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 90px 0;
+    background:
+        radial-gradient(60% 55% at 50% 6%, var(--sand) 0%, transparent 52%),
+        linear-gradient(180deg, var(--cream) 0%, var(--peach) 100%);
+}
+.rk-restore-head { position: relative; z-index: 1; text-align: center; max-width: 720px; margin: 0 auto 54px; }
+.rk-restore-head .eyebrow { color: var(--muted); }
+.rk-restore-head .section-title em { color: var(--gold); }
+.rk-restore-head .section-subtitle { margin: 12px auto 0; }
+
+.rk-vessels {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.rk-vessel { text-align: center; }
+.rk-vessel-orb { width: 100%; max-width: 150px; margin: 0 auto 18px; }
+.rk-vessel-orb svg { width: 100%; overflow: visible; filter: drop-shadow(0 14px 30px rgba(139, 90, 98, 0.16)); }
+.rk-vessel-ring { fill: #fffaf3; stroke: var(--gold); stroke-width: 1.5; }
+.rk-vessel-fill { fill: url(#rkFillGrad); }
+.rk-vessel-surface { fill: none; stroke: rgba(255,255,255,0.7); stroke-width: 1.5; }
+.rk-vessel-ico { fill: none; stroke: var(--ink); stroke-width: 1.4; opacity: 0.85; }
+.rk-vessel h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.rk-vessel p { color: var(--text-soft); font-size: 0.92rem; line-height: 1.55; margin: 0; }
+
+/* --------------------------------------------------------------------------
+   4. ACT III — A GENTLE SESSION (interactive, breathing)
+-------------------------------------------------------------------------- */
+.rk-act--session { padding: 118px 0; background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%); }
+.rk-session-head { text-align: center; max-width: 700px; margin: 0 auto 50px; }
+.rk-session-head .eyebrow { color: var(--gold); }
+.rk-session-head .section-title em { color: var(--gold); }
+.rk-session-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 54px; align-items: center; }
+
+.rk-breath-stage { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 320px; gap: 22px; }
+.rk-breath {
+    width: 190px; height: 190px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 40%, #ffffff 0%, var(--sand) 55%, var(--peach) 100%);
+    box-shadow: 0 0 40px rgba(201, 160, 111, 0.5), inset 0 0 0 1px rgba(201, 160, 111, 0.5);
+    display: flex; align-items: center; justify-content: center;
+    animation: rk-breath-cycle 10s ease-in-out infinite;
+}
+.rk-breath span {
+    font-family: var(--font-display); font-style: italic; font-size: 1.15rem; color: var(--rosewood);
+    animation: rk-breath-word 10s ease-in-out infinite;
+}
+@keyframes rk-breath-cycle {
+    0%, 100% { transform: scale(0.82); }
+    40%, 60% { transform: scale(1.12); }
+}
+@keyframes rk-breath-word { 0%,100%{ opacity: 0.5; } 40%,60%{ opacity: 1; } }
+.rk-breath-caption { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+.rk-stage-list { display: flex; flex-direction: column; gap: 14px; }
+.rk-stage {
+    display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center;
+    padding: 20px 24px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer; font: inherit; color: inherit; text-align: left;
+    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.rk-stage:hover { transform: translateY(-2px); background: rgba(255,255,255,0.8); }
+.rk-stage b {
+    flex: none; width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-style: italic; font-size: 1.1rem;
+    color: var(--gold); background: rgba(201, 160, 111, 0.14);
+    transition: background 0.4s ease, color 0.4s ease;
+}
+.rk-stage-title { display: block; font-family: var(--font-display); font-size: 1.28rem; font-weight: 600; color: var(--ink); }
+.rk-stage-desc { display: block; font-size: 0.9rem; color: var(--text-soft); line-height: 1.55; margin-top: 2px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s var(--ease), opacity 0.4s ease, margin 0.4s ease; }
+.rk-stage.is-active { background: #fffaf3; box-shadow: var(--shadow-sm); }
+.rk-stage.is-active b { background: var(--gold); color: #fff; }
+.rk-stage.is-active .rk-stage-desc { max-height: 88px; opacity: 1; margin-top: 8px; }
+.rk-stage:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* --------------------------------------------------------------------------
+   5. QUOTE + CTA touch-ups (uses the site's warm bg-dark)
+-------------------------------------------------------------------------- */
+.rk-quote .big-quote em { color: var(--sand); }
+.rk-cta { border-top: 1px solid var(--line-soft); }
+.rk-cta h2 em { color: var(--rosewood); }
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE
+-------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .rk-flow-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+    .rk-flow-copy .eyebrow { justify-content: center; }
+    .rk-flow-copy .lead, .rk-flow-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
+    .rk-vessels { grid-template-columns: repeat(2, 1fr); gap: 30px; max-width: 460px; }
+    .rk-session-layout { grid-template-columns: 1fr; gap: 34px; }
+}
+@media (max-width: 620px) {
+    .rk-act--flow, .rk-act--restore { min-height: auto; padding: 96px 0; }
+    .rk-aura { width: 230px; height: 230px; }
+    .rk-vessels { grid-template-columns: 1fr; max-width: 260px; }
+}
+
+/* --------------------------------------------------------------------------
+   7. REDUCED MOTION — calm & static
+-------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .rk-aura-core, .rk-aura-ring, .rk-scroll-line, .rk-breath, .rk-breath span { animation: none; }
+    .rk-aura-ring { opacity: 0.25; }
+}

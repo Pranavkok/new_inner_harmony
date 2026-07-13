@@ -1,0 +1,171 @@
+/* ==========================================================================
+   THE BLUEPRINTS — services hub ("gateway gallery")
+   Bespoke layer for services.html (body[data-page="services"] with no
+   data-blueprint). Warm rosewood/cream palette only — the six emblems each
+   echo their detail page's signature motif, rendered in warm gold + rosewood.
+   Progressive enhancement: js/services.js adds `.sv-js`; without JS / reduced
+   motion the page is fully readable & static.
+   ========================================================================== */
+
+body[data-page="services"]:not([data-blueprint]) { --accent: var(--rosewood); }
+
+/* --------------------------------------------------------------------------
+   1. HERO
+-------------------------------------------------------------------------- */
+.sv-hero {
+    padding: 168px 0 88px;
+    text-align: center;
+    background: radial-gradient(85% 120% at 50% -8%, var(--sand) 0%, var(--cream) 48%, var(--cream-2) 100%);
+}
+.sv-hero .breadcrumb { justify-content: center; }
+.sv-hero h1 em { font-style: italic; color: var(--rosewood); }
+.sv-hero .page-hero-sub { color: var(--rosewood); }
+
+/* --------------------------------------------------------------------------
+   2. PILLARS — the three movements
+-------------------------------------------------------------------------- */
+.sv-pillars { background: var(--surface); padding: 84px 0; }
+.sv-pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: 940px; margin: 0 auto; }
+.sv-pillar { text-align: center; padding: 8px 30px; position: relative; }
+.sv-pillar + .sv-pillar::before {
+    content: ''; position: absolute; left: 0; top: 12%; bottom: 12%;
+    width: 1px; background: var(--line);
+}
+.sv-pillar-num {
+    font-family: var(--font-display); font-style: italic; font-size: 1.1rem;
+    color: var(--gold); display: block; margin-bottom: 8px;
+}
+.sv-pillar h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.sv-pillar p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+
+/* --------------------------------------------------------------------------
+   3. THE GALLERY — six signature cards
+-------------------------------------------------------------------------- */
+.sv-gallery { background: linear-gradient(180deg, var(--cream) 0%, var(--peach) 100%); }
+.sv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-top: 8px;
+}
+.sv-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 34px 30px 30px;
+    overflow: hidden;
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+.sv-card::after {
+    content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--accent-soft, var(--rosewood)));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease);
+}
+.sv-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: transparent; }
+.sv-card:hover::after { transform: scaleX(1); }
+.sv-card.is-suggested {
+    border-color: var(--gold);
+    box-shadow: 0 18px 44px rgba(201, 160, 111, 0.24);
+    transform: translateY(-4px);
+}
+
+.sv-emblem {
+    width: 86px; height: 86px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px;
+    background: radial-gradient(circle at 50% 38%, #fffaf3 0%, var(--cream) 60%, var(--sand) 100%);
+    box-shadow: inset 0 0 0 1px rgba(201, 160, 111, 0.4), var(--shadow-sm);
+}
+.sv-emblem svg { width: 54px; height: 54px; overflow: visible; }
+.sv-emblem .em-stroke { fill: none; stroke: var(--rosewood); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sv-emblem .em-gold-s { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; }
+.sv-emblem .em-gold-f { fill: var(--gold); }
+.sv-emblem .em-rose-f { fill: var(--rosewood); }
+
+.sv-card-tag {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 10px;
+}
+.sv-card h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; color: var(--ink); line-height: 1.15; margin-bottom: 10px; }
+.sv-card p { color: var(--text-soft); font-size: 0.98rem; line-height: 1.65; margin-bottom: 20px; flex-grow: 1; }
+.sv-card-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.86rem; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--rosewood);
+}
+.sv-card-link svg { width: 15px; height: 15px; transition: transform var(--t); }
+.sv-card:hover .sv-card-link { color: var(--ink); }
+.sv-card:hover .sv-card-link svg { transform: translateX(4px); }
+.sv-card-link::after { content: none; }
+
+/* idle emblem motion (subtle) */
+.em-spin  { transform-origin: center; animation: sv-spin 40s linear infinite; }
+.em-waver { transform-origin: 24px 24px; animation: sv-waver 6s ease-in-out infinite; }
+.em-breathe { transform-origin: center; animation: sv-breathe 5s ease-in-out infinite; }
+.em-pulse { transform-origin: center; animation: sv-pulse 4s ease-out infinite; opacity: 0; }
+.em-pulse.d2 { animation-delay: 1.3s; }
+.em-pulse.d3 { animation-delay: 2.6s; }
+.em-shimmer { animation: sv-shimmer 3.5s ease-in-out infinite; }
+@keyframes sv-spin { to { transform: rotate(360deg); } }
+@keyframes sv-waver { 0%,100%{ transform: rotate(-8deg); } 50%{ transform: rotate(8deg); } }
+@keyframes sv-breathe { 0%,100%{ transform: scale(0.94); } 50%{ transform: scale(1.06); } }
+@keyframes sv-pulse { 0%{ transform: scale(0.4); opacity: 0.7; } 100%{ transform: scale(1.5); opacity: 0; } }
+@keyframes sv-shimmer { 0%,100%{ opacity: 0.5; } 50%{ opacity: 1; } }
+
+/* --------------------------------------------------------------------------
+   4. HELP ME CHOOSE — interactive guide
+-------------------------------------------------------------------------- */
+.sv-choose { background: var(--surface); }
+.sv-choose-head { text-align: center; max-width: 680px; margin: 0 auto 36px; }
+.sv-choose-head .eyebrow { color: var(--gold); }
+.sv-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 820px; margin: 0 auto 30px; }
+.sv-chip {
+    font: inherit; cursor: pointer;
+    font-size: 0.92rem; color: var(--rosewood);
+    background: var(--cream); border: 1px solid var(--line);
+    border-radius: 999px; padding: 12px 22px;
+    transition: all 0.3s var(--ease);
+    -webkit-tap-highlight-color: transparent;
+}
+.sv-chip:hover { border-color: var(--gold); transform: translateY(-2px); }
+.sv-chip.is-active { background: var(--ink); color: var(--sand); border-color: var(--ink); }
+.sv-chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.sv-result {
+    max-width: 640px; margin: 0 auto; text-align: center;
+    background: linear-gradient(160deg, #fffaf3 0%, var(--sand) 100%);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 34px 34px 30px;
+    box-shadow: var(--shadow-sm);
+    min-height: 200px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.sv-result-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.sv-result h3 { font-family: var(--font-display); font-size: 1.9rem; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+.sv-result p { color: var(--text-soft); font-size: 1rem; line-height: 1.65; margin-bottom: 22px; max-width: 460px; }
+
+/* --------------------------------------------------------------------------
+   5. RESPONSIVE
+-------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .sv-grid { grid-template-columns: repeat(2, 1fr); }
+    .sv-pillars-grid { grid-template-columns: 1fr; gap: 30px; max-width: 420px; }
+    .sv-pillar + .sv-pillar::before { display: none; }
+    .sv-pillar { padding: 0 20px; }
+}
+@media (max-width: 600px) {
+    .sv-grid { grid-template-columns: 1fr; max-width: 380px; margin-inline: auto; }
+}
+
+/* --------------------------------------------------------------------------
+   6. REDUCED MOTION
+-------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .em-spin, .em-waver, .em-breathe, .em-pulse, .em-shimmer { animation: none; }
+    .em-pulse { opacity: 0.3; }
+}

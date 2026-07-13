@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inner Harmony Parenting Assessment™ — Understand Your Child | Inner Harmony</title>
-    <meta name="description" content="The Inner Harmony Parenting Assessment™ — online psychometric assessments that reveal your child's emotional needs, behaviour and learning style, with a personal consultation.">
+    <title>Inner Harmony Parenting Assessment™ — Bring Your Child Into Focus | Inner Harmony</title>
+    <meta name="description" content="The Inner Harmony Parenting Assessment™ — a warm psychometric assessment that brings your child's emotional needs, learning style and innate strengths into one clear picture, with a personal consultation with Dr. Gargee Gadgil.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <link rel="stylesheet" href="css/service-layouts.css">
+    <link rel="stylesheet" href="css/parenting.css?v=1">
 </head>
 <body data-page="services" data-blueprint="parenting" data-year="2026">
 
@@ -17,7 +18,10 @@
     <div class="cursor-follower" id="cursorFollower"></div>
     <div id="site-nav"></div>
 
-    <section class="page-hero bg-cream" style="background-image: linear-gradient(rgba(255, 252, 246, 0.8), rgba(255, 252, 246, 0.95)), url('images/assessment.jpg'); background-size: cover; background-position: center;">
+    <!-- ============================================================
+         HERO — warm dawn, an orbiting portrait medallion
+    ============================================================ -->
+    <section class="page-hero pa-hero">
         <div class="hero-orbs">
             <div class="orb orb-1" data-speed="0.24"></div>
             <div class="orb orb-3" data-speed="0.3"></div>
@@ -27,37 +31,211 @@
             <h1>Inner Harmony<br>Parenting <em>Assessment™</em></h1>
             <p class="page-hero-sub">Understand your child better. Parent with greater confidence.</p>
             <p class="tm-line">Because understanding leads to connection — and connected families thrive.</p>
+
+            <!-- orbiting portrait medallion: the whole child, five facets -->
+            <div class="pa-medallion" aria-hidden="true">
+                <div class="pa-ring"></div>
+                <div class="pa-ring pa-ring--mid"></div>
+                <div class="pa-orbit">
+                    <span class="pa-orbit-dot"></span>
+                    <span class="pa-orbit-dot"></span>
+                    <span class="pa-orbit-dot"></span>
+                    <span class="pa-orbit-dot"></span>
+                    <span class="pa-orbit-dot"></span>
+                </div>
+                <div class="pa-medallion-core">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="6" r="2.6"/>
+                        <path d="M4 20v-4a4 4 0 0 1 8 0v4"/>
+                        <circle cx="16.5" cy="9" r="1.8"/>
+                        <path d="M13.5 20v-3a3 3 0 0 1 6 0v3"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="pa-scroll-cue">
+                <span>Scroll to see the picture form</span>
+                <span class="pa-scroll-line"></span>
+            </div>
         </div>
     </section>
 
-    <!-- INTRO -->
-    <section class="section bg-sand">
+    <!-- ============================================================
+         ACT I — THE UNSEEN LANGUAGE (pinned focus-pull)
+    ============================================================ -->
+    <section class="pa-act pa-act--focus">
         <div class="container">
-            <div class="prose-grid">
-                <div class="prose-visual prose-visual--parenting" data-visual="nurture">
-                    <div class="ring ring-a"></div>
-                    <div class="ring ring-b"></div>
-                    <svg class="bond-arcs" viewBox="0 0 100 100" aria-hidden="true">
-                        <path class="bond-arc" d="M20 70 Q50 30, 80 70"/>
-                        <path class="bond-arc" d="M30 75 Q50 45, 70 75"/>
-                    </svg>
-                    <svg class="nurture-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                        <path d="M12 21s-7-4.35-9.5-8.5A5.5 5.5 0 0 1 12 6.5a5.5 5.5 0 0 1 9.5 6C19 16.65 12 21 12 21z"/>
-                    </svg>
+            <div class="pa-focus-grid">
+                <div class="pa-portrait">
+                    <div class="pa-portrait-media">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="9" r="4.5"/>
+                            <path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6"/>
+                            <path d="M9.5 8.6h.01M14.5 8.6h.01"/>
+                            <path d="M10 11c.6.6 1.4.6 2 0"/>
+                        </svg>
+                    </div>
                 </div>
-                <div class="prose">
-                    <span class="eyebrow reveal-text">Every Child Is Unique</span>
-                    <h2 class="section-title split-words">Understanding <em>why</em> is<br>the first step to change</h2>
-                    <p class="lead">Every parent faces challenges at some point.</p>
-                    <p>Our online assessment gives you a clear picture of what your child actually needs emotionally and how they learn best.</p>
-                    <p>It's a simple questionnaire that uncovers your child's strengths and the areas where they need support, so you can parent with true confidence.</p>
+                <div class="pa-focus-copy">
+                    <span class="eyebrow pa-reveal-line">Every Child Is Unique</span>
+                    <h2 class="pa-reveal-line">Behaviour is a language — the assessment helps you <em>read it.</em></h2>
+                    <p class="lead pa-reveal-line">Every parent hits a moment of feeling unsure. It doesn't mean anything is wrong.</p>
+                    <p class="pa-reveal-line">Tantrums, withdrawal, restlessness — these aren't problems to fix. They're messages about a need that hasn't been met yet.</p>
+                    <p class="pa-reveal-line">Our assessment gently brings that blurry picture into focus, so you can respond to what your child is actually asking for.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="section bg-cream">
+    <!-- ============================================================
+         ACT II — THE PROFILE BLOOM (pinned, petals draw in) · CENTREPIECE
+    ============================================================ -->
+    <section class="pa-act pa-act--bloom">
+        <div class="container">
+            <div class="pa-bloom-head">
+                <span class="eyebrow centered">What It Reveals</span>
+                <h2 class="section-title">Five dimensions of your child, in <em>one clear picture.</em></h2>
+                <p class="section-subtitle">As you scroll, the profile blooms — the same way it comes together in your results.</p>
+            </div>
+            <div class="pa-bloom-grid">
+                <div class="pa-bloom-stage">
+                    <div class="pa-bloom-halo" aria-hidden="true"></div>
+                    <svg class="pa-bloom-svg" viewBox="0 0 400 400" aria-label="A five-petal profile of your child">
+                        <defs>
+                            <linearGradient id="paPetalGrad" x1="0" y1="1" x2="0" y2="0">
+                                <stop offset="0%" stop-color="#8b5a62"/>
+                                <stop offset="100%" stop-color="#c49098"/>
+                            </linearGradient>
+                            <radialGradient id="paCoreGrad" cx="50%" cy="38%" r="70%">
+                                <stop offset="0%" stop-color="#ffffff"/>
+                                <stop offset="70%" stop-color="#fdf4eb"/>
+                                <stop offset="100%" stop-color="#fcdbd8"/>
+                            </radialGradient>
+                        </defs>
+                        <circle class="pa-bloom-guide" cx="200" cy="200" r="150"/>
+                        <circle class="pa-bloom-guide" cx="200" cy="200" r="86"/>
+                        <!-- five petals, each rotated 72° around the centre -->
+                        <g class="pa-petal" transform="rotate(0 200 200)"><path fill="url(#paPetalGrad)" fill-opacity="0.82" d="M200 200 C160 140 168 66 200 40 C232 66 240 140 200 200 Z"/></g>
+                        <g class="pa-petal" transform="rotate(72 200 200)"><path fill="url(#paPetalGrad)" fill-opacity="0.7" d="M200 200 C160 140 168 66 200 40 C232 66 240 140 200 200 Z"/></g>
+                        <g class="pa-petal" transform="rotate(144 200 200)"><path fill="url(#paPetalGrad)" fill-opacity="0.82" d="M200 200 C160 140 168 66 200 40 C232 66 240 140 200 200 Z"/></g>
+                        <g class="pa-petal" transform="rotate(216 200 200)"><path fill="url(#paPetalGrad)" fill-opacity="0.7" d="M200 200 C160 140 168 66 200 40 C232 66 240 140 200 200 Z"/></g>
+                        <g class="pa-petal" transform="rotate(288 200 200)"><path fill="url(#paPetalGrad)" fill-opacity="0.82" d="M200 200 C160 140 168 66 200 40 C232 66 240 140 200 200 Z"/></g>
+                        <circle class="pa-bloom-core" cx="200" cy="200" r="42"/>
+                        <text class="pa-bloom-corelabel" x="200" y="200">Your child</text>
+                    </svg>
+                </div>
+                <div class="pa-bloom-legend">
+                    <div class="pa-legend-item">
+                        <span class="pa-legend-num">1</span>
+                        <div class="pa-legend-text">
+                            <h3>Emotional needs</h3>
+                            <p>What helps them feel safe, seen and secure.</p>
+                        </div>
+                    </div>
+                    <div class="pa-legend-item">
+                        <span class="pa-legend-num">2</span>
+                        <div class="pa-legend-text">
+                            <h3>Learning style</h3>
+                            <p>How they take in the world and learn best.</p>
+                        </div>
+                    </div>
+                    <div class="pa-legend-item">
+                        <span class="pa-legend-num">3</span>
+                        <div class="pa-legend-text">
+                            <h3>Behaviour patterns</h3>
+                            <p>The unmet needs hiding underneath the meltdowns.</p>
+                        </div>
+                    </div>
+                    <div class="pa-legend-item">
+                        <span class="pa-legend-num">4</span>
+                        <div class="pa-legend-text">
+                            <h3>Innate strengths</h3>
+                            <p>The natural gifts to notice, nurture and lean into.</p>
+                        </div>
+                    </div>
+                    <div class="pa-legend-item">
+                        <span class="pa-legend-num">5</span>
+                        <div class="pa-legend-text">
+                            <h3>Social connection</h3>
+                            <p>How they bond, relate and find their sense of belonging.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         ACT III — THE QUESTIONNAIRE (interactive, no wrong answers)
+    ============================================================ -->
+    <section class="pa-act pa-act--quiz">
+        <div class="container">
+            <div class="pa-quiz-head">
+                <span class="eyebrow centered">How You'll Answer</span>
+                <h2 class="section-title">Simple statements. <em>No right answers.</em></h2>
+                <p class="section-subtitle">A taste of the assessment. Set each to where your child feels true today — nothing here is graded.</p>
+            </div>
+            <div class="pa-quiz-grid">
+                <div class="pa-statement">
+                    <p class="pa-statement-q">Bounces back after a setback</p>
+                    <div class="pa-scale" role="radiogroup" aria-label="Bounces back after a setback">
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Rarely"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Sometimes"></button>
+                        <button class="pa-dot is-on" type="button" role="radio" aria-checked="true" aria-label="Often"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Usually"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Almost always"></button>
+                    </div>
+                    <div class="pa-scale-ends"><span>Rarely</span><span>Always</span></div>
+                    <div class="pa-scale-readout" aria-live="polite"></div>
+                </div>
+
+                <div class="pa-statement">
+                    <p class="pa-statement-q">Tells me when something feels wrong</p>
+                    <div class="pa-scale" role="radiogroup" aria-label="Tells me when something feels wrong">
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Rarely"></button>
+                        <button class="pa-dot is-on" type="button" role="radio" aria-checked="true" aria-label="Sometimes"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Often"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Usually"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Almost always"></button>
+                    </div>
+                    <div class="pa-scale-ends"><span>Rarely</span><span>Always</span></div>
+                    <div class="pa-scale-readout" aria-live="polite"></div>
+                </div>
+
+                <div class="pa-statement">
+                    <p class="pa-statement-q">Feels confident trying new things</p>
+                    <div class="pa-scale" role="radiogroup" aria-label="Feels confident trying new things">
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Rarely"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Sometimes"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Often"></button>
+                        <button class="pa-dot is-on" type="button" role="radio" aria-checked="true" aria-label="Usually"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Almost always"></button>
+                    </div>
+                    <div class="pa-scale-ends"><span>Rarely</span><span>Always</span></div>
+                    <div class="pa-scale-readout" aria-live="polite"></div>
+                </div>
+
+                <div class="pa-statement">
+                    <p class="pa-statement-q">Settles calmly at the end of the day</p>
+                    <div class="pa-scale" role="radiogroup" aria-label="Settles calmly at the end of the day">
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Rarely"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Sometimes"></button>
+                        <button class="pa-dot is-on" type="button" role="radio" aria-checked="true" aria-label="Often"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Usually"></button>
+                        <button class="pa-dot" type="button" role="radio" aria-checked="false" aria-label="Almost always"></button>
+                    </div>
+                    <div class="pa-scale-ends"><span>Rarely</span><span>Always</span></div>
+                    <div class="pa-scale-readout" aria-live="polite"></div>
+                </div>
+            </div>
+            <p class="pa-quiz-note">The full assessment goes deeper across every dimension — then we make sense of it <em>together.</em></p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         HOW IT WORKS — connected 3-step path
+    ============================================================ -->
+    <section class="section pa-steps">
         <div class="container">
             <div class="section-header">
                 <span class="eyebrow centered reveal-text">How It Works</span>
@@ -67,54 +245,79 @@
                 <article class="step-card">
                     <span class="step-number">01</span>
                     <h3>Complete the assessment</h3>
-                    <p>A simple online questionnaire you can do at home.</p>
+                    <p>A gentle online questionnaire you fill in at home, at your own pace.</p>
                 </article>
                 <article class="step-card">
                     <span class="step-number">02</span>
-                    <h3>A one-on-one chat</h3>
-                    <p>We walk you through the results with zero jargon.</p>
+                    <h3>A one-on-one conversation</h3>
+                    <p>Dr. Gargee walks you through the picture with warmth and zero jargon.</p>
                 </article>
                 <article class="step-card">
                     <span class="step-number">03</span>
-                    <h3>Personalised steps</h3>
-                    <p>Leave with practical guidance made just for your family.</p>
+                    <h3>Personalised next steps</h3>
+                    <p>Leave with practical, doable guidance shaped around your family.</p>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- WHO IS THIS FOR -->
-    <section class="section bg-blush">
+    <!-- ============================================================
+         WHO IT'S FOR — warm checklist
+    ============================================================ -->
+    <section class="section pa-who">
         <div class="container">
             <div class="prose-grid reverse">
-                <div class="prose-visual">
+                <div class="prose-visual prose-visual--parenting" data-visual="nurture">
                     <div class="ring ring-a"></div>
-                    <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 10l9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-6h6v6"/></svg>
+                    <div class="ring ring-b"></div>
+                    <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                        <path d="M12 21s-7-4.35-9.5-8.5A5.5 5.5 0 0 1 12 6.5a5.5 5.5 0 0 1 9.5 6C19 16.65 12 21 12 21z"/>
+                    </svg>
                 </div>
                 <div class="prose">
                     <span class="eyebrow reveal-text">Is This For You?</span>
                     <h2 class="section-title split-words">Consider this if <em>you…</em></h2>
                     <ul class="feature-list">
                         <li>Have a child aged 3–18</li>
-                        <li>Face daily conflicts or behavioral challenges</li>
-                        <li>Want a stronger connection with your kid</li>
-                        <li>Want to support their school life</li>
-                        <li>Just want to understand them better</li>
+                        <li>Face daily conflicts or puzzling behaviour</li>
+                        <li>Want a stronger, calmer connection with your child</li>
+                        <li>Want to support how they learn at school</li>
+                        <li>Simply want to understand them more deeply</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section bg-dark cta-band">
+    <!-- ============================================================
+         QUOTE band
+    ============================================================ -->
+    <section class="section bg-dark quote-band pa-quote">
         <div class="container">
-            <span class="eyebrow centered" style="color:rgba(255,238,208,.6)">Parent With Confidence</span>
-            <h2>When we understand our children, we truly <em>connect.</em></h2>
-            <p>Begin with an assessment and a warm conversation about what your child needs to thrive.</p>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="quote-mark" style="text-align: left;">&ldquo;</div>
+                <blockquote class="big-quote" style="margin: 0;">
+                    <span class="quote-line">When we understand our children,</span>
+                    <span class="quote-line">we stop trying to fix them —</span>
+                    <span class="quote-line">and start helping them <em>bloom.</em></span>
+                </blockquote>
+                <div class="quote-mark" style="text-align: right; margin-top: -10px; margin-bottom: 20px;">&rdquo;</div>
+            </div>
+            <div class="quote-attrib">— Parenting Assessment</div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CTA
+    ============================================================ -->
+    <section class="section bg-cream cta-band pa-cta">
+        <div class="container">
+            <span class="eyebrow centered reveal-text">Parent With Confidence</span>
+            <h2 style="color:var(--ink)">See your child <em>clearly.</em></h2>
+            <p style="color:var(--text-soft)">Begin with an assessment and a warm conversation about what your child needs to thrive.</p>
             <div class="cta-buttons">
-                <a href="contact.html" class="btn btn-light magnetic">Book an Assessment</a>
-                <a class="btn btn-ghost-light magnetic js-wa" data-wa-text="Hello Dr. Gargee, I'd like to know more about the Parenting Assessment.">Ask a Question</a>
+                <a href="contact.html" class="btn btn-primary magnetic">Book an Assessment</a>
+                <a class="btn btn-secondary magnetic js-wa" data-wa-text="Hello Dr. Gargee, I'd like to know more about the Parenting Assessment.">Ask a Question</a>
             </div>
         </div>
     </section>
@@ -125,6 +328,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <script src="js/parenting.js?v=1"></script>
 </body>
 </html>

@@ -1,0 +1,280 @@
+/* ==========================================================================
+   INNER POTENTIAL (DMIT) — "The Blueprint Within"
+   Bespoke immersive scroll-story for body[data-blueprint="inner-potential"].
+   Loaded ONLY on inner-potential.html. Uses the inner-potential accent tokens
+   already defined in style.css (violet --accent / --accent-soft) + --gold — no
+   new brand colors. Scientific, luminous, discovery mood: a fingerprint that
+   maps to the brain and the eight intelligences igniting like a constellation.
+   Progressive enhancement: js/inner-potential.js adds `.ip-js` to <body>;
+   without JS / reduced-motion the page is fully readable & static.
+   ========================================================================== */
+
+/* deep-violet shades of --accent, only for the dark centerpiece */
+body[data-blueprint="inner-potential"] { --violet-deep: #2a2036; --violet-deeper: #1d1628; }
+
+/* --------------------------------------------------------------------------
+   0. Shared act scaffolding + luminous stars
+-------------------------------------------------------------------------- */
+.ip-act { position: relative; overflow: hidden; }
+body.ip-js .ip-reveal-line { opacity: 0; }
+.ip-stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.ip-stars .particle { background: var(--accent-soft); box-shadow: 0 0 6px var(--accent-soft); }
+
+/* --------------------------------------------------------------------------
+   1. HERO — a luminous fingerprint being scanned
+-------------------------------------------------------------------------- */
+.ip-hero {
+    padding: 172px 0 96px;
+    text-align: center;
+    background:
+        radial-gradient(90% 120% at 50% -10%, #efe9f5 0%, var(--cream) 48%, var(--cream-2) 100%);
+    color: var(--accent);
+}
+.ip-hero .breadcrumb { justify-content: center; color: var(--accent-soft); }
+.ip-hero .breadcrumb a:hover { color: var(--accent); }
+.ip-hero h1 { color: var(--accent); }
+.ip-hero h1 em { font-style: italic; color: var(--gold); }
+.ip-hero .page-hero-sub { color: var(--accent-soft); }
+.ip-hero .tm-line { color: var(--muted); }
+.ip-hero .orb { opacity: 0.55; }
+
+.ip-print {
+    position: relative;
+    z-index: 3;
+    width: 250px;
+    height: 250px;
+    margin: 48px auto 8px;
+    filter: drop-shadow(0 0 22px rgba(154, 138, 176, 0.5));
+}
+.ip-print svg { width: 100%; height: 100%; overflow: visible; }
+.ip-ridge { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-linecap: round; opacity: 0.9; }
+.ip-print-glow { fill: none; stroke: var(--gold); stroke-width: 1.4; opacity: 0.7; }
+/* scanning bar sweeps across the print */
+.ip-scanbar {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    height: 2px;
+    top: 0;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 16px 2px rgba(201, 160, 111, 0.75);
+    animation: ip-scan 3.6s ease-in-out infinite;
+}
+@keyframes ip-scan {
+    0%, 100% { top: 8%;  opacity: 0; }
+    12%      { opacity: 1; }
+    50%      { top: 90%; opacity: 1; }
+    62%      { opacity: 0; }
+}
+
+.ip-scroll-cue {
+    position: relative; z-index: 3;
+    margin-top: 26px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted);
+}
+.ip-scroll-line {
+    width: 1px; height: 46px;
+    background: linear-gradient(var(--accent), transparent);
+    animation: ip-cue 2.4s ease-in-out infinite; transform-origin: top;
+}
+@keyframes ip-cue {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+    50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. ACT I — RIDGES TO THE BRAIN (pinned; print draws, nodes bloom)
+-------------------------------------------------------------------------- */
+.ip-act--map {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(72% 80% at 80% 30%, #efe9f5 0%, transparent 58%),
+        linear-gradient(160deg, var(--cream) 0%, var(--surface) 100%);
+}
+.ip-map-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 68px;
+    align-items: center;
+    width: 100%;
+}
+.ip-map-stage {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
+}
+.ip-map-svg { width: 100%; height: 100%; overflow: visible; }
+.ip-map-svg .ip-ridge { stroke: var(--accent); opacity: 0.75; }
+.ip-neural-line { stroke: var(--gold); stroke-width: 1.2; opacity: 0.75; }
+.ip-neural-node { fill: var(--gold); }
+.ip-map-halo {
+    position: absolute; inset: 8%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(154, 138, 176, 0.28) 0%, transparent 66%);
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.ip-map-copy .eyebrow { color: var(--gold); }
+.ip-map-copy h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 500; line-height: 1.16;
+    color: var(--accent);
+    margin: 14px 0 22px;
+}
+.ip-map-copy h2 em { font-style: italic; color: var(--gold); }
+.ip-map-copy .lead { color: var(--accent-soft); }
+.ip-map-copy p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 16px; line-height: 1.85; }
+
+/* --------------------------------------------------------------------------
+   3. ACT II — THE EIGHT INTELLIGENCES (pinned; constellation ignites) · CENTREPIECE
+-------------------------------------------------------------------------- */
+.ip-act--mind {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 90px 0;
+    color: var(--cream);
+    background:
+        radial-gradient(70% 70% at 50% 40%, var(--violet-deep) 0%, var(--violet-deeper) 60%, #140f1c 100%);
+}
+.ip-mind-head { position: relative; z-index: 1; text-align: center; max-width: 720px; margin: 0 auto 46px; }
+.ip-mind-head .eyebrow { color: var(--accent-soft); justify-content: center; }
+.ip-mind-head .eyebrow::before { background: var(--gold); }
+.ip-mind-head h2 { font-family: var(--font-display); font-size: clamp(2rem, 4.4vw, 3.2rem); font-weight: 500; color: var(--cream); line-height: 1.16; }
+.ip-mind-head h2 em { font-style: italic; color: var(--gold); }
+.ip-mind-head p { color: rgba(255, 238, 208, 0.7); margin: 12px auto 0; max-width: 560px; }
+
+.ip-constellation { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.ip-mind-svg { width: 100%; max-width: 500px; overflow: visible; }
+.ip-spoke { stroke: rgba(154, 138, 176, 0.4); stroke-width: 1.4; }
+.ip-node { fill: var(--violet-deep); stroke: var(--accent-soft); stroke-width: 1.5; }
+.ip-node-num { fill: var(--cream); font-family: var(--font-display); font-size: 14px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+.ip-hub {
+    fill: url(#ipHubGrad);
+    stroke: var(--gold);
+    stroke-width: 1.5;
+}
+.ip-hub-glyph { fill: none; stroke: var(--gold); stroke-width: 1.4; }
+
+/* chip legend that lights in sync with the nodes */
+.ip-chip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 780px;
+    margin: 40px auto 0;
+}
+.ip-chip {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(154, 138, 176, 0.28);
+}
+.ip-chip b {
+    flex: none;
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+    color: var(--violet-deeper); background: var(--gold);
+}
+.ip-chip span { font-size: 0.82rem; color: rgba(255, 238, 208, 0.9); line-height: 1.25; }
+
+/* --------------------------------------------------------------------------
+   4. ACT III — EXPLORE THE STRENGTHS (interactive)
+-------------------------------------------------------------------------- */
+.ip-act--explore { padding: 118px 0; background: linear-gradient(180deg, var(--cream) 0%, #efe9f5 100%); }
+.ip-explore-head { text-align: center; max-width: 700px; margin: 0 auto 44px; }
+.ip-explore-head .eyebrow { color: var(--gold); }
+.ip-explore-head .section-title em { color: var(--accent); }
+.ip-explore-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 30px; align-items: start; }
+.ip-strength-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.ip-strength {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    cursor: pointer; font: inherit; color: inherit; text-align: left;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.ip-strength:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.ip-strength b {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+    color: #fff; background: var(--accent-soft);
+    transition: background 0.25s ease;
+}
+.ip-strength span { font-family: var(--font-display); font-size: 1.08rem; font-weight: 600; color: var(--accent); line-height: 1.2; }
+.ip-strength.is-active { background: var(--accent); border-color: var(--accent); box-shadow: 0 12px 30px rgba(90, 74, 107, 0.28); }
+.ip-strength.is-active b { background: var(--gold); color: var(--violet-deeper); }
+.ip-strength.is-active span { color: #fff; }
+.ip-strength:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.ip-readout {
+    position: sticky; top: 100px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent);
+    border-radius: 6px 6px 20px 20px;
+    padding: 32px 30px;
+    box-shadow: var(--shadow-sm);
+    min-height: 240px;
+}
+.ip-readout-num {
+    font-family: var(--font-display); font-style: italic; font-size: 1rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+    display: block; margin-bottom: 8px;
+}
+.ip-readout h3 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; color: var(--accent); line-height: 1.2; margin-bottom: 12px; }
+.ip-readout-desc { color: var(--text); font-size: 1.02rem; line-height: 1.7; margin-bottom: 18px; }
+.ip-readout-nurture {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    color: var(--text-soft); font-size: 0.96rem; line-height: 1.65;
+}
+.ip-readout-nurture strong { color: var(--accent); font-weight: 600; }
+
+/* --------------------------------------------------------------------------
+   5. "INSIGHT YOU CAN USE" band + QUOTE + CTA
+-------------------------------------------------------------------------- */
+.ip-followup { background: var(--surface); }
+.ip-followup .prose-visual .glyph { color: var(--accent); }
+.ip-quote { background: linear-gradient(160deg, var(--violet-deep) 0%, var(--accent) 100%); }
+.ip-quote .big-quote em { color: var(--gold); }
+.ip-quote .quote-mark { color: rgba(201, 160, 111, 0.5); }
+.ip-cta { border-top: 1px solid var(--line-soft); }
+.ip-cta h2 em { color: var(--accent); }
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE
+-------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .ip-map-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .ip-map-copy .eyebrow { justify-content: center; }
+    .ip-map-copy .lead, .ip-map-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
+    .ip-chip-grid { grid-template-columns: repeat(2, 1fr); max-width: 460px; }
+    .ip-explore-layout { grid-template-columns: 1fr; gap: 22px; }
+    .ip-readout { position: static; }
+}
+@media (max-width: 620px) {
+    .ip-act--map, .ip-act--mind { min-height: auto; padding: 96px 0; }
+    .ip-print { width: 210px; height: 210px; }
+    .ip-strength-grid { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   7. REDUCED MOTION — static, luminous, readable
+-------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .ip-scanbar, .ip-scroll-line { animation: none; }
+}

@@ -1,0 +1,426 @@
+/* ==========================================================================
+   PARENTING ASSESSMENT — "Bringing Your Child Into Focus"
+   Bespoke immersive scroll-story for body[data-blueprint="parenting"].
+   Loaded ONLY on parenting-assessment.html. Uses existing palette tokens
+   only — no new colors introduced. Warm & light by design, as a deliberate
+   counterpoint to Heal Within's mystical dark.
+   Progressive enhancement: js/parenting.js adds `.pa-js` to <body> to enable
+   scrubbed reveals; without JS / reduced-motion the page is fully readable.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Shared act scaffolding
+-------------------------------------------------------------------------- */
+.pa-act { position: relative; overflow: hidden; }
+/* reveal lines hidden only when JS motion is active */
+body.pa-js .pa-reveal-line { opacity: 0; }
+
+/* --------------------------------------------------------------------------
+   1. HERO — warm dawn, an orbiting portrait medallion
+-------------------------------------------------------------------------- */
+.pa-hero {
+    padding: 172px 0 96px;
+    text-align: center;
+    background:
+        radial-gradient(90% 120% at 50% -10%, var(--sand) 0%, var(--cream) 46%, var(--cream-2) 100%);
+    color: var(--ink);
+}
+.pa-hero .breadcrumb { justify-content: center; }
+.pa-hero h1 em { font-style: italic; color: var(--accent); }
+.pa-hero .page-hero-sub { color: var(--rosewood); }
+.pa-hero .tm-line { color: var(--muted); }
+.pa-hero .orb { opacity: 0.6; }
+
+/* orbiting portrait medallion */
+.pa-medallion {
+    position: relative;
+    z-index: 3;
+    width: 300px;
+    height: 300px;
+    margin: 52px auto 8px;
+}
+.pa-medallion-core {
+    position: absolute;
+    inset: 27%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    background:
+        radial-gradient(circle at 50% 34%, #ffffff 0%, var(--cream) 55%, var(--peach) 100%);
+    box-shadow:
+        0 18px 46px rgba(139, 90, 98, 0.24),
+        inset 0 0 0 1px rgba(201, 160, 111, 0.5);
+    animation: pa-breathe 5.5s ease-in-out infinite;
+}
+.pa-medallion-core svg { width: 52%; }
+.pa-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(139, 90, 98, 0.22);
+}
+.pa-ring--mid { inset: 13%; border-style: dashed; border-color: rgba(201, 160, 111, 0.4); }
+.pa-orbit {
+    position: absolute;
+    inset: 0;
+    animation: pa-spin 26s linear infinite;
+}
+.pa-orbit-dot {
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    margin-left: -7px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, var(--accent-soft), var(--accent));
+    box-shadow: 0 0 14px rgba(196, 144, 152, 0.75);
+    transform-origin: 7px 157px; /* half-height of medallion */
+}
+.pa-orbit-dot:nth-child(1) { transform: rotate(0deg); }
+.pa-orbit-dot:nth-child(2) { transform: rotate(72deg); }
+.pa-orbit-dot:nth-child(3) { transform: rotate(144deg); }
+.pa-orbit-dot:nth-child(4) { transform: rotate(216deg); }
+.pa-orbit-dot:nth-child(5) { transform: rotate(288deg); }
+
+@keyframes pa-breathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
+}
+@keyframes pa-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* scroll cue (shared visual language with the flagship) */
+.pa-scroll-cue {
+    position: relative;
+    z-index: 3;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.pa-scroll-line {
+    width: 1px;
+    height: 46px;
+    background: linear-gradient(var(--accent), transparent);
+    animation: pa-cue 2.4s ease-in-out infinite;
+    transform-origin: top;
+}
+@keyframes pa-cue {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+    50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. ACT I — THE UNSEEN LANGUAGE (pinned focus-pull)
+-------------------------------------------------------------------------- */
+.pa-act--focus {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(70% 80% at 82% 30%, var(--peach) 0%, transparent 58%),
+        linear-gradient(160deg, var(--cream) 0%, var(--surface) 100%);
+}
+.pa-focus-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 68px;
+    align-items: center;
+    width: 100%;
+}
+.pa-portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(139, 90, 98, 0.2);
+    border: 1px solid rgba(201, 160, 111, 0.45);
+}
+.pa-portrait::after {
+    /* inner gilt frame, echoing the flagship's card frame */
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    pointer-events: none;
+    z-index: 3;
+}
+.pa-portrait-media {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(80% 70% at 50% 30%, var(--sand) 0%, var(--peach) 55%, var(--accent-soft) 100%);
+}
+.pa-portrait-media svg { width: 64%; color: var(--ink); opacity: 0.9; }
+/* soft grain sheen over portrait */
+.pa-portrait-media::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(60% 50% at 50% 20%, rgba(255,255,255,0.5), transparent 60%);
+    mix-blend-mode: screen;
+}
+body.pa-js .pa-portrait-media { filter: blur(14px) saturate(0.6); transform: scale(1.08); }
+
+.pa-focus-copy .eyebrow { color: var(--accent); }
+.pa-focus-copy h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.16;
+    color: var(--ink);
+    margin: 14px 0 22px;
+}
+.pa-focus-copy h2 em { font-style: italic; color: var(--accent); }
+.pa-focus-copy .lead { color: var(--rosewood); }
+.pa-focus-copy p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 16px; line-height: 1.85; }
+
+/* --------------------------------------------------------------------------
+   3. ACT II — THE PROFILE BLOOM (pinned, scrub-drawn petals) — CENTREPIECE
+-------------------------------------------------------------------------- */
+.pa-act--bloom {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 90px 0;
+    background:
+        radial-gradient(65% 60% at 50% 6%, var(--sand) 0%, transparent 52%),
+        linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+}
+.pa-bloom-head { text-align: center; max-width: 720px; margin: 0 auto 54px; }
+.pa-bloom-head .eyebrow { color: var(--muted); }
+.pa-bloom-head .section-subtitle { margin: 12px auto 0; }
+.pa-bloom-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 60px;
+    align-items: center;
+}
+.pa-bloom-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+}
+.pa-bloom-halo {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 144, 152, 0.4) 0%, transparent 66%);
+    filter: blur(8px);
+}
+.pa-bloom-svg { position: relative; z-index: 2; width: 100%; max-width: 400px; overflow: visible; }
+.pa-petal { transform-origin: 200px 200px; }
+.pa-bloom-guide { fill: none; stroke: rgba(139, 90, 98, 0.16); stroke-width: 1; }
+.pa-bloom-core {
+    fill: url(#paCoreGrad);
+    stroke: #fff;
+    stroke-width: 1.5;
+}
+.pa-bloom-corelabel {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    fill: var(--ink);
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* legend — reveals in step with each petal */
+.pa-bloom-legend { display: flex; flex-direction: column; gap: 6px; }
+.pa-legend-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+}
+.pa-legend-item:last-child { border-bottom: none; }
+.pa-legend-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: #fff;
+    background: linear-gradient(150deg, var(--accent-soft), var(--accent));
+    box-shadow: 0 8px 20px rgba(139, 90, 98, 0.24);
+}
+.pa-legend-text h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 3px;
+}
+.pa-legend-text p { color: var(--text-soft); font-size: 0.98rem; line-height: 1.65; margin: 0; }
+
+/* --------------------------------------------------------------------------
+   4. ACT III — THE QUESTIONNAIRE (interactive "no wrong answers")
+-------------------------------------------------------------------------- */
+.pa-act--quiz {
+    padding: 118px 0;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--peach) 100%);
+}
+.pa-quiz-head { text-align: center; max-width: 700px; margin: 0 auto 50px; }
+.pa-quiz-head .eyebrow { color: var(--accent); }
+.pa-quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.pa-statement {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent-soft);
+    border-radius: 4px 4px 14px 14px;
+    padding: 26px 28px 22px;
+    transition: border-top-color var(--t), box-shadow var(--t), transform var(--t);
+}
+.pa-statement.is-set { border-top-color: var(--accent); box-shadow: var(--shadow-sm); transform: translateY(-3px); }
+.pa-statement-q {
+    font-family: var(--font-display);
+    font-size: 1.28rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 18px;
+}
+.pa-scale {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.pa-dot {
+    flex: 1;
+    height: 26px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+}
+.pa-dot::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-soft);
+    background: transparent;
+    transition: transform 0.28s var(--ease), background 0.28s var(--ease), border-color 0.28s var(--ease);
+}
+.pa-dot:hover::before { transform: scale(1.2); }
+.pa-dot.is-on::before { background: var(--accent); border-color: var(--accent); }
+.pa-dot.is-peak::before { transform: scale(1.45); box-shadow: 0 0 0 4px rgba(196, 144, 152, 0.22); }
+.pa-dot:focus-visible { outline: none; }
+.pa-dot:focus-visible::before { box-shadow: 0 0 0 3px rgba(201, 160, 111, 0.5); }
+.pa-scale-ends {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.pa-scale-readout {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 500;
+    min-height: 1.2em;
+}
+.pa-quiz-note {
+    text-align: center;
+    margin-top: 34px;
+    font-size: 0.95rem;
+    color: var(--rosewood);
+}
+.pa-quiz-note em { color: var(--accent); font-style: italic; }
+
+/* --------------------------------------------------------------------------
+   5. HOW IT WORKS — connected 3-step path (elevates shared .steps-grid)
+-------------------------------------------------------------------------- */
+.pa-steps { background: var(--surface); }
+.pa-steps .steps-grid { position: relative; }
+@media (min-width: 861px) {
+    .pa-steps .steps-grid::before {
+        content: '';
+        position: absolute;
+        top: 42px;
+        left: 16%;
+        right: 16%;
+        height: 2px;
+        background: repeating-linear-gradient(90deg, var(--accent-soft) 0 8px, transparent 8px 18px);
+        opacity: 0.5;
+        z-index: 0;
+    }
+}
+.pa-steps .step-card { position: relative; z-index: 1; background: var(--cream); }
+
+/* --------------------------------------------------------------------------
+   6. WHO IT'S FOR — warm checklist band
+-------------------------------------------------------------------------- */
+.pa-who { background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%); }
+.pa-who .feature-list li { border-color: rgba(139, 90, 98, 0.14); }
+.pa-who .prose-visual .glyph { color: var(--accent); }
+
+/* --------------------------------------------------------------------------
+   7. QUOTE + CTA touch-ups
+-------------------------------------------------------------------------- */
+.pa-quote { background: linear-gradient(160deg, var(--ink) 0%, var(--plum) 100%); }
+.pa-cta { border-top: 1px solid var(--line-soft); }
+.pa-cta h2 em { color: var(--accent); }
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVE
+-------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .pa-focus-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .pa-focus-copy .eyebrow { justify-content: center; }
+    .pa-focus-copy .lead, .pa-focus-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
+    .pa-portrait { max-width: 340px; margin: 0 auto; width: 100%; }
+    .pa-bloom-grid { grid-template-columns: 1fr; gap: 34px; }
+    .pa-bloom-stage { min-height: 340px; }
+    .pa-bloom-svg { max-width: 320px; }
+}
+@media (max-width: 620px) {
+    .pa-act--focus, .pa-act--bloom { min-height: auto; padding: 96px 0; }
+    .pa-quiz-grid { grid-template-columns: 1fr; }
+    .pa-medallion { width: 240px; height: 240px; }
+    .pa-orbit-dot { transform-origin: 7px 127px; }
+}
+
+/* --------------------------------------------------------------------------
+   9. REDUCED MOTION — everything static, in focus, readable
+-------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .pa-medallion-core, .pa-orbit, .pa-scroll-line { animation: none; }
+    .pa-portrait-media { filter: none; transform: none; }
+}

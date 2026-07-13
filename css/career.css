@@ -1,0 +1,332 @@
+/* ==========================================================================
+   CAREER COMPASS — "Finding True North"
+   Bespoke immersive scroll-story for body[data-blueprint="career"].
+   Loaded ONLY on career-compass.html. Uses the career accent tokens already
+   defined in style.css (navy --accent / --accent-soft, gold --gold) — no new
+   brand colors introduced. Structured, directional, blueprint-chart mood as a
+   deliberate counterpoint to the warmer blueprints.
+   Progressive enhancement: js/career.js adds `.cc-js` to <body> to enable
+   scrubbed reveals; without JS / reduced-motion the page is fully readable.
+   ========================================================================== */
+
+/* darker navy shades of --accent, only for gradient depth */
+body[data-blueprint="career"] { --navy-deep: #1f2c40; --navy-deeper: #16202f; }
+
+/* --------------------------------------------------------------------------
+   0. Shared act scaffolding + blueprint grid
+-------------------------------------------------------------------------- */
+.cc-act { position: relative; overflow: hidden; }
+body.cc-js .cc-reveal-line { opacity: 0; }
+
+.cc-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(44, 62, 90, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(44, 62, 90, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(80% 80% at 50% 40%, #000 0%, transparent 85%);
+    -webkit-mask-image: radial-gradient(80% 80% at 50% 40%, #000 0%, transparent 85%);
+}
+
+/* --------------------------------------------------------------------------
+   1. HERO — a compass rose on a chart
+-------------------------------------------------------------------------- */
+.cc-hero {
+    padding: 172px 0 96px;
+    text-align: center;
+    background:
+        radial-gradient(90% 120% at 50% -10%, #e7edf6 0%, var(--cream) 48%, var(--cream-2) 100%);
+    color: var(--accent);
+}
+.cc-hero .breadcrumb { justify-content: center; color: var(--accent-soft); }
+.cc-hero .breadcrumb a:hover { color: var(--accent); }
+.cc-hero h1 { color: var(--accent); }
+.cc-hero h1 em { font-style: italic; color: var(--gold); }
+.cc-hero .page-hero-sub { color: var(--accent-soft); }
+.cc-hero .tm-line { color: var(--muted); }
+.cc-hero .orb { opacity: 0.5; }
+
+.cc-compass {
+    position: relative;
+    z-index: 3;
+    width: 280px;
+    height: 280px;
+    margin: 50px auto 8px;
+    filter: drop-shadow(0 22px 40px rgba(31, 44, 64, 0.28));
+}
+.cc-compass-dial { transform-origin: 100px 100px; animation: cc-spin 60s linear infinite; }
+.cc-compass-ring { fill: none; stroke: var(--accent-soft); }
+.cc-compass-ticks { fill: none; stroke: var(--accent); opacity: 0.4; stroke-dasharray: 1 8.2; }
+.cc-compass-ticks--fine { opacity: 0.25; stroke-dasharray: 1 4; }
+.cc-compass-letter { fill: var(--accent); font-family: var(--font-display); font-size: 15px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+.cc-point--major { fill: var(--gold); }
+.cc-point--minor { fill: var(--accent-soft); opacity: 0.8; }
+.cc-compass-needle { transform-origin: 100px 100px; animation: cc-waver 7s ease-in-out infinite; }
+.cc-needle-n { fill: var(--gold); }
+.cc-needle-s { fill: var(--accent); }
+.cc-hub { fill: var(--gold); stroke: #fff; stroke-width: 1.5; }
+
+@keyframes cc-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes cc-waver {
+    0%, 100% { transform: rotate(-4deg); }
+    50%      { transform: rotate(4deg); }
+}
+
+.cc-scroll-cue {
+    position: relative;
+    z-index: 3;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.cc-scroll-line {
+    width: 1px;
+    height: 46px;
+    background: linear-gradient(var(--gold), transparent);
+    animation: cc-cue 2.4s ease-in-out infinite;
+    transform-origin: top;
+}
+@keyframes cc-cue {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+    50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. ACT I — THE FOG (pinned; veil lifts, routes draw)
+-------------------------------------------------------------------------- */
+.cc-act--fog {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(75% 80% at 20% 30%, #e7edf6 0%, transparent 58%),
+        linear-gradient(160deg, var(--cream) 0%, var(--surface) 100%);
+}
+.cc-fog-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 68px;
+    align-items: center;
+    width: 100%;
+}
+.cc-fog-stage {
+    position: relative;
+    aspect-ratio: 22 / 15;
+    border-radius: 6px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #eef2f8 0%, #dce4f0 100%);
+    border: 1px solid var(--accent);
+    box-shadow: 8px 8px 0 rgba(31, 44, 64, 0.12);
+}
+.cc-paths-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cc-route { fill: none; stroke: var(--accent-soft); stroke-width: 1.5; opacity: 0.55; stroke-linecap: round; }
+.cc-route--chosen { stroke: var(--gold); stroke-width: 3; opacity: 1; }
+.cc-node { fill: #fff; stroke: var(--accent-soft); stroke-width: 1.5; }
+.cc-node--start { fill: var(--accent); stroke: var(--accent); }
+.cc-node--chosen { fill: var(--gold); stroke: var(--gold); }
+.cc-fog-veil {
+    position: absolute;
+    inset: -2px;
+    background:
+        linear-gradient(180deg, rgba(230, 236, 245, 0.96) 0%, rgba(220, 228, 240, 0.86) 55%, rgba(220, 228, 240, 0.7) 100%);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.cc-fog-copy .eyebrow { color: var(--gold); }
+.cc-fog-copy h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.16;
+    color: var(--accent);
+    margin: 14px 0 22px;
+}
+.cc-fog-copy h2 em { font-style: italic; color: var(--gold); }
+.cc-fog-copy .lead { color: var(--accent-soft); }
+.cc-fog-copy p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 16px; line-height: 1.85; }
+
+/* --------------------------------------------------------------------------
+   3. ACT II — THE ALIGNMENT (pinned; needle locks, inputs converge) · CENTREPIECE
+-------------------------------------------------------------------------- */
+.cc-act--align {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 90px 0;
+    background:
+        radial-gradient(60% 55% at 50% 8%, #e7edf6 0%, transparent 55%),
+        linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+}
+.cc-align-head { text-align: center; max-width: 720px; margin: 0 auto 54px; }
+.cc-align-head .eyebrow { color: var(--muted); }
+.cc-align-head .section-title em { color: var(--gold); }
+.cc-align-head .section-subtitle { margin: 12px auto 0; }
+.cc-align-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 60px;
+    align-items: center;
+}
+.cc-dial-stage { position: relative; display: flex; align-items: center; justify-content: center; min-height: 420px; }
+.cc-dial-halo {
+    position: absolute;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 168, 85, 0.28) 0%, transparent 66%);
+    filter: blur(8px);
+}
+.cc-dial-svg { position: relative; z-index: 2; width: 100%; max-width: 400px; overflow: visible; }
+.cc-dial-ring { fill: none; stroke: var(--accent); opacity: 0.35; }
+.cc-dial-ticks { fill: none; stroke: var(--accent); opacity: 0.3; stroke-dasharray: 1.5 10.2; }
+.cc-dial-spoke { stroke: var(--accent-soft); stroke-width: 1.5; opacity: 0.5; stroke-linecap: round; }
+.cc-dial-marker { fill: var(--accent-soft); opacity: 0.28; }
+.cc-dial-letter { fill: var(--accent); font-family: var(--font-display); font-size: 16px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+.cc-dial-needle { transform-origin: 200px 200px; }
+.cc-dial-needle-n { fill: var(--gold); }
+.cc-dial-needle-s { fill: var(--accent); }
+.cc-dial-core { fill: #fff; stroke: var(--gold); stroke-width: 2; }
+.cc-dial-corelabel { fill: var(--accent); font-family: var(--font-display); font-style: italic; font-size: 15px; text-anchor: middle; dominant-baseline: middle; }
+
+.cc-align-legend { display: flex; flex-direction: column; gap: 4px; }
+.cc-legend-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: start;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(44, 62, 90, 0.12);
+}
+.cc-legend-item:last-child { border-bottom: none; }
+.cc-legend-mark {
+    width: 42px; height: 42px;
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 600;
+    color: var(--gold);
+    background: var(--accent);
+    box-shadow: 3px 3px 0 rgba(31, 44, 64, 0.18);
+}
+.cc-legend-text h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--accent); line-height: 1.2; margin-bottom: 3px; }
+.cc-legend-text p { color: var(--text-soft); font-size: 0.98rem; line-height: 1.65; margin: 0; }
+
+/* --------------------------------------------------------------------------
+   4. PRINCIPLES — blueprint cards (reuses career .pillar-card styling)
+-------------------------------------------------------------------------- */
+.cc-principles { background: var(--surface); }
+.cc-principles .pillar-card .cc-principle-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   5. ACT III — YOUR CROSSROADS (interactive selector)
+-------------------------------------------------------------------------- */
+.cc-act--cross { padding: 118px 0; background: linear-gradient(180deg, var(--cream) 0%, var(--peach) 100%); }
+.cc-cross-head { text-align: center; max-width: 700px; margin: 0 auto 46px; }
+.cc-cross-head .eyebrow { color: var(--gold); }
+.cc-cross-head .section-title em { color: var(--gold); }
+.cc-cross-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto 34px;
+}
+.cc-cross-card {
+    flex: 1 1 160px;
+    max-width: 180px;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    box-shadow: 4px 4px 0 rgba(31, 44, 64, 0.14);
+    padding: 22px 18px;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.cc-cross-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 rgba(31, 44, 64, 0.18); }
+.cc-cross-card strong { display: block; font-family: var(--font-display); font-size: 1.12rem; color: var(--accent); margin-bottom: 4px; }
+.cc-cross-card span { font-size: 0.82rem; color: var(--text-soft); letter-spacing: 0.02em; }
+.cc-cross-card.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--gold);
+}
+.cc-cross-card.is-active strong { color: #fff; }
+.cc-cross-card.is-active span { color: rgba(255, 255, 255, 0.72); }
+.cc-cross-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.cc-cross-readout {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 26px 30px;
+    background: var(--surface);
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    min-height: 4.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cc-cross-readout p { margin: 0; font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; color: var(--accent); line-height: 1.4; }
+.cc-cross-readout em { color: var(--gold); font-style: italic; }
+
+/* --------------------------------------------------------------------------
+   6. QUOTE + CTA touch-ups (navy)
+-------------------------------------------------------------------------- */
+.cc-quote { background: linear-gradient(160deg, var(--navy-deep) 0%, var(--accent) 100%); }
+.cc-quote .big-quote em { color: var(--gold); }
+.cc-quote .quote-mark { color: rgba(212, 168, 85, 0.5); }
+.cc-quote .quote-attrib { color: rgba(255, 255, 255, 0.6); }
+.cc-cta { border-top: 1px solid var(--line-soft); }
+.cc-cta h2 { color: var(--accent) !important; }
+.cc-cta h2 em { color: var(--gold); }
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE
+-------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .cc-fog-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .cc-fog-copy .eyebrow { justify-content: center; }
+    .cc-fog-copy .lead, .cc-fog-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
+    .cc-fog-stage { max-width: 460px; margin: 0 auto; width: 100%; }
+    .cc-align-grid { grid-template-columns: 1fr; gap: 34px; }
+    .cc-dial-stage { min-height: 340px; }
+    .cc-dial-svg { max-width: 320px; }
+}
+@media (max-width: 620px) {
+    .cc-act--fog, .cc-act--align { min-height: auto; padding: 96px 0; }
+    .cc-compass { width: 230px; height: 230px; }
+    .cc-cross-card { flex-basis: 44%; max-width: none; }
+}
+
+/* --------------------------------------------------------------------------
+   8. REDUCED MOTION — everything static, clear, readable
+-------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .cc-compass-dial, .cc-compass-needle, .cc-scroll-line { animation: none; }
+    .cc-fog-veil { display: none; }
+}

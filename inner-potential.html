@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inner Potential Blueprint™ (DMIT) — Discover Natural Strengths | Inner Harmony</title>
-    <meta name="description" content="The Inner Potential Blueprint™ uses the Dermatoglyphics Multiple Intelligence Test (DMIT) to reveal your child's innate strengths, learning style and natural direction.">
+    <title>Inner Potential Blueprint™ (DMIT) — The Blueprint Within | Inner Harmony</title>
+    <meta name="description" content="The Inner Potential Blueprint™ uses the Dermatoglyphics Multiple Intelligence Test (DMIT) to read your child's innate strengths, learning style and the eight intelligences — with a personal counselling session.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <link rel="stylesheet" href="css/service-layouts.css">
+    <link rel="stylesheet" href="css/inner-potential.css?v=1">
 </head>
 <body data-page="services" data-blueprint="inner-potential" data-year="2026">
 
@@ -17,7 +18,10 @@
     <div class="cursor-follower" id="cursorFollower"></div>
     <div id="site-nav"></div>
 
-    <section class="page-hero bg-cream" style="background-image: linear-gradient(rgba(255, 252, 246, 0.8), rgba(255, 252, 246, 0.95)), url('images/potential.jpg'); background-size: cover; background-position: center;">
+    <!-- ============================================================
+         HERO — a luminous fingerprint being scanned
+    ============================================================ -->
+    <section class="page-hero ip-hero">
         <div class="hero-orbs">
             <div class="orb orb-1" data-speed="0.24"></div>
             <div class="orb orb-2" data-speed="0.3"></div>
@@ -25,83 +29,202 @@
         <div class="container">
             <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span> <a href="services.html">Blueprints</a><span>/</span> Inner Potential (DMIT)</nav>
             <h1>Inner Potential <em>Blueprint™</em></h1>
-            <p class="page-hero-sub">Discover your child's natural strengths &amp; learning potential — through the DMIT.</p>
+            <p class="page-hero-sub">Read your child's natural strengths &amp; learning potential — through the DMIT.</p>
             <p class="tm-line">Align their strengths. Discover their direction. Build their future.</p>
+
+            <!-- fingerprint emblem with a scanning bar -->
+            <div class="ip-print" aria-hidden="true">
+                <svg viewBox="0 0 200 200">
+                    <path class="ip-ridge" d="M100 100 m-70 0 a70 70 0 1 1 140 0 a56 56 0 1 1 -112 0 a42 42 0 1 1 84 0 a28 28 0 1 1 -56 0 a14 14 0 1 1 28 0"/>
+                    <path class="ip-print-glow" d="M100 106 m-60 0 a60 60 0 1 1 120 0 a46 46 0 1 1 -92 0 a32 32 0 1 1 64 0 a18 18 0 1 1 -36 0"/>
+                    <path class="ip-ridge" d="M100 30 Q62 100 100 170" opacity="0.5"/>
+                </svg>
+                <span class="ip-scanbar"></span>
+            </div>
+
+            <div class="ip-scroll-cue">
+                <span>Scroll to read the blueprint</span>
+                <span class="ip-scroll-line"></span>
+            </div>
         </div>
     </section>
 
-    <!-- INTRO -->
-    <section class="section bg-sand">
+    <!-- ============================================================
+         ACT I — RIDGES TO THE BRAIN (pinned; print draws, nodes bloom)
+    ============================================================ -->
+    <section class="ip-act ip-act--map">
         <div class="container">
-            <div class="prose-grid">
-                <div class="prose-visual prose-visual--dmit" data-visual="fingerprint">
-                    <div class="ring ring-a"></div>
-                    <div class="ring ring-b"></div>
-                    <svg class="fingerprint-spiral" viewBox="0 0 80 80" aria-hidden="true">
-                        <path d="M40 40 m-25 0 a25 25 0 1 1 50 0 a20 20 0 1 1 -40 0 a15 15 0 1 1 30 0 a10 10 0 1 1 -20 0"/>
-                        <path d="M40 10 Q55 25 40 40 Q25 55 40 70"/>
+            <div class="ip-map-grid">
+                <div class="ip-map-stage">
+                    <div class="ip-map-halo" aria-hidden="true"></div>
+                    <svg class="ip-map-svg" viewBox="0 0 200 200" aria-hidden="true">
+                        <path class="ip-ridge" d="M100 100 m-70 0 a70 70 0 1 1 140 0 a56 56 0 1 1 -112 0 a42 42 0 1 1 84 0 a28 28 0 1 1 -56 0 a14 14 0 1 1 28 0"/>
+                        <path class="ip-ridge" d="M100 106 m-60 0 a60 60 0 1 1 120 0 a46 46 0 1 1 -92 0 a32 32 0 1 1 64 0 a18 18 0 1 1 -36 0"/>
+                        <!-- neural mapping overlaid on the ridges -->
+                        <path class="ip-neural-line" d="M100 100 L100 40"/>
+                        <path class="ip-neural-line" d="M100 100 L150 80"/>
+                        <path class="ip-neural-line" d="M100 100 L140 145"/>
+                        <path class="ip-neural-line" d="M100 100 L70 150"/>
+                        <path class="ip-neural-line" d="M100 100 L48 88"/>
+                        <circle class="ip-neural-node" cx="100" cy="40" r="4.5"/>
+                        <circle class="ip-neural-node" cx="150" cy="80" r="4.5"/>
+                        <circle class="ip-neural-node" cx="140" cy="145" r="4.5"/>
+                        <circle class="ip-neural-node" cx="70" cy="150" r="4.5"/>
+                        <circle class="ip-neural-node" cx="48" cy="88" r="4.5"/>
+                        <circle class="ip-neural-node" cx="100" cy="100" r="6"/>
                     </svg>
-                    <div class="neural-lines" aria-hidden="true">
-                        <span class="neural-line"></span>
-                        <span class="neural-line"></span>
-                        <span class="neural-line"></span>
-                    </div>
                 </div>
-                <div class="prose">
-                    <span class="eyebrow reveal-text">Every Child Is a Genius</span>
-                    <h2 class="section-title split-words">Nurture who your child <em>already is</em></h2>
-                    <p class="lead">Every child has a unique way of learning and excelling.</p>
-                    <p>The DMIT helps us understand exactly what that is. It gives us a clear picture of your child's natural strengths, how they learn best, and what they are naturally drawn to.</p>
-                    <p>It's not about changing them. It's about knowing how to support their natural potential.</p>
+                <div class="ip-map-copy">
+                    <span class="eyebrow ip-reveal-line">Written Before You Were Born</span>
+                    <h2 class="ip-reveal-line">Your fingertips carry a <em>map of the mind.</em></h2>
+                    <p class="lead ip-reveal-line">Fingerprints form in the womb — at the very same time as the brain.</p>
+                    <p class="ip-reveal-line">That's why the ridges on your child's fingertips quietly mirror how their brain is wired. It's called dermatoglyphics — the science the DMIT is built on.</p>
+                    <p class="ip-reveal-line">A gentle, painless scan turns those patterns into a clear picture of your child's innate potential.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- WHAT IT REVEALS -->
-    <section class="section bg-cream">
+    <!-- ============================================================
+         ACT II — THE EIGHT INTELLIGENCES (pinned; constellation ignites) · CENTREPIECE
+    ============================================================ -->
+    <section class="ip-act ip-act--mind">
+        <div class="ip-stars" aria-hidden="true"></div>
         <div class="container">
-            <div class="section-header">
-                <span class="eyebrow centered reveal-text">What It Reveals</span>
-                <h2 class="section-title split-words">A clearer window<br>into their <em>inner world</em></h2>
+            <div class="ip-mind-head">
+                <span class="eyebrow centered">What It Reveals</span>
+                <h2>Eight ways to be <em>brilliant.</em></h2>
+                <p>Every child is strong in their own blend of intelligences. The DMIT shows which ones shine brightest.</p>
             </div>
-            <div class="pillars-grid">
-                <article class="pillar-card">
-                    <h3>Learning style</h3>
-                    <p>How they naturally absorb information.</p>
-                </article>
-                <article class="pillar-card">
-                    <h3>Innate strengths</h3>
-                    <p>The areas where they are most likely to shine.</p>
-                </article>
-                <article class="pillar-card">
-                    <h3>Natural direction</h3>
-                    <p>Guiding their education based on their passions.</p>
-                </article>
+            <div class="ip-constellation">
+                <svg class="ip-mind-svg" viewBox="0 0 460 460" aria-label="The eight multiple intelligences radiating from a central mind">
+                    <defs>
+                        <radialGradient id="ipHubGrad" cx="50%" cy="40%" r="65%">
+                            <stop offset="0%" stop-color="#4a3d5e"/>
+                            <stop offset="100%" stop-color="#241b31"/>
+                        </radialGradient>
+                    </defs>
+                    <line class="ip-spoke" x1="230" y1="230" x2="230" y2="60"/>
+                    <line class="ip-spoke" x1="230" y1="230" x2="350" y2="110"/>
+                    <line class="ip-spoke" x1="230" y1="230" x2="400" y2="230"/>
+                    <line class="ip-spoke" x1="230" y1="230" x2="350" y2="350"/>
+                    <line class="ip-spoke" x1="230" y1="230" x2="230" y2="400"/>
+                    <line class="ip-spoke" x1="230" y1="230" x2="110" y2="350"/>
+                    <line class="ip-spoke" x1="230" y1="230" x2="60" y2="230"/>
+                    <line class="ip-spoke" x1="230" y1="230" x2="110" y2="110"/>
+
+                    <circle class="ip-node" cx="230" cy="60" r="20"/>
+                    <circle class="ip-node" cx="350" cy="110" r="20"/>
+                    <circle class="ip-node" cx="400" cy="230" r="20"/>
+                    <circle class="ip-node" cx="350" cy="350" r="20"/>
+                    <circle class="ip-node" cx="230" cy="400" r="20"/>
+                    <circle class="ip-node" cx="110" cy="350" r="20"/>
+                    <circle class="ip-node" cx="60" cy="230" r="20"/>
+                    <circle class="ip-node" cx="110" cy="110" r="20"/>
+                    <text class="ip-node-num" x="230" y="60">1</text>
+                    <text class="ip-node-num" x="350" y="110">2</text>
+                    <text class="ip-node-num" x="400" y="230">3</text>
+                    <text class="ip-node-num" x="350" y="350">4</text>
+                    <text class="ip-node-num" x="230" y="400">5</text>
+                    <text class="ip-node-num" x="110" y="350">6</text>
+                    <text class="ip-node-num" x="60" y="230">7</text>
+                    <text class="ip-node-num" x="110" y="110">8</text>
+
+                    <circle class="ip-hub" cx="230" cy="230" r="46"/>
+                    <path class="ip-hub-glyph" d="M230 210 a15 15 0 0 1 9 27 l-18 0 a15 15 0 0 1 9 -27 Z"/>
+                    <path class="ip-hub-glyph" d="M223 240 h14 M225 245 h10"/>
+                </svg>
+
+                <div class="ip-chip-grid">
+                    <div class="ip-chip"><b>1</b><span>Linguistic — words &amp; language</span></div>
+                    <div class="ip-chip"><b>2</b><span>Logical — logic &amp; numbers</span></div>
+                    <div class="ip-chip"><b>3</b><span>Visual–Spatial — images &amp; space</span></div>
+                    <div class="ip-chip"><b>4</b><span>Musical — rhythm &amp; sound</span></div>
+                    <div class="ip-chip"><b>5</b><span>Kinesthetic — movement &amp; body</span></div>
+                    <div class="ip-chip"><b>6</b><span>Interpersonal — people &amp; empathy</span></div>
+                    <div class="ip-chip"><b>7</b><span>Intrapersonal — self-awareness</span></div>
+                    <div class="ip-chip"><b>8</b><span>Naturalist — nature &amp; patterns</span></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FOLLOWED BY COUNSELLING -->
-    <section class="section bg-blush">
+    <!-- ============================================================
+         ACT III — EXPLORE THE STRENGTHS (interactive)
+    ============================================================ -->
+    <section class="ip-act ip-act--explore">
+        <div class="container">
+            <div class="ip-explore-head">
+                <span class="eyebrow centered">Explore Their Strengths</span>
+                <h2 class="section-title">Tap a strength to see how we'd <em>nurture it.</em></h2>
+                <p class="section-subtitle">The report never labels a child — it shows you where to pour your encouragement.</p>
+            </div>
+            <div class="ip-explore-layout">
+                <div class="ip-strength-grid">
+                    <button class="ip-strength is-active" type="button" aria-pressed="true" data-num="1" data-name="Linguistic" data-desc="A natural gift for words, reading, writing and storytelling." data-nurture="Feed it with books, journaling, debate and word games.">
+                        <b>1</b><span>Linguistic</span>
+                    </button>
+                    <button class="ip-strength" type="button" aria-pressed="false" data-num="2" data-name="Logical–Mathematical" data-desc="Loves logic, numbers and figuring out how things work." data-nurture="Offer puzzles, patterns, strategy games and hands-on experiments.">
+                        <b>2</b><span>Logical</span>
+                    </button>
+                    <button class="ip-strength" type="button" aria-pressed="false" data-num="3" data-name="Visual–Spatial" data-desc="Thinks in pictures, colour and space, and notices fine detail." data-nurture="Encourage drawing, building, maps, design and construction toys.">
+                        <b>3</b><span>Visual–Spatial</span>
+                    </button>
+                    <button class="ip-strength" type="button" aria-pressed="false" data-num="4" data-name="Musical" data-desc="Deeply tuned into rhythm, melody and sound." data-nurture="Make room for an instrument, singing and active listening.">
+                        <b>4</b><span>Musical</span>
+                    </button>
+                    <button class="ip-strength" type="button" aria-pressed="false" data-num="5" data-name="Bodily–Kinesthetic" data-desc="Learns best by moving, touching and doing." data-nurture="Channel it into sport, dance, drama and making things by hand.">
+                        <b>5</b><span>Kinesthetic</span>
+                    </button>
+                    <button class="ip-strength" type="button" aria-pressed="false" data-num="6" data-name="Interpersonal" data-desc="Reads people well and connects with others easily." data-nurture="Give them teamwork, mentoring and gentle leadership roles.">
+                        <b>6</b><span>Interpersonal</span>
+                    </button>
+                    <button class="ip-strength" type="button" aria-pressed="false" data-num="7" data-name="Intrapersonal" data-desc="Self-aware, reflective and comfortable with their own thoughts." data-nurture="Protect quiet time, journaling and personal goal-setting.">
+                        <b>7</b><span>Intrapersonal</span>
+                    </button>
+                    <button class="ip-strength" type="button" aria-pressed="false" data-num="8" data-name="Naturalist" data-desc="Attuned to nature, animals, patterns and the living world." data-nurture="Explore the outdoors, gardening, pets and collections.">
+                        <b>8</b><span>Naturalist</span>
+                    </button>
+                </div>
+                <div class="ip-readout" aria-live="polite">
+                    <span class="ip-readout-num"></span>
+                    <h3></h3>
+                    <p class="ip-readout-desc"></p>
+                    <div class="ip-readout-nurture"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         INSIGHT YOU CAN USE — the counselling follow-up
+    ============================================================ -->
+    <section class="section ip-followup">
         <div class="container">
             <div class="prose-grid reverse">
-                <div class="prose-visual">
+                <div class="prose-visual prose-visual--dmit" data-visual="report">
                     <div class="ring ring-a"></div>
-                    <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <div class="ring ring-b"></div>
+                    <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        <path d="M8 9h8M8 13h5"/>
+                    </svg>
                 </div>
                 <div class="prose">
                     <span class="eyebrow reveal-text">Insight You Can Use</span>
-                    <h2 class="section-title split-words">Every report, explained<br>in <em>real life terms</em></h2>
-                    <p>After the assessment, we sit down together. We'll explain the report in simple terms and give you practical advice you can use right away.</p>
-                    <p>Whether you want to support their schoolwork, figure out career paths, or just understand them better, you'll leave feeling informed and confident.</p>
+                    <h2 class="section-title split-words">Every report, explained<br>in <em>real-life terms</em></h2>
+                    <p class="lead">A blueprint is only useful if you know how to read it.</p>
+                    <p>After the scan, we sit down together and walk through the report in plain language — no charts left unexplained, no jargon.</p>
+                    <p>You'll leave with practical, doable ways to support their schoolwork, their confidence and their natural direction — starting the very same week.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- QUOTE -->
-    <section class="section bg-dark quote-band">
+    <!-- ============================================================
+         QUOTE band
+    ============================================================ -->
+    <section class="section bg-dark quote-band ip-quote">
         <div class="container">
             <div style="max-width: 900px; margin: 0 auto;">
                 <div class="quote-mark" style="text-align: left;">&ldquo;</div>
@@ -116,8 +239,10 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section bg-cream cta-band">
+    <!-- ============================================================
+         CTA
+    ============================================================ -->
+    <section class="section bg-cream cta-band ip-cta">
         <div class="container">
             <span class="eyebrow centered reveal-text">Build Their Future</span>
             <h2 style="color:var(--ink)">Help them grow into <br>their <em>natural strengths.</em></h2>
@@ -135,6 +260,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <script src="js/inner-potential.js?v=1"></script>
 </body>
 </html>

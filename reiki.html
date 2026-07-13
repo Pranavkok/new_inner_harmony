@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inner Harmony Reiki Blueprint™ — Energy Healing | Inner Harmony</title>
-    <meta name="description" content="The Inner Harmony Reiki Blueprint™ — gentle, non-invasive energy healing that promotes deep restoration and supports your health, finances, career and relationships.">
+    <title>Inner Harmony Reiki Blueprint™ — Rest, Restore & Realign | Inner Harmony</title>
+    <meta name="description" content="The Inner Harmony Reiki Blueprint™ — gentle, non-invasive energy healing that supports deep restoration across your health, finances, career and relationships.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <link rel="stylesheet" href="css/service-layouts.css">
+    <link rel="stylesheet" href="css/reiki.css?v=1">
 </head>
 <body data-page="services" data-blueprint="reiki" data-year="2026">
 
@@ -17,7 +18,10 @@
     <div class="cursor-follower" id="cursorFollower"></div>
     <div id="site-nav"></div>
 
-    <section class="page-hero bg-cream" style="background-image: linear-gradient(rgba(255, 252, 246, 0.8), rgba(255, 252, 246, 0.95)), url('images/reiki.jpg'); background-size: cover; background-position: center;">
+    <!-- ============================================================
+         HERO — a breathing aura of light
+    ============================================================ -->
+    <section class="page-hero rk-hero">
         <div class="hero-orbs">
             <div class="orb orb-1" data-speed="0.24"></div>
             <div class="orb orb-2" data-speed="0.3"></div>
@@ -27,81 +31,194 @@
             <h1>Inner Harmony Reiki <em>Blueprint™</em></h1>
             <p class="page-hero-sub">Gentle energy healing for your health, finances, career &amp; relationships.</p>
             <p class="tm-line">Deep healing. Emotional balance. Holistic well-being.</p>
+
+            <!-- breathing aura -->
+            <div class="rk-aura" aria-hidden="true">
+                <span class="rk-aura-ring"></span>
+                <span class="rk-aura-ring"></span>
+                <span class="rk-aura-ring"></span>
+                <div class="rk-aura-core"></div>
+            </div>
+
+            <div class="rk-scroll-cue">
+                <span>Scroll, and breathe</span>
+                <span class="rk-scroll-line"></span>
+            </div>
         </div>
     </section>
 
-    <!-- INTRO -->
-    <section class="section bg-sand">
+    <!-- ============================================================
+         ACT I — THE CURRENT FLOWS (pinned; warm streams draw in)
+    ============================================================ -->
+    <section class="rk-act rk-act--flow">
+        <div class="rk-motes" aria-hidden="true"></div>
         <div class="container">
-            <div class="prose-grid">
-                <div class="prose-visual prose-visual--reiki" data-visual="chakra">
-                    <div class="ring ring-a"></div>
-                    <div class="ring ring-b"></div>
-                    <div class="chakra-stack" aria-hidden="true">
-                        <span class="chakra-dot"></span>
-                        <span class="chakra-dot"></span>
-                        <span class="chakra-dot"></span>
-                        <span class="chakra-dot"></span>
-                        <span class="chakra-dot"></span>
-                        <span class="chakra-dot"></span>
-                        <span class="chakra-dot"></span>
+            <div class="rk-flow-grid">
+                <div class="rk-flow-stage">
+                    <svg class="rk-flow-svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                        <path class="rk-stream" d="M-10 40 C 100 10, 180 70, 260 40 S 380 20, 410 50"/>
+                        <path class="rk-stream" d="M-10 80 C 80 40, 150 120, 240 80 S 360 50, 410 90"/>
+                        <path class="rk-stream rk-stream--bright" d="M-10 140 C 90 100, 160 180, 250 140 S 370 110, 410 150"/>
+                        <path class="rk-stream" d="M-10 200 C 80 160, 150 240, 240 200 S 360 170, 410 210"/>
+                        <path class="rk-stream" d="M-10 250 C 90 220, 170 280, 250 250 S 380 230, 410 260"/>
+                    </svg>
+                </div>
+                <div class="rk-flow-copy">
+                    <span class="eyebrow rk-reveal-line">Your Inner &amp; Outer World</span>
+                    <h2 class="rk-reveal-line">Your outer world reflects your <em>inner self.</em></h2>
+                    <p class="lead rk-reveal-line">The challenges we see on the outside are usually just symptoms.</p>
+                    <p class="rk-reveal-line">Underneath, there's often chronic stress, old trauma and suppressed emotion — quietly draining our health, our finances and our relationships.</p>
+                    <p class="rk-reveal-line">Sometimes the deepest healing begins the very moment we allow ourselves to pause, and let the current move again.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         ACT II — RESTORED, EVERY CORNER OF LIFE (pinned; vessels fill) · CENTREPIECE
+    ============================================================ -->
+    <section class="rk-act rk-act--restore">
+        <div class="rk-motes" aria-hidden="true"></div>
+        <div class="container">
+            <div class="rk-restore-head">
+                <span class="eyebrow centered">What It Supports</span>
+                <h2 class="section-title">Healing that reaches every <em>corner of life.</em></h2>
+                <p class="section-subtitle">As the body relaxes, warmth returns to the places that had run dry.</p>
+            </div>
+
+            <!-- shared fill gradient -->
+            <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+                <defs>
+                    <linearGradient id="rkFillGrad" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stop-color="#c9a06f"/>
+                        <stop offset="55%" stop-color="#ffeed0"/>
+                        <stop offset="100%" stop-color="#fcdbd8"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <div class="rk-vessels">
+                <div class="rk-vessel">
+                    <div class="rk-vessel-orb">
+                        <svg viewBox="0 0 100 100">
+                            <clipPath id="rkClip0"><circle cx="50" cy="50" r="42"/></clipPath>
+                            <circle class="rk-vessel-ring" cx="50" cy="50" r="44"/>
+                            <g clip-path="url(#rkClip0)">
+                                <rect class="rk-vessel-fill" x="0" y="26" width="100" height="100"/>
+                                <line class="rk-vessel-surface" x1="8" y1="26" x2="92" y2="26"/>
+                            </g>
+                            <path class="rk-vessel-ico" d="M50 62 C42 56 34 50 34 43 a7 7 0 0 1 16 -2 a7 7 0 0 1 16 2 c0 7 -8 13 -16 19 Z"/>
+                        </svg>
                     </div>
-                    <div class="particle-field" aria-hidden="true"></div>
+                    <div class="rk-vessel-copy">
+                        <h3>Health</h3>
+                        <p>Support the body's own healing.</p>
+                    </div>
                 </div>
-                <div class="prose">
-                    <span class="eyebrow reveal-text">Your Inner &amp; Outer World</span>
-                    <h2 class="section-title split-words">Your outer world<br>reflects your <em>inner self</em></h2>
-                    <p class="lead">The challenges we see on the outside are usually just symptoms.</p>
-                    <p>Underneath, there's often chronic stress, old trauma, and suppressed emotions that were pushed aside instead of healed. Over time, this drains every part of our lives, from our health to our finances and relationships.</p>
-                    <p>Sometimes, the deepest healing happens the moment we just allow ourselves to pause.</p>
+
+                <div class="rk-vessel">
+                    <div class="rk-vessel-orb">
+                        <svg viewBox="0 0 100 100">
+                            <clipPath id="rkClip1"><circle cx="50" cy="50" r="42"/></clipPath>
+                            <circle class="rk-vessel-ring" cx="50" cy="50" r="44"/>
+                            <g clip-path="url(#rkClip1)">
+                                <rect class="rk-vessel-fill" x="0" y="26" width="100" height="100"/>
+                                <line class="rk-vessel-surface" x1="8" y1="26" x2="92" y2="26"/>
+                            </g>
+                            <path class="rk-vessel-ico" d="M34 60 L46 48 L54 56 L68 40 M60 40 h8 v8"/>
+                        </svg>
+                    </div>
+                    <div class="rk-vessel-copy">
+                        <h3>Finances</h3>
+                        <p>Ease the stress blocking abundance.</p>
+                    </div>
+                </div>
+
+                <div class="rk-vessel">
+                    <div class="rk-vessel-orb">
+                        <svg viewBox="0 0 100 100">
+                            <clipPath id="rkClip2"><circle cx="50" cy="50" r="42"/></clipPath>
+                            <circle class="rk-vessel-ring" cx="50" cy="50" r="44"/>
+                            <g clip-path="url(#rkClip2)">
+                                <rect class="rk-vessel-fill" x="0" y="26" width="100" height="100"/>
+                                <line class="rk-vessel-surface" x1="8" y1="26" x2="92" y2="26"/>
+                            </g>
+                            <path class="rk-vessel-ico" d="M37 46 h26 v20 h-26 Z M45 46 v-4 h10 v4"/>
+                        </svg>
+                    </div>
+                    <div class="rk-vessel-copy">
+                        <h3>Career</h3>
+                        <p>Clear the inner blocks to momentum.</p>
+                    </div>
+                </div>
+
+                <div class="rk-vessel">
+                    <div class="rk-vessel-orb">
+                        <svg viewBox="0 0 100 100">
+                            <clipPath id="rkClip3"><circle cx="50" cy="50" r="42"/></clipPath>
+                            <circle class="rk-vessel-ring" cx="50" cy="50" r="44"/>
+                            <g clip-path="url(#rkClip3)">
+                                <rect class="rk-vessel-fill" x="0" y="26" width="100" height="100"/>
+                                <line class="rk-vessel-surface" x1="8" y1="26" x2="92" y2="26"/>
+                            </g>
+                            <path class="rk-vessel-ico" d="M43 62 C36 57 30 52 30 46 a6 6 0 0 1 13 -2 a6 6 0 0 1 13 2 c0 6 -6 11 -13 16 Z M57 58 c6 -5 11 -9 11 -15 a6 6 0 0 0 -11 -3"/>
+                        </svg>
+                    </div>
+                    <div class="rk-vessel-copy">
+                        <h3>Relationships</h3>
+                        <p>Soften old patterns, reconnect.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- WHAT REIKI DOES -->
-    <section class="section bg-cream">
+    <!-- ============================================================
+         ACT III — A GENTLE SESSION (interactive, breathing)
+    ============================================================ -->
+    <section class="rk-act rk-act--session">
         <div class="container">
-            <div class="section-header">
-                <span class="eyebrow centered reveal-text">A Gentle Restoration</span>
-                <h2 class="section-title split-words">As the body relaxes,<br>healing <em>begins</em></h2>
-                <p class="section-subtitle">Reiki is a gentle, non-invasive practice that supports your body's natural ability to heal and restore.</p>
+            <div class="rk-session-head">
+                <span class="eyebrow centered">Inside A Session</span>
+                <h2 class="section-title">As the body relaxes, healing <em>begins.</em></h2>
+                <p class="section-subtitle">Reiki is gentle and non-invasive. Follow the breath, and explore what unfolds.</p>
             </div>
-            <div class="pillars-grid">
-                <article class="pillar-card">
-                    <h3>The body relaxes</h3>
-                    <p>Deep rest allows old tension to finally release.</p>
-                </article>
-                <article class="pillar-card">
-                    <h3>The mind quietens</h3>
-                    <p>Mental chatter fades and clarity returns.</p>
-                </article>
-                <article class="pillar-card">
-                    <h3>Emotions can move</h3>
-                    <p>Suppressed feelings gently surface and dissolve.</p>
-                </article>
+            <div class="rk-session-layout">
+                <div class="rk-breath-stage">
+                    <div class="rk-breath"><span>breathe</span></div>
+                    <div class="rk-breath-caption">In through the nose · out through the mouth</div>
+                </div>
+                <div class="rk-stage-list">
+                    <button class="rk-stage is-active" type="button" aria-expanded="true">
+                        <b>1</b>
+                        <span>
+                            <span class="rk-stage-title">The body relaxes</span>
+                            <span class="rk-stage-desc">As deep rest sets in, long-held tension finally lets go and the nervous system settles into calm.</span>
+                        </span>
+                    </button>
+                    <button class="rk-stage" type="button" aria-expanded="false">
+                        <b>2</b>
+                        <span>
+                            <span class="rk-stage-title">The mind quietens</span>
+                            <span class="rk-stage-desc">The mental chatter softens, and a spacious, unhurried clarity gently returns.</span>
+                        </span>
+                    </button>
+                    <button class="rk-stage" type="button" aria-expanded="false">
+                        <b>3</b>
+                        <span>
+                            <span class="rk-stage-title">Emotions can move</span>
+                            <span class="rk-stage-desc">Feelings that were pushed aside surface, are met with kindness, and quietly dissolve.</span>
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SUPPORTS -->
-    <section class="section bg-blush">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow centered reveal-text">What It Supports</span>
-                <h2 class="section-title split-words">Healing that reaches<br>every <em>corner of life</em></h2>
-            </div>
-            <div class="audience-grid">
-                <div class="audience-card"><strong>Health concerns</strong><p>Support your body's ability to heal.</p></div>
-                <div class="audience-card"><strong>Financial difficulties</strong><p>Ease the stress blocking your abundance.</p></div>
-                <div class="audience-card"><strong>Career setbacks</strong><p>Clear the inner blocks stalling your momentum.</p></div>
-                <div class="audience-card"><strong>Relationship struggles</strong><p>Soften old patterns and reconnect calmly.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- QUOTE -->
-    <section class="section bg-dark quote-band">
+    <!-- ============================================================
+         QUOTE band (site's warm dark)
+    ============================================================ -->
+    <section class="section bg-dark quote-band rk-quote">
         <div class="container">
             <div style="max-width: 900px; margin: 0 auto;">
                 <div class="quote-mark" style="text-align: left;">&ldquo;</div>
@@ -117,8 +234,10 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section bg-cream cta-band">
+    <!-- ============================================================
+         CTA
+    ============================================================ -->
+    <section class="section bg-cream cta-band rk-cta">
         <div class="container">
             <span class="eyebrow centered reveal-text">Allow Yourself to Pause</span>
             <h2 style="color:var(--ink)">Give yourself permission to <em>rest &amp; restore.</em></h2>
@@ -136,6 +255,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <script src="js/reiki.js?v=1"></script>
 </body>
 </html>

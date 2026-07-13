@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Blueprints — Services | Inner Harmony</title>
-    <meta name="description" content="Explore the six Inner Harmony Blueprints — parenting assessment, DMIT, tarot-informed healing, Reiki, empowered parenting and career guidance — each tailored to where you are.">
+    <title>The Six Blueprints — Find Your Path | Inner Harmony</title>
+    <meta name="description" content="Explore the six Inner Harmony Blueprints — parenting assessment, DMIT, tarot-informed healing, Reiki, empowered parenting and career guidance — each tailored to where you are. Not sure? Let us help you choose.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/services.css?v=1">
 </head>
 <body data-page="services" data-year="2026">
 
@@ -16,7 +17,10 @@
     <div class="cursor-follower" id="cursorFollower"></div>
     <div id="site-nav"></div>
 
-    <section class="page-hero bg-cream">
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="page-hero sv-hero">
         <div class="hero-orbs">
             <div class="orb orb-1" data-speed="0.24"></div>
             <div class="orb orb-3" data-speed="0.3"></div>
@@ -24,87 +28,177 @@
         <div class="container">
             <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span> Blueprints</nav>
             <h1>Six Blueprints, one <em>clear intention</em></h1>
-            <p class="page-hero-sub">Every path offers clear insights and warm support. If you are not sure where to start, we can decide together.</p>
+            <p class="page-hero-sub">Every path offers clear insight and warm support. If you're not sure where to start, we can decide together.</p>
         </div>
     </section>
 
-    <!-- UNDERSTAND GROUP -->
-    <section class="section bg-sand">
+    <!-- ============================================================
+         THE THREE MOVEMENTS
+    ============================================================ -->
+    <section class="sv-pillars">
+        <div class="container">
+            <div class="sv-pillars-grid">
+                <div class="sv-pillar">
+                    <span class="sv-pillar-num">I</span>
+                    <h3>Understand</h3>
+                    <p>Assessments and insights that bring quiet clarity.</p>
+                </div>
+                <div class="sv-pillar">
+                    <span class="sv-pillar-num">II</span>
+                    <h3>Heal</h3>
+                    <p>Gentle, compassionate work for emotional well-being.</p>
+                </div>
+                <div class="sv-pillar">
+                    <span class="sv-pillar-num">III</span>
+                    <h3>Grow</h3>
+                    <p>Counselling and coaching to move forward with peace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         THE SIX SIGNATURE BLUEPRINTS
+    ============================================================ -->
+    <section class="section sv-gallery">
         <div class="container">
             <div class="section-header">
-                <span class="eyebrow centered reveal-text">Assessments and Insights</span>
-                <h2 class="section-title split-words">Start with <em>clarity</em></h2>
+                <span class="eyebrow centered reveal-text">The Blueprints</span>
+                <h2 class="section-title split-words">Six paths, each with its own <em>signature</em></h2>
             </div>
-            <div class="services-grid">
-                <a class="service-card" href="parenting-assessment.html">
-                    <span class="service-tag">For parents</span>
+            <div class="sv-grid">
+
+                <!-- Parenting Assessment -->
+                <a class="sv-card" id="sv-card-parenting" href="parenting-assessment.html">
+                    <div class="sv-emblem">
+                        <svg viewBox="0 0 48 48" aria-hidden="true"><g class="em-breathe">
+                            <g class="em-gold-f"><path d="M24 24 C19 14 20 7 24 4 C28 7 29 14 24 24 Z"/><path transform="rotate(144 24 24)" d="M24 24 C19 14 20 7 24 4 C28 7 29 14 24 24 Z"/><path transform="rotate(288 24 24)" d="M24 24 C19 14 20 7 24 4 C28 7 29 14 24 24 Z"/></g>
+                            <g class="em-rose-f"><path transform="rotate(72 24 24)" d="M24 24 C19 14 20 7 24 4 C28 7 29 14 24 24 Z"/><path transform="rotate(216 24 24)" d="M24 24 C19 14 20 7 24 4 C28 7 29 14 24 24 Z"/></g>
+                            <circle class="em-gold-f" cx="24" cy="24" r="4"/>
+                        </g></svg>
+                    </div>
+                    <span class="sv-card-tag">Understand · For parents</span>
                     <h3>Parenting Assessment</h3>
-                    <p>Learn what your child needs emotionally and how they learn best.</p>
-                    <span class="service-link">Discover more</span>
+                    <p>Learn what your child needs emotionally and how they naturally learn best.</p>
+                    <span class="sv-card-link">Discover more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                 </a>
-                <a class="service-card" href="inner-potential.html">
-                    <span class="service-tag">For children and students</span>
+
+                <!-- Inner Potential DMIT -->
+                <a class="sv-card" id="sv-card-dmit" href="inner-potential.html">
+                    <div class="sv-emblem">
+                        <svg viewBox="0 0 48 48" aria-hidden="true"><g class="em-spin">
+                            <path class="em-stroke" d="M24 24 m-16 0 a16 16 0 1 1 32 0 a12 12 0 1 1 -24 0 a8 8 0 1 1 16 0 a4 4 0 1 1 -8 0"/>
+                        </g></svg>
+                    </div>
+                    <span class="sv-card-tag">Understand · Children &amp; students</span>
                     <h3>Inner Potential DMIT</h3>
-                    <p>Find your child's natural strengths to help guide their future.</p>
-                    <span class="service-link">Discover more</span>
+                    <p>Read your child's innate strengths and learning style from their fingerprints.</p>
+                    <span class="sv-card-link">Discover more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                 </a>
-                <a class="service-card" href="career-compass.html">
-                    <span class="service-tag">Students and professionals</span>
+
+                <!-- Career Compass -->
+                <a class="sv-card" id="sv-card-career" href="career-compass.html">
+                    <div class="sv-emblem">
+                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                            <circle class="em-stroke" cx="24" cy="24" r="18" opacity="0.55"/>
+                            <g class="em-waver">
+                                <path class="em-gold-f" d="M24 24 L21 22 L24 8 L27 22 Z"/>
+                                <path class="em-rose-f" d="M24 24 L21 26 L24 40 L27 26 Z"/>
+                            </g>
+                            <circle class="em-gold-f" cx="24" cy="24" r="2.6"/>
+                        </svg>
+                    </div>
+                    <span class="sv-card-tag">Understand · Students &amp; professionals</span>
                     <h3>Career Compass</h3>
-                    <p>Align your personality and strengths to a career you will love.</p>
-                    <span class="service-link">Discover more</span>
+                    <p>Align your personality and strengths to a direction that's genuinely yours.</p>
+                    <span class="sv-card-link">Discover more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                 </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- HEAL GROUP -->
-    <section class="section bg-cream">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow centered reveal-text">Emotional Well-being</span>
-                <h2 class="section-title split-words">Heal from the <em>inside</em></h2>
-            </div>
-            <div class="services-grid">
-                <a class="service-card" href="heal-within.html">
-                    <span class="service-tag">Emotional and inner healing</span>
+                <!-- Heal Within -->
+                <a class="sv-card" id="sv-card-heal" href="heal-within.html">
+                    <div class="sv-emblem">
+                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                            <rect class="em-stroke" x="14" y="7" width="20" height="34" rx="3"/>
+                            <rect class="em-gold-s" x="17" y="10" width="14" height="28" rx="2" opacity="0.5"/>
+                            <path class="em-gold-f em-shimmer" d="M24 15 L26 22 L33 24 L26 26 L24 33 L22 26 L15 24 L22 22 Z"/>
+                        </svg>
+                    </div>
+                    <span class="sv-card-tag">Heal · Emotional healing</span>
                     <h3>Heal Within</h3>
-                    <p>Uncover hidden patterns and let go of beliefs holding you back.</p>
-                    <span class="service-link">Discover more</span>
+                    <p>Uncover hidden patterns and release the old beliefs holding you back.</p>
+                    <span class="sv-card-link">Discover more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                 </a>
-                <a class="service-card" href="reiki.html">
-                    <span class="service-tag">Energy healing</span>
+
+                <!-- Reiki -->
+                <a class="sv-card" id="sv-card-reiki" href="reiki.html">
+                    <div class="sv-emblem">
+                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                            <circle class="em-gold-s em-pulse" cx="24" cy="24" r="13"/>
+                            <circle class="em-gold-s em-pulse d2" cx="24" cy="24" r="13"/>
+                            <circle class="em-gold-s em-pulse d3" cx="24" cy="24" r="13"/>
+                            <circle class="em-gold-f" cx="24" cy="24" r="6"/>
+                        </svg>
+                    </div>
+                    <span class="sv-card-tag">Heal · Energy healing</span>
                     <h3>Reiki Healing</h3>
-                    <p>Relax deeply and restore your natural balance from the inside out.</p>
-                    <span class="service-link">Discover more</span>
+                    <p>Relax deeply and restore your natural balance, gently, from within.</p>
+                    <span class="sv-card-link">Discover more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                 </a>
-                <a class="service-card" href="empowered-parent.html">
-                    <span class="service-tag">Healing for parents</span>
+
+                <!-- Empowered Parent -->
+                <a class="sv-card" id="sv-card-empowered" href="empowered-parent.html">
+                    <div class="sv-emblem">
+                        <svg viewBox="0 0 48 48" aria-hidden="true"><g class="em-breathe">
+                            <circle class="em-stroke" cx="20" cy="22" r="11"/>
+                            <circle class="em-stroke" cx="30" cy="26" r="8"/>
+                            <path class="em-rose-f" d="M25 21 c -2 -3 -7 -1 -7 3 c 0 3 4 5 7 8 c 3 -3 7 -5 7 -8 c 0 -4 -5 -6 -7 -3 z"/>
+                        </g></svg>
+                    </div>
+                    <span class="sv-card-tag">Grow · Healing for parents</span>
                     <h3>Empowered Parent</h3>
-                    <p>Heal yourself first to build a calmer home and connect better with your kids.</p>
-                    <span class="service-link">Discover more</span>
+                    <p>Heal yourself first, and build a calmer, more connected home.</p>
+                    <span class="sv-card-link">Discover more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                 </a>
+
             </div>
         </div>
     </section>
 
-    <!-- HELP CHOOSING -->
-    <section class="section bg-blush">
+    <!-- ============================================================
+         HELP ME CHOOSE — interactive guide
+    ============================================================ -->
+    <section class="section sv-choose">
         <div class="container">
-            <div class="callout" style="text-align:center;max-width:860px;margin:0 auto">
-                <span class="eyebrow centered reveal-text">Not sure where to start?</span>
-                <p style="margin-bottom:26px">It is perfectly normal if you are not sure what you need. Just tell us how you are feeling, and we will help you find the best path forward.</p>
-                <a href="contact.html" class="btn btn-primary magnetic">Help Me Choose</a>
+            <div class="sv-choose-head">
+                <span class="eyebrow centered">Not Sure Where To Start?</span>
+                <h2 class="section-title">Tell us how you're <em>feeling</em></h2>
+                <p class="section-subtitle">It's perfectly normal not to know. Choose what resonates, and we'll point you toward a gentle first step.</p>
+            </div>
+            <div class="sv-chips">
+                <button class="sv-chip" type="button" aria-pressed="false" data-name="Empowered Parent" data-href="empowered-parent.html" data-card="sv-card-empowered" data-why="We'll start by healing the patterns beneath the overwhelm, so home can begin to feel calm again.">I feel overwhelmed as a parent</button>
+                <button class="sv-chip" type="button" aria-pressed="false" data-name="Parenting Assessment" data-href="parenting-assessment.html" data-card="sv-card-parenting" data-why="A warm assessment shows exactly what your child needs emotionally, and how they learn best.">I want to understand my child</button>
+                <button class="sv-chip" type="button" aria-pressed="false" data-name="Career Compass" data-href="career-compass.html" data-card="sv-card-career" data-why="We align your strengths, interests and personality to a direction that truly fits.">I'm choosing a career or path</button>
+                <button class="sv-chip" type="button" aria-pressed="false" data-name="Heal Within" data-href="heal-within.html" data-card="sv-card-heal" data-why="Gentle, tarot-informed sessions to meet old wounds and release what's held you back.">I'm carrying old wounds</button>
+                <button class="sv-chip" type="button" aria-pressed="false" data-name="Reiki Healing" data-href="reiki.html" data-card="sv-card-reiki" data-why="Deep rest and gentle energy healing to restore your natural balance.">I feel drained and stuck</button>
+                <button class="sv-chip" type="button" aria-pressed="false" data-name="Inner Potential DMIT" data-href="inner-potential.html" data-card="sv-card-dmit" data-why="The DMIT reveals your child's innate gifts, so you know exactly where to pour encouragement.">I want to nurture my child's gifts</button>
+            </div>
+            <div class="sv-result" aria-live="polite">
+                <span class="sv-result-label">Start here</span>
+                <h3>A path for every feeling</h3>
+                <p>Choose one above, and a gentle recommendation will appear here.</p>
+                <a class="btn btn-primary magnetic" href="contact.html">Help Me Choose</a>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ============================================================
+         CTA
+    ============================================================ -->
     <section class="section bg-dark cta-band">
         <div class="container">
             <span class="eyebrow centered" style="color:rgba(255,238,208,.6)">Begin Gently</span>
             <h2>Every journey starts with a simple <em>conversation.</em></h2>
-            <p>Send a message for a relaxed chat, and we can take the first step together.</p>
+            <p>Send a message for a relaxed chat, and we'll take the first step together.</p>
             <div class="cta-buttons">
                 <a href="contact.html" class="btn btn-light magnetic">Book a Conversation</a>
                 <a class="btn btn-ghost-light magnetic js-wa" data-wa-text="Hello Dr. Gargee, I would like help choosing the right path.">Chat on WhatsApp</a>
@@ -118,6 +212,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <script src="js/services.js?v=1"></script>
 </body>
 </html>
