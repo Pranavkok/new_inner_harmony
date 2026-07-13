@@ -1399,6 +1399,36 @@ body[data-blueprint="empowered"] .prose-visual--empowered {
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 18px;
 }
+.audience-grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) {
+    .audience-grid--3col { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .audience-grid--3col { grid-template-columns: 1fr; }
+}
+
+.audience-grid--center-5 {
+    grid-template-columns: repeat(6, 1fr);
+}
+.audience-grid--center-5 > div {
+    grid-column: span 2;
+}
+.audience-grid--center-5 > div:nth-child(4) {
+    grid-column: 2 / 4;
+}
+.audience-grid--center-5 > div:nth-child(5) {
+    grid-column: 4 / 6;
+}
+@media (max-width: 900px) {
+    .audience-grid--center-5 { grid-template-columns: repeat(2, 1fr); }
+    .audience-grid--center-5 > div { grid-column: span 1 !important; }
+}
+@media (max-width: 600px) {
+    .audience-grid--center-5 { grid-template-columns: 1fr; }
+}
+
 .audience-card {
     background: var(--surface);
     border: 1px solid var(--line);

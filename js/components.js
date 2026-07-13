@@ -8,8 +8,8 @@
     // ---- Single source of truth for contact details ----
     // NOTE: placeholders — replace with real details before launch.
     const SITE = {
-        phoneDisplay: '+91 98765 43210',
-        whatsapp: '919876543210',
+        phoneDisplay: '+91 99300 34340',
+        whatsapp: '919930034340',
         email: 'hello@innerharmony.life',
         location: 'Pune, Maharashtra, India',
         instagram: '#',
