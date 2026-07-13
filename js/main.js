@@ -166,8 +166,8 @@
             if (breadcrumb) tl.from(breadcrumb, { y: 20, opacity: 0, duration: 0.7 }, 0);
             if (h1) {
                 const titleHTML = h1.innerHTML;
-                h1.innerHTML = titleHTML.replace(/(<em>.*?<\/em>|[^<]+)/g, (match) => {
-                    if (match.startsWith('<em')) return match;
+                h1.innerHTML = titleHTML.replace(/(<br\s*\/?>|<em>.*?<\/em>|[^<]+)/g, (match) => {
+                    if (match.startsWith('<em') || match.startsWith('<br')) return match;
                     return match.split('').map(ch => `<span class="hero-char">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
                 });
                 h1.querySelectorAll('em').forEach(em => {
@@ -232,10 +232,10 @@
     // Skip cards handled by page-specific animations.js
     const bp = document.body.dataset.blueprint;
     if (bp !== 'heal' && bp !== 'home') richReveal('.service-card', { y: 60, stagger: 0.1 });
-    if (bp !== 'heal' && bp !== 'career') richReveal('.pillar-card', { y: 60, rotation: 3, stagger: 0.14 });
+    if (bp !== 'heal' && bp !== 'career') richReveal('.pillar-card', { y: 60, rotation: 3, stagger: 0.14, start: 'top 100%' });
     if (bp !== 'approach') richReveal('.step-card', { y: 60, stagger: 0.14 });
     richReveal('.testimonial-card', { y: 50, stagger: 0.14 });
-    if (bp !== 'career') richReveal('.audience-card', { y: 40, stagger: 0.09 });
+    if (bp !== 'career') richReveal('.audience-card', { y: 40, stagger: 0.09, start: 'top 100%' });
     batchReveal('.feature-list li', { opacity: 0, x: -20 }, { opacity: 1, x: 0, stagger: 0.07 }, { start: 'top 90%' });
 
     // ---------- split-content sections ----------
@@ -290,9 +290,9 @@
                     ease: 'none',
                     scrollTrigger: { trigger: band, start: 'top top', end: '+=60%', scrub: 0.5 },
                 });
-                const mark = band.querySelector('.quote-mark');
-                if (mark) {
-                    gsap.to(mark, {
+                const marks = band.querySelectorAll('.quote-mark');
+                if (marks.length) {
+                    gsap.to(marks, {
                         y: 30, opacity: 0.2,
                         ease: 'none',
                         scrollTrigger: { trigger: band, start: 'top top', end: '+=60%', scrub: 0.5 },
@@ -327,17 +327,7 @@
 
     // ---------- marquee scroll-scrub speed ----------
     if (hasGSAP && !reduced) {
-        const marqueeTrack = document.querySelector('.marquee-track');
-        if (marqueeTrack) {
-            let velocity = 0;
-            ScrollTrigger.create({
-                onUpdate: (self) => { velocity = Math.abs(self.getVelocity()); },
-            });
-            gsap.ticker.add(() => {
-                const speed = 1 + Math.min(velocity / 800, 2.5);
-                marqueeTrack.style.animationDuration = `${38 / speed}s`;
-            });
-        }
+        // Disabled fast scrub on scroll
     }
 
     // ---------- FAQ accordion ----------

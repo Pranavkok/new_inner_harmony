@@ -410,7 +410,7 @@
         }
 
         gsap.utils.toArray('.service-card').forEach((card, i) => {
-            gsap.set(card, { rotation: gsap.utils.random(-2, 2), transformOrigin: '50% 100%' });
+            gsap.set(card, { transformOrigin: '50% 100%' });
             ScrollTrigger.create({
                 trigger: card,
                 start: 'top 90%',

@@ -90,7 +90,7 @@
                         <span class="logo-text" style="color:var(--cream)">Inner Harmony<small>Heal Within · Shine Beyond</small></span>
                     </a>
                     <p>A compassionate, non-judgemental space to understand yourself, heal from within, and create lasting transformation — guided by Dr. Gargee Gadgil.</p>
-                    <p class="footer-om">|| Om Shree Swami Samarth ||</p>
+
                     <div class="footer-social">
                         <a href="${SITE.instagram}" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
                         <a href="${SITE.facebook}" aria-label="Facebook"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>

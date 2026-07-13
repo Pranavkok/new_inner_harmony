@@ -70,6 +70,7 @@
                 pinSpacing: true,
                 scrub: 0.8,
                 anticipatePin: 1,
+                refreshPriority: 10,
             },
         });
         tl.to(inner, { rotationY: 360, ease: 'none', duration: 1.4 }, 0)
@@ -102,6 +103,7 @@
                 pinSpacing: true,
                 scrub: 0.8,
                 anticipatePin: 1,
+                refreshPriority: 10,
             },
         });
         cards.forEach((card, i) => {
@@ -124,6 +126,14 @@
         card.addEventListener('click', () => card.classList.toggle('is-flipped'));
     });
 
+    // Sort triggers immediately to fix out-of-order pinning from main.js
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.sort();
+        ScrollTrigger.refresh();
+    }
+
     // recalc pins once nav/footer are injected and fonts settle
-    window.addEventListener('load', () => ScrollTrigger.refresh());
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+    });
 })();

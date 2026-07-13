@@ -118,7 +118,7 @@ body[data-blueprint="inner-potential"] .step-card:hover {
 body[data-blueprint="reiki"] .pillar-card,
 body[data-blueprint="reiki"] .audience-card,
 body[data-blueprint="reiki"] .step-card {
-    border-radius: 100px;
+    border-radius: 8px;
     padding: 3rem 2rem;
     border: none;
     background: rgba(255, 255, 255, 0.4);
