@@ -1,0 +1,429 @@
+/* ==========================================================================
+   HEAL WITHIN — "The Reading"
+   Bespoke immersive scroll-story for body[data-blueprint="heal"].
+   Loaded ONLY on heal-within.html. Uses existing palette tokens only —
+   no new colors are introduced.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. TAROT CARD — shared flip mechanic
+   Default (no JS / reduced motion) shows the FRONT face so all content is
+   readable. js/heal-within.js adds `.hw-js` to <body> to enable face-down
+   starting states + scroll/click flips (progressive enhancement).
+-------------------------------------------------------------------------- */
+.hw-card {
+    perspective: 1400px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+}
+.hw-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 8px; border-radius: 16px; }
+
+.hw-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.9s var(--ease);
+}
+
+.hw-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+.hw-face--front { transform: rotateY(0deg); }
+.hw-face--back  { transform: rotateY(180deg); }
+
+/* ----- FRONT (revealed) face ----- */
+.hw-face--front {
+    padding: 2.4rem 1.6rem;
+    background:
+        radial-gradient(120% 90% at 50% 0%, rgba(255, 238, 208, 0.18), transparent 60%),
+        linear-gradient(160deg, #ffffff 0%, var(--cream) 55%, var(--cream-2) 100%);
+    border: 1px solid rgba(201, 160, 111, 0.55);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    color: var(--text);
+}
+.hw-face--front::before {
+    /* inner gilt frame */
+    content: '';
+    position: absolute;
+    inset: 9px;
+    border: 1px solid rgba(201, 160, 111, 0.45);
+    border-radius: 11px;
+    pointer-events: none;
+}
+.hw-card-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+}
+.hw-card-icon {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    background: radial-gradient(circle at 50% 40%, rgba(139, 122, 184, 0.18), transparent 70%);
+    margin-bottom: 1.1rem;
+}
+.hw-face--front h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+}
+.hw-face--front p {
+    font-size: 0.96rem;
+    color: var(--text-soft);
+    line-height: 1.7;
+    max-width: 22ch;
+}
+
+/* ----- BACK (face-down) — classic tarot back ----- */
+.hw-face--back {
+    background:
+        radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
+    border: 1px solid rgba(201, 160, 111, 0.7);
+}
+.hw-back-art {
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(201, 160, 111, 0.55);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image:
+        repeating-linear-gradient(45deg, rgba(201, 160, 111, 0.10) 0 2px, transparent 2px 12px),
+        repeating-linear-gradient(-45deg, rgba(201, 160, 111, 0.10) 0 2px, transparent 2px 12px);
+}
+.hw-back-art::before,
+.hw-back-art::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba(201, 160, 111, 0.5);
+    border-radius: 50%;
+}
+.hw-back-art::before { width: 58%; aspect-ratio: 1; }
+.hw-back-art::after  { width: 34%; aspect-ratio: 1; }
+.hw-back-art--sm { inset: 8px; }
+.hw-star-glyph {
+    position: relative;
+    z-index: 2;
+    font-size: 1.6rem;
+    color: var(--gold);
+    text-shadow: 0 0 14px rgba(201, 160, 111, 0.7);
+}
+
+/* No-JS / reduced-motion: keep cards face-up, no transitions */
+body:not(.hw-js) .hw-card-inner { transition: none; }
+
+/* Scrub-driven cards are animated by GSAP — no CSS transition to fight it */
+.hw-card--mirror .hw-card-inner,
+.hw-card--spread .hw-card-inner { transition: none; }
+
+/* --------------------------------------------------------------------------
+   1. HERO — a mystical night
+-------------------------------------------------------------------------- */
+.hw-hero {
+    padding: 172px 0 96px;
+    background:
+        radial-gradient(90% 120% at 50% -10%, var(--plum) 0%, var(--ink) 45%, #2f1b23 100%);
+    color: var(--cream);
+}
+.hw-hero .breadcrumb { color: rgba(255, 238, 208, 0.6); }
+.hw-hero .breadcrumb a:hover { color: var(--sand); }
+.hw-hero h1 { color: var(--cream); }
+.hw-hero h1 em { color: var(--accent-soft); font-style: italic; }
+.hw-hero .page-hero-sub { color: rgba(255, 238, 208, 0.82); }
+.hw-hero .tm-line { color: rgba(255, 238, 208, 0.55); }
+.hw-hero .orb { opacity: 0.5; mix-blend-mode: screen; }
+.hw-hero-glow {
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    width: 520px;
+    height: 520px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(139, 122, 184, 0.4) 0%, transparent 65%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hw-hero-card {
+    position: relative;
+    z-index: 3;
+    width: 200px;
+    height: 300px;
+    margin: 54px auto 8px;
+    animation: hw-float 6s ease-in-out infinite;
+}
+@keyframes hw-float {
+    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+    50%      { transform: translateY(-16px) rotate(1.5deg); }
+}
+.hw-card--hero, .hw-card--hero .hw-card-inner { width: 100%; height: 100%; }
+.hw-card--hero .hw-face { border-radius: 16px; box-shadow: 0 30px 70px rgba(20, 10, 16, 0.55); }
+.hw-card--hero .hw-face--front svg { width: 58%; color: var(--accent); opacity: 0.85; }
+.hw-card--hero .hw-card-num { position: absolute; top: 16px; left: 18px; margin: 0; }
+
+/* JS states */
+body.hw-js .hw-card--hero .hw-card-inner { transform: rotateY(180deg); }
+body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg); }
+
+.hw-scroll-cue {
+    position: relative;
+    z-index: 3;
+    margin-top: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 238, 208, 0.55);
+}
+.hw-scroll-line {
+    width: 1px;
+    height: 46px;
+    background: linear-gradient(var(--gold), transparent);
+    animation: hw-cue 2.4s ease-in-out infinite;
+    transform-origin: top;
+}
+@keyframes hw-cue {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+    50%      { transform: scaleY(1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. Shared ACT scaffolding + drifting stars
+-------------------------------------------------------------------------- */
+.hw-act { position: relative; overflow: hidden; }
+.hw-act-stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hw-act-stars .particle { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+
+/* --------------------------------------------------------------------------
+   3. ACT I — THE MIRROR (pinned)
+-------------------------------------------------------------------------- */
+.hw-act--mirror {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(80% 90% at 20% 30%, var(--plum) 0%, transparent 60%),
+        linear-gradient(160deg, var(--ink) 0%, #33202a 100%);
+}
+.hw-mirror-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 68px;
+    align-items: center;
+    width: 100%;
+}
+.hw-mirror-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 420px;
+}
+.hw-mirror-halo {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 122, 184, 0.45) 0%, transparent 68%);
+    filter: blur(10px);
+}
+.hw-card--mirror { position: relative; z-index: 2; width: 230px; height: 340px; }
+.hw-card--mirror .hw-card-inner { width: 100%; height: 100%; }
+.hw-card--mirror .hw-face { border-radius: 16px; box-shadow: 0 30px 70px rgba(15, 8, 12, 0.6); }
+.hw-face--mirror {
+    background:
+        linear-gradient(155deg, #efe9f5 0%, #d9d2ea 50%, #efe6f2 100%);
+    border: 1px solid rgba(201, 160, 111, 0.6);
+}
+.hw-mirror-glass {
+    position: absolute;
+    inset: 16px;
+    border-radius: 999px 999px 12px 12px;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(201, 160, 111, 0.15) 40%, rgba(74, 61, 107, 0.25) 100%);
+    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.6), 0 0 0 3px rgba(201, 160, 111, 0.35);
+    overflow: hidden;
+}
+.hw-mirror-glass::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -30%;
+    width: 60%;
+    height: 180%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
+    transform: rotate(18deg);
+    animation: hw-shine 5s ease-in-out infinite;
+}
+@keyframes hw-shine {
+    0%, 100% { transform: translateX(-40%) rotate(18deg); opacity: 0; }
+    50%      { transform: translateX(180%) rotate(18deg); opacity: 1; }
+}
+.hw-mirror-word {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2.4rem;
+    color: var(--accent);
+    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.7);
+}
+.hw-mirror-copy .eyebrow { color: var(--accent-soft); }
+.hw-mirror-copy .eyebrow::before { background: var(--gold); }
+.hw-mirror-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.16;
+    color: var(--cream);
+    margin: 14px 0 22px;
+}
+.hw-mirror-title em { font-style: italic; color: var(--accent-soft); }
+.hw-mirror-copy .lead { color: var(--sand); }
+.hw-mirror-copy p { color: rgba(255, 238, 208, 0.8); font-size: 1.06rem; margin-bottom: 16px; line-height: 1.85; }
+/* JS: reveal lines are hidden until scrubbed in */
+body.hw-js .hw-reveal-line { opacity: 0; }
+
+/* --------------------------------------------------------------------------
+   4. ACT II — THREE CARDS TURNED (pinned)
+-------------------------------------------------------------------------- */
+.hw-act--spread {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 0;
+    background:
+        radial-gradient(70% 60% at 50% 8%, var(--sand) 0%, transparent 55%),
+        linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+}
+.hw-spread-head { text-align: center; max-width: 700px; margin: 0 auto 54px; padding: 0 26px; }
+.hw-spread-head .eyebrow { color: var(--muted); }
+.hw-spread-head .section-subtitle { margin: 12px auto 0; }
+.hw-spread-rail {
+    display: flex;
+    gap: 34px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 26px;
+}
+.hw-card--spread { width: 260px; height: 384px; }
+.hw-card--spread .hw-card-inner { width: 100%; height: 100%; }
+.hw-card--spread .hw-face { box-shadow: 0 26px 60px rgba(79, 47, 57, 0.22); }
+.hw-card--spread:nth-child(2) { transform: translateY(-26px); }
+.hw-spread-hint {
+    margin-top: 40px;
+    font-size: 0.74rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   5. ACT III — THE DECK (turnable audience)
+-------------------------------------------------------------------------- */
+.hw-deck {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.hw-card--mini { height: 232px; }
+.hw-card--mini .hw-card-inner { width: 100%; height: 100%; }
+.hw-card--mini .hw-face { border-radius: 16px; box-shadow: 0 14px 36px rgba(79, 47, 57, 0.12); }
+.hw-card--mini .hw-face--front { padding: 1.8rem 1.4rem; }
+.hw-mini-icon {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--rosewood);
+    background: rgba(201, 160, 111, 0.14);
+    margin-bottom: 0.9rem;
+}
+.hw-card--mini strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+}
+.hw-card--mini p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.6; max-width: 24ch; }
+
+/* JS states: face-down, flip on hover/focus/click */
+body.hw-js .hw-card--mini .hw-card-inner { transform: rotateY(180deg); }
+body.hw-js .hw-card--mini:hover .hw-card-inner,
+body.hw-js .hw-card--mini:focus-visible .hw-card-inner,
+body.hw-js .hw-card--mini.is-flipped .hw-card-inner { transform: rotateY(360deg); }
+body.hw-js .hw-card--mini { transition: transform 0.4s var(--ease); }
+body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
+
+/* --------------------------------------------------------------------------
+   6. QUOTE + CTA touch-ups
+-------------------------------------------------------------------------- */
+.hw-quote { background: linear-gradient(160deg, var(--ink) 0%, var(--plum) 100%); }
+.hw-quote .container { position: relative; z-index: 1; }
+.hw-cta { border-top: 1px solid var(--line-soft); }
+/* CTA sits on cream — keep the emphasis word visible (base rule uses light --sand) */
+.hw-cta h2 em { color: var(--rosewood); }
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE
+-------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .hw-mirror-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hw-mirror-copy .lead, .hw-mirror-copy p { max-width: 46ch; margin-left: auto; margin-right: auto; }
+    .hw-mirror-copy .eyebrow { justify-content: center; }
+    .hw-deck { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+    .hw-act--mirror, .hw-act--spread { min-height: auto; padding: 96px 0; }
+    .hw-spread-rail { gap: 22px; }
+    .hw-card--spread { width: 78vw; max-width: 300px; height: 400px; }
+    .hw-card--spread:nth-child(2) { transform: none; }
+    .hw-deck { grid-template-columns: 1fr; max-width: 360px; }
+    .hw-card--mini { height: 210px; }
+}
+
+/* --------------------------------------------------------------------------
+   8. REDUCED MOTION — everything static & face-up
+-------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .hw-hero-card, .hw-scroll-line, .hw-mirror-glass::after { animation: none; }
+    .hw-card-inner { transition: none; }
+}
