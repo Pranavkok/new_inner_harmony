@@ -64,5 +64,29 @@
         });
     });
 
+    // ---------- HERO — the constellation draws, stars pop, cue fades in ----------
+    // (CSS twinkle lives on the inner <path>, so GSAP animates the <g> wrappers — no conflict)
+    // (the arc is dotted, so a dashoffset draw-in won't work — wipe it in with a clip instead)
+    const constLine = document.querySelector('.sv-const-line');
+    const constStars = gsap.utils.toArray('.sv-const-star');
+    if (constLine && constStars.length) {
+        gsap.set(constLine, { clipPath: 'inset(-10% 100% -10% 0)' });
+        gsap.set(constStars, { scale: 0, opacity: 0, transformOrigin: 'center' });
+        const tl = gsap.timeline({ delay: 0.7 });
+        tl.to(constLine, { clipPath: 'inset(-10% 0% -10% 0)', duration: 2, ease: 'power1.inOut' }, 0);
+        constStars.forEach((star, i) => {
+            tl.to(star, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2.4)' }, 0.15 + i * 0.32);
+        });
+    }
+    const svCue = document.querySelector('.sv-scroll-cue');
+    if (svCue) gsap.from(svCue, { opacity: 0, duration: 1, delay: 1.7 });
+    const svAura = document.querySelector('.sv-hero-aura');
+    if (svAura) {
+        gsap.to(svAura, {
+            yPercent: 24, opacity: 0.3, ease: 'none',
+            scrollTrigger: { trigger: '.sv-hero', start: 'top top', end: 'bottom top', scrub: 0.6 },
+        });
+    }
+
     ScrollTrigger.refresh();
 })();

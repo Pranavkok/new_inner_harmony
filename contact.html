@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/contact.css?v=2">
 </head>
 <body data-page="contact" data-year="2026">
 
@@ -16,39 +17,61 @@
     <div class="cursor-follower" id="cursorFollower"></div>
     <div id="site-nav"></div>
 
-    <section class="page-hero bg-cream">
+    <!-- ============================================================
+         HERO — an envelope opens
+    ============================================================ -->
+    <section class="page-hero ct-hero">
         <div class="hero-orbs">
             <div class="orb orb-1" data-speed="0.24"></div>
             <div class="orb orb-4" data-speed="0.32"></div>
         </div>
+        <div class="ct-hero-aura" aria-hidden="true"></div>
         <div class="container">
             <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span> Contact</nav>
             <h1>Every journey begins with a <em>single question</em></h1>
             <p class="page-hero-sub">Wherever you are, we're here to walk beside you. Reach out — there's no pressure, only a warm welcome.</p>
+            <svg class="ct-envelope" viewBox="0 0 190 150" fill="none" aria-hidden="true">
+                <!-- back of envelope -->
+                <rect class="ct-env-back" x="25" y="50" width="140" height="72" rx="10"/>
+                <!-- flap (authored OPEN; JS animates from closed) -->
+                <path class="ct-env-flap" d="M 25 52 L 95 6 L 165 52 Z"/>
+                <!-- the letter -->
+                <g class="ct-env-letter-group">
+                    <rect class="ct-env-letter" x="42" y="26" width="106" height="62" rx="5"/>
+                    <path class="ct-env-line" d="M 58 42 H 132"/>
+                    <path class="ct-env-line" d="M 58 52 H 118"/>
+                    <path class="ct-env-heart" d="M 95 68 c -2 -3 -7 -1 -7 2 c 0 2.5 4 4.5 7 7 c 3 -2.5 7 -4.5 7 -7 c 0 -3 -5 -5 -7 -2 z"/>
+                </g>
+                <!-- front pocket -->
+                <path class="ct-env-front" d="M 25 58 L 95 104 L 165 58 L 165 112 Q 165 122 155 122 L 35 122 Q 25 122 25 112 Z"/>
+            </svg>
+            <a class="ct-scroll-cue" href="#ct-write"><span>Write to her</span></a>
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="section bg-sand">
+    <!-- ============================================================
+         THE LETTER — ways to reach + stationery form
+    ============================================================ -->
+    <section class="section ct-act ct-write" id="ct-write">
         <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
+            <div class="ct-grid">
+                <div class="ct-info">
                     <span class="eyebrow reveal-text">Get in Touch</span>
                     <h2 class="section-title split-words">Let's take the <em>first step</em> together</h2>
                     <p class="lead">Share a little about where you are and what you're hoping for. Dr. Gargee will personally read your message and get back to you.</p>
 
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <span class="ci-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+                    <div class="ct-ways">
+                        <div class="ct-way">
+                            <span class="ct-way-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
                             <span><small>Email</small><a data-fill="email" href="#">hello@innerharmony.life</a></span>
                         </div>
-                        <div class="contact-item">
-                            <span class="ci-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                        <div class="ct-way">
+                            <span class="ct-way-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
                             <span><small>Phone</small><a data-fill="phone" href="#">+91 98765 43210</a></span>
                         </div>
-                        <div class="contact-item">
-                            <span class="ci-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                            <span><small>Location</small><span data-fill="location">Pune, Maharashtra, India</span></span>
+                        <div class="ct-way">
+                            <span class="ct-way-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                            <span><small>Location</small><span class="ct-way-val" data-fill="location">Pune, Maharashtra, India</span></span>
                         </div>
                     </div>
 
@@ -58,7 +81,9 @@
                     </a>
                 </div>
 
-                <div class="contact-card">
+                <div class="ct-paper">
+                    <div class="ct-stamp" aria-hidden="true">✦</div>
+                    <p class="ct-salutation">Dear Dr. Gargee,</p>
                     <form class="contact-form" id="contactForm" novalidate>
                         <div class="form-group">
                             <label for="name">Your name</label>
@@ -88,17 +113,70 @@
                             <label for="message">Your message</label>
                             <textarea id="message" name="message" rows="4" placeholder="Share whatever feels comfortable about where you are right now…" required></textarea>
                         </div>
+
+                        <div class="ct-warmth" aria-live="polite">
+                            <div class="ct-warmth-hearts" aria-hidden="true"><span>♥</span><span>♥</span><span>♥</span><span>♥</span><span>♥</span></div>
+                            <span class="ct-warmth-text">Your note is waiting to begin…</span>
+                        </div>
+
                         <button type="submit" class="btn btn-primary btn-full magnetic">Send with care</button>
+                        <p class="ct-ps">P.S. — Every message is read personally, and answered warmly.</p>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- REASSURANCE -->
-    <section class="section-sm bg-cream">
-        <div class="container" style="text-align:center;max-width:720px">
-            <p class="lead reveal-up">Reaching out can feel like a big step. Please know there's no obligation and nothing to prepare — just a compassionate, confidential space, whenever you're ready.</p>
+    <!-- ============================================================
+         WHAT HAPPENS NEXT — a short thread
+    ============================================================ -->
+    <section class="section ct-act ct-next">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow centered reveal-text">After You Press Send</span>
+                <h2 class="section-title split-words">What happens <em>next</em></h2>
+            </div>
+            <div class="ct-next-track">
+                <svg class="ct-next-svg" viewBox="0 0 880 70" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="ct-next-base" d="M 20 42 C 160 26, 300 50, 440 38 C 580 26, 720 48, 860 34"/>
+                    <path class="ct-next-line" d="M 20 42 C 160 26, 300 50, 440 38 C 580 26, 720 48, 860 34"/>
+                    <circle class="ct-next-dot" cx="150" cy="32" r="8"/>
+                    <circle class="ct-next-dot" cx="440" cy="38" r="8"/>
+                    <circle class="ct-next-dot" cx="730" cy="42" r="8"/>
+                </svg>
+                <div class="ct-next-cards">
+                    <div class="ct-next-card">
+                        <span class="ct-next-num">i.</span>
+                        <h3>Your note arrives</h3>
+                        <p>It lands directly with Dr. Gargee — never a bot, never a queue.</p>
+                    </div>
+                    <div class="ct-next-card">
+                        <span class="ct-next-num">ii.</span>
+                        <h3>She reads it, personally</h3>
+                        <p>Usually within a day. Whatever you share stays completely confidential.</p>
+                    </div>
+                    <div class="ct-next-card">
+                        <span class="ct-next-num">iii.</span>
+                        <h3>A warm reply</h3>
+                        <p>A gentle conversation to find your right first step — with no obligation at all.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         REASSURANCE — a quiet closing word
+    ============================================================ -->
+    <section class="section bg-dark quote-band">
+        <div class="container">
+            <blockquote class="big-quote">
+                <span class="quote-line">Reaching out can feel like a big step.</span>
+                <span class="quote-line">There's nothing to prepare and no obligation —</span>
+                <span class="quote-line">just a compassionate, confidential space,</span>
+                <span class="quote-line">whenever <em>you're ready</em>.</span>
+            </blockquote>
+            <div class="quote-attrib">Dr. Gargee Gadgil</div>
         </div>
     </section>
 
@@ -108,6 +186,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <script src="js/contact.js?v=1"></script>
 </body>
 </html>

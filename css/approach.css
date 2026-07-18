@@ -1,0 +1,289 @@
+/* ==========================================================================
+   APPROACH — "The Path" · A gentle walk through Understand, Heal, Grow
+   Bespoke layer for approach.html (body[data-blueprint="approach"]).
+   Warm rosewood/cream palette only — the approach accent token in style.css
+   is a cool violet-plum and is RE-OVERRIDDEN to warm below (user rule:
+   colors match the home page). Progressive enhancement: js/approach.js adds
+   `.ap-js` (motion) and `.ap-widgets` (interactive stepper); without JS the
+   page is fully readable & static — paths drawn, everything visible.
+   ========================================================================== */
+
+body[data-blueprint="approach"] {
+    --accent: #5b3a44;            /* rosewood, was violet #5b4560 */
+    --accent-soft: #b0897f;
+    --visual-glow: rgba(255, 238, 208, 0.5);
+}
+
+.ap-act { position: relative; overflow: hidden; }
+body.ap-js .ap-reveal-line { opacity: 0; }
+
+/* --------------------------------------------------------------------------
+   1. HERO — the path begins
+-------------------------------------------------------------------------- */
+.ap-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 0 48px;
+    text-align: center;
+    overflow: hidden;
+    background:
+        radial-gradient(60% 70% at 50% 18%, rgba(252, 219, 216, 0.6) 0%, transparent 60%),
+        radial-gradient(85% 120% at 50% -8%, var(--sand) 0%, var(--cream) 48%, var(--cream-2) 100%);
+}
+.ap-hero .container { position: relative; z-index: 2; }
+.ap-hero .breadcrumb { justify-content: center; }
+.ap-hero h1 em { font-style: italic; color: var(--rosewood); }
+.ap-hero .page-hero-sub { color: var(--rosewood); }
+
+.ap-hero-aura {
+    position: absolute; z-index: 0;
+    top: 44%; left: 50%;
+    width: min(720px, 90vw); aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255, 238, 208, 0.9) 0%, rgba(252, 219, 216, 0.42) 45%, transparent 70%);
+    animation: ap-aura 7s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes ap-aura {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+}
+
+/* the little winding path beneath the headline */
+.ap-hero-path { width: min(640px, 88vw); margin: 40px auto 0; display: block; overflow: visible; }
+.ap-hp-base { fill: none; stroke: rgba(201, 160, 111, 0.35); stroke-width: 1.6; stroke-dasharray: 1 7; stroke-linecap: round; }
+.ap-hp-line { fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: round; }
+.ap-hp-dot { fill: #fffaf3; stroke: var(--gold); stroke-width: 2; }
+.ap-hp-label {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    fill: var(--rosewood); text-anchor: middle;
+}
+
+.ap-scroll-cue {
+    display: inline-flex; flex-direction: column; align-items: center; gap: 12px;
+    margin-top: 46px;
+    text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.4s var(--ease);
+}
+.ap-scroll-cue::after {
+    content: '';
+    width: 1px; height: 52px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    animation: ap-cue 2.4s ease-in-out infinite;
+}
+.ap-scroll-cue:hover { color: var(--rosewood); }
+@keyframes ap-cue {
+    0%, 100% { transform: scaleY(0.55); transform-origin: top; opacity: 0.5; }
+    50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. ACT I — THE ROOTS (pinned): the surface is never the whole story
+-------------------------------------------------------------------------- */
+.ap-act--roots {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 90px 0;
+    background:
+        radial-gradient(70% 90% at 12% 20%, rgba(252, 219, 216, 0.55) 0%, transparent 60%),
+        var(--sand);
+}
+.ap-roots-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 60px; align-items: center; width: 100%; }
+.ap-roots-copy .eyebrow { color: var(--gold); }
+.ap-roots-copy h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.16; color: var(--ink); margin: 12px 0 22px; }
+.ap-roots-copy h2 em { font-style: italic; color: var(--rosewood); }
+.ap-roots-copy p { color: var(--text-soft); font-size: 1.05rem; line-height: 1.85; margin-bottom: 15px; }
+.ap-roots-note {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.2rem; color: var(--rosewood) !important;
+}
+
+.ap-roots-stage { position: relative; display: flex; justify-content: center; }
+.ap-tree-svg { width: 100%; max-width: 480px; overflow: visible; }
+.ap-tree-canopy { fill: rgba(252, 219, 216, 0.55); stroke: var(--rosewood); stroke-width: 1.4; }
+.ap-tree-canopy--mid { fill: rgba(255, 238, 208, 0.75); }
+.ap-tree-trunk { fill: none; stroke: var(--rosewood); stroke-width: 2.4; stroke-linecap: round; }
+.ap-soil { fill: none; stroke: var(--gold); stroke-width: 1.8; stroke-linecap: round; stroke-dasharray: 2 8; }
+.ap-root { fill: none; stroke: #8b5a62; stroke-width: 2; stroke-linecap: round; }
+.ap-chip {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 11px; letter-spacing: 0.08em;
+    fill: var(--ink);
+}
+.ap-chip-bg { fill: rgba(255, 250, 243, 0.9); stroke: rgba(201, 160, 111, 0.5); stroke-width: 1; rx: 13px; }
+.ap-chip--root .ap-chip-bg { fill: rgba(91, 58, 68, 0.08); stroke: rgba(139, 90, 98, 0.45); }
+.ap-chip--root text { fill: var(--rosewood); font-style: italic; }
+
+/* --------------------------------------------------------------------------
+   3. ACT II — THE THREE MOVEMENTS (pinned, warm dark): the path is walked
+-------------------------------------------------------------------------- */
+.ap-act--path {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 90px 0;
+    color: var(--sand);
+    background:
+        radial-gradient(80% 120% at 100% 0%, #62414c 0%, transparent 55%),
+        linear-gradient(160deg, var(--plum) 0%, var(--ink) 68%, var(--ink-2) 100%);
+}
+.ap-act--path .container { position: relative; z-index: 1; }
+.ap-path-head { text-align: center; max-width: 640px; margin: 0 auto 30px; }
+.ap-path-head .eyebrow { color: rgba(255, 238, 208, 0.6); justify-content: center; }
+.ap-path-head .eyebrow::before { background: var(--gold); }
+.ap-path-head h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.16; color: var(--cream); }
+.ap-path-head h2 em { font-style: italic; color: var(--gold); }
+
+.ap-path-stage { max-width: 980px; margin: 0 auto; }
+.ap-path-svg { width: 100%; height: auto; overflow: visible; display: block; }
+.ap-path-base { fill: none; stroke: rgba(255, 238, 208, 0.18); stroke-width: 2; stroke-dasharray: 1 8; stroke-linecap: round; }
+.ap-path-line { fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(201, 160, 111, 0.5)); }
+.ap-walker { fill: #ffeed0; filter: drop-shadow(0 0 10px rgba(255, 238, 208, 0.9)); }
+.ap-station-glow { fill: rgba(201, 160, 111, 0.16); }
+.ap-station-core { fill: #ffeed0; stroke: var(--gold); stroke-width: 2; }
+.ap-station-label {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 21px; fill: var(--cream); text-anchor: middle;
+}
+
+.ap-moves { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 34px; }
+.ap-move {
+    padding: 22px 22px 20px;
+    border: 1px solid rgba(255, 238, 208, 0.16);
+    border-radius: 16px;
+    background: rgba(255, 238, 208, 0.05);
+    text-align: center;
+}
+.ap-move-sub { display: block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 238, 208, 0.55); margin-bottom: 8px; }
+.ap-move h3 { font-family: var(--font-display); font-size: 1.55rem; font-weight: 600; color: var(--gold); margin-bottom: 8px; }
+.ap-move p { font-size: 0.92rem; line-height: 1.65; color: rgba(255, 238, 208, 0.78); margin: 0; }
+
+/* --------------------------------------------------------------------------
+   4. SCIENCE & SOUL — two strands woven together
+-------------------------------------------------------------------------- */
+.ap-blend { background: linear-gradient(180deg, var(--cream) 0%, var(--peach) 100%); }
+.ap-blend-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 60px; align-items: center; }
+.ap-weave { width: 100%; max-width: 500px; overflow: visible; }
+.ap-strand { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+.ap-strand--sci { stroke: var(--rosewood); }
+.ap-strand--soul { stroke: var(--gold); }
+.ap-weave-dot { fill: #fffaf3; stroke: var(--gold); stroke-width: 1.6; }
+.ap-weave-label { font-family: var(--font-display); font-style: italic; font-size: 17px; }
+.ap-weave-label--sci { fill: var(--rosewood); }
+.ap-weave-label--soul { fill: #a9803f; }
+
+.ap-blend-copy .eyebrow { color: var(--gold); }
+.ap-blend-copy .section-title { margin-bottom: 18px; }
+.ap-blend-copy > p { color: var(--text-soft); font-size: 1.05rem; line-height: 1.85; margin-bottom: 22px; }
+
+/* --------------------------------------------------------------------------
+   5. ACT III — WALK THE JOURNEY (interactive stepper)
+-------------------------------------------------------------------------- */
+.ap-journey { background: var(--surface); }
+.ap-journey .section-header { margin-bottom: 46px; }
+
+/* the track — hidden until JS enables widgets */
+.ap-jw { display: none; max-width: 720px; margin: 0 auto 54px; }
+body.ap-widgets .ap-jw { display: block; }
+.ap-jw-track { position: relative; height: 2px; background: var(--line); margin: 0 34px 0; }
+.ap-jw-progress {
+    position: absolute; top: 0; left: 0; height: 2px; width: 0;
+    background: linear-gradient(90deg, var(--gold), #dbb98a);
+    transition: width 0.7s var(--ease);
+}
+.ap-jw-walker {
+    position: absolute; top: 50%; left: 0; z-index: 2;
+    width: 14px; height: 14px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 5px rgba(201, 160, 111, 0.22), 0 0 14px rgba(201, 160, 111, 0.6);
+    transition: left 0.7s var(--ease);
+}
+.ap-jw-stops { position: absolute; inset: 0; }
+.ap-stop {
+    position: absolute; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px; height: 40px;
+    border: none; background: transparent; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+}
+.ap-stop::before {
+    content: '';
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #fffaf3;
+    border: 2px solid rgba(201, 160, 111, 0.55);
+    transition: all 0.4s var(--ease);
+}
+.ap-stop[aria-pressed="true"]::before, .ap-stop:hover::before { border-color: var(--gold); background: var(--sand); transform: scale(1.25); }
+.ap-stop-label {
+    position: absolute; top: calc(100% + 2px); left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.4s var(--ease);
+}
+.ap-stop[aria-pressed="true"] .ap-stop-label { color: var(--rosewood); }
+
+/* the step cards — full grid without JS; dim + highlight with JS */
+.ap-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.ap-step {
+    background: #fffaf3;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 34px 26px 30px;
+    cursor: default;
+    transition: all 0.55s var(--ease);
+}
+body.ap-widgets .ap-step { cursor: pointer; opacity: 0.45; transform: scale(0.97); }
+body.ap-widgets .ap-step.is-active {
+    opacity: 1; transform: scale(1) translateY(-6px);
+    border-color: rgba(201, 160, 111, 0.65);
+    box-shadow: 0 24px 54px rgba(79, 47, 57, 0.14);
+}
+.ap-step-number { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; color: var(--gold); display: block; margin-bottom: 14px; }
+.ap-step-icon {
+    width: 54px; height: 54px; margin-bottom: 16px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--rosewood);
+    background: radial-gradient(circle at 50% 40%, var(--sand), var(--cream));
+    box-shadow: inset 0 0 0 1px rgba(201, 160, 111, 0.4);
+}
+.ap-step h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.ap-step p { color: var(--text-soft); font-size: 0.93rem; line-height: 1.65; margin: 0; }
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE
+-------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .ap-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+    .ap-roots-grid { grid-template-columns: 1fr; gap: 40px; }
+    .ap-roots-stage { order: -1; }
+    .ap-tree-svg { max-width: 380px; }
+    .ap-blend-grid { grid-template-columns: 1fr; gap: 36px; }
+    .ap-moves { grid-template-columns: 1fr; gap: 14px; max-width: 440px; margin-inline: auto; }
+    .ap-move { text-align: left; padding: 16px 18px; }
+    .ap-jw { display: none !important; }
+    body.ap-widgets .ap-step { opacity: 1; transform: none; cursor: default; }
+}
+@media (max-width: 600px) {
+    .ap-act--roots, .ap-act--path { min-height: auto; padding: 80px 0; }
+    .ap-steps { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   7. REDUCED MOTION
+-------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    body.ap-js .ap-reveal-line { opacity: 1; }
+    .ap-hero-aura, .ap-scroll-cue::after { animation: none; }
+    .ap-jw-progress, .ap-jw-walker, .ap-step { transition: none; }
+}

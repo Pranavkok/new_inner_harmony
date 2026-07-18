@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/about.css?v=2">
 </head>
 <body data-page="about" data-blueprint="about" data-year="2026">
 
@@ -16,76 +17,142 @@
     <div class="cursor-follower" id="cursorFollower"></div>
     <div id="site-nav"></div>
 
-    <!-- ===================== PAGE HERO ===================== -->
-    <section class="page-hero bg-cream">
+    <!-- ============================================================
+         HERO — the person behind the practice
+    ============================================================ -->
+    <section class="page-hero ab-hero">
         <div class="hero-orbs">
             <div class="orb orb-1" data-speed="0.24"></div>
             <div class="orb orb-4" data-speed="0.32"></div>
         </div>
+        <div class="ab-hero-aura" aria-hidden="true"></div>
+        <div class="ab-hero-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="ab-motes" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
         <div class="container">
             <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span> About</nav>
-            <h1>Understand yourself. Heal deeply.<br><em>Live authentically.</em></h1>
-            <p class="page-hero-sub">Meet the physician and healer behind Inner Harmony and the belief that quietly changes everything.</p>
+            <span class="ab-hero-est">Inner Harmony &nbsp;·&nbsp; Since 1998</span>
+            <h1>The person behind<br><em>the practice</em></h1>
+            <div class="ab-roles">
+                <span>Physician</span><i>✦</i><span>Healer</span><i>✦</i><span>Wife</span><i>✦</i><span>Mother of two</span>
+            </div>
+            <p class="page-hero-sub">— and the belief that quietly changes everything.</p>
+            <a class="ab-scroll-cue" href="#ab-intro"><span>Her story</span></a>
         </div>
     </section>
 
-    <!-- ===================== INTRO SPLIT ===================== -->
-    <section class="section bg-sand">
+    <!-- ============================================================
+         INTRO — portrait split
+    ============================================================ -->
+    <section class="section ab-act ab-intro" id="ab-intro">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-hero-image">
-                    <img src="images/portrait.jpg" alt="Dr. Gargee Gadgil" class="portrait-img" style="width: 100%; height: 100%; border-radius: 24px; object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+            <div class="ab-intro-grid">
+                <div class="ab-portrait">
+                    <div class="ab-portrait-halo" aria-hidden="true"></div>
+                    <span class="ab-spark ab-spark--1" aria-hidden="true">✦</span>
+                    <span class="ab-spark ab-spark--2" aria-hidden="true">✦</span>
+                    <span class="ab-spark ab-spark--3" aria-hidden="true">✦</span>
+                    <div class="ab-portrait-frame">
+                        <img src="images/portrait.jpg" alt="Dr. Gargee Gadgil">
+                    </div>
+                    <div class="ab-portrait-badge"><strong>28</strong><span>Years of practice</span></div>
                 </div>
-                <div class="about-text">
+                <div class="ab-intro-copy">
                     <span class="eyebrow reveal-text">Hello, I am Dr. Gargee</span>
-                    <h2 class="section-title split-words">A physician, a healer, a wife<br>and a <em>mother of two</em></h2>
-                    <p class="lead">"I do not believe people need fixing. I believe they need a deeper understanding."</p>
+                    <h2 class="section-title split-words">Medicine taught me the mind.<br>Healing taught me the <em>heart</em>.</h2>
+                    <blockquote class="ab-pull">
+                        <span class="ab-pull-mark" aria-hidden="true">&ldquo;</span>
+                        <p>I do not believe people need fixing. I believe they need a deeper understanding.</p>
+                    </blockquote>
                     <p>For over 28 years, I have guided thousands of people toward better health and emotional well-being. I help individuals and families find clarity in their lives.</p>
                     <p>Lasting transformation does not come from forcing behavior change. It begins by understanding ourselves more deeply.</p>
+                    <div class="ab-intro-line" aria-hidden="true"></div>
+                    <p class="signature">Dr. Gargee Gadgil</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===================== PHILOSOPHY PROSE ===================== -->
-    <section class="section bg-cream">
+    <!-- ============================================================
+         THE CORE BELIEF — pinned quote on warm dark
+    ============================================================ -->
+    <section class="ab-act ab-belief">
         <div class="container">
-            <div class="prose-grid">
-                <div class="prose-visual">
-                    <div class="ring ring-a"></div>
-                    <div class="ring ring-b"></div>
-                    <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 2a14 14 0 0 1 0 20"/><path d="M12 2a14 14 0 0 0 0 20"/><path d="M2 12h20"/></svg>
+            <span class="eyebrow centered">The Belief At The Center</span>
+            <blockquote class="ab-belief-quote">
+                <span class="ab-belief-line">You are not broken.</span>
+                <span class="ab-belief-line">You do not need fixing.</span>
+                <span class="ab-belief-line">You need to be <em>deeply understood</em> —</span>
+                <span class="ab-belief-line">beginning with yourself.</span>
+            </blockquote>
+            <p class="ab-belief-attrib">— The heart of everything I do</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         THE BLEND — where science meets healing (pinned venn)
+    ============================================================ -->
+    <section class="ab-act ab-act--blend">
+        <div class="container">
+            <div class="ab-blend-grid">
+                <div class="ab-blend-stage" aria-hidden="true">
+                    <svg class="ab-blend-svg" viewBox="0 0 500 360" fill="none">
+                        <defs>
+                            <radialGradient id="abBlendGrad" cx="50%" cy="42%" r="65%">
+                                <stop offset="0%" stop-color="#ffeed0" stop-opacity="0.95"/>
+                                <stop offset="55%" stop-color="#fcdbd8" stop-opacity="0.75"/>
+                                <stop offset="100%" stop-color="#fcdbd8" stop-opacity="0"/>
+                            </radialGradient>
+                        </defs>
+                        <g class="ab-c-sci">
+                            <circle class="ab-blend-circle ab-blend-circle--sci" cx="172" cy="180" r="120"/>
+                            <text class="ab-blend-clabel ab-blend-clabel--sci" x="128" y="186">Science</text>
+                        </g>
+                        <g class="ab-c-heal">
+                            <circle class="ab-blend-circle ab-blend-circle--heal" cx="328" cy="180" r="120"/>
+                            <text class="ab-blend-clabel ab-blend-clabel--heal" x="372" y="186">Healing</text>
+                        </g>
+                        <circle class="ab-blend-core" cx="250" cy="180" r="74"/>
+                        <text class="ab-blend-word" x="250" y="180">Understanding</text>
+                    </svg>
                 </div>
-                <div class="prose">
-                    <span class="eyebrow reveal-text">My Approach</span>
-                    <h2 class="section-title split-words">Where science meets<br>the wisdom of <em>healing</em></h2>
-                    <p>I blend medical science with holistic healing to help you gain deeper self-awareness. By exploring your unique thoughts and experiences, we create a clear path to healing.</p>
-                    <p>My goal is to provide a compassionate, safe space where you feel truly seen and empowered to grow.</p>
+                <div class="ab-blend-copy">
+                    <span class="eyebrow">My Approach</span>
+                    <h2>Where science meets<br>the wisdom of <em>healing</em></h2>
+                    <p class="ab-reveal-line">I trained as a physician. I learned to read the body, the mind, the evidence. But the clinic taught me something the textbooks never did — that people carry stories their symptoms only hint at.</p>
+                    <p class="ab-reveal-line">So I blend medical science with holistic healing to help you gain deeper self-awareness. By exploring your unique thoughts and experiences, we create a clear path to healing.</p>
+                    <p class="ab-reveal-line">My goal is a compassionate, safe space where you feel truly seen — and empowered to grow.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===================== BELIEFS ===================== -->
-    <section class="section bg-blush">
+    <!-- ============================================================
+         WHAT I BELIEVE — three gentle truths
+    ============================================================ -->
+    <section class="section ab-act ab-beliefs">
         <div class="container">
             <div class="section-header">
                 <span class="eyebrow centered reveal-text">What I Believe</span>
                 <h2 class="section-title split-words">A few gentle truths I hold <em>close</em></h2>
             </div>
             <div class="pillars-grid">
-                <article class="pillar-card">
-                    <div class="pillar-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div>
+                <article class="ab-truth">
+                    <span class="ab-truth-num">i.</span>
+                    <div class="ab-truth-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div>
                     <h3>You are not broken</h3>
                     <p>You do not need fixing. You already hold the answers inside. You just need the right guidance to find them.</p>
                 </article>
-                <article class="pillar-card">
-                    <div class="pillar-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l2.5 5 5.5.8-4 4 1 5.4L12 20l-5 2.6 1-5.4-4-4 5.5-.8L12 3z"/></svg></div>
+                <article class="ab-truth">
+                    <span class="ab-truth-num">ii.</span>
+                    <div class="ab-truth-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l2.5 5 5.5.8-4 4 1 5.4L12 20l-5 2.6 1-5.4-4-4 5.5-.8L12 3z"/></svg></div>
                     <h3>Understanding heals</h3>
                     <p>Real change starts with insight. When we truly understand ourselves, healing and growth follow naturally.</p>
                 </article>
-                <article class="pillar-card">
-                    <div class="pillar-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.35-9.5-8.5A5.5 5.5 0 0 1 12 6.5a5.5 5.5 0 0 1 9.5 6C19 16.65 12 21 12 21z"/></svg></div>
+                <article class="ab-truth">
+                    <span class="ab-truth-num">iii.</span>
+                    <div class="ab-truth-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.35-9.5-8.5A5.5 5.5 0 0 1 12 6.5a5.5 5.5 0 0 1 9.5 6C19 16.65 12 21 12 21z"/></svg></div>
                     <h3>Every person is unique</h3>
                     <p>There is no single path. Your unique story deserves a journey shaped just for you.</p>
                 </article>
@@ -93,36 +160,52 @@
         </div>
     </section>
 
-    <!-- ===================== JOURNEY / STATS ===================== -->
-    <section class="section bg-cream">
+    <!-- ============================================================
+         THE JOURNEY — timeline + stats
+    ============================================================ -->
+    <section class="ab-act ab-act--journey">
         <div class="container">
-            <div class="prose-grid reverse">
-                <div class="prose-visual">
-                    <div class="ring ring-a"></div>
-                    <svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22V8"/><path d="M12 8c0-3 2-5 5-5 0 3-2 5-5 5z"/><path d="M12 12c0-3-2-5-5-5 0 3 2 5 5 5z"/></svg>
-                </div>
-                <div class="prose">
-                    <span class="eyebrow reveal-text">The Heart of It</span>
-                    <h2 class="section-title split-words">Witnessing people <em>reconnect</em><br>with themselves</h2>
-                    <p>My greatest joy is watching people embrace their authentic selves. It is beautiful to see them step into a life filled with confidence and harmony.</p>
-                    <p>When we heal within, we truly shine beyond.</p>
-                    <p class="signature">Dr. Gargee Gadgil</p>
-                    <div class="timeline-list">
-                        <div class="timeline-item"><strong>1998: Clinical practice begins</strong><span>Guiding patients through medicine and holistic care.</span></div>
-                        <div class="timeline-item"><strong>2010: Holistic integration</strong><span>Blending psychology, energy healing, and assessments into one approach.</span></div>
-                        <div class="timeline-item"><strong>Today: Inner Harmony</strong><span>Over 28 years of compassionate guidance for thousands of lives.</span></div>
+            <div class="ab-journey-head">
+                <span class="eyebrow centered reveal-text">The Journey So Far</span>
+                <h2 class="section-title split-words">Witnessing people <em>reconnect</em><br>with themselves</h2>
+            </div>
+            <div class="ab-journey-track">
+                <svg class="ab-journey-svg" viewBox="0 0 980 120" fill="none" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="ab-journey-base" d="M 20 76 C 45 72, 66 70, 90 68 C 230 56, 350 46, 490 44 C 630 46, 760 54, 890 64 C 913 66, 936 62, 960 58"/>
+                    <path class="ab-journey-line" d="M 20 76 C 45 72, 66 70, 90 68 C 230 56, 350 46, 490 44 C 630 46, 760 54, 890 64 C 913 66, 936 62, 960 58"/>
+                    <circle class="ab-mile-dot" cx="90" cy="68" r="9"/>
+                    <circle class="ab-mile-dot" cx="490" cy="44" r="9"/>
+                    <circle class="ab-mile-dot" cx="890" cy="64" r="9"/>
+                </svg>
+                <div class="ab-journey-cards">
+                    <div class="ab-mile">
+                        <span class="ab-mile-year">1998</span>
+                        <h3>Clinical practice begins</h3>
+                        <p>Guiding patients through medicine and holistic care.</p>
                     </div>
-                    <div class="stat-row">
-                        <div class="stat"><span><span class="stat-number" data-count="28">0</span><span class="stat-suffix"></span></span><span class="stat-label">Years of Practice</span></div>
-                        <div class="stat"><span><span class="stat-number" data-count="1000">0</span><span class="stat-suffix"></span></span><span class="stat-label">Lives Touched</span></div>
-                        <div class="stat"><span><span class="stat-number" data-count="6">0</span></span><span class="stat-label">Signature Blueprints</span></div>
+                    <div class="ab-mile">
+                        <span class="ab-mile-year">2010</span>
+                        <h3>Holistic integration</h3>
+                        <p>Blending psychology, energy healing, and assessments into one approach.</p>
+                    </div>
+                    <div class="ab-mile">
+                        <span class="ab-mile-year">Today</span>
+                        <h3>Inner Harmony</h3>
+                        <p>Over 28 years of compassionate guidance for thousands of lives.</p>
                     </div>
                 </div>
+            </div>
+            <div class="ab-stats">
+                <div class="ab-stat"><span><span class="stat-number" data-count="28">0</span><span class="stat-plus">+</span></span><span class="stat-label">Years of Practice</span></div>
+                <div class="ab-stat"><span><span class="stat-number" data-count="1000">0</span><span class="stat-plus">+</span></span><span class="stat-label">Lives Touched</span></div>
+                <div class="ab-stat"><span><span class="stat-number" data-count="6">0</span></span><span class="stat-label">Signature Blueprints</span></div>
             </div>
         </div>
     </section>
 
-    <!-- ===================== CTA ===================== -->
+    <!-- ============================================================
+         CTA
+    ============================================================ -->
     <section class="section bg-dark cta-band">
         <div class="container">
             <span class="eyebrow centered" style="color:rgba(255,238,208,.6)">Walk With Me</span>
@@ -141,6 +224,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <script src="js/about.js?v=1"></script>
 </body>
 </html>
