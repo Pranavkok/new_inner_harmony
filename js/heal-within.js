@@ -121,9 +121,11 @@
         });
     }
 
-    // ---------- ACT III — mini deck (touch/keyboard click flip; hover handled in CSS) ----------
+    // ---------- ACT III — mini deck (flip and stay flipped on hover/focus) ----------
     document.querySelectorAll('.hw-card--mini').forEach(card => {
-        card.addEventListener('click', () => card.classList.toggle('is-flipped'));
+        const flipCard = () => card.classList.add('is-flipped');
+        card.addEventListener('mouseenter', flipCard);
+        card.addEventListener('click', flipCard);
     });
 
     // Sort triggers immediately to fix out-of-order pinning from main.js
