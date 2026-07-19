@@ -401,7 +401,12 @@ body.pa-js .pa-portrait-media { filter: blur(14px) saturate(0.6); transform: sca
 /* --------------------------------------------------------------------------
    8. RESPONSIVE
 -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .pa-focus-grid { gap: 48px; }
+    .pa-bloom-grid { gap: 44px; }
+}
 @media (max-width: 900px) {
+    .pa-hero { padding: 150px 0 76px; }
     .pa-focus-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .pa-focus-copy .eyebrow { justify-content: center; }
     .pa-focus-copy .lead, .pa-focus-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
@@ -409,12 +414,27 @@ body.pa-js .pa-portrait-media { filter: blur(14px) saturate(0.6); transform: sca
     .pa-bloom-grid { grid-template-columns: 1fr; gap: 34px; }
     .pa-bloom-stage { min-height: 340px; }
     .pa-bloom-svg { max-width: 320px; }
+    .pa-act--focus, .pa-act--bloom { min-height: auto; padding: 90px 0; }
+    .pa-act--quiz { padding: 90px 0; }
 }
 @media (max-width: 620px) {
-    .pa-act--focus, .pa-act--bloom { min-height: auto; padding: 96px 0; }
+    .pa-hero { padding: 132px 0 64px; }
+    .pa-act--focus, .pa-act--bloom, .pa-act--quiz { padding: 76px 0; }
     .pa-quiz-grid { grid-template-columns: 1fr; }
-    .pa-medallion { width: 240px; height: 240px; }
-    .pa-orbit-dot { transform-origin: 7px 127px; }
+    .pa-statement { padding: 22px 20px 18px; }
+    .pa-medallion { width: 220px; height: 220px; margin-top: 40px; }
+    .pa-orbit-dot { transform-origin: 7px 117px; }
+    .pa-bloom-stage { min-height: 280px; }
+    .pa-bloom-svg { max-width: 270px; }
+    .pa-bloom-halo { width: 270px; height: 270px; }
+    .pa-legend-num { width: 36px; height: 36px; font-size: 1.05rem; }
+    .pa-legend-item { gap: 14px; padding: 13px 0; }
+    .pa-legend-text h3 { font-size: 1.2rem; }
+}
+@media (max-width: 380px) {
+    .pa-medallion { width: 190px; height: 190px; }
+    .pa-orbit-dot { transform-origin: 7px 102px; }
+    .pa-statement-q { font-size: 1.15rem; }
 }
 
 /* --------------------------------------------------------------------------

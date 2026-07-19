@@ -192,11 +192,32 @@ body.ct-widgets .ct-warmth { display: flex; }
 /* --------------------------------------------------------------------------
    4. RESPONSIVE
 -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .ct-grid { gap: 48px; }
+    .ct-paper { padding: 38px 32px 32px; }
+}
 @media (max-width: 900px) {
+    .ct-hero { min-height: auto; padding: 150px 0 56px; }
     .ct-grid { grid-template-columns: 1fr; gap: 44px; }
     .ct-paper { padding: 36px 26px 30px; }
     .ct-next-svg { display: none; }
     .ct-next-cards { grid-template-columns: 1fr; gap: 24px; max-width: 420px; margin-inline: auto; }
+}
+@media (max-width: 600px) {
+    .ct-hero { padding: 132px 0 48px; }
+    .ct-envelope { width: 150px; margin-top: 30px; }
+    .ct-scroll-cue { margin-top: 34px; }
+    .ct-paper { padding: 32px 20px 26px; }
+    .ct-stamp { width: 46px; height: 52px; top: 16px; right: 16px; font-size: 1rem; }
+    .ct-salutation { font-size: 1.45rem; margin-bottom: 18px; }
+    .ct-way { padding: 14px 16px; gap: 13px; }
+    .ct-way a, .ct-way .ct-way-val { font-size: 0.92rem; overflow-wrap: anywhere; }
+    .whatsapp-btn { width: 100%; justify-content: center; }
+    .ct-warmth { flex-wrap: wrap; gap: 8px 12px; }
+}
+@media (max-width: 380px) {
+    .ct-paper { padding: 28px 16px 22px; }
+    .ct-way-icon { flex-basis: 40px; width: 40px; height: 40px; }
 }
 
 /* --------------------------------------------------------------------------

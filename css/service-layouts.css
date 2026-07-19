@@ -154,3 +154,27 @@ body[data-blueprint="parenting"] .step-card:hover {
     background: var(--sand);
     border-top-color: var(--ink);
 }
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE — comfortable card padding on small screens
+-------------------------------------------------------------------------- */
+@media (max-width: 620px) {
+    body[data-blueprint="heal"] .pillar-card,
+    body[data-blueprint="heal"] .audience-card,
+    body[data-blueprint="heal"] .step-card,
+    body[data-blueprint="reiki"] .pillar-card,
+    body[data-blueprint="reiki"] .audience-card,
+    body[data-blueprint="reiki"] .step-card { padding: 2.2rem 1.5rem; }
+
+    body[data-blueprint="parenting"] .pillar-card,
+    body[data-blueprint="parenting"] .audience-card,
+    body[data-blueprint="parenting"] .step-card { padding: 1.8rem 1.4rem; }
+
+    body[data-blueprint="career"] .pillar-card,
+    body[data-blueprint="career"] .audience-card,
+    body[data-blueprint="career"] .step-card { box-shadow: 3px 3px 0 var(--ink); }
+
+    body[data-blueprint="empowered"] .pillar-card,
+    body[data-blueprint="empowered"] .audience-card,
+    body[data-blueprint="empowered"] .step-card { border-radius: 28px 8px 28px 8px; }
+}

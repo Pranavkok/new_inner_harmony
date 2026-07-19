@@ -264,7 +264,12 @@ body.ep-js .ep-reveal-line { opacity: 0; }
 /* --------------------------------------------------------------------------
    7. RESPONSIVE
 -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .ep-weight-grid { gap: 48px; }
+    .ep-reframe-grid { gap: 18px; }
+}
 @media (max-width: 900px) {
+    .ep-hero { padding: 150px 0 76px; }
     .ep-weight-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .ep-weight-copy .eyebrow { justify-content: center; }
     .ep-weight-copy .lead, .ep-weight-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
@@ -272,10 +277,25 @@ body.ep-js .ep-reveal-line { opacity: 0; }
     .ep-cycle-captions { grid-template-columns: 1fr; gap: 20px; max-width: 460px; }
     .ep-cap { padding: 0; }
     .ep-reframe-grid { grid-template-columns: 1fr; max-width: 520px; }
+    .ep-act--weight, .ep-act--cycle { min-height: auto; padding: 90px 0; }
+    .ep-act--reframe { padding: 90px 0; }
 }
 @media (max-width: 620px) {
-    .ep-act--weight, .ep-act--cycle { min-height: auto; padding: 96px 0; }
-    .ep-embrace { width: 220px; height: 220px; }
+    .ep-hero { padding: 132px 0 64px; }
+    .ep-act--weight, .ep-act--cycle, .ep-act--reframe { padding: 76px 0; }
+    .ep-embrace { width: 200px; height: 200px; margin-top: 38px; }
+    .ep-embrace-outer { width: 148px; height: 148px; }
+    .ep-embrace-inner { width: 92px; height: 92px; }
+    .ep-embrace-heart { width: 34px; height: 34px; }
+    .ep-weight-stage { max-width: 270px; }
+    .ep-reframe-card { padding: 26px 22px 22px; }
+    .ep-reframe-quote { font-size: 1.22rem; min-height: 0; }
+    .ep-cycle-head { margin-bottom: 34px; }
+}
+@media (max-width: 380px) {
+    .ep-reframe-card { padding: 22px 18px 20px; }
+    .ep-reframe-quote { font-size: 1.12rem; }
+    .ep-reframe-toggle span { padding: 6px 12px; font-size: 0.74rem; }
 }
 
 /* --------------------------------------------------------------------------

@@ -328,7 +328,12 @@ body.cc-js .cc-reveal-line { opacity: 0; }
 /* --------------------------------------------------------------------------
    7. RESPONSIVE
 -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .cc-fog-grid { gap: 48px; }
+    .cc-align-grid { gap: 44px; }
+}
 @media (max-width: 900px) {
+    .cc-hero { padding: 150px 0 76px; }
     .cc-fog-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .cc-fog-copy .eyebrow { justify-content: center; }
     .cc-fog-copy .lead, .cc-fog-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
@@ -336,11 +341,28 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     .cc-align-grid { grid-template-columns: 1fr; gap: 34px; }
     .cc-dial-stage { min-height: 340px; }
     .cc-dial-svg { max-width: 320px; }
+    .cc-act--fog, .cc-act--align { min-height: auto; padding: 90px 0; }
+    .cc-act--cross { padding: 90px 0; }
 }
 @media (max-width: 620px) {
-    .cc-act--fog, .cc-act--align { min-height: auto; padding: 96px 0; }
-    .cc-compass { width: 230px; height: 230px; }
+    .cc-hero { padding: 132px 0 64px; }
+    .cc-act--fog, .cc-act--align, .cc-act--cross { padding: 76px 0; }
+    .cc-compass { width: 210px; height: 210px; margin-top: 40px; }
+    .cc-dial-stage { min-height: 280px; }
+    .cc-dial-svg { max-width: 270px; }
+    .cc-dial-halo { width: 270px; height: 270px; }
     .cc-cross-card { flex-basis: 44%; max-width: none; }
+    .cc-cross-card--wide { flex-basis: 100%; }
+    .cc-cross-readout { padding: 20px 22px; }
+    .cc-cross-readout p { font-size: 1.2rem; }
+    .cc-legend-mark { width: 38px; height: 38px; }
+    .cc-legend-item { gap: 14px; padding: 14px 0; }
+    .cc-legend-text h3 { font-size: 1.2rem; }
+}
+@media (max-width: 380px) {
+    .cc-compass { width: 180px; height: 180px; }
+    .cc-cross-card { flex-basis: 100%; }
+    .cc-cross-readout p { font-size: 1.1rem; }
 }
 
 /* --------------------------------------------------------------------------

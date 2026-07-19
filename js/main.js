@@ -165,14 +165,19 @@
 
             if (breadcrumb) tl.from(breadcrumb, { y: 20, opacity: 0, duration: 0.7 }, 0);
             if (h1) {
+                // Split per word (real spaces between) so long titles can wrap on mobile
+                const charify = (text) => text.split(/(\s+)/).map(part => {
+                    if (/^\s+$/.test(part)) return ' ';
+                    if (!part) return '';
+                    return `<span class="hero-word">${part.split('').map(ch => `<span class="hero-char">${ch}</span>`).join('')}</span>`;
+                }).join('');
                 const titleHTML = h1.innerHTML;
                 h1.innerHTML = titleHTML.replace(/(<br\s*\/?>|<em>.*?<\/em>|[^<]+)/g, (match) => {
                     if (match.startsWith('<em') || match.startsWith('<br')) return match;
-                    return match.split('').map(ch => `<span class="hero-char">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
+                    return charify(match);
                 });
                 h1.querySelectorAll('em').forEach(em => {
-                    em.innerHTML = em.textContent.split('').map(ch =>
-                        `<span class="hero-char">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
+                    em.innerHTML = charify(em.textContent);
                 });
                 tl.from(h1.querySelectorAll('.hero-char'), {
                     y: -80, opacity: 0, rotateZ: () => gsap.utils.random(-8, 8),

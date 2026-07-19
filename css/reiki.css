@@ -237,17 +237,40 @@ body.rk-js .rk-reveal-line { opacity: 0; }
 /* --------------------------------------------------------------------------
    6. RESPONSIVE
 -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .rk-flow-grid { gap: 44px; }
+    .rk-vessels { gap: 22px; }
+    .rk-session-layout { gap: 40px; }
+}
 @media (max-width: 900px) {
+    .rk-hero { padding: 150px 0 76px; }
     .rk-flow-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+    .rk-flow-stage { max-width: 480px; width: 100%; margin: 0 auto; }
     .rk-flow-copy .eyebrow { justify-content: center; }
     .rk-flow-copy .lead, .rk-flow-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
     .rk-vessels { grid-template-columns: repeat(2, 1fr); gap: 30px; max-width: 460px; }
     .rk-session-layout { grid-template-columns: 1fr; gap: 34px; }
+    .rk-breath-stage { min-height: 0; }
+    .rk-act--flow, .rk-act--restore { min-height: auto; padding: 90px 0; }
+    .rk-act--session { padding: 90px 0; }
 }
 @media (max-width: 620px) {
-    .rk-act--flow, .rk-act--restore { min-height: auto; padding: 96px 0; }
-    .rk-aura { width: 230px; height: 230px; }
-    .rk-vessels { grid-template-columns: 1fr; max-width: 260px; }
+    .rk-hero { padding: 132px 0 64px; }
+    .rk-act--flow, .rk-act--restore, .rk-act--session { padding: 76px 0; }
+    .rk-aura { width: 210px; height: 210px; margin-top: 36px; }
+    .rk-vessels { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; max-width: 360px; }
+    .rk-vessel-orb { max-width: 118px; }
+    .rk-vessel h3 { font-size: 1.15rem; }
+    .rk-vessel p { font-size: 0.86rem; }
+    .rk-breath { width: 160px; height: 160px; }
+    .rk-stage { padding: 16px 18px; gap: 13px; }
+    .rk-stage b { width: 34px; height: 34px; font-size: 1rem; }
+    .rk-stage-title { font-size: 1.15rem; }
+    .rk-stage.is-active .rk-stage-desc { max-height: 140px; }
+}
+@media (max-width: 380px) {
+    .rk-vessels { grid-template-columns: 1fr; max-width: 240px; }
+    .rk-aura { width: 180px; height: 180px; }
 }
 
 /* --------------------------------------------------------------------------

@@ -258,18 +258,38 @@ body.ip-js .ip-reveal-line { opacity: 0; }
 /* --------------------------------------------------------------------------
    6. RESPONSIVE
 -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .ip-map-grid { gap: 48px; }
+    .ip-explore-layout { gap: 24px; }
+    .ip-chip-grid { grid-template-columns: repeat(2, 1fr); max-width: 560px; }
+}
 @media (max-width: 900px) {
+    .ip-hero { padding: 150px 0 76px; }
     .ip-map-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
     .ip-map-copy .eyebrow { justify-content: center; }
     .ip-map-copy .lead, .ip-map-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
-    .ip-chip-grid { grid-template-columns: repeat(2, 1fr); max-width: 460px; }
+    .ip-map-stage { max-width: 340px; }
+    .ip-chip-grid { max-width: 460px; }
     .ip-explore-layout { grid-template-columns: 1fr; gap: 22px; }
-    .ip-readout { position: static; }
+    .ip-readout { position: static; min-height: 0; }
+    .ip-act--map, .ip-act--mind { min-height: auto; padding: 90px 0; }
+    .ip-act--explore { padding: 90px 0; }
 }
 @media (max-width: 620px) {
-    .ip-act--map, .ip-act--mind { min-height: auto; padding: 96px 0; }
-    .ip-print { width: 210px; height: 210px; }
+    .ip-hero { padding: 132px 0 64px; }
+    .ip-act--map, .ip-act--mind, .ip-act--explore { padding: 76px 0; }
+    .ip-print { width: 190px; height: 190px; margin-top: 38px; }
+    .ip-map-stage { max-width: 280px; }
+    .ip-mind-svg { max-width: 340px; }
     .ip-strength-grid { grid-template-columns: 1fr; }
+    .ip-chip-grid { grid-template-columns: 1fr; max-width: 340px; gap: 10px; }
+    .ip-readout { padding: 26px 22px; }
+    .ip-readout h3 { font-size: 1.5rem; }
+}
+@media (max-width: 380px) {
+    .ip-print { width: 165px; height: 165px; }
+    .ip-mind-svg { max-width: 280px; }
+    .ip-strength { padding: 13px 15px; }
 }
 
 /* --------------------------------------------------------------------------

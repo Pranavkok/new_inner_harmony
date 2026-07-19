@@ -468,19 +468,39 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
 /* --------------------------------------------------------------------------
    7. RESPONSIVE
 -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .hw-mirror-grid { gap: 48px; }
+    .hw-spread-rail { gap: 40px; }
+    .hw-card--spread { width: 280px; height: 414px; }
+}
 @media (max-width: 900px) {
+    .hw-hero { padding: 150px 0 76px; }
     .hw-mirror-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hw-mirror-stage { min-height: 0; }
     .hw-mirror-copy .lead, .hw-mirror-copy p { max-width: 46ch; margin-left: auto; margin-right: auto; }
     .hw-mirror-copy .eyebrow { justify-content: center; }
     .hw-deck { grid-template-columns: repeat(2, 1fr); }
+    .hw-act--mirror, .hw-act--spread { min-height: auto; padding: 90px 0; }
 }
 @media (max-width: 620px) {
-    .hw-act--mirror, .hw-act--spread { min-height: auto; padding: 96px 0; }
+    .hw-hero { padding: 132px 0 64px; }
+    .hw-hero-card { width: 172px; height: 258px; margin-top: 42px; }
+    .hw-hero-glow { width: 380px; height: 380px; }
+    .hw-act--mirror, .hw-act--spread { padding: 76px 0; }
+    .hw-card--mirror { width: 200px; height: 296px; }
+    .hw-mirror-halo { width: 280px; height: 280px; }
+    .hw-spread-head { margin-bottom: 40px; }
     .hw-spread-rail { gap: 22px; }
     .hw-card--spread { width: 78vw; max-width: 300px; height: 400px; }
     .hw-card--spread:nth-child(2) { transform: none; }
     .hw-deck { grid-template-columns: 1fr; max-width: 360px; }
     .hw-card--mini { height: 210px; }
+    .hw-act--audience { padding: 64px 0 80px; }
+}
+@media (max-width: 380px) {
+    .hw-card--spread { width: 86vw; height: 380px; }
+    .hw-prompts li { font-size: 1rem; }
+    .hw-card--mini { height: 196px; }
 }
 
 /* --------------------------------------------------------------------------
