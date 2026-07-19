@@ -406,7 +406,7 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     flex-wrap: wrap;
     padding: 0 26px;
 }
-.hw-card--spread { width: 320px; height: 472px; }
+.hw-card--spread { width: 320px; aspect-ratio: 320 / 472; }
 .hw-card--spread .hw-card-inner { width: 100%; height: 100%; }
 .hw-card--spread .hw-face { box-shadow: 0 26px 60px rgba(79, 47, 57, 0.22); }
 .hw-card--spread:nth-child(2) { transform: translateY(-26px); }
@@ -472,8 +472,10 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
 -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .hw-mirror-grid { gap: 48px; }
-    .hw-spread-rail { gap: 40px; }
-    .hw-card--spread { width: 280px; height: 414px; }
+    /* let the 3-card row breathe down instead of overflowing */
+    .hw-spread-rail { gap: clamp(20px, 3.5vw, 40px); }
+    .hw-card--spread { width: clamp(200px, 27vw, 280px); }
+    .hw-prompts li { font-size: 1.02rem; }
 }
 @media (max-width: 900px) {
     .hw-hero { padding: 150px 0 76px; }
@@ -484,6 +486,13 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
     .hw-deck { grid-template-columns: repeat(2, 1fr); }
     .hw-act--mirror, .hw-act--spread { min-height: auto; padding: 90px 0; }
 }
+@media (max-width: 740px) {
+    /* three across no longer fits — stack the spread as a centered column */
+    .hw-spread-rail { flex-direction: column; align-items: center; gap: 30px; }
+    .hw-card--spread { width: min(78vw, 300px); }
+    .hw-card--spread:nth-child(2) { transform: none; }
+    .hw-prompts li { font-size: 1.05rem; }
+}
 @media (max-width: 620px) {
     .hw-hero { padding: 132px 0 64px; }
     .hw-hero-card { width: 172px; height: 258px; margin-top: 42px; }
@@ -492,15 +501,12 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
     .hw-card--mirror { width: 200px; height: 296px; }
     .hw-mirror-halo { width: 280px; height: 280px; }
     .hw-spread-head { margin-bottom: 40px; }
-    .hw-spread-rail { gap: 22px; }
-    .hw-card--spread { width: 78vw; max-width: 300px; height: 400px; }
-    .hw-card--spread:nth-child(2) { transform: none; }
     .hw-deck { grid-template-columns: 1fr; max-width: 360px; }
     .hw-card--mini { height: 210px; }
     .hw-act--audience { padding: 64px 0 80px; }
 }
 @media (max-width: 380px) {
-    .hw-card--spread { width: 86vw; height: 380px; }
+    .hw-card--spread { width: 86vw; }
     .hw-prompts li { font-size: 1rem; }
     .hw-card--mini { height: 196px; }
 }

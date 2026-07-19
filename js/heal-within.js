@@ -53,28 +53,47 @@
         gsap.delayedCall(2.2, () => heroCard.classList.add('is-flipped'));
     }
 
-    // ---------- ACT I — THE MIRROR (pinned, scrubbed flip + writing copy) ----------
+    // ---------- ACT I — THE MIRROR ----------
+    // Desktop: pinned + scrubbed. Small screens: no pin (stacked layout is
+    // taller than the viewport), flip + reveal as the act scrolls into view.
+    const mm = gsap.matchMedia();
     const mirror = document.querySelector('.hw-act--mirror');
     if (mirror) {
         const inner = mirror.querySelector('.hw-card--mirror .hw-card-inner');
         const lines = mirror.querySelectorAll('.hw-reveal-line');
         gsap.set(inner, { rotationY: 180, transformPerspective: 1400 });
-        gsap.set(lines, { opacity: 0, y: 26 });
 
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: mirror,
-                start: 'top top',
-                end: '+=115%',
-                pin: true,
-                pinSpacing: true,
-                scrub: 0.8,
-                anticipatePin: 1,
-                refreshPriority: 10,
-            },
+        mm.add('(min-width: 901px)', () => {
+            gsap.set(lines, { opacity: 0, y: 26 });
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: mirror,
+                    start: 'top top',
+                    end: '+=115%',
+                    pin: true,
+                    pinSpacing: true,
+                    scrub: 0.8,
+                    anticipatePin: 1,
+                    refreshPriority: 10,
+                },
+            });
+            tl.to(inner, { rotationY: 360, ease: 'none', duration: 1.4 }, 0)
+              .to(lines, { opacity: 1, y: 0, stagger: 0.4, ease: 'power2.out', duration: 1 }, 0.5);
         });
-        tl.to(inner, { rotationY: 360, ease: 'none', duration: 1.4 }, 0)
-          .to(lines, { opacity: 1, y: 0, stagger: 0.4, ease: 'power2.out', duration: 1 }, 0.5);
+
+        mm.add('(max-width: 900px)', () => {
+            gsap.set(inner, { rotationY: 180 });
+            gsap.set(lines, { opacity: 0, y: 26 });
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: mirror,
+                    start: 'top 62%',
+                    once: true,
+                },
+            });
+            tl.to(inner, { rotationY: 360, duration: 1.1, ease: 'power2.inOut' }, 0)
+              .to(lines, { opacity: 1, y: 0, stagger: 0.16, ease: 'power2.out', duration: 0.7 }, 0.35);
+        });
 
         // let the mirror card be re-turned by hand too
         let mFlipped = true;
@@ -84,31 +103,15 @@
         });
     }
 
-    // ---------- ACT II — THREE CARDS TURNED (pinned, sequential) ----------
+    // ---------- ACT II — THREE CARDS TURNED ----------
+    // Desktop: pinned, sequential scrubbed flips. Small screens: cards stack
+    // in a column, so each flips on its own as it enters the viewport.
     const spread = document.querySelector('.hw-act--spread');
     if (spread) {
         const cards = gsap.utils.toArray('.hw-card--spread', spread);
         cards.forEach(card => {
             const inner = card.querySelector('.hw-card-inner');
             gsap.set(inner, { rotationY: 180, transformPerspective: 1400 });
-            card._flipped = false;
-        });
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: spread,
-                start: 'top top',
-                end: '+=140%',
-                pin: true,
-                pinSpacing: true,
-                scrub: 0.8,
-                anticipatePin: 1,
-                refreshPriority: 10,
-            },
-        });
-        cards.forEach((card, i) => {
-            const inner = card.querySelector('.hw-card-inner');
-            tl.to(inner, { rotationY: 360, ease: 'none', duration: 1 }, 0.4 + i * 0.8);
             card._flipped = true;
             const toggle = () => {
                 card._flipped = !card._flipped;
@@ -117,6 +120,42 @@
             card.addEventListener('click', toggle);
             card.addEventListener('keydown', e => {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+            });
+        });
+
+        mm.add('(min-width: 741px)', () => {
+            cards.forEach(card => gsap.set(card.querySelector('.hw-card-inner'), { rotationY: 180 }));
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: spread,
+                    start: 'top top',
+                    end: '+=140%',
+                    pin: true,
+                    pinSpacing: true,
+                    scrub: 0.8,
+                    anticipatePin: 1,
+                    refreshPriority: 10,
+                },
+            });
+            cards.forEach((card, i) => {
+                tl.to(card.querySelector('.hw-card-inner'), { rotationY: 360, ease: 'none', duration: 1 }, 0.4 + i * 0.8);
+            });
+        });
+
+        mm.add('(max-width: 740px)', () => {
+            cards.forEach(card => {
+                const inner = card.querySelector('.hw-card-inner');
+                gsap.set(inner, { rotationY: 180 });
+                gsap.to(inner, {
+                    rotationY: 360,
+                    duration: 1.1,
+                    ease: 'power2.inOut',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 68%',
+                        once: true,
+                    },
+                });
             });
         });
     }
