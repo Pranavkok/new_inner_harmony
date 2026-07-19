@@ -38,7 +38,7 @@
     const customLogo = document.body.dataset.logo || 'images/logo.png';
 
     // ---------- Logo mark ----------
-    const MARK = `<img src="${customLogo}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 64px; height: 64px; object-fit: contain; border-radius: 50%;">`;
+    const MARK = `<img src="${customLogo}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 64px; height: 64px; object-fit: contain; border-radius: 50%; padding: 4px; background: white; box-sizing: border-box;">`;
 
     // ---------- NAVBAR ----------
     const navHTML = `
