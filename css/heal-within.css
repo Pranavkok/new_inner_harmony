@@ -214,6 +214,8 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
     background:
         radial-gradient(90% 120% at 50% -10%, var(--plum) 0%, var(--ink) 45%, #2f1b23 100%);
     color: var(--cream);
+    overflow: hidden;
+    contain: paint;
 }
 .hw-hero .breadcrumb { color: rgba(255, 238, 208, 0.6); }
 .hw-hero .breadcrumb a:hover { color: var(--sand); }
@@ -284,7 +286,7 @@ body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg)
 /* --------------------------------------------------------------------------
    2. Shared ACT scaffolding + drifting stars
 -------------------------------------------------------------------------- */
-.hw-act { position: relative; overflow: hidden; }
+.hw-act { position: relative; overflow: hidden; contain: paint; }
 .hw-act-stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
 .hw-act-stars .particle { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
 
