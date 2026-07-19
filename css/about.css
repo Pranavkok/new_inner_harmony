@@ -204,7 +204,15 @@ body.ab-js .ab-roles span, body.ab-js .ab-roles i { opacity: 0; }
 .ab-portrait-badge span { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 
 .ab-intro-copy .eyebrow { color: var(--gold); }
-.ab-intro-copy .section-title { margin-bottom: 26px; }
+.ab-intro-copy .section-title {
+    margin-bottom: 26px;
+    /* slightly smaller than the global clamp so each sentence holds one line */
+    font-size: clamp(1.7rem, 2.9vw, 2.7rem);
+    white-space: nowrap;
+}
+@media (max-width: 1023px) {
+    .ab-intro-copy .section-title { white-space: normal; font-size: clamp(1.7rem, 4.2vw, 2.7rem); }
+}
 
 /* pull-quote — her belief, framed like a keepsake */
 .ab-pull {
