@@ -363,10 +363,44 @@
             const btn = form.querySelector('button[type="submit"]');
             const label = btn.textContent;
             btn.textContent = 'Sending…'; btn.disabled = true;
-            setTimeout(() => {
-                showMsg('Thank you for reaching out. Dr. Gargee will personally get back to you soon.', 'success');
-                form.reset(); btn.textContent = label; btn.disabled = false;
-            }, 1300);
+
+            // To actually send emails, sign up at Formspree.io, create a form, and paste your endpoint URL here.
+            // Example: const endpoint = 'https://formspree.io/f/xabcdefg';
+            const endpoint = 'YOUR_FORMSPREE_ENDPOINT_HERE';
+
+            if (endpoint === 'YOUR_FORMSPREE_ENDPOINT_HERE') {
+                setTimeout(() => {
+                    showMsg('Developer note: Please add your Formspree endpoint URL in js/main.js to send emails.', 'error');
+                    btn.textContent = label; btn.disabled = false;
+                }, 1300);
+                return;
+            }
+
+            fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    showMsg('Thank you for reaching out. Dr. Gargee will personally get back to you soon.', 'success');
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            showMsg(data.errors.map(error => error.message).join(', '), 'error');
+                        } else {
+                            showMsg('Oops! There was a problem submitting your form.', 'error');
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                showMsg('Oops! There was a network problem submitting your form.', 'error');
+            })
+            .finally(() => {
+                btn.textContent = label; btn.disabled = false;
+            });
         });
         function showMsg(text, type) {
             let el = form.querySelector('.form-message');
