@@ -107,6 +107,7 @@
 .hw-art--fool     { background: url('../images/The%20Fool%20-%202.png') center/cover no-repeat; }
 .hw-art--magician { background: url('../images/The%20Magician%20-%201.png') center/cover no-repeat; }
 .hw-art--empress  { background: url('../images/The%20Empress%20-%202.png') center/cover no-repeat; }
+.hw-art--hero     { background: url('../images/hero-card-front.jpg') center/cover no-repeat; }
 .hw-art-overlay {
     width: 100%;
     padding: 4rem 1.3rem 1.5rem;
@@ -144,6 +145,7 @@
 .hw-face--back {
     background: url('../images/tarot-back.png') center/cover no-repeat,
                 radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
+    background-blend-mode: luminosity;
     border: 1px solid rgba(201, 160, 111, 0.7);
 }
 .hw-face--back .hw-back-art {
@@ -424,6 +426,11 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 .hw-card--mini .hw-card-inner { width: 100%; height: 100%; }
 .hw-card--mini .hw-face { border-radius: 16px; box-shadow: 0 14px 36px rgba(79, 47, 57, 0.12); }
 .hw-card--mini .hw-face--front { padding: 1.8rem 1.4rem; }
+.hw-card--mini .hw-face--back {
+    background: url('../images/mini-tarot-back.jpg') center / 145% no-repeat,
+                radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
+    background-blend-mode: luminosity;
+}
 .hw-mini-icon {
     width: 50px; height: 50px;
     border-radius: 50%;
