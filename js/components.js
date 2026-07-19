@@ -35,7 +35,7 @@
     ];
 
     const page = document.body.dataset.page || '';
-    const customLogo = document.body.dataset.logo || 'images/LOGO_-_WHITE_BACKGROUND-removebg-preview.png';
+    const customLogo = document.body.dataset.logo || 'images/LOGO_FOR_FAVICON-removebg-preview.png';
 
     // ---------- Logo mark ----------
     const MARK = `<img src="${customLogo}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 96px; height: 96px; object-fit: contain;">`;
