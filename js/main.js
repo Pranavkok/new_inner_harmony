@@ -362,45 +362,22 @@
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return showMsg('Please enter a valid email address.', 'error');
             const btn = form.querySelector('button[type="submit"]');
             const label = btn.textContent;
-            btn.textContent = 'Sending…'; btn.disabled = true;
+            btn.textContent = 'Redirecting…'; btn.disabled = true;
 
-            // To actually send emails, sign up at Formspree.io, create a form, and paste your endpoint URL here.
-            // Example: const endpoint = 'https://formspree.io/f/xabcdefg';
-            const endpoint = 'YOUR_FORMSPREE_ENDPOINT_HERE';
+            let text = `Hello Dr. Gargee,\n\nI would like to connect.\n\n*Name:* ${data.name}\n*Email:* ${data.email}`;
+            if (data.phone) text += `\n*Phone:* ${data.phone}`;
+            if (data.service && data.service !== "I'm not sure yet, please guide me") text += `\n*Interested in:* ${data.service}`;
+            text += `\n\n*Message:*\n${data.message}`;
 
-            if (endpoint === 'YOUR_FORMSPREE_ENDPOINT_HERE') {
-                setTimeout(() => {
-                    showMsg('Developer note: Please add your Formspree endpoint URL in js/main.js to send emails.', 'error');
-                    btn.textContent = label; btn.disabled = false;
-                }, 1300);
-                return;
-            }
+            const phone = window.SITE ? window.SITE.whatsapp : '919930034340';
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 
-            fetch(endpoint, {
-                method: 'POST',
-                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    showMsg('Thank you for reaching out. Dr. Gargee will personally get back to you soon.', 'success');
-                    form.reset();
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            showMsg(data.errors.map(error => error.message).join(', '), 'error');
-                        } else {
-                            showMsg('Oops! There was a problem submitting your form.', 'error');
-                        }
-                    });
-                }
-            })
-            .catch(error => {
-                showMsg('Oops! There was a network problem submitting your form.', 'error');
-            })
-            .finally(() => {
+            setTimeout(() => {
+                window.open(url, '_blank');
+                showMsg('Opening WhatsApp...', 'success');
+                form.reset();
                 btn.textContent = label; btn.disabled = false;
-            });
+            }, 600);
         });
         function showMsg(text, type) {
             let el = form.querySelector('.form-message');

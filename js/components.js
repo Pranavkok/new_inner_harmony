@@ -12,7 +12,7 @@
         phone1: '919152155022',
         phone2Display: '+91 99300 34340',
         phone2: '919930034340',
-        whatsapp: '919152155022',
+        whatsapp: '919930034340',
         email: 'Innerharmonywork@gmail.com',
         location: 'Thane, India',
         instagram: '#',
