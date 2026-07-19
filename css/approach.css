@@ -246,7 +246,7 @@ body.ap-widgets .ap-step.is-active {
     border-color: rgba(201, 160, 111, 0.65);
     box-shadow: 0 24px 54px rgba(79, 47, 57, 0.14);
 }
-.ap-step-number { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; color: var(--gold); display: block; margin-bottom: 14px; }
+.ap-step-number { font-family: var(--font-display); font-style: italic; font-size: 1.05rem; color: var(--rosewood); display: block; margin-bottom: 14px; }
 .ap-step-icon {
     width: 54px; height: 54px; margin-bottom: 16px;
     border-radius: 50%;

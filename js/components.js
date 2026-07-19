@@ -8,10 +8,13 @@
     // ---- Single source of truth for contact details ----
     // NOTE: placeholders — replace with real details before launch.
     const SITE = {
-        phoneDisplay: '+91 99300 34340',
-        whatsapp: '919930034340',
-        email: 'hello@innerharmony.life',
-        location: 'Pune, Maharashtra, India',
+        phone1Display: '+91 91521 55022',
+        phone1: '919152155022',
+        phone2Display: '+91 99300 34340',
+        phone2: '919930034340',
+        whatsapp: '919152155022',
+        email: 'Innerharmonywork@gmail.com',
+        location: 'Thane, India',
         instagram: '#',
         facebook: '#',
         youtube: '#',
@@ -19,7 +22,7 @@
     window.SITE = SITE;
 
     const waLink = (text) =>
-        `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text || "Hello Dr. Gargee, I'd like to know more about Inner Harmony.")}`;
+        `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text || "Hello Dr. Gargee, I'd like to know more about INNER HARMONY.")}`;
 
     // ---- Service (Blueprint) directory — used in nav dropdown & footer ----
     const SERVICES = [
@@ -32,17 +35,18 @@
     ];
 
     const page = document.body.dataset.page || '';
+    const customLogo = document.body.dataset.logo || 'images/logo.png';
 
     // ---------- Logo mark ----------
-    const MARK = `<img src="images/logo.png" alt="Inner Harmony Logo" class="nav-mark-img" style="width: 48px; height: 48px; object-fit: contain; border-radius: 50%;">`;
+    const MARK = `<img src="${customLogo}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 64px; height: 64px; object-fit: contain; border-radius: 50%;">`;
 
     // ---------- NAVBAR ----------
     const navHTML = `
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo" aria-label="Inner Harmony home">
+            <a href="index.html" class="nav-logo" aria-label="INNER HARMONY home">
                 ${MARK}
-                <span class="logo-text">Inner Harmony<small>Heal Within · Shine Beyond</small></span>
+                <span class="logo-text">INNER HARMONY<small>Heal Within · Shine Beyond</small></span>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html" data-nav="home">Home</a></li>
@@ -87,9 +91,9 @@
                 <div class="footer-brand">
                     <a href="index.html" class="nav-logo" style="margin-bottom:6px">
                         ${MARK}
-                        <span class="logo-text" style="color:var(--cream)">Inner Harmony<small>Heal Within · Shine Beyond</small></span>
+                        <span class="logo-text" style="color:var(--cream)">INNER HARMONY<small>Heal Within · Shine Beyond</small></span>
                     </a>
-                    <p>A compassionate, non-judgemental space to understand yourself, heal from within, and create lasting transformation — guided by Dr. Gargee Gadgil.</p>
+                    <p>A compassionate, non-judgemental space to understand yourself, heal from within, and create lasting transformation, guided by Dr. Gargee Gadgil.</p>
 
                     <div class="footer-social">
                         <a href="${SITE.instagram}" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
@@ -117,14 +121,15 @@
                     <h4>Get in Touch</h4>
                     <ul>
                         <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-                        <li><a href="tel:+${SITE.whatsapp}">${SITE.phoneDisplay}</a></li>
+                        <li><a href="tel:+${SITE.phone1}">${SITE.phone1Display}</a></li>
+                        <li><a href="tel:+${SITE.phone2}">${SITE.phone2Display}</a></li>
                         <li>${SITE.location}</li>
                         <li><a href="${waLink()}" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; ${year} Inner Harmony · Dr. Gargee Gadgil. All rights reserved.</p>
+                <p>&copy; ${year} INNER HARMONY · Dr. Gargee Gadgil. All rights reserved.</p>
                 <p>Heal Within. Shine Beyond.™</p>
             </div>
         </div>
@@ -152,7 +157,15 @@
     });
     // Fill any e-mail / tel placeholders
     document.querySelectorAll('[data-fill="email"]').forEach(el => { el.textContent = SITE.email; if (el.tagName === 'A') el.href = 'mailto:' + SITE.email; });
-    document.querySelectorAll('[data-fill="phone"]').forEach(el => { el.textContent = SITE.phoneDisplay; if (el.tagName === 'A') el.href = 'tel:+' + SITE.whatsapp; });
+    document.querySelectorAll('[data-fill="phone"]').forEach(el => {
+        el.textContent = SITE.phone1Display;
+        if (el.tagName === 'A') el.href = 'tel:+' + SITE.phone1;
+        const second = document.createElement(el.tagName === 'A' ? 'a' : 'span');
+        second.textContent = SITE.phone2Display;
+        second.style.display = 'block';
+        if (second.tagName === 'A') second.href = 'tel:+' + SITE.phone2;
+        el.insertAdjacentElement('afterend', second);
+    });
     document.querySelectorAll('[data-fill="location"]').forEach(el => { el.textContent = SITE.location; });
 
     // ---------- NAV INTERACTIONS ----------

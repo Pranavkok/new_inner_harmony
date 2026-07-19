@@ -46,7 +46,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
 .cc-hero h1 { color: var(--accent); }
 .cc-hero h1 em { font-style: italic; color: var(--gold); }
 .cc-hero .page-hero-sub { color: var(--accent-soft); }
-.cc-hero .tm-line { color: var(--muted); }
+.cc-hero .tm-line { color: var(--ink-2); }
 .cc-hero .orb { opacity: 0.5; }
 
 .cc-compass {
@@ -229,7 +229,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     font-style: italic;
     font-size: 1.1rem;
     letter-spacing: 0.1em;
-    color: var(--gold);
+    color: var(--rosewood);
     display: block;
     margin-bottom: 10px;
 }
@@ -246,7 +246,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     flex-wrap: wrap;
     justify-content: center;
     gap: 14px;
-    max-width: 900px;
+    max-width: 1150px;
     margin: 0 auto 34px;
 }
 .cc-cross-card {
@@ -276,6 +276,26 @@ body.cc-js .cc-reveal-line { opacity: 0; }
 .cc-cross-card.is-active strong { color: #fff; }
 .cc-cross-card.is-active span { color: rgba(255, 255, 255, 0.72); }
 .cc-cross-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.cc-cross-card--wide {
+    flex: 2 1 260px;
+    max-width: 290px;
+}
+.cc-assess-list {
+    margin: 8px 0 0;
+    padding: 0 0 0 16px;
+    list-style: disc;
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    text-align: left;
+}
+.cc-cross-card.is-active .cc-assess-list {
+    color: rgba(255, 255, 255, 0.72);
+}
+.cc-assess-list li { margin-bottom: 4px; }
+.cc-assess-list li:last-child { margin-bottom: 0; }
 
 .cc-cross-readout {
     max-width: 640px;

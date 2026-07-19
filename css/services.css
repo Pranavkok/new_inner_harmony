@@ -110,7 +110,7 @@ body[data-page="services"]:not([data-blueprint]) { --accent: var(--rosewood); }
 }
 .sv-pillar-num {
     font-family: var(--font-display); font-style: italic; font-size: 1.1rem;
-    color: var(--gold); display: block; margin-bottom: 8px;
+    color: var(--rosewood); display: block; margin-bottom: 8px;
 }
 .sv-pillar h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
 .sv-pillar p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.6; margin: 0; }
@@ -200,7 +200,7 @@ body[data-page="services"]:not([data-blueprint]) { --accent: var(--rosewood); }
 .sv-choose { background: var(--surface); }
 .sv-choose-head { text-align: center; max-width: 680px; margin: 0 auto 36px; }
 .sv-choose-head .eyebrow { color: var(--gold); }
-.sv-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 820px; margin: 0 auto 30px; }
+.sv-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 1000px; margin: 0 auto 30px; }
 .sv-chip {
     font: inherit; cursor: pointer;
     font-size: 0.92rem; color: var(--rosewood);

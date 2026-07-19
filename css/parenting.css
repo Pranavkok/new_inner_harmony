@@ -28,7 +28,7 @@ body.pa-js .pa-reveal-line { opacity: 0; }
 .pa-hero .breadcrumb { justify-content: center; }
 .pa-hero h1 em { font-style: italic; color: var(--accent); }
 .pa-hero .page-hero-sub { color: var(--rosewood); }
-.pa-hero .tm-line { color: var(--muted); }
+.pa-hero .tm-line { color: var(--ink-2); }
 .pa-hero .orb { opacity: 0.6; }
 
 /* orbiting portrait medallion */

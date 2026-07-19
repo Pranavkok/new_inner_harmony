@@ -185,7 +185,7 @@ body.ct-widgets .ct-warmth { display: flex; }
 .ct-next-dot { fill: #fffaf3; stroke: var(--gold); stroke-width: 2.2; }
 .ct-next-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 8px; }
 .ct-next-card { text-align: center; padding: 0 14px; }
-.ct-next-num { font-family: var(--font-display); font-style: italic; font-size: 1.4rem; color: var(--gold); display: block; margin-bottom: 6px; }
+.ct-next-num { font-family: var(--font-display); font-style: italic; font-size: 1.4rem; color: var(--rosewood); display: block; margin-bottom: 6px; }
 .ct-next-card h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
 .ct-next-card p { color: var(--text-soft); font-size: 0.93rem; line-height: 1.65; margin: 0; }
 

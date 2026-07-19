@@ -35,7 +35,7 @@ body.ip-js .ip-reveal-line { opacity: 0; }
 .ip-hero h1 { color: var(--accent); }
 .ip-hero h1 em { font-style: italic; color: var(--gold); }
 .ip-hero .page-hero-sub { color: var(--accent-soft); }
-.ip-hero .tm-line { color: var(--muted); }
+.ip-hero .tm-line { color: var(--ink-2); }
 .ip-hero .orb { opacity: 0.55; }
 
 .ip-print {
@@ -232,7 +232,7 @@ body.ip-js .ip-reveal-line { opacity: 0; }
 }
 .ip-readout-num {
     font-family: var(--font-display); font-style: italic; font-size: 1rem;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--rosewood);
     display: block; margin-bottom: 8px;
 }
 .ip-readout h3 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; color: var(--accent); line-height: 1.2; margin-bottom: 12px; }

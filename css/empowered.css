@@ -31,7 +31,7 @@ body.ep-js .ep-reveal-line { opacity: 0; }
 .ep-hero .breadcrumb { justify-content: center; }
 .ep-hero h1 em { font-style: italic; color: var(--accent); }
 .ep-hero .page-hero-sub { color: var(--rosewood); }
-.ep-hero .tm-line { color: var(--muted); }
+.ep-hero .tm-line { color: var(--ink-2); }
 .ep-hero .orb { opacity: 0.55; }
 
 .ep-embrace {

@@ -104,7 +104,7 @@ body.ab-js .ab-reveal-line { opacity: 0; }
     color: var(--gold);
 }
 
-/* roles line — Physician ✦ Healer ✦ Wife ✦ Mother of two */
+/* roles line — Physician ✦ Healer ✦ Mother of two */
 .ab-roles {
     display: flex; align-items: center; justify-content: center;
     flex-wrap: wrap;
@@ -304,7 +304,7 @@ body.ab-js .ab-roles span, body.ab-js .ab-roles i { opacity: 0; }
 .ab-truth:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
 .ab-truth-num {
     font-family: var(--font-display); font-style: italic; font-size: 1.1rem;
-    color: var(--gold); display: block; margin-bottom: 12px;
+    color: var(--rosewood); display: block; margin-bottom: 12px;
 }
 .ab-truth-icon {
     width: 62px; height: 62px; margin: 0 auto 18px;

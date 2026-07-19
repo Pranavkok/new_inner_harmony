@@ -544,7 +544,7 @@ button { font-family: inherit; }
     color: var(--ink);
     margin-bottom: 28px;
 }
-.hero-title .title-line { display: block; overflow: hidden; }
+.hero-title .title-line { display: block; overflow: hidden; padding-bottom: 0.3em; margin-bottom: -0.3em; }
 .hero-title em { font-style: italic; color: var(--rosewood); }
 
 .hero-subtitle {
@@ -880,7 +880,7 @@ button { font-family: inherit; }
     font-family: var(--font-display);
     font-style: italic;
     font-size: 2.4rem;
-    color: var(--peach);
+    color: var(--rosewood);
     display: block;
     margin-bottom: 8px;
 }
@@ -894,6 +894,14 @@ button { font-family: inherit; }
 }
 .step-card h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
 .step-card p { color: var(--text-soft); font-size: 0.95rem; }
+
+@media (min-width: 861px) {
+    .steps-grid .step-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc(50% - 13px);
+    }
+}
 
 /* ========== TESTIMONIALS ========== */
 .testimonials-grid {
@@ -979,7 +987,7 @@ button { font-family: inherit; }
     font-family: var(--font-display);
     font-style: italic;
     font-size: 1.05rem;
-    color: var(--muted);
+    color: var(--ink-2);
     margin-top: 10px;
     position: relative; z-index: 2;
 }

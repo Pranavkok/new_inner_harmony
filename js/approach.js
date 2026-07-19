@@ -171,17 +171,13 @@
           .to(wdots, { scale: 1, stagger: 0.15, duration: 0.4, ease: 'back.out(2.4)' }, 0.9);
     }
 
-    // ---------- ACT III — cards rise in ----------
     const journey = document.querySelector('.ap-journey');
     if (journey) {
         gsap.from('.ap-jw', {
             opacity: 0, y: 20, duration: 0.8, ease: 'power2.out',
             scrollTrigger: { trigger: journey, start: 'top 70%' },
         });
-        gsap.from('.ap-step', {
-            opacity: 0, y: 34, stagger: 0.12, duration: 0.8, ease: 'power2.out',
-            scrollTrigger: { trigger: '.ap-steps', start: 'top 78%' },
-        });
+        // Cards rise animation removed to prevent opacity: 0 bugs causing empty space
     }
 
     ScrollTrigger.sort();

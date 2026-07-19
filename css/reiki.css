@@ -41,7 +41,7 @@ body.rk-js .rk-reveal-line { opacity: 0; }
 .rk-hero .breadcrumb { justify-content: center; }
 .rk-hero h1 em { font-style: italic; color: var(--gold); }
 .rk-hero .page-hero-sub { color: var(--rosewood); }
-.rk-hero .tm-line { color: var(--muted); }
+.rk-hero .tm-line { color: var(--ink-2); }
 .rk-hero .orb { opacity: 0.55; }
 
 .rk-aura {
