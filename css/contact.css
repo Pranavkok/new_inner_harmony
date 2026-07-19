@@ -110,7 +110,7 @@
 .ct-way a, .ct-way .ct-way-val { color: var(--ink); font-size: 0.98rem; text-decoration: none; }
 .ct-way a:hover { color: var(--rosewood); }
 
-.ct-info .whatsapp-btn { width: 100%; justify-content: center; }
+.ct-info .whatsapp-btn { width: 100%; justify-content: center; margin-top: 16px; }
 
 /* the stationery */
 .ct-paper {
