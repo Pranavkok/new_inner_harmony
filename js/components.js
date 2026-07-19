@@ -35,10 +35,10 @@
     ];
 
     const page = document.body.dataset.page || '';
-    const customLogo = document.body.dataset.logo || 'images/logo.png';
+    const customLogo = document.body.dataset.logo || 'images/LOGO_-_WHITE_BACKGROUND-removebg-preview.png';
 
     // ---------- Logo mark ----------
-    const MARK = `<img src="${customLogo}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 64px; height: 64px; object-fit: contain; border-radius: 50%; padding: 4px; background: white; box-sizing: border-box;">`;
+    const MARK = `<img src="${customLogo}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 64px; height: 64px; object-fit: contain;">`;
 
     // ---------- NAVBAR ----------
     const navHTML = `
