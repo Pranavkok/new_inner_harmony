@@ -35,17 +35,19 @@
     ];
 
     const page = document.body.dataset.page || '';
-    const customLogo = document.body.dataset.logo || 'images/LOGO_FOR_FAVICON-removebg-preview.png';
+    const headerLogo = 'images/logo.png';
+    const footerLogo = 'images/logo-golden.png';
 
     // ---------- Logo mark ----------
-    const MARK = `<img src="${customLogo}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 80px; height: 80px; object-fit: contain;">`;
+    const logoMark = (src) =>
+        `<img src="${src}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 80px; height: 80px; object-fit: contain;">`;
 
     // ---------- NAVBAR ----------
     const navHTML = `
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo" aria-label="INNER HARMONY home">
-                ${MARK}
+                ${logoMark(headerLogo)}
                 <span class="logo-text">INNER HARMONY<small>Heal Within · Shine Beyond</small></span>
             </a>
             <ul class="nav-links">
@@ -90,7 +92,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="nav-logo" style="margin-bottom:6px">
-                        ${MARK}
+                        ${logoMark(footerLogo)}
                         <span class="logo-text" style="color:var(--cream)">INNER HARMONY<small>Heal Within · Shine Beyond</small></span>
                     </a>
                     <p>A compassionate, non-judgemental space to understand yourself, heal from within, and create lasting transformation, guided by Dr. Gargee Gadgil.</p>
