@@ -39,15 +39,15 @@
     const footerLogo = 'images/logo-golden.png';
 
     // ---------- Logo mark ----------
-    const logoMark = (src) =>
-        `<img src="${src}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: 80px; height: 80px; object-fit: contain;">`;
+    const logoMark = (src, size = 80) =>
+        `<img src="${src}" alt="INNER HARMONY Logo" class="nav-mark-img" style="width: ${size}px; height: ${size}px; object-fit: contain;">`;
 
     // ---------- NAVBAR ----------
     const navHTML = `
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo" aria-label="INNER HARMONY home">
-                ${logoMark(headerLogo)}
+                ${logoMark(headerLogo, 64)}
                 <span class="logo-text">INNER HARMONY<small>Heal Within · Shine Beyond</small></span>
             </a>
             <ul class="nav-links">
@@ -63,6 +63,7 @@
                     </div>
                 </li>
                 <li><a href="faq.html" data-nav="faq">FAQ</a></li>
+                <li><a href="resources.html" data-nav="resources">Library</a></li>
                 <li><a href="contact.html" class="nav-cta">Book a Conversation</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -78,6 +79,7 @@
                 <li><a href="approach.html">Approach</a></li>
                 <li><a href="services.html">Blueprints</a></li>
                 <li><a href="faq.html">FAQ</a></li>
+                <li><a href="resources.html">Library</a></li>
                 <li><a href="contact.html">Book a Conversation</a></li>
             </ul>
             <p class="mobile-tagline">Heal Within. Shine Beyond.</p>
@@ -109,6 +111,7 @@
                         <li><a href="about.html">About Dr. Gargee</a></li>
                         <li><a href="approach.html">Our Approach</a></li>
                         <li><a href="services.html">All Blueprints</a></li>
+                        <li><a href="resources.html">Resource Library</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
