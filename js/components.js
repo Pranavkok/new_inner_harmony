@@ -63,6 +63,7 @@
                     </div>
                 </li>
                 <li><a href="faq.html" data-nav="faq">FAQ</a></li>
+                <li><a href="assessments.html" data-nav="assessments">Assessments</a></li>
                 <li><a href="resources.html" data-nav="resources">Library</a></li>
                 <li><a href="contact.html" class="nav-cta">Book a Conversation</a></li>
             </ul>
@@ -79,6 +80,7 @@
                 <li><a href="approach.html">Approach</a></li>
                 <li><a href="services.html">Blueprints</a></li>
                 <li><a href="faq.html">FAQ</a></li>
+                <li><a href="assessments.html">Assessments</a></li>
                 <li><a href="resources.html">Library</a></li>
                 <li><a href="contact.html">Book a Conversation</a></li>
             </ul>
@@ -111,6 +113,7 @@
                         <li><a href="about.html">About Dr. Gargee</a></li>
                         <li><a href="approach.html">Our Approach</a></li>
                         <li><a href="services.html">All Blueprints</a></li>
+                        <li><a href="assessments.html">Guided Assessments</a></li>
                         <li><a href="resources.html">Resource Library</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="contact.html">Contact</a></li>

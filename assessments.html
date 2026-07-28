@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guided Assessments | INNER HARMONY</title>
+    <meta name="description" content="Explore gentle self-discovery assessments for emotional well-being, parenting, child strengths, energy balance and career clarity from INNER HARMONY.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/assessments.css?v=1">
+</head>
+<body data-page="assessments" data-blueprint="assessments" data-year="2026">
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+    <div id="site-nav"></div>
+
+    <main>
+        <!-- ===================== HERO ===================== -->
+        <header class="assessment-hero">
+            <div class="assessment-hero-wash" aria-hidden="true"></div>
+            <div class="assessment-hero-grain" aria-hidden="true"></div>
+            <div class="assessment-sparks" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i>
+            </div>
+
+            <div class="container assessment-hero-grid">
+                <div class="assessment-hero-copy">
+                    <span class="assessment-kicker">Guided Self-Discovery <b>·</b> Begin Gently</span>
+                    <h1>A clearer way<br>to meet <em>yourself.</em></h1>
+                    <p>Quiet, thoughtful assessments to help you notice what is happening beneath the surface—and find the path that feels right for you.</p>
+                    <div class="assessment-hero-actions">
+                        <a href="#assessment-paths" class="btn btn-primary magnetic">
+                            Find your assessment
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                        </a>
+                        <a href="#how-it-works" class="assessment-text-link">See how it works <span>→</span></a>
+                    </div>
+                    <div class="assessment-trust">
+                        <span><i>6</i> guided reflections</span>
+                        <span><i>5–10</i> minutes each</span>
+                        <span><i>↗</i> opens in Google Forms</span>
+                    </div>
+                </div>
+
+                <div class="insight-orbit" aria-label="Assessment themes: well-being, parenting, potential, energy, home and career">
+                    <div class="orbit-halo"></div>
+                    <div class="orbit-ring orbit-ring--outer"></div>
+                    <div class="orbit-ring orbit-ring--inner"></div>
+                    <div class="orbit-center">
+                        <span>Begin with</span>
+                        <strong>You</strong>
+                        <i>✦</i>
+                    </div>
+                    <div class="orbit-node orbit-node--one"><span>01</span><strong>Well-being</strong></div>
+                    <div class="orbit-node orbit-node--two"><span>02</span><strong>Parenting</strong></div>
+                    <div class="orbit-node orbit-node--three"><span>03</span><strong>Potential</strong></div>
+                    <div class="orbit-node orbit-node--four"><span>04</span><strong>Energy</strong></div>
+                    <div class="orbit-node orbit-node--five"><span>05</span><strong>Home</strong></div>
+                    <div class="orbit-node orbit-node--six"><span>06</span><strong>Career</strong></div>
+                    <p class="orbit-caption">Not a verdict. A place to begin.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===================== PHILOSOPHY ===================== -->
+        <section class="assessment-philosophy">
+            <div class="container">
+                <div class="assessment-philosophy-grid">
+                    <span class="philosophy-index">A quiet pause<br>before the next step</span>
+                    <blockquote>
+                        You are not here to be <em>measured.</em><br>
+                        You are here to be <em>understood.</em>
+                    </blockquote>
+                    <p>These reflections are designed to create awareness—not labels. Answer honestly, take your time, and let the result become a conversation rather than a conclusion.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== ASSESSMENT PATHS ===================== -->
+        <section class="assessment-paths" id="assessment-paths">
+            <div class="container">
+                <div class="assessment-paths-head">
+                    <div>
+                        <span class="eyebrow reveal-text">Choose What Brings You Here</span>
+                        <h2 class="section-title split-words">One honest question<br>can open a <em>new path.</em></h2>
+                    </div>
+                    <div class="assessment-paths-aside">
+                        <span class="aside-mark">✦</span>
+                        <p>There is no wrong place to begin. Choose the theme that feels most present today.</p>
+                    </div>
+                </div>
+
+                <div class="assessment-toolbar">
+                    <div class="assessment-filters" role="group" aria-label="Filter assessments by theme">
+                        <button class="assessment-filter is-active" type="button" data-filter="all" aria-pressed="true">All paths</button>
+                        <button class="assessment-filter" type="button" data-filter="wellbeing" aria-pressed="false">Well-being</button>
+                        <button class="assessment-filter" type="button" data-filter="parenting" aria-pressed="false">Parenting</button>
+                        <button class="assessment-filter" type="button" data-filter="potential" aria-pressed="false">Child potential</button>
+                        <button class="assessment-filter" type="button" data-filter="career" aria-pressed="false">Career</button>
+                    </div>
+                    <p class="assessment-count" aria-live="polite"><strong>6</strong> paths</p>
+                </div>
+
+                <div class="assessment-grid">
+                    <article class="assessment-card assessment-card--wellbeing" data-category="wellbeing">
+                        <div class="assessment-card-top">
+                            <span class="assessment-card-number">01</span>
+                            <span class="assessment-card-time">5–7 min</span>
+                        </div>
+                        <div class="assessment-glyph assessment-glyph--bloom" aria-hidden="true">
+                            <span></span><span></span><span></span><i></i>
+                        </div>
+                        <span class="assessment-card-eyebrow">Emotional well-being</span>
+                        <h3>Emotional Load<br>Check-In</h3>
+                        <p>Notice the feelings, pressures, and patterns asking for your attention right now.</p>
+                        <ul>
+                            <li>Current emotional load</li>
+                            <li>Sources of inner pressure</li>
+                            <li>What support may help</li>
+                        </ul>
+                        <div class="assessment-card-footer">
+                            <a class="assessment-start" href="#" data-form-key="emotionalLoad" aria-disabled="true">
+                                <span>Coming soon</span>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3h7v7M10 14L21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                            </a>
+                            <a href="heal-within.html" class="assessment-learn">About Heal Within</a>
+                        </div>
+                    </article>
+
+                    <article class="assessment-card assessment-card--parenting" data-category="parenting">
+                        <div class="assessment-card-top">
+                            <span class="assessment-card-number">02</span>
+                            <span class="assessment-card-time">8–10 min</span>
+                        </div>
+                        <div class="assessment-glyph assessment-glyph--bond" aria-hidden="true">
+                            <span></span><span></span><i></i>
+                        </div>
+                        <span class="assessment-card-eyebrow">Parenting insight</span>
+                        <h3>Parenting Pattern<br>Reflection</h3>
+                        <p>Explore how you respond, connect, and communicate in everyday parenting moments.</p>
+                        <ul>
+                            <li>Your natural parenting style</li>
+                            <li>Connection under pressure</li>
+                            <li>Patterns worth understanding</li>
+                        </ul>
+                        <div class="assessment-card-footer">
+                            <a class="assessment-start" href="#" data-form-key="parentingPattern" aria-disabled="true">
+                                <span>Coming soon</span>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3h7v7M10 14L21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                            </a>
+                            <a href="parenting-assessment.html" class="assessment-learn">About Parenting Assessment</a>
+                        </div>
+                    </article>
+
+                    <article class="assessment-card assessment-card--potential" data-category="potential">
+                        <div class="assessment-card-top">
+                            <span class="assessment-card-number">03</span>
+                            <span class="assessment-card-time">7–9 min</span>
+                        </div>
+                        <div class="assessment-glyph assessment-glyph--spark" aria-hidden="true">
+                            <span></span><span></span><span></span><span></span><i>✦</i>
+                        </div>
+                        <span class="assessment-card-eyebrow">Child strengths</span>
+                        <h3>Natural Potential<br>Snapshot</h3>
+                        <p>Reflect on how your child learns, expresses curiosity, and comes alive naturally.</p>
+                        <ul>
+                            <li>Learning preferences</li>
+                            <li>Natural interests and energy</li>
+                            <li>Strengths you may nurture</li>
+                        </ul>
+                        <div class="assessment-card-footer">
+                            <a class="assessment-start" href="#" data-form-key="naturalPotential" aria-disabled="true">
+                                <span>Coming soon</span>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3h7v7M10 14L21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                            </a>
+                            <a href="inner-potential.html" class="assessment-learn">About Inner Potential</a>
+                        </div>
+                    </article>
+
+                    <article class="assessment-card assessment-card--energy" data-category="wellbeing">
+                        <div class="assessment-card-top">
+                            <span class="assessment-card-number">04</span>
+                            <span class="assessment-card-time">5 min</span>
+                        </div>
+                        <div class="assessment-glyph assessment-glyph--energy" aria-hidden="true">
+                            <span></span><span></span><span></span><i></i>
+                        </div>
+                        <span class="assessment-card-eyebrow">Energy &amp; balance</span>
+                        <h3>Energy Balance<br>Reflection</h3>
+                        <p>See what may be draining your energy and where greater balance could begin.</p>
+                        <ul>
+                            <li>Energy across daily life</li>
+                            <li>Restoration and depletion</li>
+                            <li>Your readiness for support</li>
+                        </ul>
+                        <div class="assessment-card-footer">
+                            <a class="assessment-start" href="#" data-form-key="energyBalance" aria-disabled="true">
+                                <span>Coming soon</span>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3h7v7M10 14L21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                            </a>
+                            <a href="reiki.html" class="assessment-learn">About Reiki Healing</a>
+                        </div>
+                    </article>
+
+                    <article class="assessment-card assessment-card--home" data-category="parenting">
+                        <div class="assessment-card-top">
+                            <span class="assessment-card-number">05</span>
+                            <span class="assessment-card-time">6–8 min</span>
+                        </div>
+                        <div class="assessment-glyph assessment-glyph--home" aria-hidden="true">
+                            <span></span><i></i><b></b>
+                        </div>
+                        <span class="assessment-card-eyebrow">Family connection</span>
+                        <h3>Calm Home<br>Check-In</h3>
+                        <p>Pause and notice the emotional rhythm, communication, and connection within your home.</p>
+                        <ul>
+                            <li>The tone of daily interactions</li>
+                            <li>Conflict and repair patterns</li>
+                            <li>Where connection can deepen</li>
+                        </ul>
+                        <div class="assessment-card-footer">
+                            <a class="assessment-start" href="#" data-form-key="calmHome" aria-disabled="true">
+                                <span>Coming soon</span>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3h7v7M10 14L21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                            </a>
+                            <a href="empowered-parent.html" class="assessment-learn">About Empowered Parent</a>
+                        </div>
+                    </article>
+
+                    <article class="assessment-card assessment-card--career" data-category="career">
+                        <div class="assessment-card-top">
+                            <span class="assessment-card-number">06</span>
+                            <span class="assessment-card-time">8–10 min</span>
+                        </div>
+                        <div class="assessment-glyph assessment-glyph--compass" aria-hidden="true">
+                            <span></span><i></i><b></b>
+                        </div>
+                        <span class="assessment-card-eyebrow">Career clarity</span>
+                        <h3>Career Direction<br>Snapshot</h3>
+                        <p>Separate outside expectations from the strengths and work that genuinely fit you.</p>
+                        <ul>
+                            <li>Interests and natural strengths</li>
+                            <li>Values and work preferences</li>
+                            <li>Where clarity is needed</li>
+                        </ul>
+                        <div class="assessment-card-footer">
+                            <a class="assessment-start" href="#" data-form-key="careerDirection" aria-disabled="true">
+                                <span>Coming soon</span>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3h7v7M10 14L21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                            </a>
+                            <a href="career-compass.html" class="assessment-learn">About Career Compass</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== HOW IT WORKS ===================== -->
+        <section class="assessment-process" id="how-it-works">
+            <div class="container">
+                <div class="assessment-process-head">
+                    <span class="eyebrow centered reveal-text">A Simple, Private Journey</span>
+                    <h2 class="section-title split-words">From curiosity to<br><em>clearer understanding.</em></h2>
+                </div>
+                <div class="assessment-process-grid">
+                    <article>
+                        <span class="process-number">01</span>
+                        <div class="process-line"></div>
+                        <h3>Choose your reflection</h3>
+                        <p>Begin with the question or area of life that feels most present for you today.</p>
+                    </article>
+                    <article>
+                        <span class="process-number">02</span>
+                        <div class="process-line"></div>
+                        <h3>Complete it on Google Forms</h3>
+                        <p>Your assessment opens in a separate tab, so you can answer without leaving your place here.</p>
+                    </article>
+                    <article>
+                        <span class="process-number">03</span>
+                        <div class="process-line"></div>
+                        <h3>Take your next step</h3>
+                        <p>Use the reflection as a starting point—or reach out for personal guidance when you are ready.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== EXTERNAL FORM NOTE ===================== -->
+        <section class="assessment-external">
+            <div class="container">
+                <div class="assessment-external-card">
+                    <div class="external-icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 3h7v7M10 14L21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                    </div>
+                    <div>
+                        <span class="eyebrow">Before You Begin</span>
+                        <h2>Your assessment opens safely<br>in a <em>new tab.</em></h2>
+                    </div>
+                    <p>Each assessment is hosted externally using Google Forms. Any sign-in requirement, data collection, and response handling follow the settings and privacy notice shown on that individual form.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== CTA ===================== -->
+        <section class="assessment-cta">
+            <div class="container">
+                <div class="assessment-cta-inner">
+                    <span class="assessment-cta-star" aria-hidden="true">✦</span>
+                    <span class="eyebrow centered">When a Form Is Not Enough</span>
+                    <h2>Some questions deserve<br>a <em>human conversation.</em></h2>
+                    <p>If you are unsure which assessment to take—or would rather talk it through—we are here to listen without judgement or pressure.</p>
+                    <div class="assessment-cta-actions">
+                        <a href="contact.html" class="btn btn-light magnetic">Book a Conversation</a>
+                        <a class="btn btn-ghost-light magnetic js-wa" data-wa-text="Hello Dr. Gargee, I would like help choosing the right INNER HARMONY assessment.">Ask on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="assessment-toast" role="status" aria-live="polite">
+        <span>✦</span>
+        <p><strong>This reflection is being prepared.</strong><small>Add its Google Form URL to activate the button.</small></p>
+    </div>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/components.js?v=6"></script>
+    <script src="js/main.js"></script>
+    <script src="js/assessment-data.js?v=1"></script>
+    <script src="js/assessments.js?v=2"></script>
+</body>
+</html>

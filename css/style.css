@@ -1726,7 +1726,7 @@ body[data-blueprint="empowered"] .prose-visual--empowered {
 }
 
 /* Collapse nav to hamburger before links can collide with the logo */
-@media (max-width: 991px) {
+@media (max-width: 1120px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
 }
