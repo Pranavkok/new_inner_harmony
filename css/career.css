@@ -1,16 +1,15 @@
 /* ==========================================================================
    CAREER COMPASS — "Finding True North"
    Bespoke immersive scroll-story for body[data-blueprint="career"].
-   Loaded ONLY on career-compass.html. Uses the career accent tokens already
-   defined in style.css (navy --accent / --accent-soft, gold --gold) — no new
-   brand colors introduced. Structured, directional, blueprint-chart mood as a
-   deliberate counterpoint to the warmer blueprints.
+   Loaded ONLY on career-compass.html. Uses rosewood, muted mauve, cream and
+   warm-gold tokens from the shared INNER HARMONY palette. Its structured,
+   directional cartography distinguishes the page without leaving the brand.
    Progressive enhancement: js/career.js adds `.cc-js` to <body> to enable
    scrubbed reveals; without JS / reduced-motion the page is fully readable.
    ========================================================================== */
 
-/* darker navy shades of --accent, only for gradient depth */
-body[data-blueprint="career"] { --navy-deep: #1f2c40; --navy-deeper: #16202f; }
+/* Deep rosewood shades of --accent, only for gradient depth. */
+body[data-blueprint="career"] { --career-deep: #4f2f39; --career-deeper: #3b252d; }
 
 /* --------------------------------------------------------------------------
    0. Shared act scaffolding + blueprint grid
@@ -24,8 +23,8 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     inset: 0;
     pointer-events: none;
     background-image:
-        linear-gradient(rgba(44, 62, 90, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(44, 62, 90, 0.045) 1px, transparent 1px);
+        linear-gradient(rgba(99, 63, 76, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 63, 76, 0.045) 1px, transparent 1px);
     background-size: 44px 44px;
     mask-image: radial-gradient(80% 80% at 50% 40%, #000 0%, transparent 85%);
     -webkit-mask-image: radial-gradient(80% 80% at 50% 40%, #000 0%, transparent 85%);
@@ -38,7 +37,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     padding: 172px 0 96px;
     text-align: center;
     background:
-        radial-gradient(90% 120% at 50% -10%, #e7edf6 0%, var(--cream) 48%, var(--cream-2) 100%);
+        radial-gradient(90% 120% at 50% -10%, #efdfe1 0%, var(--cream) 48%, var(--cream-2) 100%);
     color: var(--accent);
 }
 .cc-hero .breadcrumb { justify-content: center; color: var(--accent-soft); }
@@ -55,7 +54,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     width: 280px;
     height: 280px;
     margin: 50px auto 8px;
-    filter: drop-shadow(0 22px 40px rgba(31, 44, 64, 0.28));
+    filter: drop-shadow(0 22px 40px rgba(79, 47, 57, 0.24));
 }
 .cc-compass-dial { transform-origin: 100px 100px; animation: cc-spin 60s linear infinite; }
 .cc-compass-ring { fill: none; stroke: var(--accent-soft); }
@@ -108,7 +107,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     display: flex;
     align-items: center;
     background:
-        radial-gradient(75% 80% at 20% 30%, #e7edf6 0%, transparent 58%),
+        radial-gradient(75% 80% at 20% 30%, #efdfe1 0%, transparent 58%),
         linear-gradient(160deg, var(--cream) 0%, var(--surface) 100%);
 }
 .cc-fog-grid {
@@ -123,9 +122,9 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     aspect-ratio: 22 / 15;
     border-radius: 6px;
     overflow: hidden;
-    background: linear-gradient(160deg, #eef2f8 0%, #dce4f0 100%);
+    background: linear-gradient(160deg, #fff7f1 0%, #e9d8dc 100%);
     border: 1px solid var(--accent);
-    box-shadow: 8px 8px 0 rgba(31, 44, 64, 0.12);
+    box-shadow: 8px 8px 0 rgba(79, 47, 57, 0.13);
 }
 .cc-paths-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .cc-route { fill: none; stroke: var(--accent-soft); stroke-width: 1.5; opacity: 0.55; stroke-linecap: round; }
@@ -137,7 +136,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     position: absolute;
     inset: -2px;
     background:
-        linear-gradient(180deg, rgba(230, 236, 245, 0.96) 0%, rgba(220, 228, 240, 0.86) 55%, rgba(220, 228, 240, 0.7) 100%);
+        linear-gradient(180deg, rgba(248, 237, 235, 0.96) 0%, rgba(233, 216, 220, 0.86) 55%, rgba(233, 216, 220, 0.7) 100%);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
 }
@@ -164,7 +163,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     align-items: center;
     padding: 90px 0;
     background:
-        radial-gradient(60% 55% at 50% 8%, #e7edf6 0%, transparent 55%),
+        radial-gradient(60% 55% at 50% 8%, #efdfe1 0%, transparent 55%),
         linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
 }
 .cc-align-head { text-align: center; max-width: 720px; margin: 0 auto 54px; }
@@ -182,7 +181,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     position: absolute;
     width: 360px; height: 360px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(212, 168, 85, 0.28) 0%, transparent 66%);
+    background: radial-gradient(circle, rgba(201, 160, 111, 0.28) 0%, transparent 66%);
     filter: blur(8px);
 }
 .cc-dial-svg { position: relative; z-index: 2; width: 100%; max-width: 400px; overflow: visible; }
@@ -204,7 +203,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     gap: 18px;
     align-items: start;
     padding: 16px 0;
-    border-bottom: 1px solid rgba(44, 62, 90, 0.12);
+    border-bottom: 1px solid rgba(99, 63, 76, 0.13);
 }
 .cc-legend-item:last-child { border-bottom: none; }
 .cc-legend-mark {
@@ -215,7 +214,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     font-size: 1rem; font-weight: 600;
     color: var(--gold);
     background: var(--accent);
-    box-shadow: 3px 3px 0 rgba(31, 44, 64, 0.18);
+    box-shadow: 3px 3px 0 rgba(79, 47, 57, 0.18);
 }
 .cc-legend-text h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--accent); line-height: 1.2; margin-bottom: 3px; }
 .cc-legend-text p { color: var(--text-soft); font-size: 0.98rem; line-height: 1.65; margin: 0; }
@@ -255,7 +254,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     background: var(--surface);
     border: 1px solid var(--accent);
     border-radius: 4px;
-    box-shadow: 4px 4px 0 rgba(31, 44, 64, 0.14);
+    box-shadow: 4px 4px 0 rgba(79, 47, 57, 0.14);
     padding: 22px 18px;
     text-align: left;
     cursor: pointer;
@@ -264,7 +263,7 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     -webkit-tap-highlight-color: transparent;
 }
-.cc-cross-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 rgba(31, 44, 64, 0.18); }
+.cc-cross-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 rgba(79, 47, 57, 0.18); }
 .cc-cross-card strong { display: block; font-family: var(--font-display); font-size: 1.12rem; color: var(--accent); margin-bottom: 4px; }
 .cc-cross-card span { font-size: 0.82rem; color: var(--text-soft); letter-spacing: 0.02em; }
 .cc-cross-card.is-active {
@@ -315,11 +314,11 @@ body.cc-js .cc-reveal-line { opacity: 0; }
 .cc-cross-readout em { color: var(--gold); font-style: italic; }
 
 /* --------------------------------------------------------------------------
-   6. QUOTE + CTA touch-ups (navy)
+   6. QUOTE + CTA touch-ups (deep rosewood)
 -------------------------------------------------------------------------- */
-.cc-quote { background: linear-gradient(160deg, var(--navy-deep) 0%, var(--accent) 100%); }
+.cc-quote { background: linear-gradient(160deg, var(--career-deep) 0%, var(--accent) 100%); }
 .cc-quote .big-quote em { color: var(--gold); }
-.cc-quote .quote-mark { color: rgba(212, 168, 85, 0.5); }
+.cc-quote .quote-mark { color: rgba(201, 160, 111, 0.5); }
 .cc-quote .quote-attrib { color: rgba(255, 255, 255, 0.6); }
 .cc-cta { border-top: 1px solid var(--line-soft); }
 .cc-cta h2 { color: var(--accent) !important; }

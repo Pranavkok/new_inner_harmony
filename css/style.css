@@ -1054,11 +1054,11 @@ body[data-blueprint="heal"] {
     --gold: #e8c872;
 }
 body[data-blueprint="career"] {
-    --accent: #2c3e5a;
-    --accent-soft: #4a6080;
-    --orb-color: rgba(44, 62, 90, 0.45);
+    --accent: #633f4c;
+    --accent-soft: #9b7079;
+    --orb-color: rgba(99, 63, 76, 0.4);
     --visual-glow: rgba(201, 160, 111, 0.35);
-    --gold: #d4a855;
+    --gold: #c9a06f;
 }
 body[data-blueprint="parenting"] {
     --accent: #8b5a62;
@@ -1212,8 +1212,8 @@ body[data-blueprint="heal"] .prose-visual--heal {
 
 body[data-blueprint="career"] .prose-visual--career {
     background:
-        radial-gradient(circle at 60% 40%, rgba(212, 168, 85, 0.2), transparent 50%),
-        linear-gradient(150deg, #dce4f0, #eef2f8);
+        radial-gradient(circle at 60% 40%, rgba(201, 160, 111, 0.22), transparent 50%),
+        linear-gradient(150deg, #eadadd, var(--cream-2));
 }
 .compass-visual {
     position: relative;
@@ -1225,7 +1225,7 @@ body[data-blueprint="career"] .prose-visual--career {
 .compass-visual .compass-needle {
     fill: var(--gold);
     transform-origin: 12px 12px;
-    filter: drop-shadow(0 2px 4px rgba(44, 62, 90, 0.3));
+    filter: drop-shadow(0 2px 4px rgba(99, 63, 76, 0.3));
 }
 
 body[data-blueprint="parenting"] .prose-visual--parenting {

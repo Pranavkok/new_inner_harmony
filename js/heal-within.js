@@ -104,8 +104,9 @@
     }
 
     // ---------- ACT II — THREE CARDS TURNED ----------
-    // Desktop: pinned, sequential scrubbed flips. Small screens: cards stack
-    // in a column, so each flips on its own as it enters the viewport.
+    // Each artwork flips as its card-and-questions group enters the viewport.
+    // Keeping the section in the normal document flow ensures the separate
+    // question panels remain fully readable at every viewport height.
     const spread = document.querySelector('.hw-act--spread');
     if (spread) {
         const cards = gsap.utils.toArray('.hw-card--spread', spread);
@@ -123,39 +124,18 @@
             });
         });
 
-        mm.add('(min-width: 741px)', () => {
-            cards.forEach(card => gsap.set(card.querySelector('.hw-card-inner'), { rotationY: 180 }));
-            const tl = gsap.timeline({
+        cards.forEach((card, index) => {
+            const inner = card.querySelector('.hw-card-inner');
+            gsap.to(inner, {
+                rotationY: 360,
+                duration: 1.1,
+                delay: index * 0.12,
+                ease: 'power2.inOut',
                 scrollTrigger: {
-                    trigger: spread,
-                    start: 'top top',
-                    end: '+=140%',
-                    pin: true,
-                    pinSpacing: true,
-                    scrub: 0.8,
-                    anticipatePin: 1,
-                    refreshPriority: 10,
+                    trigger: card.closest('.hw-spread-item'),
+                    start: 'top 76%',
+                    once: true,
                 },
-            });
-            cards.forEach((card, i) => {
-                tl.to(card.querySelector('.hw-card-inner'), { rotationY: 360, ease: 'none', duration: 1 }, 0.4 + i * 0.8);
-            });
-        });
-
-        mm.add('(max-width: 740px)', () => {
-            cards.forEach(card => {
-                const inner = card.querySelector('.hw-card-inner');
-                gsap.set(inner, { rotationY: 180 });
-                gsap.to(inner, {
-                    rotationY: 360,
-                    duration: 1.1,
-                    ease: 'power2.inOut',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 68%',
-                        once: true,
-                    },
-                });
             });
         });
     }
