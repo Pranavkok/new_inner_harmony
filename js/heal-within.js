@@ -104,16 +104,18 @@
     }
 
     // ---------- ACT II — THREE CARDS TURNED ----------
-    // Each artwork flips as its card-and-questions group enters the viewport.
-    // Keeping the section in the normal document flow ensures the separate
-    // question panels remain fully readable at every viewport height.
+    // Turn the spread in reading order. A single timeline is important here:
+    // on desktop all three cards enter the viewport together, so independent
+    // ScrollTriggers would make them flip at nearly the same time.
     const spread = document.querySelector('.hw-act--spread');
     if (spread) {
         const cards = gsap.utils.toArray('.hw-card--spread', spread);
+        const inners = cards.map(card => card.querySelector('.hw-card-inner'));
+
         cards.forEach(card => {
             const inner = card.querySelector('.hw-card-inner');
             gsap.set(inner, { rotationY: 180, transformPerspective: 1400 });
-            card._flipped = true;
+            card._flipped = false;
             const toggle = () => {
                 card._flipped = !card._flipped;
                 flipTo(inner, card._flipped ? 360 : 180);
@@ -124,17 +126,21 @@
             });
         });
 
-        cards.forEach((card, index) => {
-            const inner = card.querySelector('.hw-card-inner');
-            gsap.to(inner, {
+        const turnSpread = gsap.timeline({
+            scrollTrigger: {
+                trigger: spread.querySelector('.hw-spread-rail'),
+                start: 'top 72%',
+                once: true,
+            },
+        });
+
+        inners.forEach((inner, index) => {
+            turnSpread.to(inner, {
                 rotationY: 360,
-                duration: 1.1,
-                delay: index * 0.12,
+                duration: 1.05,
                 ease: 'power2.inOut',
-                scrollTrigger: {
-                    trigger: card.closest('.hw-spread-item'),
-                    start: 'top 76%',
-                    once: true,
+                onComplete: () => {
+                    cards[index]._flipped = true;
                 },
             });
         });
