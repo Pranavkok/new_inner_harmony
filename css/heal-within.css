@@ -373,7 +373,8 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
+    contain: none;
     padding: 118px 0 132px;
     background:
         radial-gradient(58% 42% at 50% 4%, rgba(227, 184, 144, 0.5) 0%, transparent 68%),

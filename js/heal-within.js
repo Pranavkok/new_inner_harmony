@@ -126,23 +126,53 @@
             });
         });
 
-        const turnSpread = gsap.timeline({
-            scrollTrigger: {
-                trigger: spread.querySelector('.hw-spread-rail'),
-                start: 'top 72%',
-                once: true,
-            },
-        });
+        const rail = spread.querySelector('.hw-spread-rail');
+        const addTurns = timeline => {
+            inners.forEach((inner, index) => {
+                timeline.to(inner, {
+                    rotationY: 360,
+                    duration: 1,
+                    ease: 'none',
+                    onComplete: () => {
+                        cards[index]._flipped = true;
+                    },
+                    onReverseComplete: () => {
+                        cards[index]._flipped = false;
+                    },
+                });
+            });
+        };
 
-        inners.forEach((inner, index) => {
-            turnSpread.to(inner, {
-                rotationY: 360,
-                duration: 1.05,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    cards[index]._flipped = true;
+        // Desktop: hold the spread in view and spend the next three viewport
+        // lengths turning one card at a time. The section can move on only
+        // after the third card has completed its turn.
+        mm.add('(min-width: 901px)', () => {
+            const turnSpread = gsap.timeline({
+                scrollTrigger: {
+                    trigger: rail,
+                    start: 'top 30%',
+                    end: () => `+=${Math.max(window.innerHeight * 2.4, 1800)}`,
+                    pin: true,
+                    pinSpacing: true,
+                    scrub: 0.65,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
                 },
             });
+            addTurns(turnSpread);
+        });
+
+        // Smaller screens keep their natural stacked flow, while still
+        // revealing each card in order rather than all at once.
+        mm.add('(max-width: 900px)', () => {
+            const turnSpread = gsap.timeline({
+                scrollTrigger: {
+                    trigger: rail,
+                    start: 'top 76%',
+                    once: true,
+                },
+            });
+            addTurns(turnSpread);
         });
     }
 
