@@ -107,7 +107,13 @@
 .hw-art--fool     { background: url('../images/The%20Fool%20-%202.png') center/cover no-repeat; }
 .hw-art--magician { background: url('../images/The%20Magician%20-%201.png') center/cover no-repeat; }
 .hw-art--empress  { background: url('../images/The%20Empress%20-%202.png') center/cover no-repeat; }
-.hw-art--hero     { background: url('../images/hero-card-front.jpg') center/cover no-repeat; }
+.hw-art--hero {
+    background-color: #68434f;
+    background-image: url('../images/hero-card-front-generated.png?v=3');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 /* ----- BACK (face-down) — classic tarot back ----- */
 .hw-face--back {
@@ -177,10 +183,15 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
 /* --------------------------------------------------------------------------
    1. HERO — a mystical night
 -------------------------------------------------------------------------- */
+.hw-hero,
+.hw-act--mirror {
+    background:
+        radial-gradient(85% 100% at 18% 24%, #805866 0%, transparent 62%),
+        radial-gradient(70% 85% at 88% 12%, #704956 0%, transparent 58%),
+        linear-gradient(160deg, #68434f 0%, #52323d 100%);
+}
 .hw-hero {
     padding: 172px 0 96px;
-    background:
-        radial-gradient(90% 120% at 50% -10%, var(--plum) 0%, var(--ink) 45%, #2f1b23 100%);
     color: var(--cream);
     overflow: hidden;
     contain: paint;
@@ -208,9 +219,10 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
 .hw-hero-card {
     position: relative;
     z-index: 3;
-    width: 200px;
-    height: 300px;
-    margin: 54px auto 8px;
+    width: clamp(156px, 12vw, 180px);
+    aspect-ratio: 2 / 3;
+    height: auto;
+    margin: clamp(30px, 5vh, 46px) auto 8px;
     animation: hw-float 6s ease-in-out infinite;
 }
 @keyframes hw-float {
@@ -269,9 +281,6 @@ body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg)
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background:
-        radial-gradient(80% 90% at 20% 30%, var(--plum) 0%, transparent 60%),
-        linear-gradient(160deg, var(--ink) 0%, #33202a 100%);
 }
 .hw-mirror-grid {
     position: relative;
@@ -660,7 +669,7 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
 }
 @media (max-width: 620px) {
     .hw-hero { padding: 132px 0 64px; }
-    .hw-hero-card { width: 172px; height: 258px; margin-top: 42px; }
+    .hw-hero-card { width: min(148px, 44vw); height: auto; margin-top: 34px; }
     .hw-hero-glow { width: 380px; height: 380px; }
     .hw-act--mirror, .hw-act--spread { padding: 76px 0; }
     .hw-card--mirror { width: 200px; height: 296px; }
