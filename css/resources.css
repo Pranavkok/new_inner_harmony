@@ -307,6 +307,18 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
         radial-gradient(circle at 20% 15%, rgba(255,255,255,.1), transparent 30%);
 }
 
+.book-cover--official {
+    padding: 0;
+    background: #eadfce;
+}
+
+.book-cover--official img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
 .book-brand {
     position: relative;
     z-index: 2;
@@ -499,27 +511,41 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
 .featured-star--one { top: 13%; left: 17%; }
 .featured-star--two { right: 14%; bottom: 18%; font-size: .7rem; }
 
-.featured-book {
-    width: 292px;
-    height: 414px;
+.featured-guide-stack {
+    width: 420px;
+    height: 470px;
     position: relative;
     z-index: 2;
-    transform: rotate(-5deg);
-    filter: drop-shadow(25px 35px 34px rgba(14, 6, 9, .5));
 }
 
-.featured-book .book-cover { padding: 29px; }
-.featured-book .book-cover strong { font-size: 2.45rem; }
-.featured-book .book-cover--reset .book-bloom { width: 165px; height: 165px; margin: 34px auto 16px; }
-.featured-pages {
+.featured-guide-cover {
+    width: 245px;
+    height: 368px;
     position: absolute;
-    left: 9px;
-    right: -8px;
-    top: 6px;
-    bottom: -8px;
-    border-radius: 3px 11px 11px 3px;
-    background: repeating-linear-gradient(90deg, #e9d9c5 0, #fff8e9 2px, #e4d1bc 3px);
-    transform: rotate(1.6deg);
+    display: block;
+    object-fit: cover;
+    border: 1px solid rgba(255, 248, 238, .35);
+    border-radius: 5px 13px 13px 5px;
+    box-shadow: 18px 28px 38px rgba(14, 6, 9, .42);
+}
+
+.featured-guide-cover--left {
+    left: 2px;
+    top: 63px;
+    transform: rotate(-10deg);
+}
+
+.featured-guide-cover--right {
+    right: 1px;
+    top: 28px;
+    transform: rotate(10deg);
+}
+
+.featured-guide-cover--center {
+    left: 50%;
+    top: 35px;
+    z-index: 2;
+    transform: translateX(-50%) rotate(-1.5deg);
 }
 
 .featured-copy {
@@ -623,23 +649,9 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     border-bottom: 1px solid rgba(79,47,57,.13);
 }
 
-.resource-filters { display: flex; flex-wrap: wrap; gap: 8px; }
-.resource-filter {
-    appearance: none;
-    padding: 9px 16px;
-    color: var(--text-soft);
-    border: 1px solid transparent;
-    border-radius: 50px;
-    background: transparent;
-    font: 500 .76rem var(--font-body);
-    cursor: pointer;
-    transition: color var(--t), background var(--t), border-color var(--t), transform var(--t);
-}
-
-.resource-filter:hover { color: var(--ink); border-color: rgba(79,47,57,.14); }
-.resource-filter.is-active { color: var(--sand); background: var(--ink); box-shadow: 0 8px 20px rgba(79,47,57,.16); }
 .resource-count { flex: 0 0 auto; color: var(--muted); font-size: .73rem; letter-spacing: .06em; }
 .resource-count strong { color: var(--ink); font-weight: 600; }
+.resource-intro { max-width: 580px; color: var(--text-soft); font-size: .86rem; line-height: 1.7; }
 
 .resource-grid {
     display: grid;
@@ -678,6 +690,23 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     inset: 0;
     pointer-events: none;
     background: linear-gradient(90deg, rgba(0,0,0,.12), transparent 9%, transparent 95%, rgba(255,255,255,.08));
+}
+
+.resource-cover--official {
+    min-height: 0;
+    padding: 0;
+    background: #eadfce;
+}
+
+.resource-cover--official::after {
+    background: linear-gradient(90deg, rgba(0,0,0,.1), transparent 10%, transparent 94%, rgba(255,255,255,.1));
+}
+
+.resource-cover-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
 }
 
 .resource-number, .resource-type, .resource-cover h3, .resource-cover p { position: relative; z-index: 2; }
@@ -1006,6 +1035,7 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     .book { width: 170px; height: 240px; }
     .book-spine { width: 11px; left: -10px; }
     .book-cover { padding: 16px; }
+    .book-cover--official { padding: 0; }
     .book-cover strong { font-size: 1.35rem; }
     .book-cover small { margin-top: 6px; font-size: .56rem; }
     .book-brand { font-size: .32rem; }
@@ -1021,17 +1051,17 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     .stack-caption { width: 100%; left: 0; bottom: 10px; }
     .featured-shell { border-radius: 26px; }
     .featured-art { min-height: 430px; }
-    .featured-book { width: 235px; height: 334px; }
-    .featured-book .book-cover { padding: 23px; }
-    .featured-book .book-cover--reset .book-bloom { width: 130px; height: 130px; margin: 25px auto 11px; }
-    .featured-book .book-cover strong { font-size: 2rem; }
+    .featured-guide-stack { width: 320px; height: 390px; }
+    .featured-guide-cover { width: 195px; height: 293px; }
+    .featured-guide-cover--left { top: 58px; }
+    .featured-guide-cover--right { top: 31px; }
+    .featured-guide-cover--center { top: 37px; }
     .featured-actions { flex-direction: column; }
     .featured-actions .btn { justify-content: center; }
     .resource-toolbar { align-items: flex-start; flex-direction: column; }
-    .resource-filters { gap: 6px; }
-    .resource-filter { padding: 8px 11px; font-size: .7rem; }
     .resource-card { grid-template-columns: 1fr; min-height: 0; }
     .resource-cover { min-height: 370px; }
+    .resource-cover--official { min-height: 0; aspect-ratio: 2 / 3; }
     .resource-info { min-height: 315px; }
     .library-note-card { padding: 72px 22px; border-radius: 26px; }
     .download-toast { left: 18px; right: 18px; bottom: 84px; min-width: 0; }
@@ -1044,6 +1074,7 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     .featured-copy { padding: 42px 24px 48px; }
     .featured-art { min-height: 390px; }
     .resource-cover { min-height: 330px; }
+    .resource-cover--official { min-height: 0; }
     .library-note-card blockquote { font-size: 2rem; }
 }
 
