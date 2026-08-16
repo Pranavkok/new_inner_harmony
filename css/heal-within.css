@@ -102,11 +102,17 @@
 }
 
 /* ----- FRONT with tarot artwork (spread cards) ----- */
-.hw-face--art { padding: 0; }
+.hw-face--art {
+    padding: 0;
+    background-color: #68434f;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 .hw-face--art::before { content: none; }
-.hw-art--fool     { background: url('../images/The%20Fool%20-%202.png') center/cover no-repeat; }
-.hw-art--magician { background: url('../images/The%20Magician%20-%201.png') center/cover no-repeat; }
-.hw-art--empress  { background: url('../images/The%20Empress%20-%202.png') center/cover no-repeat; }
+.hw-art--fool     { background-image: url('../images/The%20Fool%20-%202.png'); }
+.hw-art--magician { background-image: url('../images/The%20Magician%20-%201.png'); }
+.hw-art--empress  { background-image: url('../images/The%20Empress%20-%202.png'); }
 .hw-art--hero {
     background-color: #68434f;
     background-image: url('../images/hero-card-front-generated.png?v=3');
@@ -117,8 +123,12 @@
 
 /* ----- BACK (face-down) — classic tarot back ----- */
 .hw-face--back {
-    background: url('../images/tarot-back.png') center/cover no-repeat,
-                radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
+    background-color: var(--plum);
+    background-image: url('../images/tarot-back.png'),
+                      radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
+    background-position: center, center;
+    background-size: contain, cover;
+    background-repeat: no-repeat, no-repeat;
     background-blend-mode: luminosity;
     border: 1px solid rgba(201, 160, 111, 0.7);
 }
@@ -232,7 +242,11 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
 .hw-card--hero, .hw-card--hero .hw-card-inner { width: 100%; height: 100%; }
 .hw-card--hero .hw-face { border-radius: 16px; box-shadow: 0 30px 70px rgba(20, 10, 16, 0.55); }
 .hw-card--hero .hw-face--back {
-    background: url('../images/Back%20of%20the%20tarot%20card%20-%20Magenta%20%20%23902769.png') center/cover no-repeat;
+    background-color: #902769;
+    background-image: url('../images/Back%20of%20the%20tarot%20card%20-%20Magenta%20%20%23902769.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-blend-mode: normal;
 }
 .hw-card--hero .hw-face--front svg { width: 58%; color: var(--accent); opacity: 0.85; }
@@ -603,8 +617,12 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 .hw-card--mini .hw-face { border-radius: 16px; box-shadow: 0 14px 36px rgba(79, 47, 57, 0.12); }
 .hw-card--mini .hw-face--front { padding: 1.8rem 1.4rem; }
 .hw-card--mini .hw-face--back {
-    background: url('../images/mini-tarot-back.jpg') center / 145% no-repeat,
-                radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
+    background-color: var(--plum);
+    background-image: url('../images/mini-tarot-back.jpg'),
+                      radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
+    background-position: center, center;
+    background-size: contain, cover;
+    background-repeat: no-repeat, no-repeat;
     background-blend-mode: luminosity;
 }
 .hw-mini-icon {
