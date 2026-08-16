@@ -11,6 +11,8 @@
    readable. js/heal-within.js adds `.hw-js` to <body> to enable face-down
    starting states + scroll/click flips (progressive enhancement).
 -------------------------------------------------------------------------- */
+body[data-blueprint="heal"] { --hw-card-back-magenta: #902769; }
+
 .hw-card {
     perspective: 1400px;
     cursor: pointer;
@@ -110,12 +112,12 @@
     background-repeat: no-repeat;
 }
 .hw-face--art::before { content: none; }
-.hw-art--fool     { background-image: url('../images/The%20Fool%20-%202.png'); }
-.hw-art--magician { background-image: url('../images/The%20Magician%20-%201.png'); }
-.hw-art--empress  { background-image: url('../images/The%20Empress%20-%202.png'); }
+.hw-art--fool     { background-image: url('../images/TAROT%20IMAGES/The%20Fool%20-%20Matched%20Numbered.png'); }
+.hw-art--magician { background-image: url('../images/TAROT%20IMAGES/The%20Magician%20-%20Matched.png'); }
+.hw-art--empress  { background-image: url('../images/TAROT%20IMAGES/The%20Empress%20-%20Matched.png'); }
 .hw-art--hero {
     background-color: #68434f;
-    background-image: url('../images/hero-card-front-generated.png?v=3');
+    background-image: url('../images/TAROT%20IMAGES/MAIN%20TAROT%20IMAGE.png');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -123,13 +125,12 @@
 
 /* ----- BACK (face-down) — classic tarot back ----- */
 .hw-face--back {
-    background-color: var(--plum);
-    background-image: url('../images/tarot-back.png'),
-                      radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
-    background-position: center, center;
-    background-size: contain, cover;
-    background-repeat: no-repeat, no-repeat;
-    background-blend-mode: luminosity;
+    background-color: var(--hw-card-back-magenta);
+    background-image: url('../images/Back%20of%20the%20tarot%20card%20-%20Magenta%20%20%23902769.png');
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
     border: 1px solid rgba(201, 160, 111, 0.7);
 }
 .hw-face--back .hw-back-art {
@@ -229,8 +230,8 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
 .hw-hero-card {
     position: relative;
     z-index: 3;
-    width: clamp(156px, 12vw, 180px);
-    aspect-ratio: 2 / 3;
+    width: clamp(210px, 16vw, 250px);
+    aspect-ratio: 1145 / 1374;
     height: auto;
     margin: clamp(30px, 5vh, 46px) auto 8px;
     animation: hw-float 6s ease-in-out infinite;
@@ -242,10 +243,10 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
 .hw-card--hero, .hw-card--hero .hw-card-inner { width: 100%; height: 100%; }
 .hw-card--hero .hw-face { border-radius: 16px; box-shadow: 0 30px 70px rgba(20, 10, 16, 0.55); }
 .hw-card--hero .hw-face--back {
-    background-color: #902769;
+    background-color: var(--hw-card-back-magenta);
     background-image: url('../images/Back%20of%20the%20tarot%20card%20-%20Magenta%20%20%23902769.png');
     background-position: center;
-    background-size: contain;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-blend-mode: normal;
 }
@@ -457,10 +458,17 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 .hw-card--spread {
     position: relative;
     width: 100%;
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 1122 / 1402;
     border-radius: 20px;
-    transition: transform 0.55s var(--ease), filter 0.55s var(--ease);
-    filter: drop-shadow(0 22px 28px rgba(79, 47, 57, 0.17));
+    transition: transform 0.55s var(--ease);
+}
+.hw-card--spread .hw-face--back {
+    background-color: var(--hw-card-back-magenta);
+    background-image: url('../images/Back%20of%20the%20tarot%20card%20-%20Magenta%20%20%23902769.png');
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-blend-mode: normal;
 }
 .hw-card--spread::before {
     content: '';
@@ -474,15 +482,16 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 }
 .hw-spread-item:hover .hw-card--spread {
     transform: translateY(-8px);
-    filter: drop-shadow(0 30px 38px rgba(79, 47, 57, 0.24));
 }
 .hw-spread-item:hover .hw-card--spread::before { inset: -14px; opacity: 1; }
 .hw-card--spread .hw-card-inner { width: 100%; height: 100%; }
 .hw-card--spread .hw-face {
     border-radius: 19px;
-    box-shadow:
-        0 26px 60px rgba(79, 47, 57, 0.2),
-        0 0 0 1px rgba(201, 160, 111, 0.32);
+    box-shadow: 0 0 0 1px rgba(201, 160, 111, 0.32);
+}
+.hw-card--spread .hw-face--art {
+    background-color: #fff8ed;
+    background-size: 100% 100%;
 }
 .hw-spread-copy {
     position: relative;
@@ -617,12 +626,11 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 .hw-card--mini .hw-face { border-radius: 16px; box-shadow: 0 14px 36px rgba(79, 47, 57, 0.12); }
 .hw-card--mini .hw-face--front { padding: 1.8rem 1.4rem; }
 .hw-card--mini .hw-face--back {
-    background-color: var(--plum);
-    background-image: url('../images/mini-tarot-back.jpg'),
-                      radial-gradient(circle at 50% 50%, var(--accent) 0%, var(--plum) 55%, var(--ink) 100%);
-    background-position: center, center;
-    background-size: contain, cover;
-    background-repeat: no-repeat, no-repeat;
+    background-color: var(--hw-card-back-magenta);
+    background-image: url('../images/mini-tarot-back.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-blend-mode: luminosity;
 }
 .hw-mini-icon {
@@ -688,7 +696,7 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
 }
 @media (max-width: 620px) {
     .hw-hero { padding: 132px 0 64px; }
-    .hw-hero-card { width: min(148px, 44vw); height: auto; margin-top: 34px; }
+    .hw-hero-card { width: min(190px, 50vw); height: auto; margin-top: 34px; }
     .hw-hero-glow { width: 380px; height: 380px; }
     .hw-act--mirror, .hw-act--spread { padding: 76px 0; }
     .hw-card--mirror { width: 200px; height: 296px; }
