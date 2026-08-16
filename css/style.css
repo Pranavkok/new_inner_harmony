@@ -1637,6 +1637,7 @@ body[data-blueprint="empowered"] .prose-visual--empowered {
     max-width: 320px;
     line-height: 1.8;
 }
+.footer-doctor-name { display: inline-block; white-space: nowrap; }
 .footer-om { font-family: var(--font-display); font-style: italic; color: var(--gold); font-size: 1.05rem; }
 .footer-social { display: flex; gap: 12px; margin-top: 22px; }
 .footer-social a {

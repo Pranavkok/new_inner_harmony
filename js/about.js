@@ -13,8 +13,6 @@
     gsap.registerPlugin(ScrollTrigger);
     document.body.classList.add('ab-js');
 
-    const drawIn = (el) => { const len = el.getTotalLength(); gsap.set(el, { strokeDasharray: len, strokeDashoffset: len }); };
-
     // ---------- HERO — roles line rises word by word, cue fades in ----------
     const roles = gsap.utils.toArray('.ab-roles span, .ab-roles i');
     const cue = document.querySelector('.ab-scroll-cue');
@@ -91,26 +89,6 @@
           .to(core, { opacity: 1, scale: 1, ease: 'power2.out', duration: 0.7 }, 0.8)
           .to(word, { opacity: 1, scale: 1, ease: 'back.out(1.7)', duration: 0.7 }, 1.0)
           .to(lines, { opacity: 1, y: 0, stagger: 0.35, ease: 'power2.out', duration: 0.9 }, 0.5);
-    }
-
-    // ---------- THE JOURNEY — line draws, milestones reveal (scrub, no pin) ----------
-    const journey = document.querySelector('.ab-act--journey');
-    if (journey) {
-        const line = journey.querySelector('.ab-journey-line');
-        const dots = gsap.utils.toArray('.ab-mile-dot', journey);
-        const miles = gsap.utils.toArray('.ab-mile', journey);
-        if (line) drawIn(line);
-        gsap.set(dots, { scale: 0, transformOrigin: 'center' });
-        gsap.set(miles, { opacity: 0, y: 26 });
-
-        const tl = gsap.timeline({
-            scrollTrigger: { trigger: journey, start: 'top 68%', end: 'center 55%', scrub: 0.7 },
-        });
-        if (line) tl.to(line, { strokeDashoffset: 0, ease: 'none', duration: 1.4 }, 0);
-        dots.forEach((dot, i) => {
-            tl.to(dot, { scale: 1, ease: 'back.out(2.4)', duration: 0.4 }, 0.3 + i * 0.4);
-            if (miles[i]) tl.to(miles[i], { opacity: 1, y: 0, ease: 'power2.out', duration: 0.5 }, 0.3 + i * 0.4);
-        });
     }
 
     ScrollTrigger.sort();

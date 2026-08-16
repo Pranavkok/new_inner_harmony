@@ -12,7 +12,7 @@
         phone1: '919152155022',
         phone2Display: '+91 99300 34340',
         phone2: '919930034340',
-        whatsapp: '919930034340',
+        whatsapp: '919152155022',
         email: 'Innerharmonywork@gmail.com',
         location: 'Thane, India',
         instagram: '#',
@@ -97,7 +97,7 @@
                         ${logoMark(footerLogo)}
                         <span class="logo-text" style="color:var(--cream)">INNER HARMONY<small>Heal Within · Shine Beyond</small></span>
                     </a>
-                    <p>A compassionate, non-judgemental space to understand yourself, heal from within, and create lasting transformation, guided by Dr. Gargee Gadgil.</p>
+                    <p>A compassionate, non-judgemental space to understand yourself, heal from within, and create lasting transformation, guided by<br><span class="footer-doctor-name">Dr. Gargee Gadgil.</span></p>
 
                     <div class="footer-social">
                         <a href="${SITE.instagram}" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>

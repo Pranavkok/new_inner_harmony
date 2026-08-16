@@ -180,11 +180,11 @@ body.ab-js .ab-roles span, body.ab-js .ab-roles i { opacity: 0; }
     border-radius: 999px 999px 26px 26px;
     overflow: hidden;
     box-shadow: 0 34px 80px rgba(79, 47, 57, 0.24);
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
     background: linear-gradient(150deg, var(--peach), var(--cream-2));
     border: 1px solid rgba(201, 160, 111, 0.45);
 }
-.ab-portrait-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ab-portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 .ab-portrait-frame::after {
     content: ''; position: absolute; inset: 10px;
     border: 1px solid rgba(255, 250, 243, 0.75);
@@ -204,6 +204,13 @@ body.ab-js .ab-roles span, body.ab-js .ab-roles i { opacity: 0; }
 .ab-portrait-badge span { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 
 .ab-intro-copy .eyebrow { color: var(--gold); }
+.ab-intro-lead {
+    margin: -6px 0 24px;
+    font-family: var(--font-display);
+    font-size: clamp(1.12rem, 1.8vw, 1.3rem);
+    font-style: italic;
+    color: var(--rosewood);
+}
 .ab-intro-copy .section-title {
     margin-bottom: 26px;
     /* slightly smaller than the global clamp so each sentence holds one line */
@@ -326,34 +333,22 @@ body.ab-js .ab-roles span, body.ab-js .ab-roles i { opacity: 0; }
 .ab-truth p { color: var(--text-soft); font-size: 0.98rem; line-height: 1.7; margin: 0; }
 
 /* --------------------------------------------------------------------------
-   6. THE JOURNEY — pinned timeline + stats
+   6. EXPERIENCE — client-approved statistics (timeline removed)
 -------------------------------------------------------------------------- */
 .ab-act--journey {
-    min-height: 100vh;
+    min-height: auto;
     display: flex; align-items: center;
     padding: 90px 0;
     background: var(--surface);
 }
-.ab-journey-head { text-align: center; max-width: 680px; margin: 0 auto 60px; }
+.ab-journey-head { text-align: center; max-width: 680px; margin: 0 auto 42px; }
 .ab-journey-head .eyebrow { color: var(--gold); }
 .ab-journey-head .section-title em { color: var(--rosewood); }
 
-.ab-journey-track { position: relative; max-width: 980px; margin: 0 auto; }
-.ab-journey-svg { width: 100%; height: 120px; overflow: visible; }
-.ab-journey-base { fill: none; stroke: var(--line); stroke-width: 2; }
-.ab-journey-line { fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round; }
-.ab-mile-dot { fill: #fffaf3; stroke: var(--gold); stroke-width: 2.5; }
-
-.ab-journey-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 6px; }
-.ab-mile { text-align: center; padding: 0 14px; }
-.ab-mile-year { font-family: var(--font-display); font-style: italic; font-size: 1.6rem; color: var(--rosewood); display: block; margin-bottom: 6px; }
-.ab-mile h3 { font-size: 1.02rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
-.ab-mile p { color: var(--text-soft); font-size: 0.92rem; line-height: 1.6; margin: 0; }
-
 .ab-stats {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    max-width: 760px; margin: 64px auto 0;
-    padding-top: 44px; border-top: 1px solid var(--line);
+    max-width: 760px; margin: 0 auto;
+    padding-top: 42px; border-top: 1px solid var(--line);
 }
 .ab-stat { text-align: center; }
 .ab-stat .stat-number, .ab-stat .stat-plus {
@@ -377,8 +372,6 @@ body.ab-js .ab-roles span, body.ab-js .ab-roles i { opacity: 0; }
     .ab-blend-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
     .ab-blend-stage { min-height: 0; }
     .ab-blend-copy .eyebrow { justify-content: center; }
-    .ab-journey-cards { grid-template-columns: 1fr; gap: 22px; max-width: 420px; margin-inline: auto; }
-    .ab-journey-svg { display: none; }
     .ab-stats { gap: 30px; }
     .ab-belief { min-height: auto; padding: 100px 0; }
     .ab-act--blend, .ab-act--journey { min-height: auto; padding: 92px 0; }

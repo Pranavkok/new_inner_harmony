@@ -1,0 +1,108 @@
+# Website Feedback — Work To Do
+
+Source: `Website feedback - 08-13-2026.docx`
+
+## 1. Approach Page
+
+- [ ] Keep the existing core explanation. The client likes it and says it accurately represents why she chose the Tree of Life.
+- [ ] Replace the current circles-and-lines illustration with a proper Tree of Life visual containing:
+  - Leaves and branches representing health, finances, career/business, and relationships.
+  - A trunk.
+  - Roots representing stress, unresolved emotions, old beliefs, and hidden hurts.
+  - A butterfly breaking through the boundary and flying away to represent transformation and freedom.
+- [ ] Use the client's actual logo tree in this section.
+- [ ] Replace the current logo with the high-resolution logo when the client supplies it.
+- [ ] Remove/change the blue colours used on this page.
+- [ ] Include the following credential exactly:
+
+  **CERTIFIED TAROT-BASED TRAUMA-INFORMED COACH & HEALER**
+
+## 2. About Page
+
+- [x] Remove the complete timeline section showing:
+  - 1998 — Clinical practice begins.
+  - 2010 — Holistic integration.
+  - Today — Inner Harmony.
+- [x] Update the experience/statistics to:
+  - **28 years**
+  - **2000+**
+- [x] Explicitly include **Reiki Grandmaster** in Dr. Gargee's credentials.
+- [x] Replace the current About description with the following supplied copy:
+
+> Hello, I'm Dr. Gargee Gadgil, founder of INNER HARMONY – Heal Within. Shine Beyond.
+>
+> A physician, a holistic healer, a wife, and a mother of two children.
+>
+> I don't believe people need fixing. I believe they need a deeper understanding.
+>
+> For over 28 years of my clinical practice, I have had the privilege of guiding thousands of individuals, parents, children, and families on their journey towards health, greater self-understanding, emotional well-being, holistic parenting approaches, financial abundance, good career choices, and personal growth.
+>
+> My goal has always been – To create a compassionate, non-judgmental space where people feel seen, understood, and empowered to transform their lives.
+>
+> I believe every person already carries the answers they seek. Sometimes, we simply need the right guidance to uncover them.
+>
+> My greatest joy is witnessing people reconnect with their inner strength, embrace their authentic selves, and step into a life filled with greater purpose, confidence, and harmony.
+
+- [x] Use the client's photograph uploaded to Drive where required on the About page.
+- [x] Resolve the experience-figure conflict using the user's confirmed choice: **28 years** and **2000+**.
+
+## 3. Heal Within / Tarot Page
+
+- [ ] Make the page background lighter so that it matches the other website pages.
+- [ ] Reduce the current gaudy/dark appearance.
+- [ ] Replace the opening tarot card. The client says the current card contains a "blue lady."
+- [ ] Use the pink/magenta tarot card supplied by the client.
+- [ ] Use light magenta **#902769** for the backs of all tarot cards instead of dark magenta **#5D1140**.
+- [ ] Use the original tarot artwork uploaded to Drive:
+  - The Fool.
+  - The Magician.
+  - The Empress.
+  - The additional/main tarot card.
+- [ ] Correct the card-flip interaction:
+  - Initially show the front artwork directly to the visitor.
+  - Add a **FLIP** button or message at the bottom.
+  - Display the reflection prompts on the back after the card is flipped.
+  - Do not initially show the card back and then reveal the artwork.
+- [ ] Ensure the flip animation works smoothly for every card, including The Fool, The Magician, and The Empress.
+- [ ] Put each card's written content inside a fixed box below the card.
+- [ ] Keep both the tarot artwork and its written content clearly visible.
+- [ ] Ensure the written-content box does not move when the card flips.
+- [ ] Replace **"Repeating patterns in love"** with **"Patterns that keep you stuck."**
+- [ ] Change the italic **"holding you back"** phrase in the transformation quote to golden/yellow, matching the gold treatment used on other headings.
+
+## 4. Career Compass Blueprint
+
+- [ ] Remove/change the blue colour scheme used in this section.
+- [ ] Integrate the career test already created in Tally.
+- [ ] Include the required images in the test/result flow.
+- [ ] Integrate and display the test results.
+- [ ] Use the Tally–Google Sheets integration: <https://tally.so/help/google-sheets-integration>.
+
+## 5. Empowered Parent Blueprint
+
+- [ ] Increase the size of the following labels:
+  - **Then**
+  - **You**
+  - **Them**
+- [ ] Improve the readability of these labels, as they are currently too small.
+
+## 6. Footer and Contact Changes
+
+- [x] In the footer sentence, place **Dr. Gargee Gadgil** on the next line so that her name does not split awkwardly.
+- [x] Connect both of the following actions to **+91 91521 55022**:
+  - WhatsApp Chat.
+  - Reach Out to Dr. Gargee.
+- [x] Do not connect those actions to the regular number ending in **4340**.
+
+## 7. Assets Supplied Through Drive
+
+- [ ] Use the four supplied tarot assets: three primary tarot cards plus one main/back card.
+- [ ] Use the client's supplied photograph.
+- [ ] Use the supplied archetype images where required.
+- [ ] Use the high-resolution logo after it is supplied by the client.
+
+## 8. Security Note
+
+- [ ] Do not copy the Tally password from the feedback document into source code or documentation.
+- [ ] Ask the client to rotate the Tally password because it was shared in plaintext inside the document.
+- [ ] Store any replacement credentials securely and outside the repository before implementing the integration.

@@ -369,7 +369,7 @@
             if (data.service && data.service !== "I'm not sure yet, please guide me") text += `\n*Interested in:* ${data.service}`;
             text += `\n\n*Message:*\n${data.message}`;
 
-            const phone = window.SITE ? window.SITE.whatsapp : '919930034340';
+            const phone = window.SITE ? window.SITE.whatsapp : '919152155022';
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 
             setTimeout(() => {
