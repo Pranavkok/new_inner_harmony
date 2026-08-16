@@ -161,60 +161,82 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 90px 0;
+    padding: clamp(72px, 7vw, 104px) 0;
     background:
-        radial-gradient(60% 55% at 50% 8%, #efdfe1 0%, transparent 55%),
+        radial-gradient(58% 52% at 50% 12%, rgba(239, 223, 225, 0.82) 0%, transparent 62%),
         linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
 }
-.cc-align-head { text-align: center; max-width: 720px; margin: 0 auto 54px; }
+.cc-align-head { text-align: center; max-width: 760px; margin: 0 auto clamp(36px, 4.5vw, 58px); }
 .cc-align-head .eyebrow { color: var(--muted); }
 .cc-align-head .section-title em { color: var(--gold); }
 .cc-align-head .section-subtitle { margin: 12px auto 0; }
 .cc-align-grid {
     display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: 60px;
+    grid-template-columns: minmax(320px, 0.9fr) minmax(390px, 1.1fr);
+    gap: clamp(38px, 5vw, 70px);
     align-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
 }
-.cc-dial-stage { position: relative; display: flex; align-items: center; justify-content: center; min-height: 420px; }
+.cc-dial-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 410px);
+    aspect-ratio: 1;
+    margin: 0 auto;
+}
 .cc-dial-halo {
     position: absolute;
-    width: 360px; height: 360px;
+    width: 88%;
+    aspect-ratio: 1;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(201, 160, 111, 0.28) 0%, transparent 66%);
+    background: radial-gradient(circle, rgba(201, 160, 111, 0.22) 0%, transparent 68%);
     filter: blur(8px);
 }
-.cc-dial-svg { position: relative; z-index: 2; width: 100%; max-width: 400px; overflow: visible; }
+.cc-dial-svg {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
 .cc-dial-ring { fill: none; stroke: var(--accent); opacity: 0.35; }
 .cc-dial-ticks { fill: none; stroke: var(--accent); opacity: 0.3; stroke-dasharray: 1.5 10.2; }
 .cc-dial-spoke { stroke: var(--accent-soft); stroke-width: 1.5; opacity: 0.5; stroke-linecap: round; }
 .cc-dial-marker { fill: var(--accent-soft); opacity: 0.28; }
 .cc-dial-letter { fill: var(--accent); font-family: var(--font-display); font-size: 16px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
-.cc-dial-needle { transform-origin: 200px 200px; }
+.cc-dial-needle {
+    transform-box: view-box;
+    transform-origin: 200px 200px;
+    will-change: transform;
+}
 .cc-dial-needle-n { fill: var(--gold); }
 .cc-dial-needle-s { fill: var(--accent); }
 .cc-dial-core { fill: #fff; stroke: var(--gold); stroke-width: 2; }
 .cc-dial-corelabel { fill: var(--accent); font-family: var(--font-display); font-style: italic; font-size: 15px; text-anchor: middle; dominant-baseline: middle; }
 
-.cc-align-legend { display: flex; flex-direction: column; gap: 4px; }
+.cc-align-legend { display: flex; flex-direction: column; gap: 0; }
 .cc-legend-item {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 18px;
     align-items: start;
-    padding: 16px 0;
+    padding: 15px 0;
     border-bottom: 1px solid rgba(99, 63, 76, 0.13);
 }
-.cc-legend-item:last-child { border-bottom: none; }
+.cc-legend-item:last-child { border-bottom: 0; }
 .cc-legend-mark {
     width: 42px; height: 42px;
-    border-radius: 3px;
+    border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
     font-family: var(--font-display);
     font-size: 1rem; font-weight: 600;
     color: var(--gold);
     background: var(--accent);
-    box-shadow: 3px 3px 0 rgba(79, 47, 57, 0.18);
+    box-shadow: 3px 3px 0 rgba(79, 47, 57, 0.16);
 }
 .cc-legend-text h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--accent); line-height: 1.2; margin-bottom: 3px; }
 .cc-legend-text p { color: var(--text-soft); font-size: 0.98rem; line-height: 1.65; margin: 0; }
@@ -327,9 +349,23 @@ body.cc-js .cc-reveal-line { opacity: 0; }
 /* --------------------------------------------------------------------------
    7. RESPONSIVE
 -------------------------------------------------------------------------- */
+@media (max-width: 1199px), (max-height: 799px) {
+    .cc-act--align { min-height: auto; }
+}
+@media (max-width: 1100px) {
+    .cc-align-grid { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+    .cc-dial-stage { width: min(72vw, 370px); }
+    .cc-align-legend {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 34px;
+        width: min(100%, 760px);
+        margin: 0 auto;
+    }
+    .cc-legend-item:nth-last-child(-n + 2) { border-bottom: 0; }
+}
 @media (max-width: 1024px) {
     .cc-fog-grid { gap: 48px; }
-    .cc-align-grid { gap: 44px; }
 }
 @media (max-width: 900px) {
     .cc-hero { padding: 150px 0 76px; }
@@ -337,9 +373,6 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     .cc-fog-copy .eyebrow { justify-content: center; }
     .cc-fog-copy .lead, .cc-fog-copy p { max-width: 48ch; margin-left: auto; margin-right: auto; }
     .cc-fog-stage { max-width: 460px; margin: 0 auto; width: 100%; }
-    .cc-align-grid { grid-template-columns: 1fr; gap: 34px; }
-    .cc-dial-stage { min-height: 340px; }
-    .cc-dial-svg { max-width: 320px; }
     .cc-act--fog, .cc-act--align { min-height: auto; padding: 90px 0; }
     .cc-act--cross { padding: 90px 0; }
 }
@@ -347,19 +380,24 @@ body.cc-js .cc-reveal-line { opacity: 0; }
     .cc-hero { padding: 132px 0 64px; }
     .cc-act--fog, .cc-act--align, .cc-act--cross { padding: 76px 0; }
     .cc-compass { width: 210px; height: 210px; margin-top: 40px; }
-    .cc-dial-stage { min-height: 280px; }
-    .cc-dial-svg { max-width: 270px; }
-    .cc-dial-halo { width: 270px; height: 270px; }
+    .cc-align-head { margin-bottom: 34px; }
+    .cc-align-head .section-subtitle { font-size: 0.98rem; }
+    .cc-align-grid { gap: 28px; }
+    .cc-dial-stage { width: min(82vw, 300px); }
+    .cc-align-legend { display: flex; width: 100%; }
+    .cc-legend-item:nth-last-child(2) { border-bottom: 1px solid rgba(99, 63, 76, 0.13); }
     .cc-cross-card { flex-basis: 44%; max-width: none; }
     .cc-cross-card--wide { flex-basis: 100%; }
     .cc-cross-readout { padding: 20px 22px; }
     .cc-cross-readout p { font-size: 1.2rem; }
     .cc-legend-mark { width: 38px; height: 38px; }
-    .cc-legend-item { gap: 14px; padding: 14px 0; }
+    .cc-legend-item { gap: 13px; padding: 13px 0; }
     .cc-legend-text h3 { font-size: 1.2rem; }
+    .cc-legend-text p { font-size: 0.9rem; line-height: 1.52; }
 }
 @media (max-width: 380px) {
     .cc-compass { width: 180px; height: 180px; }
+    .cc-dial-stage { width: min(84vw, 260px); }
     .cc-cross-card { flex-basis: 100%; }
     .cc-cross-readout p { font-size: 1.1rem; }
 }
@@ -370,4 +408,5 @@ body.cc-js .cc-reveal-line { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
     .cc-compass-dial, .cc-compass-needle, .cc-scroll-line { animation: none; }
     .cc-fog-veil { display: none; }
+    .cc-dial-needle { transform: rotate(0deg); }
 }

@@ -67,38 +67,112 @@
           .to(lines, { opacity: 1, y: 0, stagger: 0.4, ease: 'power2.out', duration: 1 }, 0.4);
     }
 
-    // ---------- ACT II — THE ALIGNMENT (pinned; needle locks, inputs light) ----------
+    // ---------- ACT II — THE ALIGNMENT ----------
     const align = document.querySelector('.cc-act--align');
     if (align) {
         const needle = align.querySelector('.cc-dial-needle');
         const markers = gsap.utils.toArray('.cc-dial-marker', align);
         const spokes = gsap.utils.toArray('.cc-dial-spoke', align);
         const legend = gsap.utils.toArray('.cc-legend-item', align);
+        const head = gsap.utils.toArray('.cc-align-head > *', align);
+        const stage = align.querySelector('.cc-dial-stage');
+        const halo = align.querySelector('.cc-dial-halo');
+        const rings = gsap.utils.toArray('.cc-dial-ring', align);
+        const ticks = align.querySelector('.cc-dial-ticks');
         const core = align.querySelector('.cc-dial-core');
         const coreLabel = align.querySelector('.cc-dial-corelabel');
 
-        gsap.set(needle, { rotation: -150, transformOrigin: '200px 200px' });
-        gsap.set(markers, { opacity: 0.28, transformOrigin: 'center' });
-        spokes.forEach(s => { const len = s.getTotalLength(); gsap.set(s, { strokeDasharray: len, strokeDashoffset: len }); });
-        gsap.set(legend, { opacity: 0, x: 24 });
-        gsap.set([core, coreLabel], { opacity: 0 });
+        const setInitialState = (needleStart) => {
+            gsap.set(head, { opacity: 0, y: 18 });
+            gsap.set(stage, { opacity: 0, y: 34, scale: 0.9, transformOrigin: '50% 50%' });
+            gsap.set(halo, { opacity: 0, scale: 0.72, transformOrigin: '50% 50%' });
+            gsap.set([...rings, ticks], { opacity: 0 });
 
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: align, start: 'top top', end: '+=160%',
-                pin: true, pinSpacing: true, scrub: 0.8, anticipatePin: 1, refreshPriority: 10,
-            },
+            // Absolute SVG coordinates keep the pivot on the 200,200 hub even
+            // when the compass is resized by a responsive layout.
+            gsap.set(needle, { rotation: needleStart, svgOrigin: '200 200', force3D: false });
+            gsap.set(markers, { opacity: 0.22 });
+            spokes.forEach(spoke => {
+                const len = spoke.getTotalLength();
+                gsap.set(spoke, { strokeDasharray: len, strokeDashoffset: len });
+            });
+            gsap.set(legend, { opacity: 0, x: 24 });
+            gsap.set([core, coreLabel], { opacity: 0 });
+        };
+
+        const addInputs = (timeline, start, step) => {
+            markers.forEach((marker, i) => {
+                const at = start + i * step;
+                timeline.to(marker, {
+                    opacity: 1, fill: '#d4a855',
+                    duration: 0.28, ease: 'power2.out',
+                }, at);
+                timeline.to(spokes[i], {
+                    strokeDashoffset: 0, opacity: 0.72,
+                    duration: 0.38, ease: 'none',
+                }, at);
+                timeline.to(legend[i], {
+                    opacity: 1, x: 0,
+                    duration: 0.4, ease: 'power3.out',
+                }, at + 0.05);
+            });
+        };
+
+        const media = gsap.matchMedia();
+
+        // Wide screens have room for the cinematic pinned sequence.
+        media.add('(min-width: 1200px) and (min-height: 800px)', () => {
+            setInitialState(-135);
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: align,
+                    start: 'top top',
+                    end: '+=140%',
+                    pin: true,
+                    pinSpacing: true,
+                    scrub: 0.75,
+                    anticipatePin: 1,
+                    refreshPriority: 10,
+                    invalidateOnRefresh: true,
+                },
+            });
+
+            timeline.to(head, { opacity: 1, y: 0, stagger: 0.1, duration: 0.48, ease: 'power2.out' }, 0)
+                .to(stage, { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: 'power3.out' }, 0.08)
+                .to(halo, { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.out' }, 0.12)
+                .to([...rings, ticks], { opacity: 0.34, stagger: 0.07, duration: 0.45 }, 0.18)
+                .to(needle, { rotation: 360, duration: 2.15, ease: 'power3.inOut', force3D: false }, 0.3);
+
+            addInputs(timeline, 0.48, 0.42);
+            timeline.to([core, coreLabel], { opacity: 1, stagger: 0.1, duration: 0.35 }, 2.15)
+                .to(needle, { rotation: 352, duration: 0.16, ease: 'power2.out', force3D: false }, 2.2)
+                .to(needle, { rotation: 360, duration: 0.24, ease: 'back.out(2)', force3D: false }, 2.36);
         });
-        // inputs converge one by one
-        markers.forEach((m, i) => {
-            tl.to(m, { opacity: 1, fill: '#d4a855', scale: 1.35, ease: 'back.out(2)', duration: 0.5 }, 0.3 + i * 0.7);
-            if (spokes[i]) tl.to(spokes[i], { strokeDashoffset: 0, ease: 'none', duration: 0.6 }, 0.3 + i * 0.7);
-            if (legend[i]) tl.to(legend[i], { opacity: 1, x: 0, ease: 'power2.out', duration: 0.6 }, 0.3 + i * 0.7);
+
+        // Tablets and phones stay in normal document flow: no pinning, no
+        // scrubbed layout jumps, and one compact entrance when in view.
+        media.add('(max-width: 1199px), (max-height: 799px)', () => {
+            const compact = window.matchMedia('(max-width: 620px)').matches;
+            setInitialState(compact ? -95 : -120);
+            const finalRotation = compact ? 0 : 360;
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: align,
+                    start: 'top 76%',
+                    once: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+
+            timeline.to(head, { opacity: 1, y: 0, stagger: 0.08, duration: 0.42, ease: 'power2.out' }, 0)
+                .to(stage, { opacity: 1, y: 0, scale: 1, duration: 0.58, ease: 'power3.out' }, 0.08)
+                .to(halo, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }, 0.1)
+                .to([...rings, ticks], { opacity: 0.34, stagger: 0.05, duration: 0.35 }, 0.18)
+                .to(needle, { rotation: finalRotation, duration: 1.25, ease: 'power3.inOut', force3D: false }, 0.22);
+
+            addInputs(timeline, 0.42, 0.2);
+            timeline.to([core, coreLabel], { opacity: 1, stagger: 0.08, duration: 0.3 }, 1.12);
         });
-        // needle finds true north, then the direction resolves
-        tl.to(needle, { rotation: 0, ease: 'power3.inOut', duration: 1.2 }, 0.6)
-          .to(core, { opacity: 1, ease: 'power2.out', duration: 0.5 }, '>-0.3')
-          .to(coreLabel, { opacity: 1, ease: 'power2.out', duration: 0.5 }, '<0.15');
     }
 
     // ---------- gentle reveal for crossroads cards ----------

@@ -48,27 +48,27 @@ Source: `Website feedback - 08-13-2026.docx`
 
 ## 3. Heal Within / Tarot Page
 
-- [ ] Make the page background lighter so that it matches the other website pages.
-- [ ] Reduce the current gaudy/dark appearance.
-- [ ] Replace the opening tarot card. The client says the current card contains a "blue lady."
-- [ ] Use the pink/magenta tarot card supplied by the client.
-- [ ] Use light magenta **#902769** for the backs of all tarot cards instead of dark magenta **#5D1140**.
-- [ ] Use the original tarot artwork uploaded to Drive:
+- [x] Make the page background lighter so that it matches the other website pages.
+- [x] Reduce the current gaudy/dark appearance.
+- [x] Replace the opening tarot card. The client says the current card contains a "blue lady."
+- [x] Use the pink/magenta tarot card supplied by the client.
+- [x] Use light magenta **#902769** for the backs of all tarot cards instead of dark magenta **#5D1140**.
+- [x] Use the original tarot artwork uploaded to Drive:
   - The Fool.
   - The Magician.
   - The Empress.
   - The additional/main tarot card.
-- [ ] Correct the card-flip interaction:
-  - Initially show the front artwork directly to the visitor.
-  - Add a **FLIP** button or message at the bottom.
-  - Display the reflection prompts on the back after the card is flipped.
-  - Do not initially show the card back and then reveal the artwork.
-- [ ] Ensure the flip animation works smoothly for every card, including The Fool, The Magician, and The Empress.
-- [ ] Put each card's written content inside a fixed box below the card.
-- [ ] Keep both the tarot artwork and its written content clearly visible.
-- [ ] Ensure the written-content box does not move when the card flips.
-- [ ] Replace **"Repeating patterns in love"** with **"Patterns that keep you stuck."**
-- [ ] Change the italic **"holding you back"** phrase in the transformation quote to golden/yellow, matching the gold treatment used on other headings.
+- [x] Correct the card-flip interaction using the user's confirmed back-first direction:
+  - Initially show the clean light-magenta card back without text overlays.
+  - Reveal the artwork through the pinned scroll sequence.
+  - Keep a **FLIP** control below every primary card for manual interaction.
+  - Allow visitors to return from the artwork to the card back.
+- [x] Ensure the flip animation works smoothly for every card, including The Fool, The Magician, and The Empress.
+- [x] Put each card's written content inside a fixed box below the card.
+- [x] Keep both the tarot artwork and its written content clearly visible.
+- [x] Ensure the written-content box does not move when the card flips.
+- [x] Replace **"Repeating patterns in love"** with **"Patterns that keep you stuck."**
+- [x] Change the italic **"holding you back"** phrase in the transformation quote to golden/yellow, matching the gold treatment used on other headings.
 
 ## 4. Career Compass Blueprint
 

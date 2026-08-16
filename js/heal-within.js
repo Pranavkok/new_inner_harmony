@@ -1,30 +1,73 @@
 // ============================================================
 // INNER HARMONY — Heal Within · "The Reading"
-// Bespoke scroll-story motion. Loaded ONLY on heal-within.html.
-// Progressive enhancement: without GSAP or with reduced-motion,
-// the page stays fully readable (cards face-up, no pins).
+// Cards begin face-down, then reveal their artwork through the pinned scroll
+// story. FLIP controls remain available for direct interaction.
 // ============================================================
 
 (function () {
     const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!hasGSAP || reduced) return;
-
-    gsap.registerPlugin(ScrollTrigger);
     document.body.classList.add('hw-js');
 
-    // ---------- drifting stars in every dark act ----------
+    const spreadCards = Array.from(document.querySelectorAll('.hw-card--spread'));
+
+    function syncButton(card, artworkVisible) {
+        const button = document.querySelector(`[data-flip-card="${card.id}"]`);
+        if (!button) return;
+        button.setAttribute('aria-pressed', String(artworkVisible));
+        button.textContent = artworkVisible ? 'SHOW BACK' : 'FLIP';
+    }
+
+    function setCardState(card, artworkVisible) {
+        card._flipped = artworkVisible;
+        card.classList.toggle('is-flipped', artworkVisible);
+        syncButton(card, artworkVisible);
+    }
+
+    // Explicit controls also work when motion libraries are unavailable.
+    document.querySelectorAll('[data-flip-card]').forEach(button => {
+        const card = document.getElementById(button.dataset.flipCard);
+        if (!card) return;
+        setCardState(card, false);
+
+        button.addEventListener('click', () => {
+            const showArtwork = !card._flipped;
+            const inner = card.querySelector('.hw-card-inner');
+            setCardState(card, showArtwork);
+            if (hasGSAP && !reduced) {
+                gsap.to(inner, {
+                    rotationY: showArtwork ? 360 : 180,
+                    duration: 0.9,
+                    ease: 'power2.inOut',
+                });
+            }
+        });
+    });
+
+    // Reduced-motion visitors get readable artwork without forced movement.
+    if (reduced) {
+        document.querySelectorAll('.hw-card--hero, .hw-card--mirror, .hw-card--spread, .hw-card--mini')
+            .forEach(card => setCardState(card, true));
+        return;
+    }
+
+    // Without GSAP, retain the back-first state and reveal the spread manually.
+    if (!hasGSAP) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ---------- drifting stars in the mirror and quote acts ----------
     function injectStars(container, count) {
         for (let i = 0; i < count; i++) {
-            const s = document.createElement('span');
-            s.className = 'particle';
-            s.style.left = `${gsap.utils.random(3, 97)}%`;
-            s.style.top = `${gsap.utils.random(3, 97)}%`;
-            s.style.width = s.style.height = `${gsap.utils.random(2, 4)}px`;
-            container.appendChild(s);
-            gsap.to(s, {
-                y: `+=${gsap.utils.random(-24, 24)}`,
+            const star = document.createElement('span');
+            star.className = 'particle';
+            star.style.left = `${gsap.utils.random(3, 97)}%`;
+            star.style.top = `${gsap.utils.random(3, 97)}%`;
+            star.style.width = star.style.height = `${gsap.utils.random(2, 4)}px`;
+            container.appendChild(star);
+            gsap.to(star, {
                 x: `+=${gsap.utils.random(-16, 16)}`,
+                y: `+=${gsap.utils.random(-24, 24)}`,
                 opacity: gsap.utils.random(0.2, 0.9),
                 duration: gsap.utils.random(3, 7),
                 repeat: -1,
@@ -36,36 +79,27 @@
     }
     document.querySelectorAll('.hw-act-stars').forEach(field => injectStars(field, 26));
 
-    // ---------- helper: flip an inner to a target Y ----------
-    function flipTo(inner, deg) {
-        gsap.to(inner, { rotationY: deg, duration: 0.9, ease: 'power2.inOut' });
-    }
-
-    // ---------- HERO card: gentle click / key flip ----------
+    // ---------- opening card: magenta back first, artwork shortly after ----------
     const heroCard = document.querySelector('.hw-card--hero');
     if (heroCard) {
-        const toggle = () => heroCard.classList.toggle('is-flipped');
-        heroCard.addEventListener('click', toggle);
-        heroCard.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-        });
-        // invite interaction shortly after load
-        gsap.delayedCall(2.2, () => heroCard.classList.add('is-flipped'));
+        setCardState(heroCard, false);
+        gsap.delayedCall(2.2, () => setCardState(heroCard, true));
     }
 
-    // ---------- ACT I — THE MIRROR ----------
-    // Desktop: pinned + scrubbed. Small screens: no pin (stacked layout is
-    // taller than the viewport), flip + reveal as the act scrolls into view.
     const mm = gsap.matchMedia();
+
+    // ---------- mirror: pinned back-to-front reveal on desktop ----------
     const mirror = document.querySelector('.hw-act--mirror');
     if (mirror) {
-        const inner = mirror.querySelector('.hw-card--mirror .hw-card-inner');
+        const mirrorCard = mirror.querySelector('.hw-card--mirror');
+        const inner = mirrorCard.querySelector('.hw-card-inner');
         const lines = mirror.querySelectorAll('.hw-reveal-line');
         gsap.set(inner, { rotationY: 180, transformPerspective: 1400 });
+        setCardState(mirrorCard, false);
 
         mm.add('(min-width: 901px)', () => {
             gsap.set(lines, { opacity: 0, y: 26 });
-            const tl = gsap.timeline({
+            const timeline = gsap.timeline({
                 scrollTrigger: {
                     trigger: mirror,
                     start: 'top top',
@@ -77,75 +111,51 @@
                     refreshPriority: 10,
                 },
             });
-            tl.to(inner, { rotationY: 360, ease: 'none', duration: 1.4 }, 0)
-              .to(lines, { opacity: 1, y: 0, stagger: 0.4, ease: 'power2.out', duration: 1 }, 0.5);
+            timeline.to(inner, {
+                rotationY: 360,
+                ease: 'none',
+                duration: 1.4,
+                onComplete: () => setCardState(mirrorCard, true),
+                onReverseComplete: () => setCardState(mirrorCard, false),
+            }, 0)
+                .to(lines, { opacity: 1, y: 0, stagger: 0.4, ease: 'power2.out', duration: 1 }, 0.5);
         });
 
         mm.add('(max-width: 900px)', () => {
-            gsap.set(inner, { rotationY: 180 });
             gsap.set(lines, { opacity: 0, y: 26 });
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: mirror,
-                    start: 'top 62%',
-                    once: true,
-                },
+            const timeline = gsap.timeline({
+                scrollTrigger: { trigger: mirror, start: 'top 62%', once: true },
             });
-            tl.to(inner, { rotationY: 360, duration: 1.1, ease: 'power2.inOut' }, 0)
-              .to(lines, { opacity: 1, y: 0, stagger: 0.16, ease: 'power2.out', duration: 0.7 }, 0.35);
-        });
-
-        // let the mirror card be re-turned by hand too
-        let mFlipped = true;
-        mirror.querySelector('.hw-card--mirror').addEventListener('click', () => {
-            mFlipped = !mFlipped;
-            flipTo(inner, mFlipped ? 360 : 180);
+            timeline.to(inner, {
+                rotationY: 360,
+                duration: 1.1,
+                ease: 'power2.inOut',
+                onComplete: () => setCardState(mirrorCard, true),
+            }, 0)
+                .to(lines, { opacity: 1, y: 0, stagger: 0.16, ease: 'power2.out', duration: 0.7 }, 0.35);
         });
     }
 
-    // ---------- ACT II — THREE CARDS TURNED ----------
-    // Turn the spread in reading order. A single timeline is important here:
-    // on desktop all three cards enter the viewport together, so independent
-    // ScrollTriggers would make them flip at nearly the same time.
+    // ---------- spread: pin and reveal Fool, Magician, Empress in order ----------
     const spread = document.querySelector('.hw-act--spread');
-    if (spread) {
-        const cards = gsap.utils.toArray('.hw-card--spread', spread);
-        const inners = cards.map(card => card.querySelector('.hw-card-inner'));
-
-        cards.forEach(card => {
-            const inner = card.querySelector('.hw-card-inner');
-            gsap.set(inner, { rotationY: 180, transformPerspective: 1400 });
-            card._flipped = false;
-            const toggle = () => {
-                card._flipped = !card._flipped;
-                flipTo(inner, card._flipped ? 360 : 180);
-            };
-            card.addEventListener('click', toggle);
-            card.addEventListener('keydown', e => {
-                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-            });
-        });
-
+    if (spread && spreadCards.length) {
         const rail = spread.querySelector('.hw-spread-rail');
+        const inners = spreadCards.map(card => card.querySelector('.hw-card-inner'));
+        inners.forEach(inner => gsap.set(inner, { rotationY: 180, transformPerspective: 1400 }));
+        spreadCards.forEach(card => setCardState(card, false));
+
         const addTurns = timeline => {
             inners.forEach((inner, index) => {
                 timeline.to(inner, {
                     rotationY: 360,
                     duration: 1,
                     ease: 'none',
-                    onComplete: () => {
-                        cards[index]._flipped = true;
-                    },
-                    onReverseComplete: () => {
-                        cards[index]._flipped = false;
-                    },
+                    onComplete: () => setCardState(spreadCards[index], true),
+                    onReverseComplete: () => setCardState(spreadCards[index], false),
                 });
             });
         };
 
-        // Desktop: hold the spread in view and spend the next three viewport
-        // lengths turning one card at a time. The section can move on only
-        // after the third card has completed its turn.
         mm.add('(min-width: 901px)', () => {
             const turnSpread = gsap.timeline({
                 scrollTrigger: {
@@ -162,35 +172,22 @@
             addTurns(turnSpread);
         });
 
-        // Smaller screens keep their natural stacked flow, while still
-        // revealing each card in order rather than all at once.
         mm.add('(max-width: 900px)', () => {
             const turnSpread = gsap.timeline({
-                scrollTrigger: {
-                    trigger: rail,
-                    start: 'top 76%',
-                    once: true,
-                },
+                scrollTrigger: { trigger: rail, start: 'top 76%', once: true },
             });
             addTurns(turnSpread);
         });
     }
 
-    // ---------- ACT III — mini deck (flip and stay flipped on hover/focus) ----------
+    // ---------- audience deck: original hover/focus/click turn ----------
     document.querySelectorAll('.hw-card--mini').forEach(card => {
-        const flipCard = () => card.classList.add('is-flipped');
-        card.addEventListener('mouseenter', flipCard);
-        card.addEventListener('click', flipCard);
+        const reveal = () => setCardState(card, true);
+        card.addEventListener('mouseenter', reveal);
+        card.addEventListener('click', reveal);
     });
 
-    // Sort triggers immediately to fix out-of-order pinning from main.js
-    if (typeof ScrollTrigger !== 'undefined') {
-        ScrollTrigger.sort();
-        ScrollTrigger.refresh();
-    }
-
-    // recalc pins once nav/footer are injected and fonts settle
-    window.addEventListener('load', () => {
-        ScrollTrigger.refresh();
-    });
+    ScrollTrigger.sort();
+    ScrollTrigger.refresh();
+    window.addEventListener('load', () => ScrollTrigger.refresh());
 })();

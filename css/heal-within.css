@@ -1,17 +1,23 @@
 /* ==========================================================================
    HEAL WITHIN — "The Reading"
-   Bespoke immersive scroll-story for body[data-blueprint="heal"].
-   Loaded ONLY on heal-within.html. Uses existing palette tokens only —
-   no new colors are introduced.
+   Bespoke experience for body[data-blueprint="heal"]. Loaded ONLY on
+   heal-within.html. Uses the site's cream/blush palette with the supplied
+   light-magenta tarot back as the focused accent.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    0. TAROT CARD — shared flip mechanic
-   Default (no JS / reduced motion) shows the FRONT face so all content is
-   readable. js/heal-within.js adds `.hw-js` to <body> to enable face-down
-   starting states + scroll/click flips (progressive enhancement).
+   Cards begin on their magenta backs and reveal their artwork through the
+   scroll story or explicit controls. Content boxes below remain stationary.
 -------------------------------------------------------------------------- */
-body[data-blueprint="heal"] { --hw-card-back-magenta: #902769; }
+body[data-blueprint="heal"] {
+    --accent: #902769;
+    --accent-soft: #b76392;
+    --orb-color: rgba(144, 39, 105, 0.2);
+    --visual-glow: rgba(201, 160, 111, 0.28);
+    --gold: #b78335;
+    --hw-card-back-magenta: #902769;
+}
 
 .hw-card {
     perspective: 1400px;
@@ -166,54 +172,76 @@ body[data-blueprint="heal"] { --hw-card-back-magenta: #902769; }
     text-shadow: 0 0 14px rgba(201, 160, 111, 0.7);
 }
 
-/* No-JS / reduced-motion: keep cards face-up, no transitions */
-body:not(.hw-js) .hw-card-inner { transition: none; }
+/* JS-enabled cards begin face-down and turn forward to their artwork. */
+body.hw-js .hw-card--hero .hw-card-inner,
+body.hw-js .hw-card--mirror .hw-card-inner,
+body.hw-js .hw-card--spread .hw-card-inner,
+body.hw-js .hw-card--mini .hw-card-inner { transform: rotateY(180deg); }
+body.hw-js .hw-card.is-flipped .hw-card-inner { transform: rotateY(360deg); }
 
-/* Scrub-driven cards are animated by GSAP — no CSS transition to fight it */
-.hw-card--mirror .hw-card-inner,
-.hw-card--spread .hw-card-inner { transition: none; }
+/* Scrub-driven cards are controlled by GSAP, without a competing transition. */
+body.hw-js .hw-card--mirror .hw-card-inner,
+body.hw-js .hw-card--spread .hw-card-inner { transition: none; }
 
-/* --------------------------------------------------------------------------
-   0b. NAVBAR OVER DARK HERO
-   Shared navbar uses dark ink text (built for cream pages) — invisible on
-   this page's plum hero. Lighten it until .scrolled restores the cream glass.
--------------------------------------------------------------------------- */
-body[data-blueprint="heal"] .navbar:not(.scrolled) .logo-text { color: var(--cream); }
-body[data-blueprint="heal"] .navbar:not(.scrolled) .logo-text small { color: rgba(255, 238, 208, 0.65); }
-body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-links > li > a { color: rgba(255, 238, 208, 0.85); }
-body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-links > li > a::after { background: var(--sand); }
-body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-links > li > a:hover,
-body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-links > li > a.active { color: var(--sand); }
-body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-cta {
-    background: var(--sand);
-    color: var(--ink) !important;
+.hw-flip-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 94px;
+    margin: 16px auto 0;
+    padding: 9px 18px;
+    border: 1px solid rgba(144, 39, 105, 0.38);
+    border-radius: 999px;
+    background: #fffaf3;
+    color: var(--accent);
+    font: 600 0.68rem/1 var(--font-body);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(91, 58, 68, 0.1);
+    transition: color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
 }
-body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-cta:hover { background: var(--cream); }
-body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background: var(--cream); }
+.hw-flip-trigger:hover,
+.hw-flip-trigger[aria-pressed="true"] { background: var(--accent); color: #fffaf3; transform: translateY(-2px); }
+.hw-flip-trigger:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+/* --------------------------------------------------------------------------
+   0b. NAVBAR OVER LIGHT HERO
+-------------------------------------------------------------------------- */
+body[data-blueprint="heal"] .navbar:not(.scrolled) .logo-text { color: var(--ink); }
+body[data-blueprint="heal"] .navbar:not(.scrolled) .logo-text small { color: var(--muted); }
+body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-links > li > a { color: var(--ink); }
+body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-links > li > a::after { background: var(--accent); }
+body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-links > li > a:hover,
+body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-links > li > a.active { color: var(--accent); }
+body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-cta {
+    background: var(--accent);
+    color: #fffaf3 !important;
+}
+body[data-blueprint="heal"] .navbar:not(.scrolled) .nav-cta:hover { background: var(--rosewood); }
+body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background: var(--ink); }
 
 /* --------------------------------------------------------------------------
-   1. HERO — a mystical night
+   1. HERO — warm, light introduction
 -------------------------------------------------------------------------- */
-.hw-hero,
-.hw-act--mirror {
+.hw-hero {
     background:
-        radial-gradient(85% 100% at 18% 24%, #805866 0%, transparent 62%),
-        radial-gradient(70% 85% at 88% 12%, #704956 0%, transparent 58%),
-        linear-gradient(160deg, #68434f 0%, #52323d 100%);
+        radial-gradient(60% 70% at 20% 24%, rgba(252, 219, 216, 0.72) 0%, transparent 68%),
+        radial-gradient(58% 72% at 86% 14%, rgba(255, 238, 208, 0.84) 0%, transparent 66%),
+        linear-gradient(160deg, #fffaf3 0%, var(--cream) 58%, var(--cream-2) 100%);
 }
 .hw-hero {
     padding: 172px 0 96px;
-    color: var(--cream);
+    color: var(--ink);
     overflow: hidden;
     contain: paint;
 }
-.hw-hero .breadcrumb { color: rgba(255, 238, 208, 0.6); }
-.hw-hero .breadcrumb a:hover { color: var(--sand); }
-.hw-hero h1 { color: var(--cream); }
-.hw-hero h1 em { color: var(--accent-soft); font-style: italic; }
-.hw-hero .page-hero-sub { color: rgba(255, 238, 208, 0.82); }
-.hw-hero .tm-line { color: rgba(255, 238, 208, 0.85); }
-.hw-hero .orb { opacity: 0.5; mix-blend-mode: screen; }
+.hw-hero .breadcrumb { color: var(--muted); }
+.hw-hero .breadcrumb a:hover { color: var(--accent); }
+.hw-hero h1 { color: var(--ink); }
+.hw-hero h1 em { color: var(--accent); font-style: italic; }
+.hw-hero .page-hero-sub { color: var(--text-soft); }
+.hw-hero .tm-line { color: var(--rosewood); }
+.hw-hero .orb { opacity: 0.28; mix-blend-mode: normal; }
 .hw-hero-glow {
     position: absolute;
     left: 50%;
@@ -221,7 +249,7 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
     width: 520px;
     height: 520px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(139, 122, 184, 0.4) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(144, 39, 105, 0.16) 0%, transparent 66%);
     filter: blur(20px);
     pointer-events: none;
     z-index: 0;
@@ -231,8 +259,6 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
     position: relative;
     z-index: 3;
     width: clamp(210px, 16vw, 250px);
-    aspect-ratio: 1145 / 1374;
-    height: auto;
     margin: clamp(30px, 5vh, 46px) auto 8px;
     animation: hw-float 6s ease-in-out infinite;
 }
@@ -240,8 +266,11 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
     0%, 100% { transform: translateY(0) rotate(-1.5deg); }
     50%      { transform: translateY(-16px) rotate(1.5deg); }
 }
-.hw-card--hero, .hw-card--hero .hw-card-inner { width: 100%; height: 100%; }
-.hw-card--hero .hw-face { border-radius: 16px; box-shadow: 0 30px 70px rgba(20, 10, 16, 0.55); }
+.hw-card--hero { width: 100%; aspect-ratio: 1145 / 1374; }
+.hw-card--hero,
+.hw-card--mirror { cursor: default; }
+.hw-card--hero .hw-card-inner { width: 100%; height: 100%; }
+.hw-card--hero .hw-face { border-radius: 16px; box-shadow: 0 24px 52px rgba(91, 58, 68, 0.2); }
 .hw-card--hero .hw-face--back {
     background-color: var(--hw-card-back-magenta);
     background-image: url('../images/Back%20of%20the%20tarot%20card%20-%20Magenta%20%20%23902769.png');
@@ -252,10 +281,6 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
 }
 .hw-card--hero .hw-face--front svg { width: 58%; color: var(--accent); opacity: 0.85; }
 .hw-card--hero .hw-card-num { position: absolute; top: 16px; left: 18px; margin: 0; }
-
-/* JS states */
-body.hw-js .hw-card--hero .hw-card-inner { transform: rotateY(180deg); }
-body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg); }
 
 .hw-scroll-cue {
     position: relative;
@@ -268,7 +293,7 @@ body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg)
     font-size: 0.72rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(255, 238, 208, 0.55);
+    color: var(--muted);
 }
 .hw-scroll-line {
     width: 1px;
@@ -283,19 +308,22 @@ body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg)
 }
 
 /* --------------------------------------------------------------------------
-   2. Shared ACT scaffolding + drifting stars
+   2. Shared ACT scaffolding
 -------------------------------------------------------------------------- */
 .hw-act { position: relative; overflow: hidden; contain: paint; }
 .hw-act-stars { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
 .hw-act-stars .particle { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
 
 /* --------------------------------------------------------------------------
-   3. ACT I — THE MIRROR (pinned)
+   3. ACT I — THE MIRROR (pinned reveal)
 -------------------------------------------------------------------------- */
 .hw-act--mirror {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    background:
+        radial-gradient(55% 75% at 88% 30%, rgba(252, 219, 216, 0.72) 0%, transparent 70%),
+        linear-gradient(180deg, var(--cream) 0%, #fffaf3 100%);
 }
 .hw-mirror-grid {
     position: relative;
@@ -310,6 +338,7 @@ body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg)
     position: relative;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     min-height: 420px;
 }
@@ -318,12 +347,12 @@ body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg)
     width: 360px;
     height: 360px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(139, 122, 184, 0.45) 0%, transparent 68%);
+    background: radial-gradient(circle, rgba(144, 39, 105, 0.14) 0%, transparent 68%);
     filter: blur(10px);
 }
 .hw-card--mirror { position: relative; z-index: 2; width: 230px; height: 340px; }
 .hw-card--mirror .hw-card-inner { width: 100%; height: 100%; }
-.hw-card--mirror .hw-face { border-radius: 16px; box-shadow: 0 30px 70px rgba(15, 8, 12, 0.6); }
+.hw-card--mirror .hw-face { border-radius: 16px; box-shadow: 0 24px 56px rgba(91, 58, 68, 0.18); }
 .hw-face--mirror {
     background:
         linear-gradient(155deg, #efe9f5 0%, #d9d2ea 50%, #efe6f2 100%);
@@ -362,24 +391,24 @@ body.hw-js .hw-card--hero.is-flipped .hw-card-inner { transform: rotateY(360deg)
     color: var(--accent);
     text-shadow: 0 1px 6px rgba(255, 255, 255, 0.7);
 }
-.hw-mirror-copy .eyebrow { color: var(--accent-soft); }
+.hw-mirror-copy .eyebrow { color: var(--accent); }
 .hw-mirror-copy .eyebrow::before { background: var(--gold); }
 .hw-mirror-title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3.1rem);
     font-weight: 500;
     line-height: 1.16;
-    color: var(--cream);
+    color: var(--ink);
     margin: 14px 0 22px;
 }
-.hw-mirror-title em { font-style: italic; color: var(--accent-soft); }
-.hw-mirror-copy .lead { color: var(--sand); }
-.hw-mirror-copy p { color: rgba(255, 238, 208, 0.8); font-size: 1.06rem; margin-bottom: 16px; line-height: 1.85; }
+.hw-mirror-title em { font-style: italic; color: var(--accent); }
+.hw-mirror-copy .lead { color: var(--rosewood); }
+.hw-mirror-copy p { color: var(--text-soft); font-size: 1.06rem; margin-bottom: 16px; line-height: 1.85; }
 /* JS: reveal lines are hidden until scrubbed in */
 body.hw-js .hw-reveal-line { opacity: 0; }
 
 /* --------------------------------------------------------------------------
-   4. ACT II — THREE CARDS TURNED (pinned)
+   4. ACT II — THREE SEQUENTIAL SCROLL REVEALS
 -------------------------------------------------------------------------- */
 .hw-act--spread {
     position: relative;
@@ -413,7 +442,7 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 }
 .hw-act--spread::after {
     inset: 0;
-    opacity: 0.27;
+    opacity: 0.12;
     background-image: radial-gradient(circle, rgba(201, 160, 111, 0.75) 0 1px, transparent 1.5px);
     background-position: 0 0, 20px 20px;
     background-size: 96px 96px;
@@ -454,7 +483,6 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     flex-direction: column;
     isolation: isolate;
 }
-.hw-spread-item:nth-child(2) { transform: translateY(-22px); }
 .hw-card--spread {
     position: relative;
     width: 100%;
@@ -462,6 +490,7 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     border-radius: 20px;
     transition: transform 0.55s var(--ease);
 }
+.hw-card--spread { cursor: default; }
 .hw-card--spread .hw-face--back {
     background-color: var(--hw-card-back-magenta);
     background-image: url('../images/Back%20of%20the%20tarot%20card%20-%20Magenta%20%20%23902769.png');
@@ -480,10 +509,6 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     opacity: 0.7;
     transition: inset 0.55s var(--ease), opacity 0.55s var(--ease);
 }
-.hw-spread-item:hover .hw-card--spread {
-    transform: translateY(-8px);
-}
-.hw-spread-item:hover .hw-card--spread::before { inset: -14px; opacity: 1; }
 .hw-card--spread .hw-card-inner { width: 100%; height: 100%; }
 .hw-card--spread .hw-face {
     border-radius: 19px;
@@ -493,6 +518,7 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     background-color: #fff8ed;
     background-size: 100% 100%;
 }
+.hw-spread-item > .hw-flip-trigger { flex: 0 0 auto; }
 .hw-spread-copy {
     position: relative;
     display: flex;
@@ -650,8 +676,7 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 }
 .hw-card--mini p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.6; max-width: 24ch; }
 
-/* JS states: face-down, flip on hover/focus/click */
-body.hw-js .hw-card--mini .hw-card-inner { transform: rotateY(180deg); }
+/* Mini deck keeps its original back-to-front hover/focus/click reveal. */
 body.hw-js .hw-card--mini:hover .hw-card-inner,
 body.hw-js .hw-card--mini:focus-visible .hw-card-inner,
 body.hw-js .hw-card--mini.is-flipped .hw-card-inner { transform: rotateY(360deg); }
@@ -661,8 +686,16 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
 /* --------------------------------------------------------------------------
    6. QUOTE + CTA touch-ups
 -------------------------------------------------------------------------- */
-.hw-quote { background: linear-gradient(160deg, var(--ink) 0%, var(--plum) 100%); }
+.hw-quote {
+    background:
+        radial-gradient(65% 90% at 50% 0%, rgba(255, 238, 208, 0.72) 0%, transparent 70%),
+        linear-gradient(160deg, #fffaf3 0%, var(--peach) 100%);
+}
 .hw-quote .container { position: relative; z-index: 1; }
+.hw-quote .quote-mark { color: rgba(183, 131, 53, 0.48); }
+.hw-quote .big-quote { color: var(--ink); }
+.hw-quote .big-quote em { color: var(--gold); }
+.hw-quote .quote-attrib { color: var(--rosewood); }
 .hw-cta { border-top: 1px solid var(--line-soft); }
 /* CTA sits on cream — keep the emphasis word visible (base rule uses light --sand) */
 .hw-cta h2 em { color: var(--rosewood); }
@@ -690,8 +723,7 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
     .hw-spread-head { margin-bottom: 48px; }
     .hw-spread-rail { grid-template-columns: minmax(0, 320px); gap: 56px; padding-top: 12px; }
     .hw-spread-rail::before { display: none; }
-    .hw-spread-item:nth-child(2) { transform: none; }
-    .hw-spread-copy { min-height: 0; }
+    .hw-spread-copy { min-height: 338px; }
     .hw-prompts li { font-size: 1.05rem; }
 }
 @media (max-width: 620px) {
