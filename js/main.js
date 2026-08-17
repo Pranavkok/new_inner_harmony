@@ -103,7 +103,7 @@
             gsap.set(cursor, { x: cx - 3.5, y: cy - 3.5 });
             gsap.set(follower, { x: fx - 19, y: fy - 19 });
         });
-        const hoverables = 'a, button, .btn, .service-card, .pillar-card, .faq-q, .magnetic';
+        const hoverables = 'a, button, .btn, .service-card, .pillar-card, .faq-q, .as-card, .magnetic';
         document.querySelectorAll(hoverables).forEach(el => {
             el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
             el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });

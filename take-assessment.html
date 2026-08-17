@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="1024x1024" href="images/logo.png">
+    <title>Take an Online Assessment | INNER HARMONY</title>
+    <meta name="description" content="Complete your selected INNER HARMONY assessment in a calm and focused space.">
+    <meta name="assessments-sheet-csv" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://tally.so">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/assessments.css?v=3">
+</head>
+<body data-page="assessments" data-year="2026">
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+    <div id="site-nav"></div>
+
+    <header class="ta-hero">
+        <div class="hero-orbs" aria-hidden="true">
+            <div class="orb orb-1" data-speed="0.2"></div>
+            <div class="orb orb-3" data-speed="0.28"></div>
+        </div>
+        <div class="container">
+            <a class="as-back-link" href="assessments.html"><span aria-hidden="true">←</span> All assessments</a>
+            <span class="eyebrow">A Moment For You</span>
+            <h1 id="activeAssessmentTitle">Your reflection is about to begin.</h1>
+            <p id="activeAssessmentDescription">Take one slow breath and arrive fully. This time is yours.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="as-viewer as-viewer-page" id="assessmentViewer" aria-labelledby="activeAssessmentTitle" hidden>
+            <div class="container">
+                <div class="as-embed-shell">
+                    <div class="as-embed-topline" aria-hidden="true">
+                        <span></span><i></i><span></span>
+                    </div>
+                    <div class="as-embed-loading" id="assessmentLoading" role="status">Creating your reflection space…</div>
+                    <iframe
+                        id="assessmentFrame"
+                        title="Online assessment"
+                        loading="eager"
+                        width="100%"
+                        height="700"
+                        frameborder="0"
+                        marginheight="0"
+                        marginwidth="0"
+                        allow="clipboard-write"
+                    ></iframe>
+                </div>
+
+                <div class="as-viewer-foot">
+                    <p>Answer at your own pace. There are no right or wrong responses.</p>
+                    <a id="assessmentFallbackLink" href="assessments.html" target="_blank" rel="noopener">Open Full Screen <span>↗</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="as-unavailable" id="assessmentUnavailable" hidden>
+            <div class="container">
+                <div class="as-unavailable-card">
+                    <span class="eyebrow centered">Let Us Guide You Back</span>
+                    <h2>This reflection is not available right now.</h2>
+                    <p>Return to the assessment collection and choose the path that feels right for you.</p>
+                    <a href="assessments.html" class="btn btn-primary magnetic">Explore Assessments</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://tally.so/widgets/embed.js" defer></script>
+    <script src="js/components.js?v=7"></script>
+    <script src="js/main.js"></script>
+    <script src="js/assessments.js?v=3" defer></script>
+</body>
+</html>

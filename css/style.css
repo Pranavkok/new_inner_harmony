@@ -409,6 +409,14 @@ button { font-family: inherit; }
     margin-top: 1px;
 }
 .nav-dropdown a:hover { background: var(--cream-2); color: var(--rosewood); }
+.nav-dropdown .nav-dropdown-featured {
+    margin-bottom: 8px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    border-radius: 10px 10px 2px 2px;
+    color: var(--rosewood);
+    font-weight: 600;
+}
 
 .nav-cta {
     display: inline-block;

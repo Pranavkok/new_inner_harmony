@@ -59,6 +59,7 @@
                         <svg width="11" height="7" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l5 5 5-5"/></svg>
                     </a>
                     <div class="nav-dropdown">
+                        <a class="nav-dropdown-featured" href="assessments.html">Online Assessments<small>Discover insights through guided tests</small></a>
                         ${SERVICES.map(s => `<a href="${s.href}">${s.title}<small>${s.sub}</small></a>`).join('')}
                     </div>
                 </li>
@@ -78,6 +79,7 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="approach.html">Approach</a></li>
                 <li><a href="services.html">Blueprints</a></li>
+                <li><a href="assessments.html">Assessments</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="resources.html">Library</a></li>
                 <li><a href="contact.html">Book a Conversation</a></li>
@@ -111,6 +113,7 @@
                         <li><a href="about.html">About Dr. Gargee</a></li>
                         <li><a href="approach.html">Our Approach</a></li>
                         <li><a href="services.html">All Blueprints</a></li>
+                        <li><a href="assessments.html">Online Assessments</a></li>
                         <li><a href="resources.html">Resource Library</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -151,7 +154,7 @@
 
     // Highlight active nav item
     document.querySelectorAll('.nav-links [data-nav]').forEach(a => {
-        if (a.dataset.nav === page) a.classList.add('active');
+        if (a.dataset.nav === page || (page === 'assessments' && a.dataset.nav === 'services')) a.classList.add('active');
     });
 
     // Wire up any element with class .js-wa to the WhatsApp deep-link
