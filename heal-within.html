@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=4">
     <link rel="stylesheet" href="css/service-layouts.css?v=2">
-    <link rel="stylesheet" href="css/heal-within.css?v=34">
+    <link rel="stylesheet" href="css/heal-within.css?v=36">
 </head>
 <body data-page="services" data-blueprint="heal" data-year="2026">
 
@@ -87,7 +87,7 @@
     </section>
 
     <!-- ============================================================
-         ACT II — THREE SEQUENTIAL SCROLL REVEALS WITH MANUAL CONTROLS
+         ACT II — THREE ARTWORK-FIRST CARDS WITH PROMPTS ON THE REVERSE
     ============================================================ -->
     <section class="hw-act hw-act--spread">
         <div class="hw-sticky">
@@ -100,59 +100,56 @@
                 <article class="hw-spread-item">
                     <div class="hw-card hw-card--spread" id="hwFoolCard" data-index="0">
                         <div class="hw-card-inner">
-                            <div class="hw-face hw-face--back" aria-label="Magenta tarot card back"></div>
                             <div class="hw-face hw-face--front hw-face--art hw-art--fool" role="img" aria-label="The Fool tarot artwork"></div>
+                            <div class="hw-face hw-face--back hw-spread-prompts" aria-label="Reflection prompts for The Fool" aria-hidden="true">
+                                <span class="hw-spread-index">Reflection I</span>
+                                <h3>The Fool</h3>
+                                <span class="hw-prompts-label">Questions to explore</span>
+                                <ul class="hw-prompts">
+                                    <li>What would I love to try if I wasn't afraid?</li>
+                                    <li>What new beginning is calling me right now?</li>
+                                    <li>What dreams have I put on hold?</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <button class="hw-flip-trigger" type="button" data-flip-card="hwFoolCard" aria-controls="hwFoolCard" aria-pressed="false">FLIP</button>
-                    <div class="hw-spread-copy">
-                        <span class="hw-spread-index">Reflection I</span>
-                        <h3>The Fool</h3>
-                        <span class="hw-prompts-label">Questions to explore</span>
-                        <ul class="hw-prompts">
-                            <li>What would I love to try if I wasn't afraid?</li>
-                            <li>What new beginning is calling me right now?</li>
-                            <li>What dreams have I put on hold?</li>
-                        </ul>
-                    </div>
                 </article>
                 <article class="hw-spread-item">
                     <div class="hw-card hw-card--spread" id="hwMagicianCard" data-index="1">
                         <div class="hw-card-inner">
-                            <div class="hw-face hw-face--back" aria-label="Magenta tarot card back"></div>
                             <div class="hw-face hw-face--front hw-face--art hw-art--magician" role="img" aria-label="The Magician tarot artwork"></div>
+                            <div class="hw-face hw-face--back hw-spread-prompts" aria-label="Reflection prompts for The Magician" aria-hidden="true">
+                                <span class="hw-spread-index">Reflection II</span>
+                                <h3>The Magician</h3>
+                                <span class="hw-prompts-label">Questions to explore</span>
+                                <ul class="hw-prompts">
+                                    <li>Where do I seek validation instead of trusting myself?</li>
+                                    <li>What part of me believes I must prove my worth to be loved?</li>
+                                    <li>What skills do I already have that I can use today?</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <button class="hw-flip-trigger" type="button" data-flip-card="hwMagicianCard" aria-controls="hwMagicianCard" aria-pressed="false">FLIP</button>
-                    <div class="hw-spread-copy">
-                        <span class="hw-spread-index">Reflection II</span>
-                        <h3>The Magician</h3>
-                        <span class="hw-prompts-label">Questions to explore</span>
-                        <ul class="hw-prompts">
-                            <li>Where do I seek validation instead of trusting myself?</li>
-                            <li>What part of me believes I must prove my worth to be loved?</li>
-                            <li>What skills do I already have that I can use today?</li>
-                        </ul>
-                    </div>
                 </article>
                 <article class="hw-spread-item">
                     <div class="hw-card hw-card--spread" id="hwEmpressCard" data-index="2">
                         <div class="hw-card-inner">
-                            <div class="hw-face hw-face--back" aria-label="Magenta tarot card back"></div>
                             <div class="hw-face hw-face--front hw-face--art hw-art--empress" role="img" aria-label="The Empress tarot artwork"></div>
+                            <div class="hw-face hw-face--back hw-spread-prompts" aria-label="Reflection prompts for The Empress" aria-hidden="true">
+                                <span class="hw-spread-index">Reflection III</span>
+                                <h3>The Empress</h3>
+                                <span class="hw-prompts-label">Questions to explore</span>
+                                <ul class="hw-prompts">
+                                    <li>Do I feel worthy of receiving love and abundance?</li>
+                                    <li>What are my creative gifts?</li>
+                                    <li>Where in my life do I give too much?</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <button class="hw-flip-trigger" type="button" data-flip-card="hwEmpressCard" aria-controls="hwEmpressCard" aria-pressed="false">FLIP</button>
-                    <div class="hw-spread-copy">
-                        <span class="hw-spread-index">Reflection III</span>
-                        <h3>The Empress</h3>
-                        <span class="hw-prompts-label">Questions to explore</span>
-                        <ul class="hw-prompts">
-                            <li>Do I feel worthy of receiving love and abundance?</li>
-                            <li>What are my creative gifts?</li>
-                            <li>Where in my life do I give too much?</li>
-                        </ul>
-                    </div>
                 </article>
             </div>
         </div>
@@ -268,6 +265,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/components.js?v=6"></script>
     <script src="js/main.js"></script>
-    <script src="js/heal-within.js?v=8"></script>
+    <script src="js/heal-within.js?v=9"></script>
 </body>
 </html>

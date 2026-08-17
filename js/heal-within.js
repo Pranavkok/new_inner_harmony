@@ -1,7 +1,7 @@
 // ============================================================
 // INNER HARMONY — Heal Within · "The Reading"
-// Cards begin face-down, then reveal their artwork through the pinned scroll
-// story. FLIP controls remain available for direct interaction.
+// The three-card spread begins artwork-first and turns to its prompts. Other
+// cards retain their existing back-to-artwork story.
 // ============================================================
 
 (function () {
@@ -11,17 +11,24 @@
 
     const spreadCards = Array.from(document.querySelectorAll('.hw-card--spread'));
 
-    function syncButton(card, artworkVisible) {
+    function syncButton(card, flipped) {
         const button = document.querySelector(`[data-flip-card="${card.id}"]`);
         if (!button) return;
-        button.setAttribute('aria-pressed', String(artworkVisible));
-        button.textContent = artworkVisible ? 'SHOW BACK' : 'FLIP';
+        button.setAttribute('aria-pressed', String(flipped));
+        button.textContent = card.classList.contains('hw-card--spread') && flipped ? 'VIEW CARD' : flipped ? 'SHOW BACK' : 'FLIP';
     }
 
-    function setCardState(card, artworkVisible) {
-        card._flipped = artworkVisible;
-        card.classList.toggle('is-flipped', artworkVisible);
-        syncButton(card, artworkVisible);
+    function setCardState(card, flipped) {
+        card._flipped = flipped;
+        card.classList.toggle('is-flipped', flipped);
+        syncButton(card, flipped);
+
+        if (card.classList.contains('hw-card--spread')) {
+            const artwork = card.querySelector('.hw-face--art');
+            const prompts = card.querySelector('.hw-spread-prompts');
+            if (artwork) artwork.setAttribute('aria-hidden', String(flipped));
+            if (prompts) prompts.setAttribute('aria-hidden', String(!flipped));
+        }
     }
 
     // Explicit controls also work when motion libraries are unavailable.
@@ -31,12 +38,12 @@
         setCardState(card, false);
 
         button.addEventListener('click', () => {
-            const showArtwork = !card._flipped;
+            const flipped = !card._flipped;
             const inner = card.querySelector('.hw-card-inner');
-            setCardState(card, showArtwork);
-            if (hasGSAP && !reduced) {
+            setCardState(card, flipped);
+            if (hasGSAP && !reduced && !card.classList.contains('hw-card--spread')) {
                 gsap.to(inner, {
-                    rotationY: showArtwork ? 360 : 180,
+                    rotationY: flipped ? 360 : 180,
                     duration: 0.9,
                     ease: 'power2.inOut',
                 });
@@ -46,12 +53,13 @@
 
     // Reduced-motion visitors get readable artwork without forced movement.
     if (reduced) {
-        document.querySelectorAll('.hw-card--hero, .hw-card--mirror, .hw-card--spread, .hw-card--mini')
+        document.querySelectorAll('.hw-card--hero, .hw-card--mirror, .hw-card--mini')
             .forEach(card => setCardState(card, true));
+        spreadCards.forEach(card => setCardState(card, false));
         return;
     }
 
-    // Without GSAP, retain the back-first state and reveal the spread manually.
+    // Without GSAP, keep the CSS-defined initial faces and manual controls.
     if (!hasGSAP) return;
 
     gsap.registerPlugin(ScrollTrigger);
@@ -136,47 +144,24 @@
         });
     }
 
-    // ---------- spread: pin and reveal Fool, Magician, Empress in order ----------
+    // ---------- spread: artwork-first entrance; prompts are manual ----------
     const spread = document.querySelector('.hw-act--spread');
     if (spread && spreadCards.length) {
         const rail = spread.querySelector('.hw-spread-rail');
-        const inners = spreadCards.map(card => card.querySelector('.hw-card-inner'));
-        inners.forEach(inner => gsap.set(inner, { rotationY: 180, transformPerspective: 1400 }));
+        const items = spread.querySelectorAll('.hw-spread-item');
         spreadCards.forEach(card => setCardState(card, false));
-
-        const addTurns = timeline => {
-            inners.forEach((inner, index) => {
-                timeline.to(inner, {
-                    rotationY: 360,
-                    duration: 1,
-                    ease: 'none',
-                    onComplete: () => setCardState(spreadCards[index], true),
-                    onReverseComplete: () => setCardState(spreadCards[index], false),
-                });
-            });
-        };
-
-        mm.add('(min-width: 901px)', () => {
-            const turnSpread = gsap.timeline({
-                scrollTrigger: {
-                    trigger: rail,
-                    start: 'top 30%',
-                    end: () => `+=${Math.max(window.innerHeight * 2.4, 1800)}`,
-                    pin: true,
-                    pinSpacing: true,
-                    scrub: 0.65,
-                    anticipatePin: 1,
-                    invalidateOnRefresh: true,
-                },
-            });
-            addTurns(turnSpread);
-        });
-
-        mm.add('(max-width: 900px)', () => {
-            const turnSpread = gsap.timeline({
-                scrollTrigger: { trigger: rail, start: 'top 76%', once: true },
-            });
-            addTurns(turnSpread);
+        gsap.set(items, { opacity: 0, y: 34 });
+        ScrollTrigger.create({
+            trigger: rail,
+            start: 'top 82%',
+            once: true,
+            onEnter: () => gsap.to(items, {
+                opacity: 1,
+                y: 0,
+                duration: 0.9,
+                stagger: 0.13,
+                ease: 'power3.out',
+            }),
         });
     }
 

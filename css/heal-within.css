@@ -7,8 +7,8 @@
 
 /* --------------------------------------------------------------------------
    0. TAROT CARD — shared flip mechanic
-   Cards begin on their magenta backs and reveal their artwork through the
-   scroll story or explicit controls. Content boxes below remain stationary.
+   Most cards retain the back-to-artwork story. The three-card spread starts
+   on its artwork and turns to reflection prompts on the reverse face.
 -------------------------------------------------------------------------- */
 body[data-blueprint="heal"] {
     --accent: #902769;
@@ -175,13 +175,13 @@ body[data-blueprint="heal"] {
 /* JS-enabled cards begin face-down and turn forward to their artwork. */
 body.hw-js .hw-card--hero .hw-card-inner,
 body.hw-js .hw-card--mirror .hw-card-inner,
-body.hw-js .hw-card--spread .hw-card-inner,
 body.hw-js .hw-card--mini .hw-card-inner { transform: rotateY(180deg); }
 body.hw-js .hw-card.is-flipped .hw-card-inner { transform: rotateY(360deg); }
+body.hw-js .hw-card--spread .hw-card-inner { transform: rotateY(0deg); }
+body.hw-js .hw-card--spread.is-flipped .hw-card-inner { transform: rotateY(180deg); }
 
-/* Scrub-driven cards are controlled by GSAP, without a competing transition. */
-body.hw-js .hw-card--mirror .hw-card-inner,
-body.hw-js .hw-card--spread .hw-card-inner { transition: none; }
+/* The scrub-driven mirror is controlled by GSAP without a competing transition. */
+body.hw-js .hw-card--mirror .hw-card-inner { transition: none; }
 
 .hw-flip-trigger {
     display: inline-flex;
@@ -408,7 +408,7 @@ body[data-blueprint="heal"] .navbar:not(.scrolled) .hamburger span { background:
 body.hw-js .hw-reveal-line { opacity: 0; }
 
 /* --------------------------------------------------------------------------
-   4. ACT II — THREE SEQUENTIAL SCROLL REVEALS
+   4. ACT II — THREE ARTWORK-FIRST REFLECTION CARDS
 -------------------------------------------------------------------------- */
 .hw-act--spread {
     position: relative;
@@ -491,14 +491,6 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     transition: transform 0.55s var(--ease);
 }
 .hw-card--spread { cursor: default; }
-.hw-card--spread .hw-face--back {
-    background-color: var(--hw-card-back-magenta);
-    background-image: url('../images/Back%20of%20the%20tarot%20card%20-%20Magenta%20%20%23902769.png');
-    background-position: center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-blend-mode: normal;
-}
 .hw-card--spread::before {
     content: '';
     position: absolute;
@@ -519,51 +511,47 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     background-size: 100% 100%;
 }
 .hw-spread-item > .hw-flip-trigger { flex: 0 0 auto; }
-.hw-spread-copy {
-    position: relative;
+.hw-spread-prompts {
+    position: absolute;
+    inset: 0;
     display: flex;
-    min-height: 338px;
-    flex: 1;
     flex-direction: column;
-    margin-top: 30px;
-    padding: 35px 27px 28px;
-    overflow: visible;
+    align-items: stretch;
+    justify-content: center;
+    padding: 29px 24px 24px;
+    overflow: hidden;
     border: 1px solid rgba(201, 160, 111, 0.36);
-    border-radius: 4px 4px 22px 22px;
+    border-radius: 19px;
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 248, 238, 0.82)),
         var(--cream);
     box-shadow:
-        0 24px 55px rgba(79, 47, 57, 0.11),
+        0 0 0 1px rgba(201, 160, 111, 0.32),
         inset 0 0 0 7px rgba(255, 255, 255, 0.28);
 }
-.hw-spread-copy::before {
+.hw-spread-prompts::before {
     content: '\2726';
     position: absolute;
-    top: -22px;
+    top: 16px;
     left: 50%;
     display: grid;
-    width: 44px;
-    height: 44px;
+    width: 24px;
+    height: 24px;
     place-items: center;
     transform: translateX(-50%);
-    border: 1px solid rgba(201, 160, 111, 0.62);
-    border-radius: 50%;
     color: var(--gold);
-    background: var(--cream);
-    box-shadow: 0 9px 22px rgba(79, 47, 57, 0.12), inset 0 0 0 5px rgba(201, 160, 111, 0.08);
-    font-size: 0.78rem;
+    font-size: 0.68rem;
 }
-.hw-spread-copy::after {
+.hw-spread-prompts::after {
     content: '';
     position: absolute;
     inset: 8px;
     z-index: 0;
     pointer-events: none;
     border: 1px solid rgba(201, 160, 111, 0.18);
-    border-radius: 2px 2px 15px 15px;
+    border-radius: 12px;
 }
-.hw-spread-copy > * {
+.hw-spread-prompts > * {
     position: relative;
     z-index: 1;
 }
@@ -577,12 +565,12 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     letter-spacing: 0.2em;
     text-transform: uppercase;
 }
-.hw-spread-copy h3 {
-    margin: 7px 0 22px;
+.hw-spread-prompts h3 {
+    margin: 6px 0 17px;
     text-align: center;
     color: var(--ink);
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: 1.72rem;
     font-weight: 600;
     line-height: 1.1;
 }
@@ -590,7 +578,7 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 7px;
     color: var(--muted);
     white-space: nowrap;
 }
@@ -604,27 +592,25 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 .hw-prompts-label::after { transform: scaleX(-1); }
 .hw-prompts {
     display: flex;
-    flex: 1;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 0;
+    gap: 2px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 .hw-prompts li {
     position: relative;
-    padding: 11px 0 11px 22px;
+    padding: 9px 0 9px 18px;
     color: var(--text-soft);
     font-family: var(--font-display);
-    font-size: 1.06rem;
+    font-size: 0.94rem;
     font-style: italic;
     line-height: 1.46;
 }
 .hw-prompts li::before {
     content: '\2726';
     position: absolute;
-    top: 1.1rem;
+    top: 1rem;
     left: 2px;
     color: var(--gold);
     font-size: 0.54rem;
@@ -706,8 +692,8 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
 @media (max-width: 1024px) {
     .hw-mirror-grid { gap: 48px; }
     .hw-spread-rail { gap: clamp(22px, 3vw, 34px); }
-    .hw-spread-copy { min-height: 350px; padding: 35px 20px 25px; }
-    .hw-prompts li { font-size: 1rem; }
+    .hw-spread-prompts { padding: 28px 18px 20px; }
+    .hw-prompts li { font-size: 0.9rem; }
 }
 @media (max-width: 900px) {
     .hw-hero { padding: 150px 0 76px; }
@@ -723,8 +709,8 @@ body.hw-js .hw-card--mini:hover { transform: translateY(-8px); }
     .hw-spread-head { margin-bottom: 48px; }
     .hw-spread-rail { grid-template-columns: minmax(0, 320px); gap: 56px; padding-top: 12px; }
     .hw-spread-rail::before { display: none; }
-    .hw-spread-copy { min-height: 338px; }
-    .hw-prompts li { font-size: 1.05rem; }
+    .hw-spread-prompts { padding: 31px 24px 24px; }
+    .hw-prompts li { font-size: 1rem; }
 }
 @media (max-width: 620px) {
     .hw-hero { padding: 132px 0 64px; }
