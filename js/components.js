@@ -35,7 +35,7 @@
     ];
 
     const page = document.body.dataset.page || '';
-    const headerLogo = 'images/logo.png';
+    const brandLogo = 'images/LOGO_FOR_FAVICON-removebg-preview.png';
     const footerLogo = 'images/logo-golden.png';
 
     // ---------- Logo mark ----------
@@ -47,7 +47,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo" aria-label="INNER HARMONY home">
-                ${logoMark(headerLogo, 64)}
+                ${logoMark(brandLogo, 64)}
                 <span class="logo-text">INNER HARMONY<small>Heal Within · Shine Beyond</small></span>
             </a>
             <ul class="nav-links">
