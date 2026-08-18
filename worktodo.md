@@ -11,6 +11,11 @@ Source: `Website feedback - 08-13-2026.docx`
   - Roots representing stress, unresolved emotions, old beliefs, and hidden hurts.
   - A butterfly breaking through the boundary and flying away to represent transformation and freedom.
 - [x] Use the client's actual logo tree in this section.
+- [x] Remove the arrows and place each label directly beside its related branch or root.
+- [x] Add **Conditioning** as another root label.
+- [x] Place the complete butterfly message beside the butterfly and let it cross beyond the card boundary, with **BREAKING THROUGH** and **Transformation & freedom** in clearly different fonts.
+- [x] Remove the outer rounded container around the diagram while preserving the tree's circular boundary and all diagram content.
+- [x] Keep the butterfly fully visible and visually continue its escape with an unboxed transformation message and a subtle outward flight trail.
 - [ ] Replace the current logo with the high-resolution logo when the client supplies it.
 - [x] Remove/change the blue colours used on this page.
 - [x] Include the following credential exactly:

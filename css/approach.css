@@ -93,7 +93,7 @@ body.ap-js .ap-reveal-line { opacity: 0; }
         radial-gradient(70% 90% at 12% 20%, rgba(252, 219, 216, 0.55) 0%, transparent 60%),
         var(--sand);
 }
-.ap-roots-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 60px; align-items: center; width: 100%; }
+.ap-roots-grid { display: grid; grid-template-columns: 0.84fr 1.16fr; gap: 44px; align-items: center; width: 100%; }
 .ap-roots-copy .eyebrow { color: var(--gold); }
 .ap-roots-copy h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; line-height: 1.16; color: var(--ink); margin: 12px 0 22px; }
 .ap-roots-copy h2 em { font-style: italic; color: var(--rosewood); }
@@ -105,41 +105,30 @@ body.ap-js .ap-reveal-line { opacity: 0; }
 
 .ap-roots-stage { position: relative; display: flex; justify-content: center; min-width: 0; }
 .ap-tree-visual {
-    width: min(100%, 580px);
+    position: relative;
+    width: min(calc(100% - 44px), 700px);
     min-width: 0;
-    margin: 0;
-    padding: 24px 24px 20px;
-    border: 1px solid rgba(201, 160, 111, 0.42);
-    border-radius: 32px;
-    background: rgba(255, 250, 243, 0.52);
-    box-shadow: 0 28px 70px rgba(79, 47, 57, 0.12);
+    margin: 0 44px 0 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
 }
-.ap-tree-art { position: relative; width: min(100%, 500px); margin: 0 auto -8px; }
+.ap-tree-art { position: relative; width: min(80%, 500px); margin: 0 auto -8px 0; }
 .ap-tree-logo {
     display: block; width: 100%; height: auto;
     filter: drop-shadow(0 16px 22px rgba(79, 47, 57, 0.16));
 }
-.ap-tree-connectors {
-    position: absolute; z-index: 1; inset: 0;
-    width: 100%; height: 100%; overflow: visible;
-    pointer-events: none;
-}
-.ap-tree-arrow {
-    fill: none; stroke-width: 2.3; stroke-linecap: round;
-    filter: drop-shadow(0 0 3px rgba(255, 250, 243, 0.95));
-}
-.ap-tree-arrow--branch { stroke: #9b704f; }
-.ap-tree-arrow--root { stroke: #74434f; }
-#ap-branch-arrowhead path { fill: #9b704f; }
-#ap-root-arrowhead path { fill: #74434f; }
 .ap-tree-label {
     position: absolute; z-index: 2;
     display: inline-flex; align-items: center; justify-content: center;
-    width: max-content; max-width: 38%; min-height: 32px; padding: 6px 11px;
+    width: max-content; max-width: 42%; min-height: 30px; padding: 5px 10px;
     border: 1px solid; border-radius: 999px;
     font-size: 0.62rem; font-weight: 600; line-height: 1.15; letter-spacing: 0.035em;
     text-align: center; white-space: nowrap;
-    box-shadow: 0 5px 14px rgba(79, 47, 57, 0.1);
+    box-shadow: 0 4px 12px rgba(79, 47, 57, 0.08);
 }
 .ap-tree-label--branch {
     border-color: rgba(155, 112, 79, 0.55);
@@ -151,25 +140,64 @@ body.ap-js .ap-reveal-line { opacity: 0; }
     background: rgba(246, 232, 221, 0.95);
     color: var(--rosewood);
 }
-.ap-tree-label--health { top: 12%; left: 1%; }
-.ap-tree-label--finances { top: 7%; left: 62%; }
-.ap-tree-label--career { top: 38%; left: 0; }
-.ap-tree-label--relationships { top: 35%; right: 0; }
-.ap-tree-label--stress { top: 68%; left: 1%; }
+.ap-tree-label--health { top: 23%; left: 8%; }
+.ap-tree-label--finances { top: 16%; left: 58%; }
+.ap-tree-label--career { top: 43%; left: 8%; }
+.ap-tree-label--relationships { top: 40%; right: 11%; }
+.ap-tree-label--stress { top: 69%; left: 7%; }
 .ap-tree-label--emotions { top: 72%; right: 0; }
-.ap-tree-label--beliefs { top: 87%; left: 10%; }
-.ap-tree-label--hurts { top: 88%; right: 7%; }
+.ap-tree-label--beliefs { top: 86%; left: 14%; }
+.ap-tree-label--hurts { top: 87%; right: 7%; }
+.ap-tree-label--conditioning { top: 79%; left: 39%; }
 .ap-tree-transformation {
-    position: relative; z-index: 2;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    width: fit-content; max-width: calc(100% - 20px); margin: -10px auto 14px; padding: 9px 14px;
-    border-left: 1px solid var(--gold);
-    background: linear-gradient(90deg, rgba(255, 250, 243, 0.94), rgba(255, 250, 243, 0.58));
+    position: absolute; z-index: 2;
+    top: 16%; left: 82%;
+    width: 40%; margin: 0; padding: 7px 0 8px;
+    border: 0;
+    background: transparent;
     color: var(--rosewood);
 }
-.ap-tree-transformation span { font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-.ap-tree-transformation strong { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; line-height: 1.08; white-space: nowrap; }
-.ap-tree-caption { max-width: 450px; margin: 14px auto 0; font-size: 0.76rem; line-height: 1.55; color: var(--text-soft); text-align: center; }
+.ap-tree-transformation::before {
+    content: '';
+    position: absolute;
+    top: 18px; left: -42px;
+    width: 34px; height: 15px;
+    border-top: 1px solid rgba(201, 160, 111, 0.9);
+    border-radius: 50%;
+    transform: rotate(-7deg);
+    transform-origin: right center;
+}
+.ap-tree-transformation::after {
+    content: '';
+    position: absolute;
+    top: 13px; left: -29px;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(201, 160, 111, 0.9);
+    box-shadow:
+        -9px 4px 0 rgba(201, 160, 111, 0.62),
+        -18px 9px 0 rgba(201, 160, 111, 0.32);
+}
+.ap-tree-breakthrough {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.58rem; font-weight: 600; line-height: 1.2;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #9b704f;
+}
+.ap-tree-transformation strong {
+    display: block;
+    margin-top: 5px;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.55vw, 1.35rem); font-weight: 600; line-height: 1.02;
+    color: var(--rosewood);
+}
+.ap-tree-transformation p {
+    margin-top: 10px;
+    font-family: var(--font-body);
+    font-size: 0.7rem; line-height: 1.55;
+    color: var(--text-soft);
+}
 
 /* --------------------------------------------------------------------------
    3. ACT II — THE THREE MOVEMENTS (pinned, warm dark): the path is walked
@@ -321,23 +349,35 @@ body.ap-widgets .ap-step.is-active {
 /* --------------------------------------------------------------------------
    6. RESPONSIVE
 -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
+@media (max-width: 1050px) {
     .ap-steps { grid-template-columns: repeat(2, 1fr); }
     .ap-jw { display: none !important; }
     body.ap-widgets .ap-step { opacity: 1; transform: none; cursor: default; }
-    .ap-roots-grid, .ap-blend-grid { gap: 44px; }
+    .ap-roots-grid { grid-template-columns: 1fr; gap: 40px; }
+    .ap-roots-stage { order: -1; }
+    .ap-tree-visual { width: min(100%, 700px); max-width: 700px; margin-right: 0; }
+    .ap-blend-grid { gap: 44px; }
+}
+@media (min-width: 901px) and (max-width: 1280px) {
+    .ap-tree-transformation { left: 80%; width: 31%; }
 }
 @media (max-width: 900px) {
     .ap-hero { min-height: auto; padding: 150px 0 56px; }
-    .ap-roots-grid { grid-template-columns: 1fr; gap: 40px; }
-    .ap-roots-stage { order: -1; }
-    .ap-tree-visual { max-width: 580px; }
     .ap-blend-grid { grid-template-columns: 1fr; gap: 36px; }
     .ap-weave { margin-inline: auto; display: block; }
     .ap-moves { grid-template-columns: 1fr; gap: 14px; max-width: 440px; margin-inline: auto; }
     .ap-move { text-align: left; padding: 16px 18px; }
     .ap-path-svg { display: none; }
     .ap-act--roots, .ap-act--path { min-height: auto; padding: 84px 0; }
+    .ap-tree-art { width: min(100%, 500px); margin-inline: auto; }
+    .ap-tree-transformation {
+        position: relative;
+        inset: auto;
+        width: auto;
+        margin: 4px 8px 2px;
+        padding: 10px 12px;
+    }
+    .ap-tree-transformation::before, .ap-tree-transformation::after { display: none; }
 }
 @media (max-width: 600px) {
     .ap-hero { padding: 132px 0 48px; }
@@ -346,16 +386,16 @@ body.ap-widgets .ap-step.is-active {
     .ap-act--roots, .ap-act--path { padding: 72px 0; }
     .ap-steps { grid-template-columns: 1fr; }
     .ap-step { padding: 30px 24px 26px; }
-    .ap-tree-visual { padding: 18px 14px 16px; border-radius: 24px; }
+    .ap-tree-visual { padding: 0; }
     .ap-tree-art { margin: 4px auto 0; }
     .ap-tree-label { min-height: 28px; padding: 5px 8px; font-size: 0.54rem; letter-spacing: 0; }
-    .ap-tree-transformation { flex-direction: column; margin-top: -6px; padding: 7px 10px; gap: 2px; text-align: center; }
-    .ap-tree-transformation span, .ap-tree-transformation strong { white-space: normal; }
-    .ap-tree-transformation strong { font-size: 0.82rem; }
+    .ap-tree-transformation { margin-top: 0; padding: 9px 10px; }
+    .ap-tree-transformation strong { font-size: 1.05rem; }
+    .ap-tree-transformation p { margin-top: 7px; font-size: 0.68rem; }
 }
 @media (max-width: 380px) {
     .ap-tree-label { min-height: 25px; padding: 4px 6px; font-size: 0.5rem; }
-    .ap-tree-transformation { margin-inline: 10px; }
+    .ap-tree-transformation { margin-inline: 4px; }
     .ap-move { padding: 14px 16px; }
 }
 
@@ -366,5 +406,5 @@ body.ap-widgets .ap-step.is-active {
     body.ap-js .ap-reveal-line { opacity: 1; }
     .ap-hero-aura, .ap-scroll-cue::after { animation: none; }
     .ap-jw-progress, .ap-jw-walker, .ap-step { transition: none; }
-    .ap-tree-logo, .ap-tree-connectors, .ap-tree-label, .ap-tree-transformation, .ap-tree-caption { opacity: 1 !important; transform: none !important; }
+    .ap-tree-logo, .ap-tree-label, .ap-tree-transformation { opacity: 1 !important; transform: none !important; }
 }

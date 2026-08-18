@@ -72,20 +72,14 @@
     const roots = document.querySelector('.ap-act--roots');
     if (roots) {
         const treeLogo = roots.querySelector('.ap-tree-logo');
-        const treeConnectors = roots.querySelector('.ap-tree-connectors');
-        const treeArrows = gsap.utils.toArray('.ap-tree-arrow', roots);
         const branchLabels = gsap.utils.toArray('.ap-tree-label--branch', roots);
         const rootLabels = gsap.utils.toArray('.ap-tree-label--root', roots);
         const transformation = roots.querySelector('.ap-tree-transformation');
-        const caption = roots.querySelector('.ap-tree-caption');
         const lines = gsap.utils.toArray('.ap-reveal-line', roots);
 
         if (treeLogo) gsap.set(treeLogo, { opacity: 0, scale: 0.9, transformOrigin: '50% 58%' });
-        treeArrows.forEach(drawIn);
-        if (treeConnectors) gsap.set(treeConnectors, { opacity: 0 });
         gsap.set([branchLabels, rootLabels], { opacity: 0, scale: 0.88, transformOrigin: 'center' });
-        if (transformation) gsap.set(transformation, { opacity: 0, x: -16 });
-        if (caption) gsap.set(caption, { opacity: 0, y: 8 });
+        if (transformation) gsap.set(transformation, { opacity: 0, x: 16 });
         gsap.set(lines, { opacity: 0, y: 24 });
 
         const tl = gsap.timeline({
@@ -95,15 +89,12 @@
             },
         });
         tl.to(treeLogo, { opacity: 1, scale: 1, duration: 0.9, ease: 'power2.out' }, 0)
-          .to(treeConnectors, { opacity: 1, duration: 0.2 }, 0.3)
-          .to(treeArrows, { strokeDashoffset: 0, stagger: 0.07, duration: 0.55, ease: 'power1.inOut' }, 0.35)
-          .to(branchLabels, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.45, ease: 'back.out(1.7)' }, 0.45)
+          .to(branchLabels, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.45, ease: 'back.out(1.7)' }, 0.35)
           .to(lines[0] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.45)
-          .to(rootLabels, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.45, ease: 'back.out(1.7)' }, 1.15)
+          .to(rootLabels, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.45, ease: 'back.out(1.7)' }, 1.1)
           .to(lines[1] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 1.25)
-          .to(transformation, { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out' }, 1.8)
-          .to(caption, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 1.95)
-          .to(lines[2] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 2.05);
+          .to(transformation, { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out' }, 1.75)
+          .to(lines[2] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 2);
     }
 
     // ---------- ACT II — THE PATH (pinned, dark): a light walks the road ----------
