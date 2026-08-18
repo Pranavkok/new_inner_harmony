@@ -68,23 +68,24 @@
         });
     }
 
-    // ---------- ACT I — THE ROOTS (pinned): symptoms above, roots below ----------
+    // ---------- ACT I — THE ROOTS (pinned): logo tree reveals the whole story ----------
     const roots = document.querySelector('.ap-act--roots');
     if (roots) {
-        const canopies = roots.querySelectorAll('.ap-tree-canopy');
-        const trunk = roots.querySelector('.ap-tree-trunk');
-        const soil = roots.querySelector('.ap-soil');
-        const rootPaths = gsap.utils.toArray('.ap-root', roots);
-        const chipsTop = gsap.utils.toArray('.ap-chip--surface', roots);
-        const chipsRoot = gsap.utils.toArray('.ap-chip--root', roots);
+        const treeLogo = roots.querySelector('.ap-tree-logo');
+        const treeConnectors = roots.querySelector('.ap-tree-connectors');
+        const treeArrows = gsap.utils.toArray('.ap-tree-arrow', roots);
+        const branchLabels = gsap.utils.toArray('.ap-tree-label--branch', roots);
+        const rootLabels = gsap.utils.toArray('.ap-tree-label--root', roots);
+        const transformation = roots.querySelector('.ap-tree-transformation');
+        const caption = roots.querySelector('.ap-tree-caption');
         const lines = gsap.utils.toArray('.ap-reveal-line', roots);
 
-        if (trunk) drawIn(trunk);
-        rootPaths.forEach(drawIn);
-        gsap.set(canopies, { opacity: 0, scale: 0.85, transformOrigin: '240px 150px' });
-        gsap.set(chipsTop, { opacity: 0, y: -10 });
-        gsap.set(chipsRoot, { opacity: 0, y: 10 });
-        if (soil) gsap.set(soil, { opacity: 0 });
+        if (treeLogo) gsap.set(treeLogo, { opacity: 0, scale: 0.9, transformOrigin: '50% 58%' });
+        treeArrows.forEach(drawIn);
+        if (treeConnectors) gsap.set(treeConnectors, { opacity: 0 });
+        gsap.set([branchLabels, rootLabels], { opacity: 0, scale: 0.88, transformOrigin: 'center' });
+        if (transformation) gsap.set(transformation, { opacity: 0, x: -16 });
+        if (caption) gsap.set(caption, { opacity: 0, y: 8 });
         gsap.set(lines, { opacity: 0, y: 24 });
 
         const tl = gsap.timeline({
@@ -93,18 +94,16 @@
                 pin: true, pinSpacing: true, scrub: 0.8, anticipatePin: 1, refreshPriority: 10,
             },
         });
-        // the visible world: tree + symptom chips
-        tl.to(trunk, { strokeDashoffset: 0, duration: 0.7, ease: 'none' }, 0)
-          .to(canopies, { opacity: 1, scale: 1, stagger: 0.15, duration: 0.6, ease: 'power2.out' }, 0.3)
-          .to(chipsTop, { opacity: 1, y: 0, stagger: 0.18, duration: 0.5, ease: 'power2.out' }, 0.6)
-          .to(lines[0] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.5)
-          // the ground appears…
-          .to(soil, { opacity: 1, duration: 0.5 }, 1.3)
-          .to(lines[1] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 1.4)
-          // …and the roots reveal themselves
-          .to(rootPaths, { strokeDashoffset: 0, stagger: 0.2, duration: 1.1, ease: 'power1.inOut' }, 1.6)
-          .to(chipsRoot, { opacity: 1, y: 0, stagger: 0.2, duration: 0.55, ease: 'power2.out' }, 2.1)
-          .to(lines[2] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 2.3);
+        tl.to(treeLogo, { opacity: 1, scale: 1, duration: 0.9, ease: 'power2.out' }, 0)
+          .to(treeConnectors, { opacity: 1, duration: 0.2 }, 0.3)
+          .to(treeArrows, { strokeDashoffset: 0, stagger: 0.07, duration: 0.55, ease: 'power1.inOut' }, 0.35)
+          .to(branchLabels, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.45, ease: 'back.out(1.7)' }, 0.45)
+          .to(lines[0] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.45)
+          .to(rootLabels, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.45, ease: 'back.out(1.7)' }, 1.15)
+          .to(lines[1] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 1.25)
+          .to(transformation, { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out' }, 1.8)
+          .to(caption, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 1.95)
+          .to(lines[2] || {}, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 2.05);
     }
 
     // ---------- ACT II — THE PATH (pinned, dark): a light walks the road ----------

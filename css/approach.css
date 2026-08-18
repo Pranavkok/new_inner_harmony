@@ -11,6 +11,7 @@
 body[data-blueprint="approach"] {
     --accent: #5b3a44;            /* rosewood, was violet #5b4560 */
     --accent-soft: #b0897f;
+    --orb-color: rgba(176, 137, 127, 0.34);
     --visual-glow: rgba(255, 238, 208, 0.5);
 }
 
@@ -102,21 +103,73 @@ body.ap-js .ap-reveal-line { opacity: 0; }
     font-size: 1.2rem; color: var(--rosewood) !important;
 }
 
-.ap-roots-stage { position: relative; display: flex; justify-content: center; }
-.ap-tree-svg { width: 100%; max-width: 480px; overflow: visible; }
-.ap-tree-canopy { fill: rgba(252, 219, 216, 0.55); stroke: var(--rosewood); stroke-width: 1.4; }
-.ap-tree-canopy--mid { fill: rgba(255, 238, 208, 0.75); }
-.ap-tree-trunk { fill: none; stroke: var(--rosewood); stroke-width: 2.4; stroke-linecap: round; }
-.ap-soil { fill: none; stroke: var(--gold); stroke-width: 1.8; stroke-linecap: round; stroke-dasharray: 2 8; }
-.ap-root { fill: none; stroke: #8b5a62; stroke-width: 2; stroke-linecap: round; }
-.ap-chip {
-    font-family: var(--font-body, 'Inter', sans-serif);
-    font-size: 11px; letter-spacing: 0.08em;
-    fill: var(--ink);
+.ap-roots-stage { position: relative; display: flex; justify-content: center; min-width: 0; }
+.ap-tree-visual {
+    width: min(100%, 580px);
+    min-width: 0;
+    margin: 0;
+    padding: 24px 24px 20px;
+    border: 1px solid rgba(201, 160, 111, 0.42);
+    border-radius: 32px;
+    background: rgba(255, 250, 243, 0.52);
+    box-shadow: 0 28px 70px rgba(79, 47, 57, 0.12);
 }
-.ap-chip-bg { fill: rgba(255, 250, 243, 0.9); stroke: rgba(201, 160, 111, 0.5); stroke-width: 1; rx: 13px; }
-.ap-chip--root .ap-chip-bg { fill: rgba(91, 58, 68, 0.08); stroke: rgba(139, 90, 98, 0.45); }
-.ap-chip--root text { fill: var(--rosewood); font-style: italic; }
+.ap-tree-art { position: relative; width: min(100%, 500px); margin: 0 auto -8px; }
+.ap-tree-logo {
+    display: block; width: 100%; height: auto;
+    filter: drop-shadow(0 16px 22px rgba(79, 47, 57, 0.16));
+}
+.ap-tree-connectors {
+    position: absolute; z-index: 1; inset: 0;
+    width: 100%; height: 100%; overflow: visible;
+    pointer-events: none;
+}
+.ap-tree-arrow {
+    fill: none; stroke-width: 2.3; stroke-linecap: round;
+    filter: drop-shadow(0 0 3px rgba(255, 250, 243, 0.95));
+}
+.ap-tree-arrow--branch { stroke: #9b704f; }
+.ap-tree-arrow--root { stroke: #74434f; }
+#ap-branch-arrowhead path { fill: #9b704f; }
+#ap-root-arrowhead path { fill: #74434f; }
+.ap-tree-label {
+    position: absolute; z-index: 2;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: max-content; max-width: 38%; min-height: 32px; padding: 6px 11px;
+    border: 1px solid; border-radius: 999px;
+    font-size: 0.62rem; font-weight: 600; line-height: 1.15; letter-spacing: 0.035em;
+    text-align: center; white-space: nowrap;
+    box-shadow: 0 5px 14px rgba(79, 47, 57, 0.1);
+}
+.ap-tree-label--branch {
+    border-color: rgba(155, 112, 79, 0.55);
+    background: rgba(255, 250, 243, 0.94);
+    color: var(--ink);
+}
+.ap-tree-label--root {
+    border-color: rgba(116, 67, 79, 0.48);
+    background: rgba(246, 232, 221, 0.95);
+    color: var(--rosewood);
+}
+.ap-tree-label--health { top: 12%; left: 1%; }
+.ap-tree-label--finances { top: 7%; left: 62%; }
+.ap-tree-label--career { top: 38%; left: 0; }
+.ap-tree-label--relationships { top: 35%; right: 0; }
+.ap-tree-label--stress { top: 68%; left: 1%; }
+.ap-tree-label--emotions { top: 72%; right: 0; }
+.ap-tree-label--beliefs { top: 87%; left: 10%; }
+.ap-tree-label--hurts { top: 88%; right: 7%; }
+.ap-tree-transformation {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: fit-content; max-width: calc(100% - 20px); margin: -10px auto 14px; padding: 9px 14px;
+    border-left: 1px solid var(--gold);
+    background: linear-gradient(90deg, rgba(255, 250, 243, 0.94), rgba(255, 250, 243, 0.58));
+    color: var(--rosewood);
+}
+.ap-tree-transformation span { font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.ap-tree-transformation strong { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; line-height: 1.08; white-space: nowrap; }
+.ap-tree-caption { max-width: 450px; margin: 14px auto 0; font-size: 0.76rem; line-height: 1.55; color: var(--text-soft); text-align: center; }
 
 /* --------------------------------------------------------------------------
    3. ACT II — THE THREE MOVEMENTS (pinned, warm dark): the path is walked
@@ -178,6 +231,13 @@ body.ap-js .ap-reveal-line { opacity: 0; }
 .ap-blend-copy .eyebrow { color: var(--gold); }
 .ap-blend-copy .section-title { margin-bottom: 18px; }
 .ap-blend-copy > p { color: var(--text-soft); font-size: 1.05rem; line-height: 1.85; margin-bottom: 22px; }
+.ap-credential {
+    margin-top: 26px; padding: 18px 20px;
+    border-left: 2px solid var(--gold);
+    background: rgba(255, 250, 243, 0.58);
+}
+.ap-credential span { display: block; margin-bottom: 6px; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.ap-credential strong { display: block; font-size: 0.78rem; line-height: 1.5; letter-spacing: 0.08em; color: var(--rosewood); }
 
 /* --------------------------------------------------------------------------
    5. ACT III — WALK THE JOURNEY (interactive stepper)
@@ -271,7 +331,7 @@ body.ap-widgets .ap-step.is-active {
     .ap-hero { min-height: auto; padding: 150px 0 56px; }
     .ap-roots-grid { grid-template-columns: 1fr; gap: 40px; }
     .ap-roots-stage { order: -1; }
-    .ap-tree-svg { max-width: 380px; }
+    .ap-tree-visual { max-width: 580px; }
     .ap-blend-grid { grid-template-columns: 1fr; gap: 36px; }
     .ap-weave { margin-inline: auto; display: block; }
     .ap-moves { grid-template-columns: 1fr; gap: 14px; max-width: 440px; margin-inline: auto; }
@@ -286,10 +346,16 @@ body.ap-widgets .ap-step.is-active {
     .ap-act--roots, .ap-act--path { padding: 72px 0; }
     .ap-steps { grid-template-columns: 1fr; }
     .ap-step { padding: 30px 24px 26px; }
-    .ap-tree-svg { max-width: 320px; }
+    .ap-tree-visual { padding: 18px 14px 16px; border-radius: 24px; }
+    .ap-tree-art { margin: 4px auto 0; }
+    .ap-tree-label { min-height: 28px; padding: 5px 8px; font-size: 0.54rem; letter-spacing: 0; }
+    .ap-tree-transformation { flex-direction: column; margin-top: -6px; padding: 7px 10px; gap: 2px; text-align: center; }
+    .ap-tree-transformation span, .ap-tree-transformation strong { white-space: normal; }
+    .ap-tree-transformation strong { font-size: 0.82rem; }
 }
 @media (max-width: 380px) {
-    .ap-tree-svg { max-width: 280px; }
+    .ap-tree-label { min-height: 25px; padding: 4px 6px; font-size: 0.5rem; }
+    .ap-tree-transformation { margin-inline: 10px; }
     .ap-move { padding: 14px 16px; }
 }
 
@@ -300,4 +366,5 @@ body.ap-widgets .ap-step.is-active {
     body.ap-js .ap-reveal-line { opacity: 1; }
     .ap-hero-aura, .ap-scroll-cue::after { animation: none; }
     .ap-jw-progress, .ap-jw-walker, .ap-step { transition: none; }
+    .ap-tree-logo, .ap-tree-connectors, .ap-tree-label, .ap-tree-transformation, .ap-tree-caption { opacity: 1 !important; transform: none !important; }
 }

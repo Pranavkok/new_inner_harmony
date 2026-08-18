@@ -4,16 +4,16 @@ Source: `Website feedback - 08-13-2026.docx`
 
 ## 1. Approach Page
 
-- [ ] Keep the existing core explanation. The client likes it and says it accurately represents why she chose the Tree of Life.
-- [ ] Replace the current circles-and-lines illustration with a proper Tree of Life visual containing:
+- [x] Keep the existing core explanation. The client likes it and says it accurately represents why she chose the Tree of Life.
+- [x] Replace the current circles-and-lines illustration with a proper Tree of Life visual containing:
   - Leaves and branches representing health, finances, career/business, and relationships.
   - A trunk.
   - Roots representing stress, unresolved emotions, old beliefs, and hidden hurts.
   - A butterfly breaking through the boundary and flying away to represent transformation and freedom.
-- [ ] Use the client's actual logo tree in this section.
+- [x] Use the client's actual logo tree in this section.
 - [ ] Replace the current logo with the high-resolution logo when the client supplies it.
-- [ ] Remove/change the blue colours used on this page.
-- [ ] Include the following credential exactly:
+- [x] Remove/change the blue colours used on this page.
+- [x] Include the following credential exactly:
 
   **CERTIFIED TAROT-BASED TRAUMA-INFORMED COACH & HEALER**
 
