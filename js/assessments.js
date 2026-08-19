@@ -9,6 +9,57 @@
         },
     ];
 
+    const ARCHETYPE_GUIDES = {
+        achiever: {
+            name: 'The Achiever',
+            cover: 'documents/archetype-covers/the-achiever.jpg',
+            pdf: 'documents/archetype-guides/the-achiever.pdf',
+            pages: 18,
+            medicine: 'Worth',
+            description: 'For the part of you that knows how to succeed—and is learning that worth does not have to be earned.',
+        },
+        explorer: {
+            name: 'The Explorer',
+            cover: 'documents/archetype-covers/the-explorer.jpg',
+            pdf: 'documents/archetype-guides/the-explorer.pdf',
+            pages: 18,
+            medicine: 'Freedom',
+            description: 'For the part of you called toward freedom, discovery, and a life that feels genuinely your own.',
+        },
+        harmonizer: {
+            name: 'The Harmonizer',
+            cover: 'documents/archetype-covers/the-harmonizer.jpg',
+            pdf: 'documents/archetype-guides/the-harmonizer.pdf',
+            pages: 17,
+            medicine: 'Harmony',
+            description: 'For the part of you that creates peace for others—and is learning to include yourself in that harmony.',
+        },
+        nurturer: {
+            name: 'The Nurturer',
+            cover: 'documents/archetype-covers/the-nurturer.jpg',
+            pdf: 'documents/archetype-guides/the-nurturer.pdf',
+            pages: 18,
+            medicine: 'Love',
+            description: 'For the part of you that leads with love and is ready to receive the same care you so freely give.',
+        },
+        sage: {
+            name: 'The Sage',
+            cover: 'documents/archetype-covers/the-sage.jpg',
+            pdf: 'documents/archetype-guides/the-sage.pdf',
+            pages: 18,
+            medicine: 'Wisdom',
+            description: 'For the part of you that seeks truth, shares wisdom, and is learning to trust what you already know.',
+        },
+        visionary: {
+            name: 'The Visionary',
+            cover: 'documents/archetype-covers/the-visionary.jpg',
+            pdf: 'documents/archetype-guides/the-visionary.pdf',
+            pages: 18,
+            medicine: 'Inspiration',
+            description: 'For the part of you that sees beyond what exists and is ready to ground inspiration into a healing path.',
+        },
+    };
+
     const sheetMeta = document.querySelector('meta[name="assessments-sheet-csv"]');
     const sheetUrl = sheetMeta ? sheetMeta.content.trim() : '';
     const grid = document.getElementById('assessmentGrid');
@@ -20,6 +71,14 @@
     const frame = document.getElementById('assessmentFrame');
     const loading = document.getElementById('assessmentLoading');
     const fallbackLink = document.getElementById('assessmentFallbackLink');
+    const embed = document.getElementById('assessmentEmbed');
+    const viewerFoot = document.querySelector('.as-viewer-foot');
+    const result = document.getElementById('assessmentResult');
+    const resultTitle = document.getElementById('assessmentResultTitle');
+    const resultCopy = document.getElementById('assessmentResultCopy');
+    const resultGrid = document.getElementById('assessmentResultGrid');
+    const retake = document.getElementById('assessmentRetake');
+    let activeFormId = '';
 
     function showStatus(message) {
         if (!status) return;
@@ -190,6 +249,144 @@
         document.title = 'Assessment Unavailable | INNER HARMONY';
     }
 
+    function createResultCard(key) {
+        const guide = ARCHETYPE_GUIDES[key];
+        if (!guide) return null;
+
+        const card = document.createElement('article');
+        card.className = 'as-result-card';
+
+        const coverLink = document.createElement('a');
+        coverLink.className = 'as-result-cover';
+        coverLink.href = guide.pdf;
+        coverLink.target = '_blank';
+        coverLink.rel = 'noopener';
+        coverLink.setAttribute('aria-label', `View ${guide.name} guide`);
+
+        const image = document.createElement('img');
+        image.src = guide.cover;
+        image.alt = `${guide.name} Healing Archetype guide cover`;
+        image.width = 508;
+        image.height = 720;
+        coverLink.appendChild(image);
+
+        const info = document.createElement('div');
+        info.className = 'as-result-info';
+
+        const category = document.createElement('span');
+        category.className = 'as-result-category';
+        category.textContent = 'Healing archetype';
+
+        const heading = document.createElement('h3');
+        heading.textContent = guide.name;
+
+        const description = document.createElement('p');
+        description.textContent = guide.description;
+
+        const details = document.createElement('div');
+        details.className = 'as-result-details';
+        const pages = document.createElement('span');
+        pages.textContent = `PDF · ${guide.pages} pages`;
+        const medicine = document.createElement('span');
+        medicine.textContent = `Healing medicine: ${guide.medicine}`;
+        details.append(pages, medicine);
+
+        const links = document.createElement('div');
+        links.className = 'as-result-links';
+
+        const view = document.createElement('a');
+        view.href = guide.pdf;
+        view.target = '_blank';
+        view.rel = 'noopener';
+        view.append('View ');
+        const viewArrow = document.createElement('span');
+        viewArrow.setAttribute('aria-hidden', 'true');
+        viewArrow.textContent = '↗';
+        view.appendChild(viewArrow);
+
+        const download = document.createElement('a');
+        download.href = guide.pdf;
+        download.download = `${key}-healing-archetype.pdf`;
+        download.append('Download ');
+        const downloadArrow = document.createElement('span');
+        downloadArrow.setAttribute('aria-hidden', 'true');
+        downloadArrow.textContent = '↓';
+        download.appendChild(downloadArrow);
+
+        links.append(view, download);
+        info.append(category, heading, description, details, links);
+        card.append(coverLink, info);
+        return card;
+    }
+
+    function getHighestScoringArchetypes(fields) {
+        const scores = new Map();
+        if (!Array.isArray(fields)) return [];
+
+        fields.forEach(field => {
+            if (!field || field.type !== 'CALCULATED_FIELDS') return;
+            const match = String(field.title || '').trim().match(/^(Achiever|Explorer|Harmonizer|Nurturer|Sage|Visionary) Score$/i);
+            const score = Number(field.answer?.value);
+            if (match && Number.isFinite(score)) scores.set(match[1].toLowerCase(), score);
+        });
+
+        if (scores.size !== Object.keys(ARCHETYPE_GUIDES).length) return [];
+        const highest = Math.max(...scores.values());
+        return Array.from(scores.entries())
+            .filter(([, score]) => score === highest)
+            .map(([key]) => key);
+    }
+
+    function showAssessmentResult(keys) {
+        if (!keys.length || !result || !resultGrid || !resultTitle || !resultCopy) return;
+
+        resultGrid.textContent = '';
+        const cards = keys.map(createResultCard).filter(Boolean);
+        if (!cards.length) return;
+
+        const names = keys.map(key => ARCHETYPE_GUIDES[key].name);
+        const isBlend = names.length > 1;
+        resultTitle.textContent = isBlend
+            ? `Your result is a ${names.map(name => name.replace(/^The /, '')).join(' + ')} blend.`
+            : `Your result is ${names[0]}.`;
+        resultCopy.textContent = isBlend
+            ? 'Your strongest scores are equal. Continue your reflection with both personal guides.'
+            : 'Continue your reflection with the guide created for your strongest archetype.';
+        resultGrid.classList.toggle('is-blend', isBlend);
+        cards.forEach(card => resultGrid.appendChild(card));
+
+        if (embed) embed.hidden = true;
+        if (viewerFoot) viewerFoot.hidden = true;
+        result.hidden = false;
+        const positionResult = () => {
+            const resultTop = result.getBoundingClientRect().top + window.scrollY - 110;
+            window.scrollTo({ top: Math.max(0, resultTop), behavior: 'auto' });
+        };
+        positionResult();
+        window.setTimeout(positionResult, 600);
+    }
+
+    function handleTallySubmission(event) {
+        if (event.origin !== 'https://tally.so' || typeof event.data !== 'string' || !event.data.includes('Tally.FormSubmitted')) return;
+
+        try {
+            const payload = JSON.parse(event.data).payload;
+            if (!payload || String(payload.formId).toLowerCase() !== activeFormId.toLowerCase()) return;
+            showAssessmentResult(getHighestScoringArchetypes(payload.fields));
+        } catch (_) {
+            // Ignore unrelated cross-window messages.
+        }
+    }
+
+    function resetAssessment() {
+        if (!frame || !result) return;
+        result.hidden = true;
+        if (embed) embed.hidden = false;
+        if (viewerFoot) viewerFoot.hidden = false;
+        frame.src = frame.dataset.tallySrc;
+        embed?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    }
+
     function renderViewer(items) {
         if (!viewer || !title || !description || !frame || !fallbackLink) return;
         const requestedId = new URLSearchParams(window.location.search).get('form') || '';
@@ -201,6 +398,7 @@
             return;
         }
 
+        activeFormId = item.tallyId;
         title.textContent = item.title;
         description.textContent = item.description || 'Take your time and answer in the way that feels most true for you.';
         document.title = `${item.title} | INNER HARMONY`;
@@ -248,5 +446,7 @@
         }
     }
 
+    window.addEventListener('message', handleTallySubmission);
+    if (retake) retake.addEventListener('click', resetAssessment);
     loadAssessments();
 })();

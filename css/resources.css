@@ -706,7 +706,8 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
 }
 
 .resource-number, .resource-type, .resource-cover h3, .resource-cover p { position: relative; z-index: 2; }

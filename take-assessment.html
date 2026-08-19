@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://tally.so">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=4">
-    <link rel="stylesheet" href="css/assessments.css?v=3">
+    <link rel="stylesheet" href="css/assessments.css?v=7">
 </head>
 <body data-page="assessments" data-year="2026">
 
@@ -36,7 +36,7 @@
     <main>
         <section class="as-viewer as-viewer-page" id="assessmentViewer" aria-labelledby="activeAssessmentTitle" hidden>
             <div class="container">
-                <div class="as-embed-shell">
+                <div class="as-embed-shell" id="assessmentEmbed">
                     <div class="as-embed-topline" aria-hidden="true">
                         <span></span><i></i><span></span>
                     </div>
@@ -58,6 +58,19 @@
                     <p>Answer at your own pace. There are no right or wrong responses.</p>
                     <a id="assessmentFallbackLink" href="assessments.html" target="_blank" rel="noopener">Open Full Screen <span>↗</span></a>
                 </div>
+
+                <section class="as-result" id="assessmentResult" aria-labelledby="assessmentResultTitle" aria-live="polite" hidden>
+                    <div class="as-result-heading">
+                        <span class="eyebrow">Your Inner Archetype</span>
+                        <h2 id="assessmentResultTitle">Your personal guide is ready.</h2>
+                        <p id="assessmentResultCopy">Continue your reflection with the guide created for your strongest archetype.</p>
+                    </div>
+                    <div class="as-result-grid" id="assessmentResultGrid"></div>
+                    <div class="as-result-actions">
+                        <button class="as-retake" id="assessmentRetake" type="button"><span aria-hidden="true">←</span> Retake assessment</button>
+                        <a href="resources.html">Explore all guides <span aria-hidden="true">→</span></a>
+                    </div>
+                </section>
             </div>
         </section>
 
@@ -80,6 +93,6 @@
     <script src="https://tally.so/widgets/embed.js" defer></script>
     <script src="js/components.js?v=7"></script>
     <script src="js/main.js"></script>
-    <script src="js/assessments.js?v=3" defer></script>
+    <script src="js/assessments.js?v=6" defer></script>
 </body>
 </html>
