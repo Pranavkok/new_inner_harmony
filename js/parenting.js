@@ -13,7 +13,21 @@
     // ---------- INTERACTIVE QUESTIONNAIRE (no GSAP needed) ----------
     // Each statement has a 5-point scale; clicking a dot fills up to it.
     const READOUTS = ['Rarely', 'Sometimes', 'Often', 'Usually', 'Almost always'];
-    document.querySelectorAll('.pa-statement').forEach(stmt => {
+    const statements = Array.from(document.querySelectorAll('.pa-statement'));
+
+    const resetQuestionnaire = () => {
+        statements.forEach(stmt => {
+            stmt.querySelectorAll('.pa-dot').forEach(dot => {
+                dot.classList.remove('is-on', 'is-peak');
+                dot.setAttribute('aria-checked', 'false');
+            });
+            const readout = stmt.querySelector('.pa-scale-readout');
+            if (readout) readout.textContent = '';
+            stmt.classList.remove('is-set');
+        });
+    };
+
+    statements.forEach(stmt => {
         const dots = Array.from(stmt.querySelectorAll('.pa-dot'));
         const readout = stmt.querySelector('.pa-scale-readout');
         const paint = (idx) => {
@@ -31,10 +45,9 @@
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); paint(i); }
             });
         });
-        // gentle default so the control reads as pre-filled, not empty
-        const start = dots.findIndex(d => d.classList.contains('is-on'));
-        if (start >= 0) paint(start);
     });
+    resetQuestionnaire();
+    window.addEventListener('pageshow', resetQuestionnaire);
 
     if (!hasGSAP || reduced) return;
 

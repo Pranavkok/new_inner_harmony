@@ -29,7 +29,7 @@ Source: `Website feedback - 08-13-2026.docx`
   - 2010 — Holistic integration.
   - Today — Inner Harmony.
 - [x] Update the experience/statistics to:
-  - **28 years**
+  - **23 years**
   - **2000+**
 - [x] Explicitly include **Reiki Grandmaster** in Dr. Gargee's credentials.
 - [x] Replace the current About description with the following supplied copy:
@@ -40,7 +40,7 @@ Source: `Website feedback - 08-13-2026.docx`
 >
 > I don't believe people need fixing. I believe they need a deeper understanding.
 >
-> For over 28 years of my clinical practice, I have had the privilege of guiding thousands of individuals, parents, children, and families on their journey towards health, greater self-understanding, emotional well-being, holistic parenting approaches, financial abundance, good career choices, and personal growth.
+> Across 23 years of my clinical practice, I have had the privilege of guiding thousands of individuals, parents, children, and families on their journey towards health, greater self-understanding, emotional well-being, holistic parenting approaches, financial abundance, good career choices, and personal growth.
 >
 > My goal has always been – To create a compassionate, non-judgmental space where people feel seen, understood, and empowered to transform their lives.
 >
@@ -49,7 +49,7 @@ Source: `Website feedback - 08-13-2026.docx`
 > My greatest joy is witnessing people reconnect with their inner strength, embrace their authentic selves, and step into a life filled with greater purpose, confidence, and harmony.
 
 - [x] Use the client's photograph uploaded to Drive where required on the About page.
-- [x] Resolve the experience-figure conflict using the user's confirmed choice: **28 years** and **2000+**.
+- [x] Resolve the experience-figure conflict using the user's corrected choice: **23 years** and **2000+ patients**.
 
 ## 3. Heal Within / Tarot Page
 

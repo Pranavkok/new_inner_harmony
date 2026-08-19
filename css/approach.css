@@ -367,7 +367,10 @@ body.ap-widgets .ap-step.is-active {
     .ap-weave { margin-inline: auto; display: block; }
     .ap-moves { grid-template-columns: 1fr; gap: 14px; max-width: 440px; margin-inline: auto; }
     .ap-move { text-align: left; padding: 16px 18px; }
-    .ap-path-svg { display: none; }
+    /* Keep the Understand → Heal → Grow path visible on phones. The cards
+       stack below it, but the visual relationship remains part of the story. */
+    .ap-path-svg { display: block; width: 100%; height: auto; }
+    .ap-station-label { font-size: 30px; }
     .ap-act--roots, .ap-act--path { min-height: auto; padding: 84px 0; }
     .ap-tree-art { width: min(100%, 500px); margin-inline: auto; }
     .ap-tree-transformation {
