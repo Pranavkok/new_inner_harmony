@@ -443,8 +443,6 @@
     const leadIncludeAll       = document.getElementById('leadIncludeAll');
     const leadSuccessTitle     = document.getElementById('leadSuccessTitle');
     const leadSuccessCopy      = document.getElementById('leadSuccessCopy');
-    const leadSuccessDownloads = document.getElementById('leadSuccessDownloads');
-    const leadDownloadsList    = document.getElementById('leadDownloadsList');
 
     let currentRequestedKeys = [];
 
@@ -618,20 +616,6 @@
                     leadSuccessCopy.innerHTML = selectedGuides.length > 1
                         ? `Check your inbox — we have sent all <strong>${selectedGuides.length} archetype guides</strong> to <strong>${email}</strong>.`
                         : `Check your inbox — your <strong>${selectedGuides[0].name}</strong> guide has been sent to <strong>${email}</strong>.`;
-                }
-
-                // Render instant 1-click download buttons for immediate access
-                if (leadDownloadsList && leadSuccessDownloads) {
-                    leadDownloadsList.innerHTML = selectedGuides.map(g => {
-                        const filename = g.pdf.split('/').pop() || `${g.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}.pdf`;
-                        return `
-                            <a href="${g.pdf}" download="${filename}" class="as-instant-dl-btn" target="_blank" rel="noopener">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                <span>Download ${g.name}</span>
-                            </a>
-                        `;
-                    }).join('');
-                    leadSuccessDownloads.hidden = false;
                 }
 
                 leadSuccess.classList.add('visible');
