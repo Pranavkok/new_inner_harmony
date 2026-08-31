@@ -15,8 +15,10 @@
         whatsapp: '919152155022',
         email: 'Innerharmonywork@gmail.com',
         location: 'Thane, India',
-        instagram: '#',
-        facebook: '#',
+        instagram: 'https://www.instagram.com/InnerHarmony.Healing/',
+        instagramHandle: '@InnerHarmony.Healing',
+        facebook: 'https://www.facebook.com/InnerHarmony.Heal',
+        facebookHandle: '@InnerHarmony.Heal',
         youtube: '#',
     };
     window.SITE = SITE;
@@ -26,12 +28,12 @@
 
     // ---- Service (Blueprint) directory — used in nav dropdown & footer ----
     const SERVICES = [
-        { href: 'parenting-assessment.html', title: 'Parenting Assessment', sub: 'Understand your child better' },
-        { href: 'inner-potential.html',      title: 'Inner Potential (DMIT)', sub: 'Natural strengths & learning' },
         { href: 'heal-within.html',          title: 'Heal Within',           sub: 'Tarot-informed emotional healing' },
         { href: 'reiki.html',                title: 'Reiki Blueprint',       sub: 'Deep healing & balance' },
-        { href: 'empowered-parent.html',     title: 'Empowered Parent',      sub: 'Calmer, connected homes' },
+        { href: 'parenting-assessment.html', title: 'Parenting Assessment',  sub: 'Understand your child better' },
         { href: 'career-compass.html',       title: 'Career Compass',        sub: 'Find your true direction' },
+        { href: 'empowered-parent.html',     title: 'Empowered Parent',      sub: 'Calmer, connected homes' },
+        { href: 'inner-potential.html',      title: 'Inner Potential (DMIT)', sub: 'Natural strengths & learning' },
     ];
 
     const page = document.body.dataset.page || '';
@@ -59,7 +61,7 @@
                         <svg width="11" height="7" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l5 5 5-5"/></svg>
                     </a>
                     <div class="nav-dropdown">
-                        <a class="nav-dropdown-featured" href="assessments.html">Online Assessments<small>Discover insights through guided tests</small></a>
+                        <a class="nav-dropdown-featured" href="assessments.html">Find Out Your Personality<small>Take the online personality assessment</small></a>
                         ${SERVICES.map(s => `<a href="${s.href}">${s.title}<small>${s.sub}</small></a>`).join('')}
                     </div>
                 </li>
@@ -79,7 +81,7 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="approach.html">Approach</a></li>
                 <li><a href="services.html">Blueprints</a></li>
-                <li><a href="assessments.html">Assessments</a></li>
+                <li><a href="assessments.html">Find Out Your Personality</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="resources.html">Library</a></li>
                 <li><a href="contact.html">Book a Conversation</a></li>
@@ -102,8 +104,8 @@
                     <p>A compassionate, non-judgemental space to understand yourself, heal from within, and create lasting transformation, guided&nbsp;by<br><span class="footer-doctor-name">Dr. Gargee Gadgil.</span></p>
 
                     <div class="footer-social">
-                        <a href="${SITE.instagram}" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-                        <a href="${SITE.facebook}" aria-label="Facebook"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="${SITE.instagram}" aria-label="Instagram (@InnerHarmony.Healing)" target="_blank" rel="noopener"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+                        <a href="${SITE.facebook}" aria-label="Facebook (@InnerHarmony.Heal)" target="_blank" rel="noopener"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
                         <a href="${SITE.youtube}" aria-label="YouTube"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.4-5.2a2.6 2.6 0 0 0-1.8-1.8C19 4.5 12 4.5 12 4.5s-7 0-8.8.5A2.6 2.6 0 0 0 1.4 6.8C1 8.5 1 12 1 12s0 3.5.4 5.2a2.6 2.6 0 0 0 1.8 1.8c1.8.5 8.8.5 8.8.5s7 0 8.8-.5a2.6 2.6 0 0 0 1.8-1.8C23 15.5 23 12 23 12ZM10 15.5v-7l6 3.5Z"/></svg></a>
                     </div>
                 </div>
@@ -133,6 +135,8 @@
                         <li><a href="tel:+${SITE.phone2}">${SITE.phone2Display}</a></li>
                         <li>${SITE.location}</li>
                         <li><a href="${waLink()}" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
+                        <li><a href="${SITE.instagram}" target="_blank" rel="noopener">Instagram: ${SITE.instagramHandle}</a></li>
+                        <li><a href="${SITE.facebook}" target="_blank" rel="noopener">Facebook: ${SITE.facebookHandle}</a></li>
                     </ul>
                 </div>
             </div>
@@ -175,6 +179,14 @@
         el.insertAdjacentElement('afterend', second);
     });
     document.querySelectorAll('[data-fill="location"]').forEach(el => { el.textContent = SITE.location; });
+    document.querySelectorAll('[data-fill="instagram"]').forEach(el => {
+        el.textContent = SITE.instagramHandle;
+        if (el.tagName === 'A') { el.href = SITE.instagram; el.target = '_blank'; el.rel = 'noopener'; }
+    });
+    document.querySelectorAll('[data-fill="facebook"]').forEach(el => {
+        el.textContent = SITE.facebookHandle;
+        if (el.tagName === 'A') { el.href = SITE.facebook; el.target = '_blank'; el.rel = 'noopener'; }
+    });
 
     // ---------- NAV INTERACTIONS ----------
     const navbar = document.getElementById('navbar');

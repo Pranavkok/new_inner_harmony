@@ -1,4 +1,10 @@
 (function () {
+    // ── Lead Capture Config ───────────────────────────────────────
+    // After deploying your Google Apps Script, paste the Web App URL below.
+    const LEAD_CONFIG = {
+        scriptUrl: 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL',
+    };
+
     const FALLBACK_ASSESSMENTS = [
         {
             title: 'Discover Your Inner Personality Archetype',
@@ -249,6 +255,16 @@
         document.title = 'Assessment Unavailable | INNER HARMONY';
     }
 
+    // Archetype-specific teaser sentences (deliberately incomplete)
+    const ARCHETYPE_TEASERS = {
+        achiever:   'Your worth was never something you had to prove. You are already enough, and your path to healing begins with understanding that you are…',
+        explorer:   'The freedom you seek has always lived within you. Your journey to wholeness begins when you realise that you are…',
+        harmonizer: 'True harmony starts from within. Your deepest healing begins the moment you understand that you are…',
+        nurturer:   'The love you pour into others belongs to you first. Your path to wholeness begins with the truth that you are…',
+        sage:       'The wisdom you seek is already woven into who you are. Your healing begins when you trust that you are…',
+        visionary:  'Your vision is not just a dream — it is a calling. Your healing journey begins with the realisation that you are…',
+    };
+
     function createResultCard(key) {
         const guide = ARCHETYPE_GUIDES[key];
         if (!guide) return null;
@@ -256,20 +272,18 @@
         const card = document.createElement('article');
         card.className = 'as-result-card';
 
-        const coverLink = document.createElement('a');
-        coverLink.className = 'as-result-cover';
-        coverLink.href = guide.pdf;
-        coverLink.target = '_blank';
-        coverLink.rel = 'noopener';
-        coverLink.setAttribute('aria-label', `View ${guide.name} guide`);
+        // Cover — static teaser, NOT linked to the PDF
+        const coverWrap = document.createElement('div');
+        coverWrap.className = 'as-result-cover';
 
         const image = document.createElement('img');
         image.src = guide.cover;
         image.alt = `${guide.name} Healing Archetype guide cover`;
         image.width = 508;
         image.height = 720;
-        coverLink.appendChild(image);
+        coverWrap.appendChild(image);
 
+        // Info panel
         const info = document.createElement('div');
         info.className = 'as-result-info';
 
@@ -280,42 +294,42 @@
         const heading = document.createElement('h3');
         heading.textContent = guide.name;
 
-        const description = document.createElement('p');
-        description.textContent = guide.description;
+        const desc = document.createElement('p');
+        desc.textContent = guide.description;
 
         const details = document.createElement('div');
         details.className = 'as-result-details';
-        const pages = document.createElement('span');
-        pages.textContent = `PDF · ${guide.pages} pages`;
         const medicine = document.createElement('span');
         medicine.textContent = `Healing medicine: ${guide.medicine}`;
-        details.append(pages, medicine);
+        details.append(medicine);
 
-        const links = document.createElement('div');
-        links.className = 'as-result-links';
+        // Teaser / incomplete sentence
+        const teaser = document.createElement('div');
+        teaser.className = 'as-result-teaser';
+        const teaserText = document.createElement('p');
+        const teaserSentence = ARCHETYPE_TEASERS[key] || 'Your healing path begins with understanding that you are…';
+        teaserText.innerHTML = `<em>&#8220;</em>${teaserSentence}`;
+        teaser.appendChild(teaserText);
 
-        const view = document.createElement('a');
-        view.href = guide.pdf;
-        view.target = '_blank';
-        view.rel = 'noopener';
-        view.append('View ');
-        const viewArrow = document.createElement('span');
-        viewArrow.setAttribute('aria-hidden', 'true');
-        viewArrow.textContent = '↗';
-        view.appendChild(viewArrow);
+        // Gate / CTA
+        const gate = document.createElement('div');
+        gate.className = 'as-result-gate';
 
-        const download = document.createElement('a');
-        download.href = guide.pdf;
-        download.download = `${key}-healing-archetype.pdf`;
-        download.append('Download ');
-        const downloadArrow = document.createElement('span');
-        downloadArrow.setAttribute('aria-hidden', 'true');
-        downloadArrow.textContent = '↓';
-        download.appendChild(downloadArrow);
+        const gateCopy = document.createElement('p');
+        gateCopy.textContent = 'To receive your complete guide, fill in your details below.';
 
-        links.append(view, download);
-        info.append(category, heading, description, details, links);
-        card.append(coverLink, info);
+        const guideBtn = document.createElement('button');
+        guideBtn.type = 'button';
+        guideBtn.className = 'as-get-guide';
+        guideBtn.dataset.archetypeKey = key;
+        guideBtn.dataset.archetypeName = guide.name;
+        guideBtn.dataset.pdfUrl = guide.pdf;
+        guideBtn.innerHTML = 'Get My Guide <span aria-hidden="true">→</span>';
+        guideBtn.addEventListener('click', () => openLeadModal(key, guide.name, guide.pdf));
+
+        gate.append(gateCopy, guideBtn);
+        info.append(category, heading, desc, details, teaser, gate);
+        card.append(coverWrap, info);
         return card;
     }
 
@@ -377,6 +391,119 @@
             // Ignore unrelated cross-window messages.
         }
     }
+
+    // ── Lead Capture Modal ────────────────────────────────────────
+    const leadModal     = document.getElementById('leadCaptureModal');
+    const leadModalForm = document.getElementById('leadModalForm');
+    const leadSuccess   = document.getElementById('leadSuccess');
+    const leadForm      = document.getElementById('leadForm');
+    const leadError     = document.getElementById('leadError');
+    const leadSubmit    = document.getElementById('leadSubmit');
+    const leadModalClose    = document.getElementById('leadModalClose');
+    const leadSuccessClose  = document.getElementById('leadSuccessClose');
+
+    let currentArchetypeKey  = '';
+    let currentArchetypeName = '';
+    let currentPdfUrl        = '';
+
+    function openLeadModal(key, name, pdfUrl) {
+        currentArchetypeKey  = key;
+        currentArchetypeName = name;
+        currentPdfUrl        = pdfUrl;
+
+        // Reset to form state
+        if (leadSuccess)   leadSuccess.classList.remove('visible');
+        if (leadModalForm) leadModalForm.hidden = false;
+        if (leadError)     { leadError.textContent = ''; leadError.classList.remove('visible'); }
+        if (leadForm)      leadForm.reset();
+        if (leadSubmit)    leadSubmit.disabled = false;
+
+        if (leadModal) {
+            leadModal.hidden = false;
+            document.body.style.overflow = 'hidden';
+            // Focus first input for accessibility
+            const firstInput = leadModal.querySelector('input');
+            if (firstInput) window.setTimeout(() => firstInput.focus(), 60);
+        }
+    }
+
+    function closeLeadModal() {
+        if (leadModal) {
+            leadModal.hidden = true;
+            document.body.style.overflow = '';
+        }
+    }
+
+    async function submitLeadForm(event) {
+        event.preventDefault();
+
+        const name  = (document.getElementById('leadName')?.value  || '').trim();
+        const email = (document.getElementById('leadEmail')?.value || '').trim();
+        const phone = (document.getElementById('leadPhone')?.value || '').trim();
+
+        // Basic validation
+        if (!name) { showLeadError('Please enter your full name.'); return; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showLeadError('Please enter a valid email address.'); return; }
+
+        if (!LEAD_CONFIG.scriptUrl || LEAD_CONFIG.scriptUrl === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+            showLeadError('The email service is not configured yet. Please contact us directly.');
+            return;
+        }
+
+        if (leadSubmit) { leadSubmit.disabled = true; leadSubmit.textContent = 'Sending…'; }
+        if (leadError)  { leadError.textContent = ''; leadError.classList.remove('visible'); }
+
+        // Build absolute PDF URL so the email link works from any mail client
+        const absolutePdfUrl = currentPdfUrl.startsWith('http')
+            ? currentPdfUrl
+            : `${window.location.origin}/${currentPdfUrl.replace(/^\//, '')}`;
+
+        try {
+            const response = await fetch(LEAD_CONFIG.scriptUrl, {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    archetype: currentArchetypeName,
+                    pdfUrl:    absolutePdfUrl,
+                }),
+            });
+
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok || data.success === false) throw new Error(data.error || 'Submission failed.');
+
+            // Show success
+            if (leadModalForm) leadModalForm.hidden = true;
+            if (leadSuccess)   leadSuccess.classList.add('visible');
+            const closeBtn = document.getElementById('leadSuccessClose');
+            if (closeBtn) window.setTimeout(() => closeBtn.focus(), 60);
+
+        } catch (err) {
+            showLeadError('Something went wrong. Please try again or contact us directly.');
+            if (leadSubmit) { leadSubmit.disabled = false; leadSubmit.textContent = 'Send Me My Guide'; }
+        }
+    }
+
+    function showLeadError(message) {
+        if (!leadError) return;
+        leadError.textContent = message;
+        leadError.classList.add('visible');
+        leadError.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    // Close modal on backdrop click
+    if (leadModal) {
+        leadModal.addEventListener('click', (e) => { if (e.target === leadModal) closeLeadModal(); });
+    }
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && leadModal && !leadModal.hidden) closeLeadModal();
+    });
+    if (leadModalClose)   leadModalClose.addEventListener('click', closeLeadModal);
+    if (leadSuccessClose) leadSuccessClose.addEventListener('click', closeLeadModal);
+    if (leadForm)         leadForm.addEventListener('submit', submitLeadForm);
 
     function resetAssessment() {
         if (!frame || !result) return;

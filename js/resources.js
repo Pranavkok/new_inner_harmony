@@ -3,16 +3,48 @@
    ============================================================ */
 
 (function () {
-    const cards = Array.from(document.querySelectorAll('.resource-card'));
+    const filters = Array.from(document.querySelectorAll('.resource-filter'));
+    const cards = Array.from(document.querySelectorAll('.resource-card[data-category]'));
+    const count = document.querySelector('.resource-count strong');
     const toast = document.querySelector('.download-toast');
     let toastTimer;
+
+    filters.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.dataset.filter;
+
+            filters.forEach(filter => {
+                const active = filter === button;
+                filter.classList.toggle('is-active', active);
+                filter.setAttribute('aria-pressed', String(active));
+            });
+
+            let visible = 0;
+            cards.forEach(card => {
+                const show = category === 'all' || card.dataset.category === category;
+                card.hidden = !show;
+                card.classList.toggle('is-filtered-out', !show);
+                if (show) visible += 1;
+            });
+
+            if (count) count.textContent = String(visible);
+
+            if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                gsap.fromTo(
+                    cards.filter(card => !card.hidden),
+                    { opacity: 0, y: 22, scale: 0.98 },
+                    { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.07, ease: 'power3.out', overwrite: true }
+                );
+            }
+        });
+    });
 
     document.querySelectorAll('.js-resource-download').forEach(link => {
         link.addEventListener('click', () => {
             if (!toast) return;
             const title = link.dataset.resourceTitle || 'Your guide';
             const heading = toast.querySelector('strong');
-            if (heading) heading.textContent = `${title} is on its way.`;
+            if (heading) heading.textContent = `${title} is downloading.`;
             toast.classList.add('is-visible');
             window.clearTimeout(toastTimer);
             toastTimer = window.setTimeout(() => toast.classList.remove('is-visible'), 3600);
@@ -69,3 +101,4 @@
         )
     });
 })();
+

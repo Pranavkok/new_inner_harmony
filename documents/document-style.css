@@ -199,3 +199,167 @@ p { margin: 0 0 5mm; color: #7c6169; font-size: 10pt; line-height: 1.75; }
     font-size: 6.5pt;
 }
 .dark .footer-line { border-color: rgba(255,238,208,.14); color: rgba(255,238,208,.45); }
+
+
+/* ============================================================
+   THEME 1: THE GENTLE RESET (Rich Rosewood & Deep Plum)
+   ============================================================ */
+body.theme-reset {
+    color: #4a2430;
+    background: #ebdcd7;
+}
+.theme-reset .page {
+    background:
+        radial-gradient(circle at 95% 5%, rgba(235, 185, 195, .35), transparent 28%),
+        #fdf8f8;
+}
+.theme-reset .page.dark {
+    color: #ffeedd;
+    background:
+        radial-gradient(circle at 75% 30%, rgba(220, 160, 175, .22), transparent 30%),
+        linear-gradient(140deg, #582b3a, #361722);
+}
+.theme-reset .page.blush { background: #fbe5e8; }
+.theme-reset .page.sand { background: #f6dbde; }
+.theme-reset .eyebrow { color: #9e7582; }
+.theme-reset .dark .eyebrow { color: #e5b4c1; }
+.theme-reset h1 em, .theme-reset h2 em { color: #a84b64; }
+.theme-reset .dark h1 em, .theme-reset .dark h2 em { color: #f0bcc9; }
+.theme-reset p { color: #77515e; }
+.theme-reset .dark p { color: rgba(255, 238, 221, .75); }
+.theme-reset .step { border-top-color: rgba(74, 36, 48, .15); }
+.theme-reset .step-num { color: #fff8f8; background: #582b3a; }
+.theme-reset .prompt { border-color: rgba(74, 36, 48, .15); background: rgba(255, 255, 255, .5); }
+.theme-reset .prompt strong { color: #582b3a; }
+.theme-reset .prompt span { color: #865b6a; }
+.theme-reset .prompt-lines { background: repeating-linear-gradient(to bottom, transparent 0, transparent 8mm, rgba(74, 36, 48, .13) 8.2mm); }
+.theme-reset .footer-line { border-top-color: rgba(74, 36, 48, .15); color: #9e7582; }
+.theme-reset .dark .footer-line { border-top-color: rgba(255, 238, 221, .15); color: rgba(255, 238, 221, .5); }
+
+
+/* ============================================================
+   THEME 2: CALM CONNECTION CARDS (Warm Terracotta & Coral Apricot)
+   ============================================================ */
+body.theme-connection {
+    color: #4e271c;
+    background: #f2e3d7;
+}
+.theme-connection .page {
+    background:
+        radial-gradient(circle at 95% 5%, rgba(240, 180, 150, .32), transparent 28%),
+        #fff9f5;
+}
+.theme-connection .page.dark {
+    color: #fff0e5;
+    background:
+        radial-gradient(circle at 75% 30%, rgba(235, 165, 130, .2), transparent 30%),
+        linear-gradient(140deg, #5c2d20, #3a1910);
+}
+.theme-connection .page.blush { background: #fdeade; }
+.theme-connection .page.sand { background: #fae0cf; }
+.theme-connection .eyebrow { color: #a86e5c; }
+.theme-connection .dark .eyebrow { color: #f5ba9e; }
+.theme-connection h1 em, .theme-connection h2 em { color: #c55836; }
+.theme-connection .dark h1 em, .theme-connection .dark h2 em { color: #f7c2a4; }
+.theme-connection p { color: #7c4e40; }
+.theme-connection .dark p { color: rgba(255, 240, 229, .75); }
+.theme-connection .step { border-top-color: rgba(78, 39, 28, .14); }
+.theme-connection .step-num { color: #fff9f5; background: #5c2d20; }
+.theme-connection .conversation-card {
+    border-color: rgba(92, 45, 32, .18);
+    background: rgba(255, 249, 245, .88);
+}
+.theme-connection .conversation-card::after { color: rgba(197, 88, 54, .12); }
+.theme-connection .conversation-card i { color: #b36f59; }
+.theme-connection .conversation-card strong { color: #54281b; }
+.theme-connection .conversation-card small { color: #825345; }
+.theme-connection .dark .conversation-card {
+    border-color: rgba(255, 240, 229, .18);
+    background: rgba(65, 31, 22, .75);
+}
+.theme-connection .dark .conversation-card strong { color: #fff0e5; }
+.theme-connection .dark .conversation-card i { color: #f5ba9e; }
+.theme-connection .dark .conversation-card small { color: rgba(255, 240, 229, .72); }
+.theme-connection .footer-line { border-top-color: rgba(78, 39, 28, .14); color: #a86e5c; }
+.theme-connection .dark .footer-line { border-top-color: rgba(255, 240, 229, .15); color: rgba(255, 240, 229, .5); }
+
+
+/* ============================================================
+   THEME 3: CAREER CLARITY COMPASS (Earthy Forest Sage & Olive Gold)
+   ============================================================ */
+body.theme-career {
+    color: #1f362b;
+    background: #dce7e0;
+}
+.theme-career .page {
+    background:
+        radial-gradient(circle at 95% 5%, rgba(175, 205, 185, .35), transparent 28%),
+        #f5f9f6;
+}
+.theme-career .page.dark {
+    color: #eef6f0;
+    background:
+        radial-gradient(circle at 75% 30%, rgba(160, 195, 175, .2), transparent 30%),
+        linear-gradient(140deg, #284437, #15261e);
+}
+.theme-career .page.sand { background: #e3ece5; }
+.theme-career .page.blush { background: #dce8df; }
+.theme-career .eyebrow { color: #5e7e6f; }
+.theme-career .dark .eyebrow { color: #b0d2bf; }
+.theme-career h1 em, .theme-career h2 em { color: #3b6b52; }
+.theme-career .dark h1 em, .theme-career .dark h2 em { color: #c5e4d2; }
+.theme-career p { color: #436152; }
+.theme-career .dark p { color: rgba(238, 246, 240, .75); }
+.theme-career .step { border-top-color: rgba(31, 54, 43, .14); }
+.theme-career .step-num { color: #f5f9f6; background: #284437; }
+.theme-career .prompt {
+    border-color: rgba(31, 54, 43, .16);
+    background: rgba(255, 255, 255, .55);
+}
+.theme-career .prompt strong { color: #223c30; }
+.theme-career .prompt span { color: #507060; }
+.theme-career .prompt-lines { background: repeating-linear-gradient(to bottom, transparent 0, transparent 8mm, rgba(31, 54, 43, .13) 8.2mm); }
+.theme-career .checklist li {
+    border-bottom-color: rgba(31, 54, 43, .12);
+    color: #355344;
+}
+.theme-career .checklist li::before { border-color: #5e7e6f; }
+.theme-career .footer-line { border-top-color: rgba(31, 54, 43, .14); color: #5e7e6f; }
+.theme-career .dark .footer-line { border-top-color: rgba(238, 246, 240, .15); color: rgba(238, 246, 240, .5); }
+
+
+/* ============================================================
+   THEME 4: YOUR ENERGY CHECK-IN (Radiant Honey Amber & Golden Ochre)
+   ============================================================ */
+body.theme-energy {
+    color: #4a3412;
+    background: #ede2c8;
+}
+.theme-energy .page {
+    background:
+        radial-gradient(circle at 95% 5%, rgba(245, 205, 120, .38), transparent 28%),
+        #fdfbf3;
+}
+.theme-energy .page.sand {
+    background:
+        radial-gradient(circle at 92% 8%, rgba(245, 200, 110, .35), transparent 28%),
+        #fcf7e7;
+}
+.theme-energy .eyebrow { color: #996f2d; }
+.theme-energy h1 em, .theme-energy h2 em { color: #b87719; }
+.theme-energy h3 { color: #4a3412; }
+.theme-energy p { color: #6d4e20; }
+.theme-energy .meter span {
+    border-color: rgba(184, 119, 25, .32);
+    color: #593e16;
+    background: rgba(255, 255, 255, .6);
+    font-weight: 500;
+}
+.theme-energy .prompt {
+    border-color: rgba(74, 52, 18, .18);
+    background: rgba(255, 255, 255, .55);
+}
+.theme-energy .prompt strong { color: #4a3412; }
+.theme-energy .prompt span { color: #775624; }
+.theme-energy .prompt-lines { background: repeating-linear-gradient(to bottom, transparent 0, transparent 8mm, rgba(74, 52, 18, .13) 8.2mm); }
+.theme-energy .footer-line { border-top-color: rgba(74, 52, 18, .16); color: #996f2d; }

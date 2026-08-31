@@ -189,20 +189,20 @@ body.hw-js .hw-card--mirror .hw-card-inner { transition: none; }
     justify-content: center;
     min-width: 94px;
     margin: 16px auto 0;
-    padding: 9px 18px;
-    border: 1px solid rgba(144, 39, 105, 0.38);
+    padding: 11px 22px;
+    border: none;
     border-radius: 999px;
-    background: #fffaf3;
-    color: var(--accent);
-    font: 600 0.68rem/1 var(--font-body);
+    background: #5b3a44;
+    color: #fffaf3;
+    font: 700 0.72rem/1 var(--font-body);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(91, 58, 68, 0.1);
-    transition: color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+    box-shadow: 0 6px 18px rgba(91, 58, 68, 0.45);
+    transition: color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .hw-flip-trigger:hover,
-.hw-flip-trigger[aria-pressed="true"] { background: var(--accent); color: #fffaf3; transform: translateY(-2px); }
+.hw-flip-trigger[aria-pressed="true"] { background: var(--accent); color: #fffaf3; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(144, 39, 105, 0.5); }
 .hw-flip-trigger:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 /* --------------------------------------------------------------------------
    0b. NAVBAR OVER LIGHT HERO
@@ -555,6 +555,16 @@ body.hw-js .hw-reveal-line { opacity: 0; }
     position: relative;
     z-index: 1;
 }
+.hw-approach-header {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--ink);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
 .hw-spread-index,
 .hw-prompts-label {
     display: block;
@@ -601,10 +611,11 @@ body.hw-js .hw-reveal-line { opacity: 0; }
 .hw-prompts li {
     position: relative;
     padding: 9px 0 9px 18px;
-    color: var(--text-soft);
+    color: var(--ink);
     font-family: var(--font-display);
     font-size: 0.94rem;
-    font-style: italic;
+    font-style: normal;
+    font-weight: 500;
     line-height: 1.46;
 }
 .hw-prompts li::before {

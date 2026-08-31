@@ -649,9 +649,49 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     border-bottom: 1px solid rgba(79,47,57,.13);
 }
 
+.resource-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.resource-filter {
+    appearance: none;
+    padding: 9px 16px;
+    color: var(--text-soft);
+    border: 1px solid transparent;
+    border-radius: 50px;
+    background: transparent;
+    font: 500 .76rem var(--font-body);
+    cursor: pointer;
+    transition: color var(--t), background var(--t), border-color var(--t), transform var(--t);
+}
+
+.resource-filter:hover { color: var(--ink); border-color: rgba(79,47,57,.14); }
+.resource-filter.is-active { color: var(--sand); background: var(--ink); box-shadow: 0 8px 20px rgba(79,47,57,.16); }
+
 .resource-count { flex: 0 0 auto; color: var(--muted); font-size: .73rem; letter-spacing: .06em; }
 .resource-count strong { color: var(--ink); font-weight: 600; }
 .resource-intro { max-width: 580px; color: var(--text-soft); font-size: .86rem; line-height: 1.7; }
+
+.shelf-section-subhead {
+    margin-top: 72px;
+    margin-bottom: 32px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(79,47,57,.12);
+}
+
+.shelf-section-subhead .eyebrow {
+    margin-bottom: 10px;
+}
+
+.shelf-section-subhead h3 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.1;
+}
+
+.shelf-section-subhead h3 em {
+    font-weight: 400;
+    color: var(--rosewood);
+}
 
 .resource-grid {
     display: grid;
@@ -751,41 +791,59 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     opacity: .76;
 }
 
-.resource-cover--reset { color: #f8e5ca; background: linear-gradient(145deg, #80515a, #4e3039); }
+/* Document 1: The Gentle Reset — Rich Rosewood & Deep Plum */
+.resource-cover--reset {
+    color: #fdf2f4;
+    background: linear-gradient(145deg, #743e4f, #3e1f2b);
+}
 .resource-cover-bloom {
     width: 130px;
     height: 130px;
     position: absolute;
     left: 50%;
     top: 48%;
-    color: #d5ad82;
-    opacity: .6;
+    color: #f0bcc9;
+    opacity: .68;
     stroke-width: .8;
     transform: translate(-50%, -50%);
 }
 
-.resource-cover--parent { color: #5b3741; background: linear-gradient(145deg, #f1d2be, #dfaea2); }
+/* Document 2: Calm Connection Cards — Warm Terracotta & Coral Apricot */
+.resource-cover--parent {
+    color: #fff8f3;
+    background: linear-gradient(145deg, #d87d60, #a04930);
+}
 .resource-moon {
     width: 132px;
     height: 132px;
     position: absolute;
     left: 50%;
     top: 46%;
-    border: 1px solid rgba(91,55,65,.28);
+    border: 1px solid rgba(255,245,238,.35);
     border-radius: 50%;
     transform: translate(-50%, -50%);
 }
 .resource-moon::before, .resource-moon::after, .resource-moon span {
     content: '';
     position: absolute;
-    border: 1px solid rgba(91,55,65,.2);
+    border: 1px solid rgba(255,245,238,.25);
     border-radius: 50%;
 }
 .resource-moon::before { inset: 13px; }
 .resource-moon::after { inset: 27px; }
-.resource-moon span { width: 13px; height: 13px; left: calc(50% - 6px); top: calc(50% - 6px); background: #8d5b66; }
+.resource-moon span {
+    width: 13px;
+    height: 13px;
+    left: calc(50% - 6px);
+    top: calc(50% - 6px);
+    background: #fff0e5;
+}
 
-.resource-cover--career { color: #f7e8cc; background: linear-gradient(145deg, #6a5056, #443239); }
+/* Document 3: Career Clarity Compass — Earthy Forest Sage & Olive Moss */
+.resource-cover--career {
+    color: #f3f8f5;
+    background: linear-gradient(145deg, #375344, #1b3024);
+}
 .resource-compass {
     width: 135px;
     height: 135px;
@@ -793,14 +851,19 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     left: 50%;
     top: 46%;
     fill: none;
-    stroke: #ddb88e;
+    stroke: #c5e4d2;
     stroke-width: .8;
-    opacity: .74;
+    opacity: .8;
     transform: translate(-50%, -50%);
 }
-.resource-compass-needle { fill: rgba(221,184,142,.35); stroke-width: 1.2; }
+.resource-compass-needle { fill: rgba(197,228,210,.38); stroke-width: 1.2; }
 
-.resource-cover--energy { color: #5d4147; background: linear-gradient(145deg, #f5dfc0, #e2bba5); }
+/* Document 4: Your Energy Check-In — Radiant Honey Amber & Golden Ochre */
+.resource-cover--energy {
+    color: #3d2607;
+    background: linear-gradient(145deg, #f0b048, #c47c1b);
+}
+.resource-cover--energy .resource-type { border-color: rgba(61, 38, 7, 0.45); }
 .resource-ripples {
     width: 135px;
     height: 135px;
@@ -812,11 +875,11 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
 .resource-ripples span {
     position: absolute;
     inset: 0;
-    border: 1px solid rgba(93,65,71,.27);
+    border: 1px solid rgba(61,38,7,.25);
     border-radius: 50%;
 }
 .resource-ripples span:nth-child(2) { inset: 18px; }
-.resource-ripples span:nth-child(3) { inset: 38px; background: rgba(115,79,86,.12); }
+.resource-ripples span:nth-child(3) { inset: 38px; background: rgba(61,38,7,.12); }
 
 .resource-info {
     display: flex;
@@ -1084,3 +1147,24 @@ body[data-page="resources"] .navbar:not(.scrolled) .hamburger span {
     .book,
     .library-aura { animation: none !important; }
 }
+
+/* ── Take-the-test CTA link (replaces View / Download) ─────── */
+.resource-test-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--rosewood, #902769);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color var(--t, 0.2s), gap var(--t, 0.2s);
+}
+.resource-test-cta span {
+    color: var(--gold, #c9a06f);
+    font-size: 1rem;
+    transition: transform var(--t, 0.2s);
+}
+.resource-test-cta:hover { color: #7a1f58; }
+.resource-test-cta:hover span { transform: translateX(4px); }

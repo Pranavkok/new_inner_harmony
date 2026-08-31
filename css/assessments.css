@@ -179,14 +179,21 @@ body[data-page="assessments"] {
     align-items: center;
     gap: 9px;
     margin-top: auto;
-    padding-top: 20px;
-    color: var(--as-accent);
-    font-size: 0.67rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #3d1f2a;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
+    transition: background var(--t), transform var(--t), box-shadow var(--t);
 }
-.as-card-action span { font-size: 1rem; transition: transform var(--t); }
+.as-card-action span { font-size: 0.9rem; transition: transform var(--t); }
+.as-card:hover .as-card-action {
+    background: var(--as-accent, #902769);
+    box-shadow: 0 4px 16px rgba(144, 39, 105, 0.3);
+}
 .as-card:hover .as-card-action span { transform: translateX(4px); }
 .as-grid.is-single .as-card {
     min-height: 350px;
@@ -550,5 +557,447 @@ body[data-page="assessments"] {
 
 @media (prefers-reduced-motion: reduce) {
     .as-card, .as-card-action span, .as-hero-link span, .as-back-link span,
-    .as-result-card, .as-result-links span, .as-result-actions span { transition: none; }
+    .as-result-card, .as-result-links span, .as-result-actions span,
+    .as-get-guide, .as-get-guide span, .as-lead-modal { transition: none; animation: none; }
+}
+
+/* ── Archetype teaser / incomplete sentence ─────────────────── */
+.as-result-teaser {
+    position: relative;
+    margin-top: 18px;
+    padding: 18px 20px 24px;
+    border-left: 2px solid rgba(201, 160, 111, 0.55);
+    background: rgba(255, 250, 243, 0.6);
+    border-radius: 0 8px 8px 0;
+    overflow: hidden;
+}
+.as-result-teaser p {
+    margin: 0;
+    color: var(--text-soft);
+    font: italic 0.93rem/1.75 var(--font-display);
+}
+.as-result-teaser p em { color: var(--ink); font-style: normal; font-weight: 500; }
+.as-result-teaser::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    border-radius: 0 0 8px 0;
+    background: linear-gradient(to bottom, transparent, rgba(255, 248, 240, 0.96));
+    pointer-events: none;
+}
+
+.as-result-gate {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(79, 47, 57, 0.08);
+}
+.as-result-gate p {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    line-height: 1.65;
+}
+.as-get-guide {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 26px;
+    border: none;
+    border-radius: 8px;
+    background: var(--as-accent, #902769);
+    color: #fff;
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--t), transform var(--t), box-shadow var(--t);
+}
+.as-get-guide span { font-size: 1rem; transition: transform var(--t); }
+.as-get-guide:hover {
+    background: #7a1f58;
+    box-shadow: 0 6px 20px rgba(144, 39, 105, 0.28);
+}
+.as-get-guide:hover span { transform: translateX(4px); }
+.as-get-guide:focus-visible { outline: 2px solid var(--as-accent, #902769); outline-offset: 3px; }
+
+/* ── Lead Capture Modal ─────────────────────────────────────── */
+.as-lead-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(34, 18, 24, 0.62);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: leadFadeIn 0.22s ease;
+}
+.as-lead-overlay[hidden] { display: none; }
+
+@keyframes leadFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.as-lead-modal {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 48px 44px 44px;
+    border: 1px solid rgba(201, 160, 111, 0.34);
+    border-radius: 24px;
+    background: #fffaf4;
+    box-shadow: 0 32px 80px rgba(34, 18, 24, 0.28);
+    animation: leadSlideUp 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes leadSlideUp {
+    from { opacity: 0; transform: translateY(22px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.as-lead-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--t), color var(--t);
+}
+.as-lead-close:hover { background: rgba(79, 47, 57, 0.08); color: var(--ink); }
+.as-lead-close:focus-visible { outline: 2px solid var(--as-accent, #902769); outline-offset: 2px; }
+
+.as-lead-eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--rosewood, #902769);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+.as-lead-modal h2 {
+    margin: 0 0 8px;
+    color: var(--ink);
+    font: 600 clamp(1.7rem, 4vw, 2.1rem)/1.1 var(--font-display);
+}
+.as-lead-modal > p {
+    margin: 0 0 30px;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.as-lead-form { display: flex; flex-direction: column; gap: 18px; }
+
+.as-lead-field { display: flex; flex-direction: column; gap: 6px; }
+.as-lead-field label {
+    color: var(--ink);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.as-lead-field input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid rgba(79, 47, 57, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color var(--t), box-shadow var(--t);
+    -webkit-appearance: none;
+}
+.as-lead-field input::placeholder { color: var(--muted); }
+.as-lead-field input:focus {
+    outline: none;
+    border-color: rgba(144, 39, 105, 0.55);
+    box-shadow: 0 0 0 3px rgba(144, 39, 105, 0.1);
+}
+
+.as-lead-optional {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+}
+
+.as-lead-submit {
+    width: 100%;
+    margin-top: 6px;
+    padding: 15px 24px;
+    border: none;
+    border-radius: 10px;
+    background: var(--as-accent, #902769);
+    color: #fff;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--t), box-shadow var(--t), transform var(--t);
+}
+.as-lead-submit:hover:not(:disabled) {
+    background: #7a1f58;
+    box-shadow: 0 8px 24px rgba(144, 39, 105, 0.3);
+    transform: translateY(-1px);
+}
+.as-lead-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+.as-lead-submit:focus-visible { outline: 2px solid var(--as-accent, #902769); outline-offset: 3px; }
+
+.as-lead-error {
+    display: none;
+    padding: 11px 14px;
+    border-radius: 8px;
+    background: rgba(200, 60, 60, 0.08);
+    border: 1px solid rgba(200, 60, 60, 0.2);
+    color: #b83232;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+.as-lead-error.visible { display: block; }
+
+.as-lead-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 12px 0 4px;
+    gap: 14px;
+}
+.as-lead-success.visible { display: flex; }
+.as-lead-success-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(144, 39, 105, 0.1);
+    color: var(--as-accent, #902769);
+    font-size: 1.6rem;
+}
+.as-lead-success h3 {
+    margin: 0;
+    color: var(--ink);
+    font: 600 1.6rem/1.1 var(--font-display);
+}
+.as-lead-success p {
+    margin: 0;
+    max-width: 34ch;
+    color: var(--text-soft);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+.as-lead-success-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--rosewood, #902769);
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.as-lead-success-close:hover { opacity: 0.75; }
+
+@media (max-width: 560px) {
+    .as-lead-modal { padding: 40px 26px 36px; border-radius: 20px; }
+    .as-lead-modal h2 { font-size: 1.65rem; }
+}
+@media (max-width: 380px) {
+    .as-lead-modal { padding: 36px 20px 30px; }
+}
+
+/* ---------- Healing Archetypes Showcase on Assessments Page ---------- */
+.as-archetypes-section {
+    padding: 104px 0 120px;
+    background: #fbf0e5;
+    position: relative;
+    overflow: hidden;
+}
+
+.as-archetypes-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.7fr);
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 52px;
+}
+
+.as-archetypes-head .section-title {
+    margin-bottom: 0;
+}
+
+.as-archetypes-head p {
+    color: var(--text-soft);
+    line-height: 1.8;
+    padding-bottom: 6px;
+    font-size: 0.94rem;
+}
+
+.as-archetypes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.as-archetype-card {
+    min-height: 420px;
+    display: grid;
+    grid-template-columns: 44% 56%;
+    overflow: hidden;
+    border: 1px solid rgba(79, 47, 57, 0.09);
+    border-radius: 26px;
+    background: rgba(255, 250, 243, 0.92);
+    box-shadow: 0 10px 36px rgba(79, 47, 57, 0.06);
+    transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+
+.as-archetype-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(144, 39, 105, 0.28);
+    box-shadow: 0 22px 50px rgba(79, 47, 57, 0.12);
+}
+
+.as-archetype-cover {
+    position: relative;
+    background: #eadfce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.as-archetype-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(0,0,0,.1), transparent 10%, transparent 94%, rgba(255,255,255,.1));
+}
+
+.as-archetype-cover img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+}
+
+.as-archetype-info {
+    display: flex;
+    flex-direction: column;
+    padding: 34px 28px;
+}
+
+.as-archetype-badge {
+    margin-bottom: 14px;
+    color: var(--rosewood, #902769);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.as-archetype-info h3 {
+    margin-bottom: 10px;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1.05;
+}
+
+.as-archetype-info p {
+    color: var(--text-soft);
+    font-size: 0.84rem;
+    line-height: 1.7;
+    margin: 0 0 16px;
+}
+
+.as-archetype-medicine {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+.as-archetype-medicine span {
+    padding: 4px 10px;
+    border-radius: 50px;
+    background: rgba(144, 39, 105, 0.08);
+    color: var(--rosewood, #902769);
+}
+
+.as-archetype-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid rgba(79, 47, 57, 0.08);
+    color: var(--ink);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color var(--t);
+}
+
+.as-archetype-link span {
+    color: var(--gold);
+    font-size: 0.95rem;
+    transition: transform var(--t);
+}
+
+.as-archetype-link:hover {
+    color: var(--rosewood, #902769);
+}
+
+.as-archetype-link:hover span {
+    transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+    .as-archetypes-head { grid-template-columns: 1fr; gap: 20px; }
+    .as-archetypes-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .as-archetype-card { grid-template-columns: 1fr; }
+    .as-archetype-cover { aspect-ratio: 2 / 3; }
+    .as-archetype-info { padding: 26px 20px; }
 }
