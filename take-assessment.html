@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://tally.so">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=4">
-    <link rel="stylesheet" href="css/assessments.css?v=8">
+    <link rel="stylesheet" href="css/assessments.css?v=9">
 </head>
 <body data-page="assessments" data-year="2026">
 
@@ -65,8 +65,10 @@
                         <h2 id="assessmentResultTitle">Your personal guide is ready.</h2>
                         <p id="assessmentResultCopy">Continue your reflection with the guide created for your strongest archetype.</p>
                     </div>
+                    <div class="as-result-all-banner" id="assessmentResultAllBanner" hidden></div>
                     <div class="as-result-grid" id="assessmentResultGrid"></div>
-                    <div class="as-result-actions">
+                    <div class="as-result-actions" id="assessmentResultActions">
+                        <button class="as-get-all-action" id="assessmentGetAllBtn" type="button">✦ Get All 6 Archetype Guides (1-Click)</button>
                         <button class="as-retake" id="assessmentRetake" type="button"><span aria-hidden="true">←</span> Retake assessment</button>
                         <a href="resources.html">Explore all guides <span aria-hidden="true">→</span></a>
                     </div>
@@ -95,9 +97,10 @@
 
             <!-- Form state -->
             <div id="leadModalForm">
-                <span class="as-lead-eyebrow">Your Guide Awaits</span>
+                <span class="as-lead-eyebrow" id="leadModalEyebrow">Your Guide Awaits</span>
                 <h2 id="leadModalTitle">Receive your complete archetype guide</h2>
-                <p>Enter your details below and we will send the full guide straight to your inbox — yours to keep, forever.</p>
+                <p id="leadModalCopy">Enter your details below and we will send the full guide straight to your inbox — yours to keep, forever.</p>
+                <div class="as-lead-badges" id="leadModalBadges" hidden></div>
                 <form class="as-lead-form" id="leadForm" novalidate>
                     <div class="as-lead-field">
                         <label for="leadName">Full Name</label>
@@ -111,6 +114,13 @@
                         <label for="leadPhone">Phone Number <span class="as-lead-optional">(optional)</span></label>
                         <input type="tel" id="leadPhone" name="phone" placeholder="+91 98765 43210" autocomplete="tel">
                     </div>
+                    <div class="as-lead-options" id="leadModalOptions" hidden>
+                        <label class="as-lead-checkbox-label">
+                            <input type="checkbox" id="leadIncludeAll" name="includeAll">
+                            <span class="as-lead-checkbox-custom"></span>
+                            <span class="as-lead-checkbox-text">Send me all 6 archetype guides in one email</span>
+                        </label>
+                    </div>
                     <div class="as-lead-error" id="leadError" role="alert"></div>
                     <button type="submit" class="as-lead-submit" id="leadSubmit">Send Me My Guide</button>
                 </form>
@@ -119,8 +129,15 @@
             <!-- Success state -->
             <div class="as-lead-success" id="leadSuccess">
                 <div class="as-lead-success-icon">✦</div>
-                <h3>Guide on its way!</h3>
-                <p>Check your inbox — your personal archetype guide has been sent to your email.</p>
+                <h3 id="leadSuccessTitle">Guide on its way!</h3>
+                <p id="leadSuccessCopy">Check your inbox — your personal archetype guide has been sent to your email.</p>
+                <div class="as-lead-downloads" id="leadSuccessDownloads" hidden>
+                    <div class="as-lead-downloads-head">
+                        <span class="as-lead-downloads-heading">Instant 1-Click Access</span>
+                        <p class="as-lead-downloads-sub">You can also download or view your guides immediately below:</p>
+                    </div>
+                    <div class="as-lead-downloads-grid" id="leadDownloadsList"></div>
+                </div>
                 <button type="button" class="as-lead-success-close" id="leadSuccessClose">Close ×</button>
             </div>
         </div>
@@ -131,6 +148,6 @@
     <script src="https://tally.so/widgets/embed.js" defer></script>
     <script src="js/components.js?v=8"></script>
     <script src="js/main.js"></script>
-    <script src="js/assessments.js?v=7" defer></script>
+    <script src="js/assessments.js?v=8" defer></script>
 </body>
 </html>

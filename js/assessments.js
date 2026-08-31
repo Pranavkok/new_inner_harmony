@@ -265,6 +265,9 @@
         visionary:  'Your vision is not just a dream — it is a calling. Your healing journey begins with the realisation that you are…',
     };
 
+    const resultAllBanner = document.getElementById('assessmentResultAllBanner');
+    const assessmentGetAllBtn = document.getElementById('assessmentGetAllBtn');
+
     function createResultCard(key) {
         const guide = ARCHETYPE_GUIDES[key];
         if (!guide) return null;
@@ -325,7 +328,7 @@
         guideBtn.dataset.archetypeName = guide.name;
         guideBtn.dataset.pdfUrl = guide.pdf;
         guideBtn.innerHTML = 'Get My Guide <span aria-hidden="true">→</span>';
-        guideBtn.addEventListener('click', () => openLeadModal(key, guide.name, guide.pdf));
+        guideBtn.addEventListener('click', () => openLeadModal([key]));
 
         gate.append(gateCopy, guideBtn);
         info.append(category, heading, desc, details, teaser, gate);
@@ -369,6 +372,37 @@
         resultGrid.classList.toggle('is-blend', isBlend);
         cards.forEach(card => resultGrid.appendChild(card));
 
+        // Render multi-archetype 1-click banner if multiple archetypes are in the result
+        if (resultAllBanner) {
+            if (isBlend) {
+                resultAllBanner.hidden = false;
+                resultAllBanner.innerHTML = `
+                    <div class="as-result-all-card">
+                        <div class="as-result-all-info">
+                            <span class="as-result-all-badge">Multi-Archetype Result</span>
+                            <h3>Get all your result guides in one click</h3>
+                            <p>Your reflection revealed multiple strong archetypes (${names.join(' & ')}). Receive all guides in a single email with just one quick form.</p>
+                        </div>
+                        <button type="button" class="as-get-all-result-btn" id="getAllResultGuidesBtn">
+                            Get Both Guides (1-Click) <span aria-hidden="true">→</span>
+                        </button>
+                    </div>
+                `;
+                const bannerBtn = document.getElementById('getAllResultGuidesBtn');
+                if (bannerBtn) {
+                    bannerBtn.addEventListener('click', () => openLeadModal(keys));
+                }
+            } else {
+                resultAllBanner.hidden = true;
+                resultAllBanner.innerHTML = '';
+            }
+        }
+
+        // Set up the Get All 6 Archetypes button in action bar
+        if (assessmentGetAllBtn) {
+            assessmentGetAllBtn.onclick = () => openLeadModal(Object.keys(ARCHETYPE_GUIDES));
+        }
+
         if (embed) embed.hidden = true;
         if (viewerFoot) viewerFoot.hidden = true;
         result.hidden = false;
@@ -393,30 +427,111 @@
     }
 
     // ── Lead Capture Modal ────────────────────────────────────────
-    const leadModal     = document.getElementById('leadCaptureModal');
-    const leadModalForm = document.getElementById('leadModalForm');
-    const leadSuccess   = document.getElementById('leadSuccess');
-    const leadForm      = document.getElementById('leadForm');
-    const leadError     = document.getElementById('leadError');
-    const leadSubmit    = document.getElementById('leadSubmit');
-    const leadModalClose    = document.getElementById('leadModalClose');
-    const leadSuccessClose  = document.getElementById('leadSuccessClose');
+    const leadModal            = document.getElementById('leadCaptureModal');
+    const leadModalForm        = document.getElementById('leadModalForm');
+    const leadSuccess          = document.getElementById('leadSuccess');
+    const leadForm             = document.getElementById('leadForm');
+    const leadError            = document.getElementById('leadError');
+    const leadSubmit           = document.getElementById('leadSubmit');
+    const leadModalClose       = document.getElementById('leadModalClose');
+    const leadSuccessClose     = document.getElementById('leadSuccessClose');
+    const leadModalEyebrow     = document.getElementById('leadModalEyebrow');
+    const leadModalTitle       = document.getElementById('leadModalTitle');
+    const leadModalCopy        = document.getElementById('leadModalCopy');
+    const leadModalBadges      = document.getElementById('leadModalBadges');
+    const leadModalOptions     = document.getElementById('leadModalOptions');
+    const leadIncludeAll       = document.getElementById('leadIncludeAll');
+    const leadSuccessTitle     = document.getElementById('leadSuccessTitle');
+    const leadSuccessCopy      = document.getElementById('leadSuccessCopy');
+    const leadSuccessDownloads = document.getElementById('leadSuccessDownloads');
+    const leadDownloadsList    = document.getElementById('leadDownloadsList');
 
-    let currentArchetypeKey  = '';
-    let currentArchetypeName = '';
-    let currentPdfUrl        = '';
+    let currentRequestedKeys = [];
 
-    function openLeadModal(key, name, pdfUrl) {
-        currentArchetypeKey  = key;
-        currentArchetypeName = name;
-        currentPdfUrl        = pdfUrl;
+    function updateModalContent(keys) {
+        const totalArchetypes = Object.keys(ARCHETYPE_GUIDES).length;
+        const isAll = keys.length >= totalArchetypes;
+        const isMulti = keys.length > 1;
+
+        if (leadModalEyebrow) {
+            leadModalEyebrow.textContent = isAll
+                ? 'Complete Archetype Collection'
+                : (isMulti ? 'Your Archetype Guides' : 'Your Guide Awaits');
+        }
+
+        if (leadModalTitle) {
+            if (isAll) {
+                leadModalTitle.textContent = 'Receive all 6 Healing Archetype guides';
+            } else if (isMulti) {
+                leadModalTitle.textContent = `Receive all ${keys.length} of your archetype guides`;
+            } else {
+                const guide = ARCHETYPE_GUIDES[keys[0]];
+                leadModalTitle.textContent = guide ? `Receive your ${guide.name} guide` : 'Receive your complete archetype guide';
+            }
+        }
+
+        if (leadModalCopy) {
+            if (isAll) {
+                leadModalCopy.textContent = 'Enter your details once below and we will send the complete 6-guide collection straight to your inbox — yours to keep, forever.';
+            } else if (isMulti) {
+                leadModalCopy.textContent = `Enter your details once below and we will send all ${keys.length} guides straight to your inbox in a single email — yours to keep, forever.`;
+            } else {
+                leadModalCopy.textContent = 'Enter your details below and we will send the full guide straight to your inbox — yours to keep, forever.';
+            }
+        }
+
+        if (leadModalBadges) {
+            if (isMulti || isAll) {
+                leadModalBadges.hidden = false;
+                leadModalBadges.innerHTML = keys.map(key => {
+                    const g = ARCHETYPE_GUIDES[key];
+                    return g ? `<span class="as-lead-badge"><span class="as-lead-badge-dot">✦</span> ${g.name}</span>` : '';
+                }).join('');
+            } else {
+                leadModalBadges.hidden = true;
+                leadModalBadges.innerHTML = '';
+            }
+        }
+
+        if (leadSubmit) {
+            leadSubmit.disabled = false;
+            if (isAll) {
+                leadSubmit.textContent = 'Send Me All 6 Guides';
+            } else if (isMulti) {
+                leadSubmit.textContent = `Send Me All ${keys.length} Guides`;
+            } else {
+                leadSubmit.textContent = 'Send Me My Guide';
+            }
+        }
+    }
+
+    function openLeadModal(keysOrKey) {
+        if (!keysOrKey) {
+            currentRequestedKeys = Object.keys(ARCHETYPE_GUIDES);
+        } else if (Array.isArray(keysOrKey)) {
+            currentRequestedKeys = [...keysOrKey];
+        } else {
+            currentRequestedKeys = [keysOrKey];
+        }
+
+        const totalArchetypes = Object.keys(ARCHETYPE_GUIDES).length;
 
         // Reset to form state
-        if (leadSuccess)   leadSuccess.classList.remove('visible');
+        if (leadSuccess) leadSuccess.classList.remove('visible');
         if (leadModalForm) leadModalForm.hidden = false;
-        if (leadError)     { leadError.textContent = ''; leadError.classList.remove('visible'); }
-        if (leadForm)      leadForm.reset();
-        if (leadSubmit)    leadSubmit.disabled = false;
+        if (leadError) { leadError.textContent = ''; leadError.classList.remove('visible'); }
+        if (leadForm) leadForm.reset();
+
+        if (leadIncludeAll) {
+            leadIncludeAll.checked = false;
+        }
+
+        if (leadModalOptions) {
+            // Show "Include all" option only if not already requesting all 6
+            leadModalOptions.hidden = (currentRequestedKeys.length >= totalArchetypes);
+        }
+
+        updateModalContent(currentRequestedKeys);
 
         if (leadModal) {
             leadModal.hidden = false;
@@ -425,6 +540,16 @@
             const firstInput = leadModal.querySelector('input');
             if (firstInput) window.setTimeout(() => firstInput.focus(), 60);
         }
+    }
+
+    if (leadIncludeAll) {
+        leadIncludeAll.addEventListener('change', () => {
+            if (leadIncludeAll.checked) {
+                updateModalContent(Object.keys(ARCHETYPE_GUIDES));
+            } else {
+                updateModalContent(currentRequestedKeys);
+            }
+        });
     }
 
     function closeLeadModal() {
@@ -450,13 +575,22 @@
             return;
         }
 
+        const shouldIncludeAll = leadIncludeAll && leadIncludeAll.checked;
+        const activeKeys = shouldIncludeAll ? Object.keys(ARCHETYPE_GUIDES) : currentRequestedKeys;
+        const selectedGuides = activeKeys.map(k => ARCHETYPE_GUIDES[k]).filter(Boolean);
+
+        if (!selectedGuides.length) {
+            showLeadError('No archetypes selected. Please try again.');
+            return;
+        }
+
         if (leadSubmit) { leadSubmit.disabled = true; leadSubmit.textContent = 'Sending…'; }
         if (leadError)  { leadError.textContent = ''; leadError.classList.remove('visible'); }
 
-        // Build absolute PDF URL so the email link works from any mail client
-        const absolutePdfUrl = currentPdfUrl.startsWith('http')
-            ? currentPdfUrl
-            : `${window.location.origin}/${currentPdfUrl.replace(/^\//, '')}`;
+        const guideNames = selectedGuides.map(g => g.name);
+        const absolutePdfUrls = selectedGuides.map(g => {
+            return g.pdf.startsWith('http') ? g.pdf : `${window.location.origin}/${g.pdf.replace(/^\//, '')}`;
+        });
 
         try {
             await fetch(LEAD_CONFIG.scriptUrl, {
@@ -467,20 +601,50 @@
                     name,
                     email,
                     phone,
-                    archetype: currentArchetypeName,
-                    pdfUrl:    absolutePdfUrl,
+                    archetype: guideNames.join(', '),
+                    pdfUrl:    absolutePdfUrls.join(', '),
+                    archetypes: guideNames,
+                    pdfUrls:    absolutePdfUrls,
                 }),
             });
 
             // Show success
             if (leadModalForm) leadModalForm.hidden = true;
-            if (leadSuccess)   leadSuccess.classList.add('visible');
+            if (leadSuccess) {
+                if (leadSuccessTitle) {
+                    leadSuccessTitle.textContent = selectedGuides.length > 1 ? 'All Guides on Their Way!' : 'Guide on Its Way!';
+                }
+                if (leadSuccessCopy) {
+                    leadSuccessCopy.innerHTML = selectedGuides.length > 1
+                        ? `Check your inbox — we have sent all <strong>${selectedGuides.length} archetype guides</strong> to <strong>${email}</strong>.`
+                        : `Check your inbox — your <strong>${selectedGuides[0].name}</strong> guide has been sent to <strong>${email}</strong>.`;
+                }
+
+                // Render instant 1-click download buttons for immediate access
+                if (leadDownloadsList && leadSuccessDownloads) {
+                    leadDownloadsList.innerHTML = selectedGuides.map(g => {
+                        const filename = g.pdf.split('/').pop() || `${g.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}.pdf`;
+                        return `
+                            <a href="${g.pdf}" download="${filename}" class="as-instant-dl-btn" target="_blank" rel="noopener">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span>Download ${g.name}</span>
+                            </a>
+                        `;
+                    }).join('');
+                    leadSuccessDownloads.hidden = false;
+                }
+
+                leadSuccess.classList.add('visible');
+            }
             const closeBtn = document.getElementById('leadSuccessClose');
             if (closeBtn) window.setTimeout(() => closeBtn.focus(), 60);
 
         } catch (err) {
             showLeadError('Something went wrong. Please try again or contact us directly.');
-            if (leadSubmit) { leadSubmit.disabled = false; leadSubmit.textContent = 'Send Me My Guide'; }
+            if (leadSubmit) {
+                leadSubmit.disabled = false;
+                leadSubmit.textContent = selectedGuides.length > 1 ? `Send Me All ${selectedGuides.length} Guides` : 'Send Me My Guide';
+            }
         }
     }
 
