@@ -1,8 +1,8 @@
 (function () {
     // ── Lead Capture Config ───────────────────────────────────────
-    // After deploying your Google Apps Script, paste the Web App URL below.
+    // Google Apps Script Web App URL for lead capture and guide delivery
     const LEAD_CONFIG = {
-        scriptUrl: 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL',
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbzcRaFhGc8vV1OzAPVpm1FK5mnJCGXL-3muG_SEVG_rra4v9vc1zgoxQlN64lJ7gHugnw/exec',
     };
 
     const FALLBACK_ASSESSMENTS = [
@@ -459,9 +459,10 @@
             : `${window.location.origin}/${currentPdfUrl.replace(/^\//, '')}`;
 
         try {
-            const response = await fetch(LEAD_CONFIG.scriptUrl, {
+            await fetch(LEAD_CONFIG.scriptUrl, {
                 method:  'POST',
-                headers: { 'Content-Type': 'application/json' },
+                mode:    'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify({
                     name,
                     email,
@@ -470,9 +471,6 @@
                     pdfUrl:    absolutePdfUrl,
                 }),
             });
-
-            const data = await response.json().catch(() => ({}));
-            if (!response.ok || data.success === false) throw new Error(data.error || 'Submission failed.');
 
             // Show success
             if (leadModalForm) leadModalForm.hidden = true;
