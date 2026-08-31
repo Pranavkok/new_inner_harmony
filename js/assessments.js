@@ -363,12 +363,27 @@
 
         const names = keys.map(key => ARCHETYPE_GUIDES[key].name);
         const isBlend = names.length > 1;
-        resultTitle.textContent = isBlend
-            ? `Your result is a ${names.map(name => name.replace(/^The /, '')).join(' + ')} blend.`
-            : `Your result is ${names[0]}.`;
-        resultCopy.textContent = isBlend
-            ? 'Your strongest scores are equal. Continue your reflection with both personal guides.'
-            : 'Continue your reflection with the guide created for your strongest archetype.';
+
+        function formatNamesList(list) {
+            if (list.length <= 1) return list[0] || '';
+            if (list.length === 2) return `${list[0]} & ${list[1]}`;
+            return `${list.slice(0, -1).join(', ')} & ${list[list.length - 1]}`;
+        }
+
+        if (isBlend) {
+            if (names.length >= 6) {
+                resultTitle.textContent = 'Your result is a Balanced Multi-Archetype blend.';
+            } else {
+                resultTitle.textContent = `Your result is a ${names.map(name => name.replace(/^The /, '')).join(' + ')} blend.`;
+            }
+            resultCopy.textContent = names.length === 2
+                ? 'Your strongest scores are equal. Continue your reflection with both personal guides.'
+                : 'Your strongest scores are equal across multiple archetypes. Continue your reflection with your personal guides.';
+        } else {
+            resultTitle.textContent = `Your result is ${names[0]}.`;
+            resultCopy.textContent = 'Continue your reflection with the guide created for your strongest archetype.';
+        }
+
         resultGrid.classList.toggle('is-blend', isBlend);
         cards.forEach(card => resultGrid.appendChild(card));
 
@@ -381,10 +396,10 @@
                         <div class="as-result-all-info">
                             <span class="as-result-all-badge">Multi-Archetype Result</span>
                             <h3>Get all your result guides in one click</h3>
-                            <p>Your reflection revealed multiple strong archetypes (${names.join(' & ')}). Receive all guides in a single email with just one quick form.</p>
+                            <p>Your reflection revealed multiple strong archetypes (${formatNamesList(names)}). Receive all your complete guides in a single email with just one quick form.</p>
                         </div>
                         <button type="button" class="as-get-all-result-btn" id="getAllResultGuidesBtn">
-                            Get Both Guides (1-Click) <span aria-hidden="true">→</span>
+                            Get All Guides <span aria-hidden="true">→</span>
                         </button>
                     </div>
                 `;
