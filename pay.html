@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="1024x1024" href="images/logo.png">
+    <title>Session Payment & Honorarium | Dr. Gargee Gadgil | INNER HARMONY</title>
+    <meta name="description" content="Complete your consultation fee, assessment booking, or healing session payment securely via UPI, Google Pay, PhonePe, Paytm, or Net Banking with Dr. Gargee Gadgil.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/pay.css?v=1">
+</head>
+<body data-page="pay" data-blueprint="pay" data-year="2026">
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+    <div id="site-nav"></div>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <header class="page-hero pay-hero">
+        <div class="hero-orbs">
+            <div class="orb orb-1" data-speed="0.22"></div>
+            <div class="orb orb-4" data-speed="0.32"></div>
+        </div>
+        <div class="pay-hero-glow" aria-hidden="true"></div>
+        <div class="container">
+            <nav class="breadcrumb"><a href="index.html">Home</a><span>/</span> Payment</nav>
+            <span class="eyebrow centered">✦ Energy Exchange &amp; Honorarium</span>
+            <h1>A peaceful space for your <em>session payment</em></h1>
+            <p class="pay-hero-sub">Direct, transparent, and secure transfers for your consultations, assessments, and guidance with Dr. Gargee Gadgil.</p>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         MAIN PAYMENT SANCTUARY GRID
+    ============================================================ -->
+    <main class="pay-section">
+        <div class="container">
+            <div class="pay-grid">
+
+                <!-- Left Column: Flagship Branded QR Card -->
+                <div class="pay-card-wrapper">
+                    <div class="pay-card">
+                        <!-- Corner flourishes -->
+                        <span class="pay-card-flourish top-left">✦</span>
+                        <span class="pay-card-flourish top-right">✦</span>
+                        <span class="pay-card-flourish bottom-left">✦</span>
+                        <span class="pay-card-flourish bottom-right">✦</span>
+
+                        <div class="pay-practitioner-head">
+                            <div class="pay-avatar-ring">
+                                <img src="images/LOGO_FOR_FAVICON-removebg-preview.png" alt="Dr. Gargee Gadgil">
+                            </div>
+                            <div class="pay-practitioner-info">
+                                <strong>Dr. Gargee Gadgil</strong>
+                                <small>INNER HARMONY · Thane, India</small>
+                            </div>
+                            <span class="pay-status-pill"><span class="dot"></span> Verified UPI</span>
+                        </div>
+
+                        <!-- Framed QR Substrate -->
+                        <div class="pay-qr-substrate">
+                            <img src="images/dr-gargee-upi-qr.png" alt="Official UPI QR Code for Dr. Gargee Gadgil" class="pay-qr-image">
+                            <div class="pay-apps-list">
+                                <span>Google Pay</span>
+                                <span>PhonePe</span>
+                                <span>Paytm</span>
+                                <span>BHIM</span>
+                                <span>Cred</span>
+                                <span>Any UPI</span>
+                            </div>
+                        </div>
+
+                        <!-- UPI ID Bar with 1-Click Copy -->
+                        <div class="pay-upi-bar">
+                            <div class="pay-upi-details">
+                                <small>Verified UPI ID</small>
+                                <code id="sanctuaryUpiId">gargee.gadgil@okaxis</code>
+                            </div>
+                            <button type="button" class="pay-copy-action magnetic" id="sanctuaryCopyBtn" aria-label="Copy UPI ID to clipboard">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                <span class="copy-label">Copy</span>
+                            </button>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="pay-buttons-stack">
+                            <a href="upi://pay?pa=gargee.gadgil@okaxis&pn=Dr%20Gargee%20Gadgil&cu=INR" class="pay-btn-mobile magnetic">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                                Tap to Pay in Any UPI App
+                            </a>
+                            <a href="https://wa.me/919152155022?text=Hello%20Dr.%20Gargee%2C%20I%20have%20completed%20the%20UPI%20payment%20for%20my%20session.%20Sharing%20the%20confirmation%20here." class="pay-btn-wa magnetic" target="_blank" rel="noopener">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                Share Screenshot on WhatsApp
+                            </a>
+                        </div>
+
+                        <p class="pay-card-footer-note">✦ Please enter the consultation or assessment amount agreed with Dr. Gargee.</p>
+                    </div>
+                </div>
+
+                <!-- Right Column: 3 Gentle Steps & Reassurance -->
+                <div class="pay-guide-col">
+                    <div class="pay-guide-head">
+                        <span class="eyebrow">Seamless &amp; Direct</span>
+                        <h2>Three gentle steps to <em>confirm your session</em></h2>
+                        <p>We believe the journey into healing should feel light, clear, and reassuring at every touchpoint.</p>
+                    </div>
+
+                    <!-- Step Timeline -->
+                    <div class="pay-timeline">
+                        <div class="pay-timeline-node">
+                            <div class="pay-node-badge">I</div>
+                            <div class="pay-node-text">
+                                <h3>Scan or Enter the UPI ID</h3>
+                                <p>Open your preferred UPI payment application (Google Pay, PhonePe, Paytm, or BHIM) and scan the QR code, or paste our verified ID: <strong style="color:var(--ink)">gargee.gadgil@okaxis</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="pay-timeline-node">
+                            <div class="pay-node-badge">II</div>
+                            <div class="pay-node-text">
+                                <h3>Enter Agreed Amount &amp; Verify</h3>
+                                <p>Verify the recipient name appears as <strong>Dr. Gargee Gadgil</strong>. Enter the fee discussed for your 1:1 consultation, Tarot reading, Reiki session, or Assessment.</p>
+                            </div>
+                        </div>
+
+                        <div class="pay-timeline-node">
+                            <div class="pay-node-badge">III</div>
+                            <div class="pay-node-text">
+                                <h3>Share Confirmation &amp; Lock Your Slot</h3>
+                                <p>Take a quick screenshot of the payment receipt or note the UTR transaction number and send it to Dr. Gargee on WhatsApp. Your appointment slot will be reserved immediately.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trust Pillars -->
+                    <div class="pay-pillars-row">
+                        <div class="pay-pillar-item">
+                            <span class="pay-pillar-icon">✦</span>
+                            <strong>Direct Transfer</strong>
+                            <p>100% of your honorarium reaches the practice directly with zero gateway surcharges.</p>
+                        </div>
+                        <div class="pay-pillar-item">
+                            <span class="pay-pillar-icon">🔒</span>
+                            <strong>Bank-Grade UPI</strong>
+                            <p>Powered by the National Payments Corporation of India (NPCI) for bank-level security.</p>
+                        </div>
+                        <div class="pay-pillar-item">
+                            <span class="pay-pillar-icon">🕊️</span>
+                            <strong>Personal Care</strong>
+                            <p>Every booking is received, read, and confirmed personally by Dr. Gargee.</p>
+                        </div>
+                    </div>
+
+                    <!-- International Clients Callout -->
+                    <div class="pay-intl-callout">
+                        <span class="pay-intl-icon">✦</span>
+                        <div class="pay-intl-content">
+                            <h4>Paying from Outside India?</h4>
+                            <p>For international clients without Indian UPI access, direct bank transfer (SWIFT / Wire) or alternate international payment channels are available.</p>
+                            <a href="https://wa.me/919152155022?text=Hello%20Dr.%20Gargee%2C%20I%20am%20located%20outside%20India%20and%20would%20like%20to%20know%20how%20to%20complete%20my%20session%20payment." class="pay-intl-link" target="_blank" rel="noopener">
+                                Inquire about International Transfer details on WhatsApp →
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+         PAYMENT FAQ SECTION
+    ============================================================ -->
+    <section class="section bg-sand pay-faq-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow centered">Transparency &amp; Care</span>
+                <h2 class="section-title split-words">Payment <em>questions</em> answered</h2>
+                <p class="section-subtitle">Everything you need to know about completing your session honorarium.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-q">Which UPI apps are supported?
+                        <span class="faq-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-a"><div class="faq-a-inner">You can scan or transfer using any UPI-enabled application in India, including Google Pay, PhonePe, Paytm, BHIM, Cred, Amazon Pay, or direct mobile banking apps (HDFC, ICICI, SBI, Axis, etc.).</div></div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q">What should I do after completing the payment?
+                        <span class="faq-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-a"><div class="faq-a-inner">Simply take a screenshot of the successful transaction and send it via WhatsApp to Dr. Gargee at <a href="tel:+919152155022" style="color:var(--rosewood);font-weight:600;">+91 91521 55022</a>. You will receive a warm personal confirmation and session link/details shortly after.</div></div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q">Can I pay for a family member or child's assessment?
+                        <span class="faq-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-a"><div class="faq-a-inner">Yes, absolutely. When sharing your payment screenshot on WhatsApp, please mention the participant's name so we can link it seamlessly to their consultation or assessment profile.</div></div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-q">Is my payment and information confidential?
+                        <span class="faq-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+                    </button>
+                    <div class="faq-a"><div class="faq-a-inner">Always. INNER HARMONY is a safe, strictly confidential space. All financial transfers go directly to Dr. Gargee's verified account without third-party tracking or data storage.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         REASSURANCE CLOSING QUOTE BAND
+    ============================================================ -->
+    <section class="section bg-dark quote-band">
+        <div class="container">
+            <div class="quote-inner">
+                <span class="quote-mark" aria-hidden="true">“</span>
+                <p class="quote-text">
+                    <span class="quote-line">Healing begins the moment we commit</span>
+                    <span class="quote-line"><em>to our own growth.</em></span>
+                </p>
+                <div class="quote-author">
+                    <strong>Dr. Gargee Gadgil</strong>
+                    <span>INNER HARMONY · Thane, India</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="site-footer"></div>
+
+    <script src="js/main.js?v=6"></script>
+    <script src="js/components.js?v=9"></script>
+    <script>
+        // Copy UPI functionality on pay.html
+        const sanctuaryCopyBtn = document.getElementById('sanctuaryCopyBtn');
+        if (sanctuaryCopyBtn) {
+            sanctuaryCopyBtn.addEventListener('click', async () => {
+                const text = 'gargee.gadgil@okaxis';
+                try {
+                    await navigator.clipboard.writeText(text);
+                } catch(e) {
+                    const temp = document.createElement('input');
+                    temp.value = text;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(temp);
+                }
+                const label = sanctuaryCopyBtn.querySelector('.copy-label');
+                sanctuaryCopyBtn.classList.add('copied');
+                if (label) label.textContent = 'Copied! ✓';
+                setTimeout(() => {
+                    sanctuaryCopyBtn.classList.remove('copied');
+                    if (label) label.textContent = 'Copy';
+                }, 2200);
+            });
+        }
+    </script>
+</body>
+</html>

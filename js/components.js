@@ -20,11 +20,17 @@
         facebook: 'https://www.facebook.com/InnerHarmony.Heal',
         facebookHandle: '@InnerHarmony.Heal',
         youtube: '#',
+        upiId: 'gargee.gadgil@okaxis',
+        payeeName: 'Dr. Gargee Gadgil',
+        upiQr: 'images/dr-gargee-upi-qr.png',
     };
     window.SITE = SITE;
 
     const waLink = (text) =>
         `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text || "Hello Dr. Gargee, I'd like to know more about INNER HARMONY.")}`;
+
+    const upiPayLink = () =>
+        `upi://pay?pa=${encodeURIComponent(SITE.upiId)}&pn=${encodeURIComponent(SITE.payeeName)}&cu=INR`;
 
     // ---- Service (Blueprint) directory — used in nav dropdown & footer ----
     const SERVICES = [
@@ -63,10 +69,12 @@
                     <div class="nav-dropdown">
                         <a class="nav-dropdown-featured" href="assessments.html">Find Out Your Personality<small>Take the online personality assessment</small></a>
                         ${SERVICES.map(s => `<a href="${s.href}">${s.title}<small>${s.sub}</small></a>`).join('')}
+                        <a href="pay.html" style="border-top:1px solid var(--line-soft); margin-top:4px; padding-top:10px;">Session Payment<small>UPI QR &amp; consultation fees</small></a>
                     </div>
                 </li>
                 <li><a href="faq.html" data-nav="faq">FAQ</a></li>
                 <li><a href="resources.html" data-nav="resources">Library</a></li>
+                <li><a href="pay.html" data-nav="pay">Payment</a></li>
                 <li><a href="contact.html" class="nav-cta">Book a Conversation</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -84,6 +92,7 @@
                 <li><a href="assessments.html">Find Out Your Personality</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="resources.html">Library</a></li>
+                <li><a href="pay.html">Session Payment</a></li>
                 <li><a href="contact.html">Book a Conversation</a></li>
             </ul>
             <p class="mobile-tagline">Heal Within. Shine Beyond.</p>
@@ -118,6 +127,7 @@
                         <li><a href="assessments.html">Online Assessments</a></li>
                         <li><a href="resources.html">Resource Library</a></li>
                         <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="pay.html">Session Payment</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -135,6 +145,7 @@
                         <li><a href="tel:+${SITE.phone2}">${SITE.phone2Display}</a></li>
                         <li>${SITE.location}</li>
                         <li><a href="${waLink()}" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
+                        <li><a href="pay.html" class="js-open-payment" data-open-payment style="color:var(--gold);font-weight:500;">✦ Make a Payment (UPI)</a></li>
                         <li><a href="${SITE.instagram}" target="_blank" rel="noopener">Instagram: ${SITE.instagramHandle}</a></li>
                         <li><a href="${SITE.facebook}" target="_blank" rel="noopener">Facebook: ${SITE.facebookHandle}</a></li>
                     </ul>
@@ -150,11 +161,78 @@
         <svg width="27" height="27" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>`;
 
+    // ---------- GLOBAL PAYMENT MODAL MARKUP ----------
+    const paymentModalHTML = `
+    <div class="ih-pay-overlay" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="payModalTitle" hidden>
+        <div class="ih-pay-backdrop" data-close-payment></div>
+        <div class="ih-pay-modal">
+            <button class="ih-pay-close" data-close-payment type="button" aria-label="Close payment modal">&times;</button>
+            <div class="ih-pay-head">
+                <span class="eyebrow centered">Verified Practitioner</span>
+                <h2 id="payModalTitle" class="ih-pay-title">Session Payment &amp; Honorarium</h2>
+                <p class="ih-pay-sub">Scan via any UPI app or copy the verified UPI ID below.</p>
+            </div>
+
+            <div class="ih-pay-body">
+                <div class="ih-pay-card">
+                    <div class="ih-pay-practitioner">
+                        <div class="ih-pay-avatar">
+                            <img src="${brandLogo}" alt="Dr. Gargee Gadgil" width="40" height="40">
+                        </div>
+                        <div>
+                            <strong>${SITE.payeeName}</strong>
+                            <small>INNER HARMONY · Thane</small>
+                        </div>
+                        <span class="ih-pay-verified-tag">✓ Verified UPI</span>
+                    </div>
+
+                    <div class="ih-pay-qr-frame">
+                        <img src="${SITE.upiQr}" alt="UPI QR Code for ${SITE.payeeName}" class="ih-pay-qr-img">
+                        <div class="ih-pay-apps-row">
+                            <span>GPay</span><span>PhonePe</span><span>Paytm</span><span>BHIM</span><span>Any UPI</span>
+                        </div>
+                    </div>
+
+                    <div class="ih-pay-upi-field">
+                        <div class="ih-pay-upi-val">
+                            <small>UPI ID</small>
+                            <span id="globalModalUpiId">${SITE.upiId}</span>
+                        </div>
+                        <button type="button" class="ih-pay-copy-btn" id="globalModalCopyBtn" aria-label="Copy UPI ID">
+                            <span class="copy-text">Copy</span>
+                        </button>
+                    </div>
+
+                    <div class="ih-pay-actions">
+                        <a href="${upiPayLink()}" class="btn btn-primary ih-pay-mobile-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                            Open in UPI App
+                        </a>
+                        <a href="${waLink("Hello Dr. Gargee, I have completed the UPI payment of ₹___ for my session. Sharing the screenshot here.")}" class="btn btn-secondary ih-pay-wa-btn" target="_blank" rel="noopener">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            Confirm on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ih-pay-notes">
+                    <p>✦ <strong>Note:</strong> Please enter the exact session amount discussed with Dr. Gargee.</p>
+                    <p>✦ After completing the payment, kindly share the screenshot or UTR number on WhatsApp for instant confirmation.</p>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
     // ---------- INJECT ----------
     const navMount = document.getElementById('site-nav');
     const footMount = document.getElementById('site-footer');
     if (navMount) navMount.innerHTML = navHTML;
     if (footMount) footMount.innerHTML = footerHTML;
+
+    // Inject Payment Modal into body if not already present
+    if (!document.getElementById('paymentModal')) {
+        document.body.insertAdjacentHTML('beforeend', paymentModalHTML);
+    }
 
     // Highlight active nav item
     document.querySelectorAll('.nav-links [data-nav]').forEach(a => {
@@ -187,6 +265,75 @@
         el.textContent = SITE.facebookHandle;
         if (el.tagName === 'A') { el.href = SITE.facebook; el.target = '_blank'; el.rel = 'noopener'; }
     });
+
+    // ---------- PAYMENT MODAL LOGIC ----------
+    const payModal = document.getElementById('paymentModal');
+    const openPayModal = () => {
+        if (payModal) {
+            payModal.hidden = false;
+            document.body.style.overflow = 'hidden';
+        }
+    };
+    const closePayModal = () => {
+        if (payModal) {
+            payModal.hidden = true;
+            document.body.style.overflow = '';
+        }
+    };
+
+    document.querySelectorAll('[data-open-payment], .js-open-payment').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // Only prevent default if we're not navigating directly to pay.html on middle click / Ctrl click
+            if (!e.ctrlKey && !e.metaKey && (!btn.getAttribute('href') || btn.getAttribute('href').startsWith('#') || btn.classList.contains('js-open-payment'))) {
+                e.preventDefault();
+                openPayModal();
+            }
+        });
+    });
+
+    document.querySelectorAll('[data-close-payment]').forEach(btn => {
+        btn.addEventListener('click', closePayModal);
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && payModal && !payModal.hidden) {
+            closePayModal();
+        }
+    });
+
+    // Copy UPI button handler
+    const setupCopyButton = (btnId, textToCopy) => {
+        const copyBtn = document.getElementById(btnId);
+        if (copyBtn) {
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    const originalHTML = copyBtn.innerHTML;
+                    copyBtn.classList.add('copied');
+                    copyBtn.innerHTML = '<span class="copy-text">Copied! ✓</span>';
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.innerHTML = originalHTML;
+                    }, 2200);
+                } catch (err) {
+                    const tempInput = document.createElement('input');
+                    tempInput.value = textToCopy;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                    copyBtn.classList.add('copied');
+                    copyBtn.innerHTML = '<span class="copy-text">Copied! ✓</span>';
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.innerHTML = '<span class="copy-text">Copy</span>';
+                    }, 2200);
+                }
+            });
+        }
+    };
+
+    setupCopyButton('globalModalCopyBtn', SITE.upiId);
 
     // ---------- NAV INTERACTIONS ----------
     const navbar = document.getElementById('navbar');

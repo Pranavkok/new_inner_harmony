@@ -339,7 +339,7 @@ button { font-family: inherit; }
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 34px;
+    gap: 24px;
 }
 .nav-links > li > a {
     font-size: 0.86rem;
@@ -1863,3 +1863,365 @@ body[data-blueprint="empowered"] .prose-visual--empowered {
     * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
     .marquee-track { animation: none; }
 }
+
+/* ============================================================
+   PAYMENT MODAL & STANDALONE PAYMENT COMPONENTS
+   ============================================================ */
+.ih-pay-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 1;
+    transition: opacity 0.3s var(--ease);
+}
+
+.ih-pay-overlay[hidden] {
+    display: none !important;
+}
+
+.ih-pay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(79, 47, 57, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+}
+
+.ih-pay-modal {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 440px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: linear-gradient(170deg, #ffffff 0%, var(--surface) 60%, var(--cream) 100%);
+    border: 1px solid rgba(201, 160, 111, 0.45);
+    border-radius: var(--radius-xl);
+    padding: 34px 28px 28px;
+    box-shadow: 0 28px 70px rgba(79, 47, 57, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+    animation: ihPayModalPop 0.4s var(--ease) forwards;
+}
+
+@keyframes ihPayModalPop {
+    from { opacity: 0; transform: scale(0.94) translateY(14px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.ih-pay-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(79, 47, 57, 0.12);
+    background: #fffaf3;
+    color: var(--rosewood);
+    font-size: 1.4rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+}
+
+.ih-pay-close:hover {
+    background: var(--sand);
+    color: var(--ink);
+    transform: rotate(90deg);
+}
+
+.ih-pay-head {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.ih-pay-title {
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    color: var(--ink);
+    margin: 6px 0 4px;
+    line-height: 1.18;
+}
+
+.ih-pay-sub {
+    font-size: 0.86rem;
+    color: var(--text-soft);
+    margin: 0 auto;
+    max-width: 320px;
+}
+
+.ih-pay-card {
+    background: #ffffff;
+    border: 1px solid rgba(201, 160, 111, 0.28);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.ih-pay-practitioner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line-soft);
+    margin-bottom: 16px;
+}
+
+.ih-pay-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1.5px solid var(--gold);
+    flex-shrink: 0;
+}
+
+.ih-pay-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 3px;
+}
+
+.ih-pay-practitioner strong {
+    display: block;
+    font-size: 0.96rem;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.ih-pay-practitioner small {
+    display: block;
+    font-size: 0.74rem;
+    color: var(--text-soft);
+}
+
+.ih-pay-verified-tag {
+    margin-left: auto;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #1f683a;
+    background: rgba(31, 104, 58, 0.08);
+    border: 1px solid rgba(31, 104, 58, 0.2);
+    padding: 3px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.ih-pay-qr-frame {
+    text-align: center;
+    padding: 14px 14px 10px;
+    background: linear-gradient(180deg, #ffffff 0%, var(--surface) 100%);
+    border: 1.5px solid rgba(201, 160, 111, 0.35);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px rgba(79, 47, 57, 0.04);
+    margin-bottom: 16px;
+}
+
+.ih-pay-qr-img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+.ih-pay-apps-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.ih-pay-apps-row span {
+    font-size: 0.66rem;
+    color: var(--text-soft);
+    background: var(--cream);
+    padding: 2px 7px;
+    border-radius: 6px;
+    border: 1px solid rgba(79, 47, 57, 0.08);
+}
+
+.ih-pay-upi-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--cream);
+    border: 1px dashed rgba(201, 160, 111, 0.65);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    margin-bottom: 16px;
+}
+
+.ih-pay-upi-val small {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.ih-pay-upi-val span {
+    font-family: monospace, -apple-system;
+    font-size: 0.88rem;
+    color: var(--ink);
+    font-weight: 600;
+    user-select: all;
+    word-break: break-all;
+}
+
+.ih-pay-copy-btn {
+    background: var(--rosewood);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+    flex-shrink: 0;
+}
+
+.ih-pay-copy-btn:hover {
+    background: var(--ink);
+    transform: translateY(-1px);
+}
+
+.ih-pay-copy-btn.copied {
+    background: #1f683a !important;
+}
+
+.ih-pay-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ih-pay-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 0.88rem;
+    gap: 8px;
+}
+
+.ih-pay-mobile-btn {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .ih-pay-mobile-btn {
+        display: inline-flex;
+    }
+}
+
+.ih-pay-wa-btn {
+    background: #fdf4eb;
+    color: var(--rosewood);
+    border: 1px solid rgba(79, 47, 57, 0.15);
+}
+
+.ih-pay-wa-btn:hover {
+    background: #25D366;
+    color: #ffffff;
+    border-color: #25D366;
+}
+
+.ih-pay-notes {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-soft);
+}
+
+.ih-pay-notes p {
+    font-size: 0.74rem;
+    color: var(--text-soft);
+    line-height: 1.45;
+    margin-bottom: 6px;
+}
+
+.ih-pay-notes p:last-child {
+    margin-bottom: 0;
+}
+
+/* Standalone /pay.html Page Styles */
+.pay-page-hero {
+    padding: 130px 0 40px;
+    text-align: center;
+    background: radial-gradient(60% 70% at 50% 18%, rgba(252, 219, 216, 0.6) 0%, transparent 60%),
+                radial-gradient(85% 120% at 50% -8%, var(--sand) 0%, var(--cream) 48%, var(--cream-2) 100%);
+}
+
+.pay-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    align-items: start;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.pay-step-card {
+    background: var(--surface);
+    border: 1px solid rgba(79, 47, 57, 0.08);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    gap: 16px;
+}
+
+.pay-step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--sand);
+    color: var(--rosewood);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    border: 1px solid var(--gold);
+}
+
+.pay-step-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--ink);
+    margin-bottom: 4px;
+}
+
+.pay-step-content p {
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 820px) {
+    .pay-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
