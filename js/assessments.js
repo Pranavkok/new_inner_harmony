@@ -7,7 +7,7 @@
 
     const FALLBACK_ASSESSMENTS = [
         {
-            title: 'Discover Your Inner Personality Archetype',
+            title: 'Find Out Your Personality',
             description: 'Discover the archetype that reflects your strengths and natural patterns.',
             tallyLink: 'https://tally.so/r/440rQA',
             active: true,
@@ -22,7 +22,7 @@
             pdf: 'documents/archetype-guides/the-achiever.pdf',
             pages: 18,
             medicine: 'Worth',
-            description: 'For the part of you that knows how to succeed—and is learning that worth does not have to be earned.',
+            description: 'For the part of you that knows how to succeed, and is learning that worth does not have to be earned.',
         },
         explorer: {
             name: 'The Explorer',
@@ -38,7 +38,7 @@
             pdf: 'documents/archetype-guides/the-harmonizer.pdf',
             pages: 17,
             medicine: 'Harmony',
-            description: 'For the part of you that creates peace for others—and is learning to include yourself in that harmony.',
+            description: 'For the part of you that creates peace for others, and is learning to include yourself in that harmony.',
         },
         nurturer: {
             name: 'The Nurturer',
@@ -262,7 +262,7 @@
         harmonizer: 'True harmony starts from within. Your deepest healing begins the moment you understand that you are…',
         nurturer:   'The love you pour into others belongs to you first. Your path to wholeness begins with the truth that you are…',
         sage:       'The wisdom you seek is already woven into who you are. Your healing begins when you trust that you are…',
-        visionary:  'Your vision is not just a dream — it is a calling. Your healing journey begins with the realisation that you are…',
+        visionary:  'Your vision is not just a dream, it is a calling. Your healing journey begins with the realisation that you are…',
     };
 
     const resultAllBanner = document.getElementById('assessmentResultAllBanner');
@@ -485,11 +485,11 @@
 
         if (leadModalCopy) {
             if (isAll) {
-                leadModalCopy.textContent = 'Enter your details once below and we will send the complete 6-guide collection straight to your inbox — yours to keep, forever.';
+                leadModalCopy.textContent = 'Enter your details once below and we will send the complete 6-guide collection straight to your inbox, yours to keep forever.';
             } else if (isMulti) {
-                leadModalCopy.textContent = `Enter your details once below and we will send all ${keys.length} guides straight to your inbox in a single email — yours to keep, forever.`;
+                leadModalCopy.textContent = `Enter your details once below and we will send all ${keys.length} guides straight to your inbox in a single email, yours to keep forever.`;
             } else {
-                leadModalCopy.textContent = 'Enter your details below and we will send the full guide straight to your inbox — yours to keep, forever.';
+                leadModalCopy.textContent = 'Enter your details below and we will send the full guide straight to your inbox, yours to keep forever.';
             }
         }
 
@@ -629,8 +629,8 @@
                 }
                 if (leadSuccessCopy) {
                     leadSuccessCopy.innerHTML = selectedGuides.length > 1
-                        ? `Check your inbox — we have sent all <strong>${selectedGuides.length} archetype guides</strong> to <strong>${email}</strong>.`
-                        : `Check your inbox — your <strong>${selectedGuides[0].name}</strong> guide has been sent to <strong>${email}</strong>.`;
+                        ? `Check your inbox. We have sent all <strong>${selectedGuides.length} archetype guides</strong> to <strong>${email}</strong>.`
+                        : `Check your inbox. Your <strong>${selectedGuides[0].name}</strong> guide has been sent to <strong>${email}</strong>.`;
                 }
 
                 leadSuccess.classList.add('visible');
@@ -679,7 +679,9 @@
         if (!viewer || !title || !description || !frame || !fallbackLink) return;
         const requestedId = new URLSearchParams(window.location.search).get('form') || '';
         const safeId = /^[a-z0-9]+$/i.test(requestedId) ? requestedId : '';
-        const item = items.find(assessment => assessment.tallyId.toLowerCase() === safeId.toLowerCase());
+        const item = safeId
+            ? items.find(assessment => assessment.tallyId.toLowerCase() === safeId.toLowerCase())
+            : items[0];
 
         if (!item) {
             showUnavailable();
