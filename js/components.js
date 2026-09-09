@@ -8,11 +8,11 @@
     // ---- Single source of truth for contact details ----
     // NOTE: placeholders — replace with real details before launch.
     const SITE = {
-        phone1Display: '+91 91521 55022',
-        phone1: '919152155022',
-        phone2Display: '+91 99300 34340',
-        phone2: '919930034340',
-        whatsapp: '919152155022',
+        phone1Display: '+91 99300 34340',
+        phone1: '919930034340',
+        phone2Display: '+91 91521 55022',
+        phone2: '919152155022',
+        whatsapp: '919930034340',
         email: 'Innerharmonywork@gmail.com',
         location: 'Thane, India',
         instagram: 'https://www.instagram.com/InnerHarmony.Healing/',
