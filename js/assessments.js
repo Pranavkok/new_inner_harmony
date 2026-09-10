@@ -413,11 +413,6 @@
             }
         }
 
-        // Set up the Get All 6 Archetypes button in action bar
-        if (assessmentGetAllBtn) {
-            assessmentGetAllBtn.onclick = () => openLeadModal(Object.keys(ARCHETYPE_GUIDES));
-        }
-
         if (embed) embed.hidden = true;
         if (viewerFoot) viewerFoot.hidden = true;
         result.hidden = false;

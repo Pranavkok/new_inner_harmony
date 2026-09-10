@@ -147,6 +147,58 @@
 }
 .ct-paper .form-group label { color: var(--rosewood); }
 
+/* channel selector (WhatsApp vs Email) */
+.ct-channel-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 6px;
+}
+.ct-channel-opt {
+    position: relative;
+    cursor: pointer;
+    margin: 0 !important;
+}
+.ct-channel-opt input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.ct-channel-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 16px;
+    border-radius: var(--radius-sm, 10px);
+    border: 1.5px solid rgba(201, 160, 111, 0.45);
+    background: rgba(255, 252, 246, 0.85);
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+.ct-channel-box svg {
+    color: var(--rosewood);
+    transition: transform 0.25s ease;
+}
+.ct-channel-opt:hover .ct-channel-box {
+    border-color: var(--rosewood);
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79, 47, 57, 0.08);
+}
+.ct-channel-opt input[type="radio"]:checked + .ct-channel-box {
+    border-color: var(--rosewood);
+    background: rgba(252, 219, 216, 0.5);
+    color: var(--rosewood);
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(168, 75, 100, 0.15);
+}
+.ct-channel-opt input[type="radio"]:checked + .ct-channel-box svg {
+    transform: scale(1.1);
+}
+
 /* warmth meter — hearts light as the note takes shape */
 .ct-warmth {
     display: none;

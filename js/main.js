@@ -362,22 +362,38 @@
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return showMsg('Please enter a valid email address.', 'error');
             const btn = form.querySelector('button[type="submit"]');
             const label = btn.textContent;
-            btn.textContent = 'Redirecting…'; btn.disabled = true;
+            btn.textContent = 'Sending…'; btn.disabled = true;
 
-            let text = `Hello Dr. Gargee,\n\nI would like to connect.\n\n*Name:* ${data.name}\n*Email:* ${data.email}`;
-            if (data.phone) text += `\n*Phone:* ${data.phone}`;
-            if (data.service && data.service !== "I'm not sure yet, please guide me") text += `\n*Interested in:* ${data.service}`;
-            text += `\n\n*Message:*\n${data.message}`;
+            // Build the shared message body
+            let bodyLines = `Hello Dr. Gargee,\n\nI would like to connect.\n\nName: ${data.name}\nEmail: ${data.email}`;
+            if (data.phone) bodyLines += `\nPhone: ${data.phone}`;
+            if (data.service && data.service !== "I'm not sure yet, please guide me") bodyLines += `\nInterested in: ${data.service}`;
+            bodyLines += `\n\nMessage:\n${data.message}`;
 
-            const phone = window.SITE ? window.SITE.whatsapp : '919930034340';
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+            // WhatsApp (formatted with bold markers)
+            let waText = `Hello Dr. Gargee,\n\nI would like to connect.\n\n*Name:* ${data.name}\n*Email:* ${data.email}`;
+            if (data.phone) waText += `\n*Phone:* ${data.phone}`;
+            if (data.service && data.service !== "I'm not sure yet, please guide me") waText += `\n*Interested in:* ${data.service}`;
+            waText += `\n\n*Message:*\n${data.message}`;
+
+            const isEmail = data.channel === 'email';
 
             setTimeout(() => {
-                window.open(url, '_blank');
-                showMsg('Opening WhatsApp...', 'success');
+                if (isEmail) {
+                    const emailAddr = window.SITE ? window.SITE.email : 'Innerharmonywork@gmail.com';
+                    const subject = `Website Enquiry from ${data.name}`;
+                    const mailtoUrl = `mailto:${emailAddr}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines)}`;
+                    window.location.href = mailtoUrl;
+                    showMsg('Opening your email app…', 'success');
+                } else {
+                    const waPhone = window.SITE ? window.SITE.whatsapp : '919152155022';
+                    const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
+                    window.open(waUrl, '_blank');
+                    showMsg('Opening WhatsApp…', 'success');
+                }
                 form.reset();
                 btn.textContent = label; btn.disabled = false;
-            }, 600);
+            }, 500);
         });
         function showMsg(text, type) {
             let el = form.querySelector('.form-message');

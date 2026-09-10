@@ -8,11 +8,11 @@
     // ---- Single source of truth for contact details ----
     // NOTE: placeholders — replace with real details before launch.
     const SITE = {
-        phone1Display: '+91 99300 34340',
-        phone1: '919930034340',
-        phone2Display: '+91 91521 55022',
-        phone2: '919152155022',
-        whatsapp: '919930034340',
+        phone1Display: '+91 91521 55022',
+        phone1: '919152155022',
+        phone2Display: '+91 99300 34340',
+        phone2: '919930034340',
+        whatsapp: '919152155022',
         email: 'Innerharmonywork@gmail.com',
         location: 'Thane, India',
         instagram: 'https://www.instagram.com/InnerHarmony.Healing/',
@@ -248,8 +248,18 @@
     // Fill any e-mail / tel placeholders
     document.querySelectorAll('[data-fill="email"]').forEach(el => { el.textContent = SITE.email; if (el.tagName === 'A') el.href = 'mailto:' + SITE.email; });
     document.querySelectorAll('[data-fill="phone"]').forEach(el => {
-        el.textContent = SITE.phone1Display;
-        if (el.tagName === 'A') el.href = 'tel:+' + SITE.phone1;
+        if (el.tagName === 'A') {
+            const strong = document.createElement('strong');
+            strong.textContent = SITE.phone1Display;
+            el.textContent = '';
+            el.appendChild(strong);
+            el.href = 'tel:+' + SITE.phone1;
+        } else {
+            const strong = document.createElement('strong');
+            strong.textContent = SITE.phone1Display;
+            el.textContent = '';
+            el.appendChild(strong);
+        }
         const second = document.createElement(el.tagName === 'A' ? 'a' : 'span');
         second.textContent = SITE.phone2Display;
         second.style.display = 'block';
