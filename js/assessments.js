@@ -2,7 +2,7 @@
     // ── Lead Capture Config ───────────────────────────────────────
     // Google Apps Script Web App URL for lead capture and guide delivery
     const LEAD_CONFIG = {
-        scriptUrl: 'https://script.google.com/macros/s/AKfycbzcRaFhGc8vV1OzAPVpm1FK5mnJCGXL-3muG_SEVG_rra4v9vc1zgoxQlN64lJ7gHugnw/exec',
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbwa7m0baVrrUf4QtgD-Ffz9QH2GYM5TcPGgjAFyiUKtn1lX_hGTJRKcdSxmJqO8JxlG/exec',
     };
 
     const FALLBACK_ASSESSMENTS = [
